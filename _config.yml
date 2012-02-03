@@ -60,6 +60,7 @@ titlecase: true       # Converts page and post titles to titlecase
 
 # # Tencent Weibo
 # tencent_weibo_user: jsw0528
+# tencent_weibo_appkey:
 
 # # Github repositories
 # github_user: jsw0528

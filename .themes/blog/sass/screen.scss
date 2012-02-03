@@ -223,10 +223,6 @@ article {
   padding: 0 5px;
   color: #999;
   line-height: 1;
-  iframe {
-    margin-left: 1em;
-    vertical-align: top;
-  }
 }
 .categories {
   margin-left: 8px;
@@ -234,6 +230,26 @@ article {
 }
 time {
   font-size: 13px;
+}
+.share-to-weibo {
+  padding-left: 1em;
+  vertical-align: middle;
+  a {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+    background: url(/images/icon.png) no-repeat 999px 999px;
+  }
+  .sina-weibo {
+    background-position: 0 0;
+  }
+  .tencent-weibo {
+    background-position: 0 -16px;
+  }
+  .twitter {
+    background-position: 0 -32px;
+  }
 }
 .entry-content a, .category {
   color: #578cca;
