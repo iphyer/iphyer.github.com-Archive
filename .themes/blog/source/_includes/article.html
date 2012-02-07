@@ -2,7 +2,7 @@
 {% capture post_or_page_url %}{{ site.url }}{% if index %}{{ post.url }}{% else %}{{ page.url }}{% endif %}{% endcapture %}
 <header>
   {% if index %}
-    <h1 class="entry-title"><a href="{{ post_or_page_url }}">{{ post_or_page_title }}</a></h1>
+    <h1 class="entry-title"><a href="{{ post.url }}">{{ post_or_page_title }}</a></h1>
   {% else %}
     <h1 class="entry-title">{{ post_or_page_title }}</h1>
   {% endif %}
@@ -26,7 +26,7 @@
   {% capture excerpted %}{{ content | has_excerpt }}{% endcapture %}
   {% if excerpted == 'true' %}
     <footer class="align-right">
-      <a rel="full-article" href="{{ post_or_page_url }}">{{ site.excerpt_link }}</a>
+      <a rel="full-article" href="{{ post.url }}">{{ site.excerpt_link }}</a>
     </footer>
   {% endif %}
 {% else %}

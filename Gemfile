@@ -13,7 +13,7 @@ group :development do
   gem 'rubypants'
   gem 'rb-fsevent'      # FSEvents API with signals handled (without RubyCocoa)
   gem 'stringex'        # 'Hello World'.to_url => 'hello-world'
-  gem 'liquid', '2.2.2' # Template => {{ Tag }}
+  gem 'liquid'          # Template => {{ Tag }}
 end
 
-gem 'sinatra', '1.2.6'
+gem 'sinatra'
