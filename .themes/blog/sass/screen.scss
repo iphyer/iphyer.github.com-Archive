@@ -1,6 +1,3 @@
-// https://github.com/jsw0528/Alice/tree/eDr_assets
-@import './_base/base';
-
 $support-for-html5-tags-in-ie: false;
 $base-font-size: 14px;
 $text-color: #444;
@@ -18,6 +15,11 @@ $rgb-4: rgba(0, 0, 0, .4);
 $rgb-3: rgba(0, 0, 0, .3);
 $rgb-2: rgba(0, 0, 0, .2);
 $rgb-1: rgba(0, 0, 0, .1);
+
+
+// https://github.com/jsw0528/Alice/tree/eDr_assets
+@import './_base/base';
+@import './_base/_typo_';
 
 
 /* Custom Fonts */
@@ -215,7 +217,6 @@ article {
 .entry-content {
   font-size: 16px;
   p {
-    margin-top: 1em;
     &:first-child::first-letter {
       font-size: 24px;
     }

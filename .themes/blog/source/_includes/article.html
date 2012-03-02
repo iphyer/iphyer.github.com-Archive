@@ -22,7 +22,7 @@
 </header>
 
 {% if index %}
-  <div class="entry-content">{{ content | excerpt }}</div>
+  <div class="entry-content typo">{{ content | excerpt }}</div>
   {% capture excerpted %}{{ content | has_excerpt }}{% endcapture %}
   {% if excerpted == 'true' %}
     <footer class="align-right">
@@ -30,5 +30,5 @@
     </footer>
   {% endif %}
 {% else %}
-  <div class="entry-content">{{ content }}</div>
+  <div class="entry-content typo">{{ content }}</div>
 {% endif %}
