@@ -53,20 +53,23 @@ titlecase: true       # Converts page and post titles to titlecase
 #   3rd Party Settings    #
 # ----------------------- #
 
-# # Sina Weibo
-# sina_weibo_user: jsw0528
-# sina_weibo_uid: 1649383490
+# Sina Weibo
+# sina_weibo_user:
+# sina_weibo_uid:
 # sina_weibo_appkey:
 
-# # Tencent Weibo
-# tencent_weibo_user: jsw0528
+# Tencent Weibo
+# tencent_weibo_user:
 # tencent_weibo_appkey:
 
-# # Github repositories
-# github_user: jsw0528
+# Github
+# github_user:
 
-# # Twitter
-# twitter_user: jsw0528
+# Twitter
+# twitter_user:
 
-# # Google Analytics
+# Disqus Comments
+# disqus_short_name:
+
+# Google Analytics
 # google_analytics_tracking_id:

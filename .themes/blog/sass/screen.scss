@@ -48,10 +48,12 @@ $rgb-1: rgba(0, 0, 0, .1);
   src: local('PT Serif'), url('/fonts/ptSerif-webfont.woff') format('woff');
 }
 
+html {
+  background: url(/images/bg.png) repeat;
+}
 body {
   min-width: $page-width;
   padding-top: 32px;
-  background: url(/images/bg.png) repeat;
 }
 a {
   color: $link-color;
