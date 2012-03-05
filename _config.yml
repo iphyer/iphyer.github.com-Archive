@@ -28,8 +28,8 @@ permalink: /blog/:title.html
 source: source
 destination: public
 plugins: plugins
-code_dir: downloads/code
-category_dir: blog/categories
+tag_dir: blog/tags
+# category_dir: blog/categories
 markdown: rdiscount
 pygments: false # default python pygments have been replaced by pygments.rb
 

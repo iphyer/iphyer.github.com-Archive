@@ -9,7 +9,7 @@
   {% unless page.meta == false %}
     <p class="meta">
       {% include post/date.html %}{{ time }}
-      {% include post/categories.html %}
+      {% include post/tags.html %}
       <span class="share-to-weibo">
         <a href="javascript:void(0)" onclick="window.open('http://service.weibo.com/share/share.php?appkey={{ site.sina_weibo_appkey }}&amp;ralateUid={{ site.sina_weibo_uid }}&amp;title={{ post_or_page_title }} - &amp;url={{ post_or_page_url }}', null, 'width=615,height=505,toolbar=0,status=0')" class="sina-weibo" title="分享到新浪微博"></a>
 
