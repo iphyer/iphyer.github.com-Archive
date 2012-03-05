@@ -14,8 +14,8 @@ layout: default
   {% if paginator.next_page or paginator.previous_page %}
   <!-- Pagination -->
   <section class="pagination clearfix">
-    {% if paginator.next_page %}<a class="prev float-left" href="{{paginator.next_page}}">&larr; Older</a>{% endif %}
-    {% if paginator.previous_page %}<a class="next float-right" href="{{paginator.previous_page}}">Newer &rarr;</a>{% endif %}
+    {% if paginator.next_page %}<a class="prev float-l" href="{{paginator.next_page}}">&larr; Older</a>{% endif %}
+    {% if paginator.previous_page %}<a class="next float-r" href="{{paginator.previous_page}}">Newer &rarr;</a>{% endif %}
   </section>
   {% endif %}
 </section>
