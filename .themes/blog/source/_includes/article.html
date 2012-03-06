@@ -25,7 +25,7 @@
   <div class="entry-content typo">{{ content | excerpt }}</div>
   {% capture excerpted %}{{ content | has_excerpt }}{% endcapture %}
   {% if excerpted == 'true' %}
-    <footer class="align-right">
+    <footer class="align-r">
       <a rel="full-article" href="{{ post.url }}">{{ site.excerpt_link }}</a>
     </footer>
   {% endif %}
