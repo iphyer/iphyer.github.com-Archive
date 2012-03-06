@@ -369,6 +369,10 @@ pre[class^='sh_'], .sh_sourceCode {
     text-shadow: none;
   }
 }
+.sh_commands code:before {
+  margin-right: 10px;
+  content: "$";
+}
 
 /* 404 */
 .page-not-found {
