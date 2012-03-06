@@ -1,10 +1,11 @@
 # A generator that creates tag pages for jekyll sites.
+# (c) wo_is神仙 | http://MrZhang.me | MIT Licensed.
 #
 # Included filters :
 # - tag_links: Outputs the list of tags as comma-separated <a> links.
 #
 # Available _config.yml settings :
-# - tag_dir: The subfolder to build tag pages in (default is 'tags').
+# - tag_dir: The subfolder to build tag pages in (default is 'blog/tags').
 
 require "stringex"
 
@@ -25,7 +26,7 @@ module Jekyll
       @name = 'index.html'
       self.process(@name)
       # Read the YAML data from the layout page.
-      self.read_yaml(File.join(base, '_layouts'), 'tag_index.html')
+      self.read_yaml(File.join(base, '_layouts'), 'tag-index.html')
       self.data['tag']    = tag
       self.data['title']  = "Tag: #{tag}"
     end
@@ -35,8 +36,7 @@ module Jekyll
   # The Site class is a built-in Jekyll class with access to global site config information.
   class Site
 
-    # Creates an instance of TagIndex for each tag page, renders it, and
-    # writes the output to a file.
+    # Creates an instance of TagIndex for each tag page, renders it, and writes the output to a file.
     #
     #  +tag_dir+  is the String path to the tag folder.
     #  +tag+      is the tag currently being processed.
@@ -50,15 +50,14 @@ module Jekyll
 
     # Loops through the list of tag pages and processes each one.
     def write_tag_indexes
-      if self.layouts.key? 'tag_index'
-        dir = self.config['tag_dir'] || 'tags'
+      if self.layouts.key? 'tag-index'
         self.tags.keys.each do |tag|
-          self.write_tag_index(File.join(dir, tag.to_url.downcase), tag)
+          self.write_tag_index(File.join(self.config['tag_dir'], tag.to_url.downcase), tag)
         end
 
       # Throw an exception if the layout couldn't be found.
       else
-        throw "No 'tag_index' layout found."
+        throw "No 'tag-index' layout found."
       end
     end
 
@@ -80,8 +79,9 @@ module Jekyll
   # Adds some extra filters used during the tag creation process.
   module Filters
 
-    # Outputs a list of tags as comma-separated <a> links. This is used
-    # to output the tag list for each post on a tag page.
+    # Outputs a list of tags as comma-separated <a> links.
+    # This is used to output the tag list for each post on a tag page,
+    # and it supports chinese.
     #
     #  +tags+ is the list of tags to format.
     #
