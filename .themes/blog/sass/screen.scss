@@ -340,7 +340,7 @@ time {
  * Highlight
  * Railscasts from Textmate
  */
-pre[class^='sh_'], .sh_sourceCode {
+pre[class^='sh_'], .sh_sourcecode {
   overflow-x: auto;
   margin-top: 1em;
   padding: 8px 12px;
@@ -350,7 +350,7 @@ pre[class^='sh_'], .sh_sourceCode {
   background: #f8f8f8;
   text-shadow: 0 -1px $rgb-1;
 }
-.sh_sourceCode {
+.sh_sourcecode {
   .sh_type, .sh_keyword, .sh_selector, .sh_preproc {
     color: #e8bf69;
   }
@@ -369,7 +369,7 @@ pre[class^='sh_'], .sh_sourceCode {
     text-shadow: none;
   }
 }
-.sh_commands code:before {
+.sh_commands code::before {
   margin-right: 10px;
   content: "$";
 }
