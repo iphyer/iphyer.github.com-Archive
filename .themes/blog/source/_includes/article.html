@@ -26,7 +26,7 @@
   {% capture excerpted %}{{ content | has_excerpt }}{% endcapture %}
   {% if excerpted == 'true' %}
     <footer class="align-r">
-      <a rel="full-article" href="{{ post.url }}">{{ site.excerpt_link }}</a>
+      <a href="{{ post.url }}#ContinueReading">{{ site.excerpt_link }}</a>
     </footer>
   {% endif %}
 {% else %}
