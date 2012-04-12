@@ -8,6 +8,8 @@
   <meta name="description" content="{{ description }}" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="{{ root_url }}/stylesheets/screen.css" />
+  {% for css in page.css %}
+  <link rel="stylesheet" href="{{ root_url }}/stylesheets/custom/{{ css }}.css" />{% endfor %}
   <link rel="alternate" href="{{ site.subscribe_rss }}" type="application/atom+xml" />
   {% include google-analytics.html %}
 </head>
@@ -33,6 +35,8 @@ html,body{height:100%;overflow:hidden}
 {% include social-links.html %}
 
 <script src="{{ root_url }}/javascripts/application.js"></script>
+{% for js in page.js %}
+<script src="{{ root_url }}/javascripts/custom/{{ js }}.js"></script>{% endfor %}
 {% include disqus.html %}
 <iframe src="{{ root_url }}/offline-cache.html" style="display:none"></iframe>
 </body>
