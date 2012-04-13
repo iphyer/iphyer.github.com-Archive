@@ -50,6 +50,15 @@ titlecase: true       # Converts page and post titles to titlecase
 # post_asides:
 # page_asides:
 
+
+# ----------------------- #
+#     JS Include Tag      #
+# ----------------------- #
+
+jQuery: http://code.jquery.com/jquery.min.js
+Underscore: http://underscorejs.org/underscore-min.js
+
+
 # ----------------------- #
 #   3rd Party Settings    #
 # ----------------------- #

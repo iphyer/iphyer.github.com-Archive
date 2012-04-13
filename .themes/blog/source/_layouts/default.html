@@ -36,7 +36,7 @@ html,body{height:100%;overflow:hidden}
 
 <script src="{{ root_url }}/javascripts/application.js"></script>
 {% for js in page.js %}
-<script src="{{ root_url }}/javascripts/custom/{{ js }}.js"></script>{% endfor %}
+<script src="{% if site[js] %}{{ site[js] }}{% else %}{{ root_url }}/javascripts/custom/{{ js }}.js{% endif %}"></script>{% endfor %}
 {% include disqus.html %}
 <iframe src="{{ root_url }}/offline-cache.html" style="display:none"></iframe>
 </body>
