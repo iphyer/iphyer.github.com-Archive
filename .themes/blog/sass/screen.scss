@@ -376,6 +376,55 @@ pre[class^='sh_'], .sh_sourcecode {
   content: "$";
 }
 
+/* flash[:notice] */
+.flash-notice {
+  margin: 10px auto;
+  text-align: center;
+  div {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-shadow: 0 1px rgba(255, 255, 255, .5);
+    a {
+      color: inherit;
+      text-decoration: underline;
+    }
+  }
+  .warning {
+    border-color: $warning-border;
+    background-color: $warning-background;
+    color: $warning-text;
+  }
+  .error {
+    border-color: $error-border;
+    background-color: $error-background;
+    color: $error-text;
+  }
+  .success {
+    border-color: $success-border;
+    background-color: $success-background;
+    color: $success-text;
+  }
+  .info {
+    border-color: $info-border;
+    background-color: $info-background;
+    color: $info-text;
+  }
+}
+
+.fork-me {
+  display: block;
+  position: fixed;
+  top: 31px;
+  right: 0;
+  @include square(149px);
+  overflow: hidden;
+  background: url(/images/fork-me.png) no-repeat;
+  font-size: 0;
+  text-indent: -9999px;
+}
+
 /* 404 */
 .page-not-found {
   padding-top: 50px;
