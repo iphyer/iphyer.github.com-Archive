@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Python | 桑弧蓬矢射四方]]></title>
+  <link href="http://iphyer.github.com/blog/categories/python/atom.xml" rel="self"/>
+  <link href="http://iphyer.github.com/"/>
+  <updated>2013-08-12T11:49:28+08:00</updated>
+  <id>http://iphyer.github.com/</id>
+  <author>
+    <name><![CDATA[waventropy]]></name>
+    <email><![CDATA[sikisis@163.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[USpatent的搜索和提取]]></title>
+    <link href="http://iphyer.github.com/blog/2013/04/08/uspatent/"/>
+    <updated>2013-04-08T10:09:00+08:00</updated>
+    <id>http://iphyer.github.com/blog/2013/04/08/uspatent</id>
+    <content type="html"><![CDATA[<h1 id="section">前言</h1>
+
+<p>这是今年的实习的计划中的一个，进行了一个USpatent的搜索和调查。
+这里代码基于Python和SQLite。</p>
+
+<!--more-->
+
+<h1 id="section-1">代码</h1>
+
+<p>```python</p>
+
+<h1 id="coding-utf-8---">-<em>- coding: utf-8 -</em>-</h1>
+<p>”””
+Created on Fri Mar 29 14:24:32 2013</p>
+
+<p>@author: waventropy
+“””</p>
+
+<p>import urllib2
+import bs4 as bs
+import sqlite3
+import re</p>
+
+<h1 id="section-2">定义补足为给出的网址头部分</h1>
+<p>aa=’http://patft.uspto.gov/’</p>
+
+<p>g=open(‘new11.txt’,’wr’)</p>
+
+<h1 id="section-3">创建数据库，存储数据</h1>
+<p>conn = sqlite3.connect(“Patentdatabase.db”)
+cursor = conn.cursor()
+cursor.execute(“"”CREATE TABLE Patent
+                  (PatentNumber text,PatentName text,PatentInventors text,PatentCompany text,PatentFiledtime text,PatentAbstract text) “””)
+#给出其实搜索地址。主要是x-ray和detect
+#然后将参数传给soup</p>
+
+<p>starturl = ‘http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&amp;Sect2=HITOFF&amp;p=1&amp;u=%2Fnetahtml%2FPTO%2Fsearch-bool.html&amp;r=0&amp;f=S&amp;l=50&amp;TERM1=X+ray&amp;FIELD1=ABTX&amp;co1=AND&amp;TERM2=detect&amp;FIELD2=ABTX&amp;d=PTXT’</p>
+
+<h1 id="section-4">添加浏览器信息防止服务器中止频繁项请求</h1>
+
+<p>request = urllib2.Request(starturl)
+request.add_header(‘User-agent’, ‘Mozilla/5.0 (Linux i686)’)
+response = urllib2.urlopen(request).read()
+soup =  bs.BeautifulSoup(response)</p>
+
+<h1 id="section-5">得到所有的检索结果</h1>
+<p>number=soup.findAll(‘i’)
+AllNumber=number[1].findAll(‘strong’)[2].text
+AllNumber=int(AllNumber)
+#找到所有的记录</p>
+
+<h1 id="uspto50">设立计数变量因为USPTO网页的显示限制是每次50条记录</h1>
+<p>n=abs(AllNumber-(AllNumber/50)*50)
+if n==0:
+    CircleNumber=(AllNumber/50)
+else:
+    CircleNumber=(AllNumber/50)+1</p>
+
+<p>for k in range(1,CircleNumber):
+    tr=soup.findAll(‘tr’)
+    for i in range(2,len(tr)-2):
+        temp=tr[i].findAll(‘td’)
+        #在次页面提取PatentName信息
+        PatentName=temp[3].text.strip()
+        #重新进入新的搜索出的结果页面进行数据提取
+        urltemp=aa+temp[1].a.get(‘href’)
+        request = urllib2.Request(urltemp)
+        request.add_header(‘User-agent’, ‘Mozilla/5.0 (Linux i686)’)
+        response = urllib2.urlopen(request).read()
+        souptemp =  bs.BeautifulSoup(response)
+        PatentNumber=souptemp.html.head.title.renderContents().strip()
+        #PatentInventors使用正则化搜索避开可能的不规则排列顺序
+        anchortemp = souptemp.findAll(text=re.compile(“Inv”))
+        if len(anchortemp)&gt;0:
+            anchortemp = anchortemp[0]
+            PatentInventors=’ ‘.join(anchortemp.find_next(‘td’).stripped_strings)
+        else:
+            PatentInventors=’NoRecord’
+        #PatentCompany使用正则化搜索避开可能的不规则排列顺序
+        anchortemp = souptemp.findAll(text=re.compile(“Assi”))
+        if len(anchortemp)&gt;0:
+            anchortemp = anchortemp[0]
+            PatentCompany=’ ‘.join(anchortemp.find_next(‘td’).stripped_strings)
+        else:
+            PatentCompany=’NoRecord’
+        #PatentFiledtime使用正则化搜索避开可能的不规则排列顺序
+        anchortemp = souptemp.findAll(text=re.compile(“File”))
+        if len(anchortemp)&gt;0:
+            anchortemp = anchortemp[0]
+            PatentFiledtime= ‘ ‘.join(anchortemp.find_next(‘td’).stripped_strings)</p>
+
+<pre><code>    else:
+        PatentFiledtime='NoRecord'
+    #对于PatentAbstract进行格式化
+    PatentAbstract=souptemp.html.body.p.text.strip()
+    PatentAbstract.replace('\n', '')
+    PatentAbstract=' '.join(PatentAbstract.split())
+    #向数据库中写入记录
+    cursor.execute("INSERT INTO Patent VALUES (?,?,?,?,?,?)" ,(PatentNumber,PatentName,PatentInventors,PatentCompany,PatentFiledtime,PatentAbstract))
+    conn.commit()
+    g.write("%s \n"%(PatentInventors))
+ktemptemp=str(k)
+urltemptemp='http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&amp;Sect2=HITOFF&amp;u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&amp;r=0&amp;f=S&amp;l=50&amp;d=PTXT&amp;OS=ABST%2F%22X+ray%22+AND+ABST%2Fdetect&amp;RS=ABST%2F%22X+ray%22+AND+ABST%2Fdetect&amp;Query=ABST%2F%22X+ray%22+AND+ABST%2Fdetect&amp;TD=352&amp;Srch1=%22X+ray%22.ABTX.&amp;Srch2=detect.ABTX.&amp;Conj1=AND&amp;NextList'+ktemptemp+'=Next+50+Hits'
+#添加浏览器信息防止服务器中止频繁项请求
+request1 = urllib2.Request(urltemptemp)
+request1.add_header('User-agent', 'Mozilla/5.0 (Linux i686)')
+response1 = urllib2.urlopen(request1).read()
+soup =  bs.BeautifulSoup(response1)
+</code></pre>
+
+<p>g.close()
+print ‘Done’</p>
+
+<p>```</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[PythonDownloadBook]]></title>
+    <link href="http://iphyer.github.com/blog/2013/03/23/pythondownloadbook/"/>
+    <updated>2013-03-23T11:33:00+08:00</updated>
+    <id>http://iphyer.github.com/blog/2013/03/23/pythondownloadbook</id>
+    <content type="html"><![CDATA[<h1 id="section">下载书籍</h1>
+
+<p>好久没有更新这个技术blog了，今天终于可以写一个新的内容了。
+主要是关于一本书的《西藏生死书》，这本书总是在图书馆借不到，所以自己写程序去下载。</p>
+
+<h1 id="section-1">程序思路</h1>
+
+<p>其实很简单就是读入网页，然后用BeautifulSoup解析网页内容，本来以为会有好多内容的，结果最后发现用一个语法就可以解决了。
+主要是这个网页比较干净，几乎没有什么其他的东西。
+当然程序的实现还是需要很多的其他环境的，比如这个网站是gbn2312编码的，但是内中还夹杂了其他的编码，所以python一开始老是报错。
+最后借助了很多的其他手段解决了。比如Linux环境。</p>
+
+<!--more-->
+
+<h1 id="section-2">程序</h1>
+
+<pre><code>
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Mar 21 15:38:23 2013
+
+@author: Aimzest
+"""
+import urllib2
+from bs4 import BeautifulSoup
+
+
+fh=open('content.txt','a+')
+#参数设定
+urllinkmain="http://www.oklink.net/00/0325/sss/"
+urllinkadd=".htm"
+
+#下载程序
+fh.write(u"西藏生死书 \n")
+
+for n in range(1,27):
+    temp=str(n)
+    temp=temp.zfill(3)
+    bookfilelink=urllinkmain+temp+urllinkadd
+    #解析网页
+    request = urllib2.Request(bookfilelink)
+    request.add_header('User-agent', 'Mozilla/5.0 (Linux i686)')
+    response = urllib2.urlopen(request)
+    soup=BeautifulSoup(response,from_encoding="gb18030")
+    content=soup.get_text()
+    #输出章节标题和内容
+    fh.write(content)
+    
+fh.close()
+
+print  'Done'
+
+</code></pre>
+
+<p>这是最后的程序版本。</p>
+
+<p>当然还要手动去掉那些多出来的东西，主要是</p>
+
+<ul>
+  <li>返回上页</li>
+  <li>一个css的残留项目。估计是里面有中文所以去不掉</li>
+</ul>
+
+<p>就是这个字符串</p>
+
+<pre><code>
+#page {position:absolute; z-index:0; left:0px; top:0px}
+.swy1 {font: 12pt/16pt "宋体"} 
+.swy2 {font: 9pt/12pt "宋体"} 
+
+</code></pre>
+
+<p>我一直没想明白怎么去掉。但是可以手动使用查找替换所以其实也很简单了。</p>
+
+<p>或者下载到本地以后，再读入content重新修改估计都是可以的。</p>
+
+<h1 id="section-3">总结</h1>
+
+<p>主要是三点</p>
+
+<h2 id="section-4">字符串的迭代</h2>
+
+<p>这里我需要产生，001，002，003的字符串。其实很简单的方法就可以了：</p>
+
+<pre><code>for n in range(1,27):
+    temp=str(n)
+    temp=temp.zfill(3)
+</code></pre>
+
+<p>python的zfill真是强大。</p>
+
+<h2 id="urllib">urllib的访问限制</h2>
+
+<p>urllib是尊重roobtxts里面的限制的。所以比较好的方法是加上一个修饰：</p>
+
+<p>比较完整表达是：</p>
+
+<p>urllib2 respects robots.txt. </p>
+
+<p>Many sites block the default User-Agent.</p>
+
+<p>Try adding a new User-Agent, by creating Request objects &amp; using them as arguments for urlopen</p>
+
+<pre><code>  request = urllib2.Request(bookfilelink)
+    request.add_header('User-agent', 'Mozilla/5.0 (Linux i686)')
+    response = urllib2.urlopen(request)
+</code></pre>
+
+<h1 id="section-5">很好的解析网页命令</h1>
+
+<p>这个命令绝对实用啊</p>
+
+<pre><code>content=soup.get_text()
+</code></pre>
+
+<p>直接就可以得到需要的网页内容了。</p>
+
+<h1 id="stackoverflow">stackoverflow是神迹</h1>
+
+<p>我在写的时候有一个问题，在stackoverflow上提问，结果一下就有5个人回应，真实神迹啊！
+比百度知道靠谱多了。</p>
+
+<p>赞！</p>
+
+<h1 id="section-6">效果</h1>
+
+<p>最后的效果如下，导入kindle慢慢欣赏了。</p>
+
+<p><img src="/images/Python/downloadbook/1.png" alt="tu1" /> </p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Python系统文件操作]]></title>
+    <link href="http://iphyer.github.com/blog/2013/01/17/pythonosfinding/"/>
+    <updated>2013-01-17T13:10:00+08:00</updated>
+    <id>http://iphyer.github.com/blog/2013/01/17/pythonosfinding</id>
+    <content type="html"><![CDATA[<h1 id="section">前言</h1>
+
+<p>其实做了这么多的文件数据分析。大家还是会奇怪这些工作用excel也可以做啊。
+甚至很快捷的可以解决。的确，我们可以很快速的使用excel这样的工具解决，但是比较bug的是如果文件很多时候怎么办？</p>
+
+<p>其实很简单，用VBA这样的工具也是可以实现的。
+但是如果你没有VBA的话，那么就只能选择开源的内容去实现了。比如说Python。
+如果是Python的话，下面一步需要解决的就是如何在系统中寻找文件并且打开然后进行计算。</p>
+
+<p>这就是这篇日志的内容。</p>
+
+<!--more-->
+
+<h1 id="section-1">程序</h1>
+
+<pre><code>import os
+
+def check(searchStr,count,fileList,dirlist):
+	for dirName,dirs,files in os.walk("."):
+		for f in files:
+			if os.path.splitext(f)[1]==".txt":
+				count=count+1
+				aFile=open(os.path.join(dirName,f),'r')
+				fileStr=aFile.read()
+				if searchStr in fileStr:
+					fileName=os.path.join(dirName,f)
+					fileList.append(fileName)
+					if dirName not in dirList:
+						dirList.append(dirName)
+						aFile.close()
+			    
+	return count
+	
+theStr=raw_input("What string to look for? \n")
+fileList=[]
+dirList=[]
+count=0
+count=check(theStr,count,fileList,dirList)
+print "looked %d txt files"%(count)
+print 'found %d directories containing files \with ".txt" suffix and target string:%s' %(len(dirList),theStr)
+print 'found %d files containing files \with ".txt" suffix and target string:%s' %(len(dirList),theStr)
+print '\n ***** Directory List *****'
+for d in dirList:
+	print d
+	
+print '\n ----- File List-----'
+for f in fileList:
+	print f
+
+</code></pre>
+
+<p>这里我直接使用了rake deploy这个字符串因为我本来有一个doc里面的使用备忘。同时自己新添加了几个文件作为
+测试。</p>
+
+<p>效果</p>
+
+<p><img src="/images/Python/os/tu9.png" alt="tu1" /></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Python分析Google股价数据]]></title>
+    <link href="http://iphyer.github.com/blog/2013/01/17/pythongoogleprice/"/>
+    <updated>2013-01-17T12:57:00+08:00</updated>
+    <id>http://iphyer.github.com/blog/2013/01/17/pythongoogleprice</id>
+    <content type="html"><![CDATA[<h1 id="section">前言</h1>
+
+<p>这是为了分析Google的股价数据，所作的数据挖掘。
+比较简单，但是数据挖掘的基本分析过程和思想都有所体现。</p>
+
+<h1 id="section-1">寻找数据</h1>
+
+<p>去</p>
+
+<p>http://finance.yahoo.com/ </p>
+
+<p>上下载我们所需要的信息，也就是Google的股价数据。</p>
+
+<p>我们选择历史数据这一栏：</p>
+
+<p><img src="/images/Python/google/google.png" alt="tu1" /></p>
+
+<p>下载即可。</p>
+
+<!--more-->
+
+<h1 id="section-2">程序</h1>
+
+<pre><code>def creatlist(Gfile):
+	datalist=[]
+	sumall=0
+	
+	for line in Gfile:
+		if line[0:4]=='Date':
+			continue
+		datanew=line.strip().split(',')
+		vol=int(datanew[5])
+		adj=float(datanew[6])
+		yearmonth=datanew[0][0:7]
+		monthsum=vol+adj
+		pricetuple=(yearmonth,monthsum)
+		datalist.append(pricetuple)
+	return datalist
+	
+
+def getthesumofmonth(datalist):
+	monthlyaverageprice=[]
+	temp=[]
+	indexdate=datalist[0][0]
+	sumall=0
+	days=0
+	for pricetuple in datalist:
+		if pricetuple[0]==indexdate:
+			sumall=sumall+pricetuple[1]
+			days=days+1
+		else:
+			monthlyaverageprice.append((sumall/days,indexdate))
+			indexdate=pricetuple[0]
+			sumall=pricetuple[1]
+			days=1
+			#monthlyaverageprice.append((indexdate,sumall/days))
+	return monthlyaverageprice
+
+#find the best and worst 6 month of Google
+def findbest6months(monthlyaverageprice):
+	newlist=sorted(monthlyaverageprice)
+#	lengthlist=len(newlist)
+	return newlist[0:6],newlist[-6:]
+
+def printinfo(newlist):
+	print '-'*20
+	for newtuple in newlist:
+		print newtuple[1],',',newtuple[0],'\n'
+	return 'END'
+	 
+	
+
+Gfile=open("table.csv","r")
+datanewlist=creatlist(Gfile)
+monthlyaveragenewlist=getthesumofmonth(datanewlist)
+maxlist,minlist=findbest6months(monthlyaveragenewlist)
+
+print "The max monthes is :"
+print printinfo(maxlist)
+print "The min monthes is:"
+print printinfo(minlist)
+</code></pre>
+
+<p><img src="/images/Python/google/tu8.png" alt="tu12" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Python寻找环境保护署通车里程数]]></title>
+    <link href="http://iphyer.github.com/blog/2013/01/17/pythonepafind/"/>
+    <updated>2013-01-17T09:35:00+08:00</updated>
+    <id>http://iphyer.github.com/blog/2013/01/17/pythonepafind</id>
+    <content type="html"><![CDATA[<h1 id="section">前言</h1>
+
+<p>这个程序是寻找美国环境保护署网站公布的美国各种车辆的通车历程数据。</p>
+
+<p>具体的形式如下：</p>
+
+<blockquote>
+  <p>CLASS	MFR	CAR LINE	DISPLACEMENT	NUMB CYL	TRANS	DRIVE SYS	INDEX NUMB	CITY MPG (GUIDE)	HWY MPG (GUIDE)	COMB MPG (GUIDE)	UNRND CITY (EPA)	UNRND HWY (EPA)	UNRND COMP (EPA)	FUEL TYPE	GUZLR	TURBO	SPCHGR	AVG 2D PASS VOL	AVG 2D LUGG VOL	AVG 4D PAS VOL	AVG 4D LUGG VOL	AVG HB PAS VOL	AVG HB LUGG VOL	ANL FL CST	ENG BLK TXT	TRANS DESC TXT	VLVS PER CYL	CLS	REL DT	5C CODE</p>
+</blockquote>
+
+<blockquote>
+  <p>TWO SEATERS	ASTON MARTIN	V8 VANTAGE	4.3	8	Auto(S6)	R	12	13	20	15	16.1945	27.4018	19.8474	P	G									3002		4MODE	4	1	6-Aug-07	DERIVED</p>
+</blockquote>
+
+<blockquote>
+  <p>TWO SEATERS	ASTON MARTIN	V8 VANTAGE	4.3	8	Manual(M6)	R	11	12	19	15	15.2	25.7	18.6241	P	G									3002			4	1	6-Aug-07	DERIVED</p>
+</blockquote>
+
+<blockquote>
+  <p>TWO SEATERS	AUDI	R8	4.2	8	Auto(S6)	4	19	13	19	15	16.1944	26.2	19.555	P	G									3002		3MODE CLKUP	4	1	17-Aug-07	DERIVED</p>
+</blockquote>
+
+<p>这里我们需要的是从零开始的第九列元素和第一列以及第二列元素。</p>
+
+<!--more-->
+
+<p>现在我们使用具体的程序去计算。这里是一步步搭建整个程序网络的。</p>
+
+<h1 id="section-1">简单程序</h1>
+
+<pre><code>epaFile=open("epaData.csv","rU")
+
+for line in epaFile:
+	if 'FERRARI' in line:
+		print line[:75]
+</code></pre>
+
+<h1 id="section-2">生成通车里程列表</h1>
+
+<pre><code>#we find out the number of the car of running the miles
+#we use  split(',') to separate the csv value
+
+def creatMileageList(epaFile):
+	mileageList=[]
+	for line in epaFile:
+		lineList=line.split(',')
+		mileageList.append(lineList[9])
+	return mileageList
+		
+
+epaFile=open("epaData.csv","rU")
+
+mileageList=creatMileageList(epaFile)
+
+print mileageList
+</code></pre>
+
+<h1 id="section-3">找出通车里程列表中的最大值和最小值</h1>
+
+<pre><code># we further transfer the character into integer
+# also ignore the class value of the first line with continue function
+#continue can move into the next line without add it into the List
+#when we get that done we can use max and min function to get the extreme value
+
+def creatMileageList(epaFile):
+	mileageList=[]
+	for line in epaFile:
+		if line[0:5] == "CLASS":
+			continue
+		lineList=line.split(',')
+		temp=int(lineList[9])
+		mileageList.append(temp)
+	return mileageList
+		
+
+epaFile=open("epaData.csv","rU")
+
+mileageList=creatMileageList(epaFile)
+
+maxMileage=max(mileageList)
+minMileage=min(mileageList)
+
+print "The Max and Min in the List is:",maxMileage,minMileage 
+
+</code></pre>
+
+<h1 id="section-4">在找出最大值和最小值的基础上在对应相应的制造商</h1>
+
+<pre><code># in this case we want to also find the car trafe of the max and min Mileage
+# to avoid the other visit of all the value 
+# we append two value together to get another list of truple
+
+def creatMileageList(epaFile):
+	mileageList=[]
+	for line in epaFile:
+		if line[0:5] == "CLASS" or "VAN" in line or "PICKUP" in line:
+			continue
+		lineList=line.split(',')
+		temp=int(lineList[9])
+		carTruple=(temp,lineList[1],lineList[2])
+		mileageList.append(carTruple)
+	return mileageList
+		
+
+epaFile=open("epaData.csv","rU")
+
+mileageList=creatMileageList(epaFile)
+
+maxMileage=max(mileageList)
+minMileage=min(mileageList)
+
+print "The Max and Min in the List is:",maxMileage,minMileage 
+
+</code></pre>
+
+<h1 id="section-5">找出全部的数据</h1>
+
+<p>之所以会有这一步的原因在于Python默认返回的是所有最小最大值中的第一个。</p>
+
+<p>所以我们构建一个列表，再次遍历列表找到相应的元素后添加。</p>
+
+<p>同时对于元组构成的列表，为了美观，我们同样使用遍历的方法打印出列表中的，每一个元素。</p>
+
+<pre><code>#in this programe we want to find all the case that has the max or min value in the carMileageList
+# this is because the min/max function in Python only return back the 
+# first found case in the list that has the same value
+
+def creatMileageList(epaFile):
+	mileageList=[]
+	for line in epaFile:
+		if line[0:5] == "CLASS" or "VAN" in line or "PICKUP" in line:
+			continue
+		lineList=line.split(',')
+		temp=int(lineList[9])
+		carTuple=(temp,lineList[1],lineList[2])
+		mileageList.append(carTuple)
+	return mileageList
+
+def FindMaxMinMileage(mileageList,maxMileage,minMileage):
+	maxMileageList=[]
+	minMileageList=[]
+	for carTuple in mileageList:
+		if carTuple[0]==maxMileage:
+			maxMileageList.append(carTuple)
+		if carTuple[0]==minMileage:
+			minMileageList.append(carTuple)
+	return maxMileageList,minMileageList
+	
+
+epaFile=open("epaData.csv","rU")
+
+mileageList=creatMileageList(epaFile)
+
+
+maxMileage=max(mileageList)[0]
+minMileage=min(mileageList)[0]
+
+
+print "The Max and Min in the List is:",maxMileage,minMileage 
+
+maxMileageList,minMileageList=FindMaxMinMileage(mileageList,maxMileage,minMileage)
+
+#Note the print of Tuple must use visit style to get 
+#You can get nothing with only the print function
+
+print "Maximum Mileage Cars:"
+
+for carTuple in maxMileageList:
+	print " " ,carTuple[1],carTuple[2]
+
+print "Minimum Mileage Cars:"
+for carTuple in minMileageList:
+	print " ",carTuple[1],carTuple[2]
+</code></pre>
+
+<p><img src="/images/Python/epa/tu7.png" alt="tu15" /></p>
+
+]]></content>
+  </entry>
+  
+</feed>

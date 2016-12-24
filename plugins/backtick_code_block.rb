@@ -1,9 +1,10 @@
 require './plugins/pygments_code'
 
 module BacktickCodeBlock
-  AllOptions = /([^\s]+)\s+(.+?)\s+(https?:\/\/\S+|\/\S+)\s*(.+)?/i
+  include HighlightCode
+  AllOptions = /([^\s]+)\s+(.+?)(https?:\/\/\S+)\s*(.+)?/i
   LangCaption = /([^\s]+)\s*(.+)?/i
-  def self.render_code_block(input)
+  def render_code_block(input)
     @options = nil
     @caption = nil
     @lang = nil
@@ -25,7 +26,7 @@ module BacktickCodeBlock
         str = str.gsub(/^( {4}|\t)/, '')
       end
       if @lang.nil? || @lang == 'plain'
-        code = HighlightCode::tableize_code(str.gsub('<','&lt;').gsub('>','&gt;'))
+        code = tableize_code(str.gsub('<','&lt;').gsub('>','&gt;'))
         "<figure class='code'>#{@caption}#{code}</figure>"
       else
         if @lang.include? "-raw"
@@ -33,7 +34,7 @@ module BacktickCodeBlock
           raw += str
           raw += "\n```\n"
         else
-          code = HighlightCode::highlight(str, @lang)
+          code = highlight(str, @lang)
           "<figure class='code'>#{@caption}#{code}</figure>"
         end
       end

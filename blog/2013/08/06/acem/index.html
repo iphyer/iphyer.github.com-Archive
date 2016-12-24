@@ -1,0 +1,483 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Advanced Computing in Electron Microscopy配套软件的使用 - 桑弧蓬矢射四方</title>
+  <meta name="author" content="waventropy">
+
+  
+  <meta name="description" content="引子 今年的毕业论文就是关于电子显微镜的图像计算问题。《Advanced Computing in Electron Microscopy》这本书给了我巨大的帮助，这本书确实是经典，关于电子显微学图像计算的方方面面都有涉及，同时给出了详细的讲解。 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://iphyer.github.com/blog/2013/08/06/acem/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="桑弧蓬矢射四方" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Ruge+Boogie|Ruthie|Flavors|Rancho|Galdeano' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Philosopher:[object Object],[object Object],[object Object],[object Object]' rel='stylesheet' type='text/css'>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-33194427-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">桑弧蓬矢射四方</a></h1>
+  
+    <h2>以桑弧蓬矢六，射天地四方。</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:iphyer.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about-us">About</a></li>
+ </ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Advanced Computing in Electron Microscopy配套软件的使用</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-06T13:40:00+08:00" pubdate data-updated="true">Aug 6<span>th</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h1 id="section">引子</h1>
+
+<p>今年的毕业论文就是关于电子显微镜的图像计算问题。《Advanced Computing in Electron Microscopy》这本书给了我巨大的帮助，这本书确实是经典，关于电子显微学图像计算的方方面面都有涉及，同时给出了详细的讲解。当然有些遗憾的是作者没有详细的阐述关于球差校正电子显微镜的部分，但是作为电子显微学最新的进展方向之一，不能对于作者的这样处理求全责备，毕竟这只是对于电子显微镜在2008年做多的的一个总结性专著。我们没有任何理由要求包括科研领域最论文需要的新最前沿的内容，这也不是一本专著所要承担的任务，这个任务恰恰是科研论文所需要承担的。</p>
+
+<p>但是这本书也有些其他的问题，在我尝试用这个软件计算很多的内容的时候非常之纠结，说实话一开始搜索到这个软件的时候我一直以为这个软件没办法使用，但是经过尝试最后发现其实这个软件编写的非常好。</p>
+
+<p>这篇博文就是总结自己在使用中的感受和一些总结，包括软件的安装，使用和自动化使用。</p>
+
+<p>这里再次感谢Cornell大学的Earl John Kirkland，《Advanced Computing in Electron Microscopy》真是一本非常好的入门书(简称ACEM吧)。</p>
+
+<!--more-->
+
+<h1 id="section-1">下载和安装</h1>
+
+<h2 id="section-2">下载</h2>
+
+<p>这本书配套软件原来网址为：http://people.ccmr.cornell.edu/~kirkland/</p>
+
+<p>现在根据Kirkland教授表述，似乎打算向Sourceforge迁移：</p>
+
+<blockquote>
+  <p>NOTE: this URL may soon disappear. I plan to move the code to sourceforge under the name computem.  Please look there in the future.</p>
+</blockquote>
+
+<p>遵照Kirkland的命名，所以下面我都把这个软件称为computem。所以现在的下载地址是：http://sourceforge.net/projects/computem/</p>
+
+<p>请大家自行下载。</p>
+
+<h2 id="section-3">安装</h2>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Kirkland教授在软件包中给出了详细的说明。需要补充的是computm基于命令行，而如果你不习惯命令行的模式的话，可能使用的话不是非常习惯。我的电脑安装的Lubuntu12.04，下面我也都基于Ubuntu系统说明Linux下怎么安装。按照Kirkland教授的软件包说明，在windows下也可以使用该软件，但是需要安装MinGW(MinGW</td>
+      <td>Minimalist GNU for Windows)。MinGW的功能就是在windows中模拟出GNU/Linux的系统。所以如果MinGW安装成功则可以复制在Linux下安装的过程。</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>在我安装的时候fftw库总是出错，后来仔细上网搜索后才发现是这样的。fftw库默认只安装双精度（double precision）库，但是computm软件需要单精度(single precision)库。所以需要两次编译fftw。具体可以参照这里这篇教程\footnote{\url{http://hi.baidu.com/linzch/item/28841483cb437adfd1f8cdd4}}。</p>
+
+<h1 id="computm">computm的使用</h1>
+
+<p>在Kirkland教授的专著《Advanced Computing in Electron Microscopy》中有详细论述，这里略过。</p>
+
+<p>需要注意的是，Kirkland教授不不断更新Computm但是《Advanced Computing in Electron Microscopy》不太能够及时更新，所以在使用中还是要动态的灵活把握软件的使用。</p>
+
+<h1 id="computm-1">Computm的自动化使用</h1>
+
+<p>Computm在使用的过程中需要很多的参数输入，同时在改变欠焦量和样品厚度形成一系列图像的过程中需要反复操作软件。这个过程可以利用Linux中Bash Shell的重定向功能，将需要的参数在一个文本文件中全部输入完毕，然后将参数重定向给程序。</p>
+
+<p>这个过程的好处是，同时可以设置多个欠焦量和样品厚度，从而形成一系列的图像。</p>
+
+<p>这里我只说明如果连续变化欠焦量，其他参量的调节与之类似。</p>
+
+<p>首先是一个如何把参数赋值给程序的Bash Shell脚本。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line"><span class="c">#!/bin/sh</span>
+</span><span class="line"><span class="nb">cd</span> /home/waventropy/source
+</span><span class="line">./image&lt;/home/waventropy/source/si110setup/100.txt
+</span><span class="line">./image&lt;/home/waventropy/source/si110setup/150.txt
+</span><span class="line">./image&lt;/home/waventropy/source/si110setup/200.txt
+</span><span class="line">./image&lt;/home/waventropy/source/si110setup/250.txt
+</span><span class="line">./image&lt;/home/waventropy/source/si110setup/300.txt
+</span><span class="line">./image&lt;/home/waventropy/source/si110setup/350.txt
+</span><span class="line">./image&lt;/home/waventropy/source/si110setup/400.txt
+</span><span class="line">./image&lt;/home/waventropy/source/si110setup/450.txt
+</span><span class="line">./image&lt;/home/waventropy/source/si110setup/500.txt
+</span><span class="line">./image&lt;/home/waventropy/source/si110setup/550.txt
+</span><span class="line">./image&lt;/home/waventropy/source/si110setup/600.txt
+</span><span class="line">./image&lt;/home/waventropy/source/si110setup/650.txt
+</span><span class="line">./image&lt;/home/waventropy/source/si110setup/700.txt
+</span><span class="line">./image&lt;/home/waventropy/source/si110setup/750.txt
+</span><span class="line">./image&lt;/home/waventropy/source/si110setup/800.txt
+</span><span class="line">./image&lt;/home/waventropy/source/si110setup/850.txt
+</span><span class="line">./image&lt;/home/waventropy/source/si110setup/900.txt
+</span><span class="line">./image&lt;/home/waventropy/source/si110setup/950.txt
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>随后是一个在Shell中的每一个参数文件的生成程序，用Python写成。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="c"># -*- coding: utf-8 -*-</span>
+</span><span class="line"><span class="sd">&quot;&quot;&quot;</span>
+</span><span class="line"><span class="sd">Created on Thu May 23 12:23:33 2013</span>
+</span><span class="line">
+</span><span class="line"><span class="sd">@author: waventropy</span>
+</span><span class="line"><span class="sd">&quot;&quot;&quot;</span>
+</span><span class="line"><span class="kn">import</span> <span class="nn">os</span>
+</span><span class="line"><span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s">&quot;/home/waventropy/source/c3ssetup&quot;</span><span class="p">)</span>
+</span><span class="line"><span class="n">inputfilename</span><span class="o">=</span><span class="s">&#39;c3smul.tif </span><span class="se">\n</span><span class="s">&#39;</span>
+</span><span class="line"><span class="n">coherent</span><span class="o">=</span><span class="s">&#39;0 </span><span class="se">\n</span><span class="s">&#39;</span>
+</span><span class="line"><span class="n">csc3</span><span class="o">=</span><span class="s">&#39;1.2 1.3 </span><span class="se">\n</span><span class="s">&#39;</span>
+</span><span class="line"><span class="n">objectiveaperture</span><span class="o">=</span><span class="s">&#39;9.33 </span><span class="se">\n</span><span class="s">&#39;</span>
+</span><span class="line"><span class="n">twofoldasting</span><span class="o">=</span><span class="s">&#39;0 0 </span><span class="se">\n</span><span class="s">&#39;</span>
+</span><span class="line"><span class="n">threefoldasting</span><span class="o">=</span><span class="s">&#39;0 0 </span><span class="se">\n</span><span class="s">&#39;</span>
+</span><span class="line"><span class="n">lensandaperturecenter</span><span class="o">=</span><span class="s">&#39;0 0 </span><span class="se">\n</span><span class="s">&#39;</span>
+</span><span class="line"><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="mi">50</span><span class="p">):</span>
+</span><span class="line">    <span class="n">strn</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span><span class="line">    <span class="n">fh</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="n">strn</span><span class="o">+</span><span class="s">&#39;.txt&#39;</span><span class="p">,</span><span class="s">&#39;a+&#39;</span><span class="p">)</span>
+</span><span class="line">    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">inputfilename</span><span class="p">)</span>
+</span><span class="line">    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">coherent</span><span class="p">)</span>
+</span><span class="line">    <span class="n">outputfilename</span><span class="o">=</span><span class="s">&#39;c3simg-&#39;</span><span class="o">+</span><span class="n">strn</span><span class="o">+</span><span class="s">&#39;.tif </span><span class="se">\n</span><span class="s">&#39;</span>
+</span><span class="line">    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">outputfilename</span><span class="p">)</span>
+</span><span class="line">    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">csc3</span><span class="p">)</span>
+</span><span class="line">    <span class="n">defocus</span><span class="o">=</span><span class="n">strn</span><span class="o">+</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span>
+</span><span class="line">    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">defocus</span><span class="p">)</span>
+</span><span class="line">    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">objectiveaperture</span><span class="p">)</span>
+</span><span class="line">    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">twofoldasting</span><span class="p">)</span>
+</span><span class="line">    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">threefoldasting</span><span class="p">)</span>
+</span><span class="line">    <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">lensandaperturecenter</span><span class="p">)</span>
+</span><span class="line">    <span class="n">fh</span><span class="o">.</span><span class="n">write</span>
+</span><span class="line">    <span class="k">print</span> <span class="s">&#39;Done&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h1 id="section-4">输出图像</h1>
+
+<p>电子显微学的一个传统是排列一系列不同欠焦量和厚度的图像，这里我使用Phatch和ImageMatrick来联合实现需要的功能。</p>
+
+<h2 id="section-5">图片批处理</h2>
+
+<p>本文使用的是Phatch，url=http://www.phatch.org/download/index.html作为图片批量处理的工具。</p>
+
+<p>因为image模拟产生的是tif格式文件，虽然tif格式保存了最大的突变信息，但是tif不易使用和保存且较消耗存储空间，所以使用Phatch可以就将tif格式的输出结果转化为需要的png格式。</p>
+
+<h2 id="section-6">图片矩阵排列</h2>
+
+<p>因为产生的图片较多往往达到18幅，所以我们采用了Linux发行版一般自带的ImageMatrick程序进行格式转换。具体的来说，我们主要使用的是ImageMatrick的Montage Concatenation Mode功能url=http://www.imagemagick.org/Usage/montage/#columns。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="sh"><span class="line">montage Image000.png Image001.png Image002.png Image003.png Image004.png Image005.png Image006.png Image007.png Image008.png Image009.png Image010.png Image011.png Image012.png Image013.png Image014.png Image015.png Image016.png Image017.png -mode Concatenate -tile 6x3 new.jpg
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">waventropy</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-06T13:40:00+08:00" pubdate data-updated="true">Aug 6<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/computing/'>Computing</a>, <a class='category' href='/blog/categories/scientific/'>Scientific</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+  <div class="bshare-custom"><a title="分享到QQ空间" class="bshare-qzone"></a><a title="分享到新浪微博" class="bshare-sinaminiblog"></a><a title="分享到人人网" class="bshare-renren"></a><a title="分享到腾讯微博" class="bshare-qqmb"></a><a title="分享到豆瓣" class="bshare-douban"></a><a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a><span class="BSHARE_COUNT bshare-share-count">0</span></div><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=df8ae713-f93c-44fa-bcca-e825292d4075&amp;pophcol=3&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+  </div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/07/26/nan-da-tu-shu-guan-jie-shu-ji-lu/" title="Previous Post: 南大图书馆借书记录">&laquo; 南大图书馆借书记录</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/08/10/train/" title="Next Post: 新生购买火车票总结">新生购买火车票总结 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/08/12/guan-yu-iypt-and-nypt-and-jsyptde-jie-shao/">关于IYPT、NYPT、JSYPT的介绍</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/10/train/">新生购买火车票总结</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/06/acem/">Advanced Computing in Electron Microscopy配套软件的使用</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/26/nan-da-tu-shu-guan-jie-shu-ji-lu/">南大图书馆借书记录</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/28/da-xue-hui-gu/">大学回顾</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+<section>
+  <h1>新浪微博</h1>
+  <ul id="weibo">
+    <li>
+      <iframe 
+        width="100%" 
+        height="550" 
+        class="share_self" 
+        frameborder="0" 
+        scrolling="no" 
+        src="http://widget.weibo.com/weiboshow/index.php?width=0&height=550&ptype=1&speed=0&skin=&isTitle=0&noborder=1&isWeibo=1&isFans=&uid=1277230715&verifier=56d0f8c9">
+      </iframe>
+    </li>
+  </ul>
+</section>
+
+<section>
+<h1>My Douban</h1>
+<div>
+<script type="text/javascript" src="http://www.douban.com/service/badge/61573619/?show=collection&amp;n=8&amp;columns=2" ></script>
+</div>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - waventropy -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'iphyersblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://iphyer.github.com/blog/2013/08/06/acem/';
+        var disqus_url = 'http://iphyer.github.com/blog/2013/08/06/acem/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,431 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>PythonDownloadBook - 桑弧蓬矢射四方</title>
+  <meta name="author" content="waventropy">
+
+  
+  <meta name="description" content="下载书籍 好久没有更新这个技术blog了，今天终于可以写一个新的内容了。
+主要是关于一本书的《西藏生死书》，这本书总是在图书馆借不到，所以自己写程序去下载。 程序思路 其实很简单就是读入网页，然后用BeautifulSoup解析网页内容，本来以为会有好多内容的，结果最后发现用一个语法就可以解决了 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://iphyer.github.com/blog/2013/03/23/pythondownloadbook/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="桑弧蓬矢射四方" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Ruge+Boogie|Ruthie|Flavors|Rancho|Galdeano' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Philosopher:[object Object],[object Object],[object Object],[object Object]' rel='stylesheet' type='text/css'>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-33194427-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">桑弧蓬矢射四方</a></h1>
+  
+    <h2>以桑弧蓬矢六，射天地四方。</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:iphyer.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about-us">About</a></li>
+ </ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">PythonDownloadBook</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-23T11:33:00+08:00" pubdate data-updated="true">Mar 23<span>rd</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h1 id="section">下载书籍</h1>
+
+<p>好久没有更新这个技术blog了，今天终于可以写一个新的内容了。
+主要是关于一本书的《西藏生死书》，这本书总是在图书馆借不到，所以自己写程序去下载。</p>
+
+<h1 id="section-1">程序思路</h1>
+
+<p>其实很简单就是读入网页，然后用BeautifulSoup解析网页内容，本来以为会有好多内容的，结果最后发现用一个语法就可以解决了。
+主要是这个网页比较干净，几乎没有什么其他的东西。
+当然程序的实现还是需要很多的其他环境的，比如这个网站是gbn2312编码的，但是内中还夹杂了其他的编码，所以python一开始老是报错。
+最后借助了很多的其他手段解决了。比如Linux环境。</p>
+
+<!--more-->
+
+<h1 id="section-2">程序</h1>
+
+<pre><code>
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Mar 21 15:38:23 2013
+
+@author: Aimzest
+"""
+import urllib2
+from bs4 import BeautifulSoup
+
+
+fh=open('content.txt','a+')
+#参数设定
+urllinkmain="http://www.oklink.net/00/0325/sss/"
+urllinkadd=".htm"
+
+#下载程序
+fh.write(u"西藏生死书 \n")
+
+for n in range(1,27):
+    temp=str(n)
+    temp=temp.zfill(3)
+    bookfilelink=urllinkmain+temp+urllinkadd
+    #解析网页
+    request = urllib2.Request(bookfilelink)
+    request.add_header('User-agent', 'Mozilla/5.0 (Linux i686)')
+    response = urllib2.urlopen(request)
+    soup=BeautifulSoup(response,from_encoding="gb18030")
+    content=soup.get_text()
+    #输出章节标题和内容
+    fh.write(content)
+    
+fh.close()
+
+print  'Done'
+
+</code></pre>
+
+<p>这是最后的程序版本。</p>
+
+<p>当然还要手动去掉那些多出来的东西，主要是</p>
+
+<ul>
+  <li>返回上页</li>
+  <li>一个css的残留项目。估计是里面有中文所以去不掉</li>
+</ul>
+
+<p>就是这个字符串</p>
+
+<pre><code>
+#page {position:absolute; z-index:0; left:0px; top:0px}
+.swy1 {font: 12pt/16pt "宋体"} 
+.swy2 {font: 9pt/12pt "宋体"} 
+
+</code></pre>
+
+<p>我一直没想明白怎么去掉。但是可以手动使用查找替换所以其实也很简单了。</p>
+
+<p>或者下载到本地以后，再读入content重新修改估计都是可以的。</p>
+
+<h1 id="section-3">总结</h1>
+
+<p>主要是三点</p>
+
+<h2 id="section-4">字符串的迭代</h2>
+
+<p>这里我需要产生，001，002，003的字符串。其实很简单的方法就可以了：</p>
+
+<pre><code>for n in range(1,27):
+    temp=str(n)
+    temp=temp.zfill(3)
+</code></pre>
+
+<p>python的zfill真是强大。</p>
+
+<h2 id="urllib">urllib的访问限制</h2>
+
+<p>urllib是尊重roobtxts里面的限制的。所以比较好的方法是加上一个修饰：</p>
+
+<p>比较完整表达是：</p>
+
+<p>urllib2 respects robots.txt. </p>
+
+<p>Many sites block the default User-Agent.</p>
+
+<p>Try adding a new User-Agent, by creating Request objects &amp; using them as arguments for urlopen</p>
+
+<pre><code>  request = urllib2.Request(bookfilelink)
+    request.add_header('User-agent', 'Mozilla/5.0 (Linux i686)')
+    response = urllib2.urlopen(request)
+</code></pre>
+
+<h1 id="section-5">很好的解析网页命令</h1>
+
+<p>这个命令绝对实用啊</p>
+
+<pre><code>content=soup.get_text()
+</code></pre>
+
+<p>直接就可以得到需要的网页内容了。</p>
+
+<h1 id="stackoverflow">stackoverflow是神迹</h1>
+
+<p>我在写的时候有一个问题，在stackoverflow上提问，结果一下就有5个人回应，真实神迹啊！
+比百度知道靠谱多了。</p>
+
+<p>赞！</p>
+
+<h1 id="section-6">效果</h1>
+
+<p>最后的效果如下，导入kindle慢慢欣赏了。</p>
+
+<p><img src="/images/Python/downloadbook/1.png" alt="tu1" /> </p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">waventropy</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-23T11:33:00+08:00" pubdate data-updated="true">Mar 23<span>rd</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/python/'>Python</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+  <div class="bshare-custom"><a title="分享到QQ空间" class="bshare-qzone"></a><a title="分享到新浪微博" class="bshare-sinaminiblog"></a><a title="分享到人人网" class="bshare-renren"></a><a title="分享到腾讯微博" class="bshare-qqmb"></a><a title="分享到豆瓣" class="bshare-douban"></a><a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a><span class="BSHARE_COUNT bshare-share-count">0</span></div><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=df8ae713-f93c-44fa-bcca-e825292d4075&amp;pophcol=3&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+  </div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/01/17/pythonosfinding/" title="Previous Post: Python系统文件操作">&laquo; Python系统文件操作</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/04/08/physics/" title="Next Post: 关于物理的思考">关于物理的思考 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/08/12/guan-yu-iypt-and-nypt-and-jsyptde-jie-shao/">关于IYPT、NYPT、JSYPT的介绍</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/10/train/">新生购买火车票总结</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/06/acem/">Advanced Computing in Electron Microscopy配套软件的使用</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/26/nan-da-tu-shu-guan-jie-shu-ji-lu/">南大图书馆借书记录</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/28/da-xue-hui-gu/">大学回顾</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+<section>
+  <h1>新浪微博</h1>
+  <ul id="weibo">
+    <li>
+      <iframe 
+        width="100%" 
+        height="550" 
+        class="share_self" 
+        frameborder="0" 
+        scrolling="no" 
+        src="http://widget.weibo.com/weiboshow/index.php?width=0&height=550&ptype=1&speed=0&skin=&isTitle=0&noborder=1&isWeibo=1&isFans=&uid=1277230715&verifier=56d0f8c9">
+      </iframe>
+    </li>
+  </ul>
+</section>
+
+<section>
+<h1>My Douban</h1>
+<div>
+<script type="text/javascript" src="http://www.douban.com/service/badge/61573619/?show=collection&amp;n=8&amp;columns=2" ></script>
+</div>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - waventropy -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'iphyersblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://iphyer.github.com/blog/2013/03/23/pythondownloadbook/';
+        var disqus_url = 'http://iphyer.github.com/blog/2013/03/23/pythondownloadbook/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

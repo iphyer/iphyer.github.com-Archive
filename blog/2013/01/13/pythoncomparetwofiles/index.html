@@ -1,0 +1,379 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Python编程11——Python作葛底斯堡演讲和美国独立宣言的比较分析 - 桑弧蓬矢射四方</title>
+  <meta name="author" content="waventropy">
+
+  
+  <meta name="description" content="前言 这里其实是把葛底斯堡演讲和独立宣言联合在一起分析了。
+这里的作用不在于取得最后的结果只是简单分析就可以知道这两篇文章都是反应美国建国思想的文献资料。不出意料的话，两者会有很多的共同点。
+分析的结果也支持这个观点。 独立宣言是北美十三州脱离英国殖民统治的政治宣言， &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://iphyer.github.com/blog/2013/01/13/pythoncomparetwofiles/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="桑弧蓬矢射四方" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Ruge+Boogie|Ruthie|Flavors|Rancho|Galdeano' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Philosopher:[object Object],[object Object],[object Object],[object Object]' rel='stylesheet' type='text/css'>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-33194427-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">桑弧蓬矢射四方</a></h1>
+  
+    <h2>以桑弧蓬矢六，射天地四方。</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:iphyer.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about-us">About</a></li>
+ </ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Python编程11——Python作葛底斯堡演讲和美国独立宣言的比较分析</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-13T16:21:00+08:00" pubdate data-updated="true">Jan 13<span>th</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h1 id="section">前言</h1>
+
+<p>这里其实是把葛底斯堡演讲和独立宣言联合在一起分析了。
+这里的作用不在于取得最后的结果只是简单分析就可以知道这两篇文章都是反应美国建国思想的文献资料。不出意料的话，两者会有很多的共同点。
+分析的结果也支持这个观点。</p>
+
+<p>独立宣言是北美十三州脱离英国殖民统治的政治宣言，葛底斯堡演讲是林肯在美国内战的重要战场葛底斯堡发表的演说。美国内战事实上
+的一个重要原因是解决美国建国时南北双方的政治妥协破裂后的矛盾与危机。所以两篇文章都可以认为是美国的建国思想体现。
+比如两篇文章的高频词汇中都出现了，civil， government， people， nation，liberty等这些美国建国思想。</p>
+
+<p>当然我们的重点不是这些而是Python作文本分析的一些技巧。</p>
+
+<!--more-->
+
+<h1 id="section-1">程序</h1>
+
+<pre><code>#compare two files to help Python understand what's different or common
+#things in the declearation of Independence and the Gettysburg Address
+#this programe mostly features in the set datatype of Python
+import string
+
+def processLine(line,theSet):
+	#cut the whitespace before and after everyline
+	#sitll use strip method to seperate different words
+	wordlist=line.strip().split()
+	for word in wordlist:
+		if word !="--":
+			word=word.lower()
+			word=word.strip()
+			word=word.strip(string.punctuation)
+			addword(word,theSet)
+
+def addword(w,theSet):
+	if len(w)&gt;3:
+		theSet.add(w)
+
+
+def prettyPrint(gaSet,doiSet):
+	print 'Count of the unique of the files in the comparsion(Length &gt;=4):'
+	print 'Gettysburg Addr: %d, Decl of Ind: %d \n'%(len(gaSet),len(doiSet))
+	print '%15s %15s'%('operation','Count')
+	print '-'*35
+	print '%15s %15d'%('Union',len(gaSet.union(doiSet)))
+	print '%15s %15d'%('Intersection',len(gaSet.intersection(doiSet)))
+	print '%15s %15d'%('Sym Diff',len(gaSet.symmetric_difference(doiSet)))
+	print '%15s %15d'%('GA-DoI',len(gaSet.difference(doiSet)))
+	print '%15s %15d'%('DoI-GA',len(doiSet.difference(gaSet)))
+	intersectionSet=gaSet.intersection(doiSet)
+	wordList=list(intersectionSet)
+	wordList.sort()
+	print '\n Common words to both the two files'
+	print '-'*20
+	cnt=0
+	for w in wordList:
+		if cnt%5==0:
+			print
+		print '%13s'%(w),
+		cnt+=1
+
+#main programe
+GAset=set()
+DoIset=set()
+GAObj=open("gettysburg.txt",'r')
+DoIObj=open("declOfInd.txt","r")
+for line in GAObj:
+    processLine(line,GAset)
+for line in DoIObj:
+    processLine(line,DoIset)
+prettyPrint(GAset,DoIset)
+
+</code></pre>
+
+<h1 id="section-2">效果</h1>
+
+<p><img src="/images/Python/gettysburg/tu5.png" alt="tu15" /></p>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">waventropy</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-13T16:21:00+08:00" pubdate data-updated="true">Jan 13<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/python/'>Python</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+  <div class="bshare-custom"><a title="分享到QQ空间" class="bshare-qzone"></a><a title="分享到新浪微博" class="bshare-sinaminiblog"></a><a title="分享到人人网" class="bshare-renren"></a><a title="分享到腾讯微博" class="bshare-qqmb"></a><a title="分享到豆瓣" class="bshare-douban"></a><a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a><span class="BSHARE_COUNT bshare-share-count">0</span></div><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=df8ae713-f93c-44fa-bcca-e825292d4075&amp;pophcol=3&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+  </div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/01/13/pythongettsburg-wordcount/" title="Previous Post: Python编程10——Python做葛底斯堡演讲的词频统计">&laquo; Python编程10——Python做葛底斯堡演讲的词频统计</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/01/13/pythonwcgrahy/" title="Next Post: Python编程12——Python作葛底斯堡演讲的词频统计图">Python编程12——Python作葛底斯堡演讲的词频统计图 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/08/12/guan-yu-iypt-and-nypt-and-jsyptde-jie-shao/">关于IYPT、NYPT、JSYPT的介绍</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/10/train/">新生购买火车票总结</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/06/acem/">Advanced Computing in Electron Microscopy配套软件的使用</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/26/nan-da-tu-shu-guan-jie-shu-ji-lu/">南大图书馆借书记录</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/28/da-xue-hui-gu/">大学回顾</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+<section>
+  <h1>新浪微博</h1>
+  <ul id="weibo">
+    <li>
+      <iframe 
+        width="100%" 
+        height="550" 
+        class="share_self" 
+        frameborder="0" 
+        scrolling="no" 
+        src="http://widget.weibo.com/weiboshow/index.php?width=0&height=550&ptype=1&speed=0&skin=&isTitle=0&noborder=1&isWeibo=1&isFans=&uid=1277230715&verifier=56d0f8c9">
+      </iframe>
+    </li>
+  </ul>
+</section>
+
+<section>
+<h1>My Douban</h1>
+<div>
+<script type="text/javascript" src="http://www.douban.com/service/badge/61573619/?show=collection&amp;n=8&amp;columns=2" ></script>
+</div>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - waventropy -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'iphyersblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://iphyer.github.com/blog/2013/01/13/pythoncomparetwofiles/';
+        var disqus_url = 'http://iphyer.github.com/blog/2013/01/13/pythoncomparetwofiles/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

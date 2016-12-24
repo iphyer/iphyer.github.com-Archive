@@ -1,0 +1,389 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Python编程10——Python做葛底斯堡演讲的词频统计 - 桑弧蓬矢射四方</title>
+  <meta name="author" content="waventropy">
+
+  
+  <meta name="description" content="前言 这里继续接着前面的工作做下去。 这里主要不单单是统计出葛底斯堡演讲的单词分别打印出来，还希望可以作进一步的分析。比如，这篇演讲使用频率最多的词汇是哪些。
+这里主要的特点是使用了Python的字典数据结构，生成字典来计算词频。 主要的算法是三步： 打开文件，每次只处理文件中的一行数据 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://iphyer.github.com/blog/2013/01/13/pythongettsburg-wordcount/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="桑弧蓬矢射四方" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Ruge+Boogie|Ruthie|Flavors|Rancho|Galdeano' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Philosopher:[object Object],[object Object],[object Object],[object Object]' rel='stylesheet' type='text/css'>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-33194427-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">桑弧蓬矢射四方</a></h1>
+  
+    <h2>以桑弧蓬矢六，射天地四方。</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:iphyer.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about-us">About</a></li>
+ </ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Python编程10——Python做葛底斯堡演讲的词频统计</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-13T14:27:00+08:00" pubdate data-updated="true">Jan 13<span>th</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h1 id="section">前言</h1>
+
+<p>这里继续接着前面的工作做下去。</p>
+
+<p>这里主要不单单是统计出葛底斯堡演讲的单词分别打印出来，还希望可以作进一步的分析。比如，这篇演讲使用频率最多的词汇是哪些。
+这里主要的特点是使用了Python的字典数据结构，生成字典来计算词频。</p>
+
+<p>主要的算法是三步：</p>
+
+<ul>
+  <li>打开文件，每次只处理文件中的一行数据</li>
+  <li>查找字典的键值。对于每一个新的词语添加到字典中记为一个新的key，val设为1；否则对于已有的key，val+=1</li>
+  <li>对于字典输出，按照键值的从大到小排列</li>
+</ul>
+
+<!--more-->
+
+<p>相应的程序中的三个函数如下：</p>
+
+<p>processline→addword→prettyPrint</p>
+
+<p>其中重点的内容如下：</p>
+
+<ul>
+  <li>使用string包中的string.punctuation去除所有单词后面的标点。</li>
+  <li>addword使用in查看是否单词在字典之中</li>
+  <li>排序的时候必须遍历字典，使用items方法。同时对于字典将key 和val调换，以使用sort方法排序。</li>
+</ul>
+
+<h1 id="section-1">程序</h1>
+
+<pre><code>#getttsburg addresss analysis
+#count words, unique words, common wrods
+#here we want to do word frequence analysis of the addresss
+
+import string
+
+def processLine(line,wcDict):
+	#cut the whitespace before and after everyline
+	#sitll use strip method to seperate different words
+	wordlist=line.strip().split()
+	for word in wordlist:
+		if word !="--":
+			word=word.lower()
+			word=word.strip()
+			word=word.strip(string.punctuation)
+			addword(word,wcDict)
+
+def addword(w,wcDict):
+	if w in wcDict:
+		wcDict[w]+=1
+	else:
+		wcDict[w]=1
+
+def prettyPrint(wcDict):
+	valkeyList=[]
+	for key,val in wcDict.items():
+		valkeyList.append((val,key))
+	valkeyList.sort(reverse=True)
+	print '%-10s%10s'%('word','count')
+	print '-'*21
+	for val,key in valkeyList:
+		if (len(key) &gt;3) and (val&gt;2) :
+			print '%-12s %3d'%(key,val)
+
+#main programe
+wcDict={}
+fObj=open("gettysburg.txt",'r')
+for line in fObj:
+    processLine(line,wcDict)
+print 'Length of the wcDict is:', len(wcDict)
+prettyPrint(wcDict)
+
+</code></pre>
+
+<p>程序中值得一说的是去掉无意义词汇的过程</p>
+
+<pre><code>if (len(key) &gt;3) and (val&gt;2) :
+</code></pre>
+
+<p>程序的难点还是在prettyPrint（）这个函数的编写的，确实是输出的格式上非常让人需要调整。
+当然经验也比较重要。</p>
+
+<p>这一行代码去掉长度小于2同时出现次数太低的词汇，然后得到了结果如下：</p>
+
+<p><img src="/images/Python/gettysburg/tu4.png" alt="tu1" /></p>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">waventropy</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-13T14:27:00+08:00" pubdate data-updated="true">Jan 13<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/python/'>Python</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+  <div class="bshare-custom"><a title="分享到QQ空间" class="bshare-qzone"></a><a title="分享到新浪微博" class="bshare-sinaminiblog"></a><a title="分享到人人网" class="bshare-renren"></a><a title="分享到腾讯微博" class="bshare-qqmb"></a><a title="分享到豆瓣" class="bshare-douban"></a><a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a><span class="BSHARE_COUNT bshare-share-count">0</span></div><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=df8ae713-f93c-44fa-bcca-e825292d4075&amp;pophcol=3&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+  </div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/01/13/pythonfindpartsinword/" title="Previous Post: Python编程8——Python寻找单词中符合顺序的元音字母">&laquo; Python编程8——Python寻找单词中符合顺序的元音字母</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/01/13/pythoncomparetwofiles/" title="Next Post: Python编程11——Python作葛底斯堡演讲和美国独立宣言的比较分析">Python编程11——Python作葛底斯堡演讲和美国独立宣言的比较分析 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/08/12/guan-yu-iypt-and-nypt-and-jsyptde-jie-shao/">关于IYPT、NYPT、JSYPT的介绍</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/10/train/">新生购买火车票总结</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/06/acem/">Advanced Computing in Electron Microscopy配套软件的使用</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/26/nan-da-tu-shu-guan-jie-shu-ji-lu/">南大图书馆借书记录</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/28/da-xue-hui-gu/">大学回顾</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+<section>
+  <h1>新浪微博</h1>
+  <ul id="weibo">
+    <li>
+      <iframe 
+        width="100%" 
+        height="550" 
+        class="share_self" 
+        frameborder="0" 
+        scrolling="no" 
+        src="http://widget.weibo.com/weiboshow/index.php?width=0&height=550&ptype=1&speed=0&skin=&isTitle=0&noborder=1&isWeibo=1&isFans=&uid=1277230715&verifier=56d0f8c9">
+      </iframe>
+    </li>
+  </ul>
+</section>
+
+<section>
+<h1>My Douban</h1>
+<div>
+<script type="text/javascript" src="http://www.douban.com/service/badge/61573619/?show=collection&amp;n=8&amp;columns=2" ></script>
+</div>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - waventropy -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'iphyersblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://iphyer.github.com/blog/2013/01/13/pythongettsburg-wordcount/';
+        var disqus_url = 'http://iphyer.github.com/blog/2013/01/13/pythongettsburg-wordcount/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

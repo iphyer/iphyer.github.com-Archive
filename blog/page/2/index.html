@@ -1,0 +1,800 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>桑弧蓬矢射四方</title>
+  <meta name="author" content="waventropy">
+
+  
+  <meta name="description" content="下载书籍 好久没有更新这个技术blog了，今天终于可以写一个新的内容了。
+主要是关于一本书的《西藏生死书》，这本书总是在图书馆借不到，所以自己写程序去下载。 程序思路 其实很简单就是读入网页，然后用BeautifulSoup解析网页内容，本来以为会有好多内容的，结果最后发现用一个语法就可以解决了 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://iphyer.github.com/blog/page/2/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="桑弧蓬矢射四方" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Ruge+Boogie|Ruthie|Flavors|Rancho|Galdeano' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Philosopher:[object Object],[object Object],[object Object],[object Object]' rel='stylesheet' type='text/css'>
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-33194427-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">桑弧蓬矢射四方</a></h1>
+  
+    <h2>以桑弧蓬矢六，射天地四方。</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:iphyer.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about-us">About</a></li>
+ </ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/23/pythondownloadbook/">PythonDownloadBook</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-23T11:33:00+08:00" pubdate data-updated="true">Mar 23<span>rd</span>, 2013</time>
+        
+         | <a href="/blog/2013/03/23/pythondownloadbook/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1 id="section">下载书籍</h1>
+
+<p>好久没有更新这个技术blog了，今天终于可以写一个新的内容了。
+主要是关于一本书的《西藏生死书》，这本书总是在图书馆借不到，所以自己写程序去下载。</p>
+
+<h1 id="section-1">程序思路</h1>
+
+<p>其实很简单就是读入网页，然后用BeautifulSoup解析网页内容，本来以为会有好多内容的，结果最后发现用一个语法就可以解决了。
+主要是这个网页比较干净，几乎没有什么其他的东西。
+当然程序的实现还是需要很多的其他环境的，比如这个网站是gbn2312编码的，但是内中还夹杂了其他的编码，所以python一开始老是报错。
+最后借助了很多的其他手段解决了。比如Linux环境。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/03/23/pythondownloadbook/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/17/pythonosfinding/">Python系统文件操作</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-17T13:10:00+08:00" pubdate data-updated="true">Jan 17<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/01/17/pythonosfinding/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1 id="section">前言</h1>
+
+<p>其实做了这么多的文件数据分析。大家还是会奇怪这些工作用excel也可以做啊。
+甚至很快捷的可以解决。的确，我们可以很快速的使用excel这样的工具解决，但是比较bug的是如果文件很多时候怎么办？</p>
+
+<p>其实很简单，用VBA这样的工具也是可以实现的。
+但是如果你没有VBA的话，那么就只能选择开源的内容去实现了。比如说Python。
+如果是Python的话，下面一步需要解决的就是如何在系统中寻找文件并且打开然后进行计算。</p>
+
+<p>这就是这篇日志的内容。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/01/17/pythonosfinding/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/17/pythongoogleprice/">Python分析Google股价数据</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-17T12:57:00+08:00" pubdate data-updated="true">Jan 17<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/01/17/pythongoogleprice/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1 id="section">前言</h1>
+
+<p>这是为了分析Google的股价数据，所作的数据挖掘。
+比较简单，但是数据挖掘的基本分析过程和思想都有所体现。</p>
+
+<h1 id="section-1">寻找数据</h1>
+
+<p>去</p>
+
+<p>http://finance.yahoo.com/ </p>
+
+<p>上下载我们所需要的信息，也就是Google的股价数据。</p>
+
+<p>我们选择历史数据这一栏：</p>
+
+<p><img src="/images/Python/google/google.png" alt="tu1" /></p>
+
+<p>下载即可。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/01/17/pythongoogleprice/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/17/pythonepafind/">Python寻找环境保护署通车里程数</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-17T09:35:00+08:00" pubdate data-updated="true">Jan 17<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/01/17/pythonepafind/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1 id="section">前言</h1>
+
+<p>这个程序是寻找美国环境保护署网站公布的美国各种车辆的通车历程数据。</p>
+
+<p>具体的形式如下：</p>
+
+<blockquote>
+  <p>CLASS	MFR	CAR LINE	DISPLACEMENT	NUMB CYL	TRANS	DRIVE SYS	INDEX NUMB	CITY MPG (GUIDE)	HWY MPG (GUIDE)	COMB MPG (GUIDE)	UNRND CITY (EPA)	UNRND HWY (EPA)	UNRND COMP (EPA)	FUEL TYPE	GUZLR	TURBO	SPCHGR	AVG 2D PASS VOL	AVG 2D LUGG VOL	AVG 4D PAS VOL	AVG 4D LUGG VOL	AVG HB PAS VOL	AVG HB LUGG VOL	ANL FL CST	ENG BLK TXT	TRANS DESC TXT	VLVS PER CYL	CLS	REL DT	5C CODE</p>
+</blockquote>
+
+<blockquote>
+  <p>TWO SEATERS	ASTON MARTIN	V8 VANTAGE	4.3	8	Auto(S6)	R	12	13	20	15	16.1945	27.4018	19.8474	P	G									3002		4MODE	4	1	6-Aug-07	DERIVED</p>
+</blockquote>
+
+<blockquote>
+  <p>TWO SEATERS	ASTON MARTIN	V8 VANTAGE	4.3	8	Manual(M6)	R	11	12	19	15	15.2	25.7	18.6241	P	G									3002			4	1	6-Aug-07	DERIVED</p>
+</blockquote>
+
+<blockquote>
+  <p>TWO SEATERS	AUDI	R8	4.2	8	Auto(S6)	4	19	13	19	15	16.1944	26.2	19.555	P	G									3002		3MODE CLKUP	4	1	17-Aug-07	DERIVED</p>
+</blockquote>
+
+<p>这里我们需要的是从零开始的第九列元素和第一列以及第二列元素。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/01/17/pythonepafind/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/13/pythonwcgrahy/">Python编程12——Python作葛底斯堡演讲的词频统计图</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-13T16:21:00+08:00" pubdate data-updated="true">Jan 13<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/01/13/pythonwcgrahy/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1 id="section">前言</h1>
+
+<p>这篇的主要程序部分和“Python编程9——Python分析葛底斯堡演讲的词频统计”完全一样，就是多引入了两个库，同时多做了一个做图函数。</p>
+
+<p><img src="/images/Python/gettysburg/tu6.png" alt="tu1" /></p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/01/13/pythonwcgrahy/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/13/pythoncomparetwofiles/">Python编程11——Python作葛底斯堡演讲和美国独立宣言的比较分析</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-13T16:21:00+08:00" pubdate data-updated="true">Jan 13<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/01/13/pythoncomparetwofiles/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1 id="section">前言</h1>
+
+<p>这里其实是把葛底斯堡演讲和独立宣言联合在一起分析了。
+这里的作用不在于取得最后的结果只是简单分析就可以知道这两篇文章都是反应美国建国思想的文献资料。不出意料的话，两者会有很多的共同点。
+分析的结果也支持这个观点。</p>
+
+<p>独立宣言是北美十三州脱离英国殖民统治的政治宣言，葛底斯堡演讲是林肯在美国内战的重要战场葛底斯堡发表的演说。美国内战事实上
+的一个重要原因是解决美国建国时南北双方的政治妥协破裂后的矛盾与危机。所以两篇文章都可以认为是美国的建国思想体现。
+比如两篇文章的高频词汇中都出现了，civil， government， people， nation，liberty等这些美国建国思想。</p>
+
+<p>当然我们的重点不是这些而是Python作文本分析的一些技巧。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/01/13/pythoncomparetwofiles/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/13/pythongettsburg-wordcount/">Python编程10——Python做葛底斯堡演讲的词频统计</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-13T14:27:00+08:00" pubdate data-updated="true">Jan 13<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/01/13/pythongettsburg-wordcount/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1 id="section">前言</h1>
+
+<p>这里继续接着前面的工作做下去。</p>
+
+<p>这里主要不单单是统计出葛底斯堡演讲的单词分别打印出来，还希望可以作进一步的分析。比如，这篇演讲使用频率最多的词汇是哪些。
+这里主要的特点是使用了Python的字典数据结构，生成字典来计算词频。</p>
+
+<p>主要的算法是三步：</p>
+
+<ul>
+  <li>打开文件，每次只处理文件中的一行数据</li>
+  <li>查找字典的键值。对于每一个新的词语添加到字典中记为一个新的key，val设为1；否则对于已有的key，val+=1</li>
+  <li>对于字典输出，按照键值的从大到小排列</li>
+</ul>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/01/13/pythongettsburg-wordcount/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/13/pythonfindpartsinword/">Python编程8——Python寻找单词中符合顺序的元音字母</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-13T13:22:00+08:00" pubdate data-updated="true">Jan 13<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/01/13/pythonfindpartsinword/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1 id="section">前言</h1>
+
+<p>程序的目的就是标题。</p>
+
+<h1 id="section-1">程序</h1>
+
+<pre><code>
+#to find a word that contians the specific parts in it
+#in this case it is "aeiou" , all the Vowel letters
+
+datafile=open("dictionary.txt","r")
+
+def cleanWord(word):
+	"""Return word in lower case without whitespace"""
+	return word.strip().lower()
+	
+def getVowelsInword(word):
+	vowelsStr="aeiou"
+	vowelsInword=""
+	for char in word:
+		if char in vowelsStr:
+			vowelsInword+=char
+	return vowelsInword
+
+#main program
+print "Find words containing vowels 'aeiou' in that order: \n"
+for word in datafile:
+	word = cleanWord(word)
+	if len(word)&lt;=6:
+		continue
+	vowelStr=getVowelsInword(word)
+	if vowelStr=="aeiou":
+		print word
+
+</code></pre>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/01/13/pythonfindpartsinword/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/13/pythonanagrams/">Python编程7——Python比较相同字母组成的单词</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-13T13:02:00+08:00" pubdate data-updated="true">Jan 13<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/01/13/pythonanagrams/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1 id="section">前言</h1>
+
+<p>这个程序比较简单就是比较两个单词是不是可以用相同的字母不同的排序组合出来的。</p>
+
+<h1 id="section-1">程序</h1>
+<pre><code>#the programe compares that some word letters can 
+#be reput as a new word
+
+def areAnagrames(word1, word2):
+	"Return the result of the comparison"
+	#resorted the two words in the aplhabeta order
+	word1_sorted=sorted(word1)
+	word2_sorted=sorted(word2)
+	return word1_sorted==word2_sorted
+	
+print "Anagram Test"
+twowords=raw_input("Enter two words separing with whitespace: \n")
+twowordsList=twowords.split()
+word1=twowordsList[0]
+word2=twowordsList[1]
+
+if areAnagrames(word1,word2):
+	print "The two words are anagrams."
+else:
+	print "The two words are not anagrams."
+</code></pre>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/01/13/pythonanagrams/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/13/pythoncollatz/">Python编程6——Python实现Collatz</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-13T10:48:00+08:00" pubdate data-updated="true">Jan 13<span>th</span>, 2013</time>
+        
+         | <a href="/blog/2013/01/13/pythoncollatz/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1 id="section">前言</h1>
+
+<p>这个是需要更多修改的部分。Python实现Collatz序列。
+本来以为比较简单，但是看了看维基百科的说明，这个居然可以出现分形，顿时冋了。
+这个还需要修改啊。</p>
+
+<p><img src="/images/Python/Collatz/CollatzFractal.png" alt="tu1" /> </p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/01/13/pythoncollatz/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/3/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/08/12/guan-yu-iypt-and-nypt-and-jsyptde-jie-shao/">关于IYPT、NYPT、JSYPT的介绍</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/10/train/">新生购买火车票总结</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/06/acem/">Advanced Computing in Electron Microscopy配套软件的使用</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/26/nan-da-tu-shu-guan-jie-shu-ji-lu/">南大图书馆借书记录</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/28/da-xue-hui-gu/">大学回顾</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+<section>
+  <h1>新浪微博</h1>
+  <ul id="weibo">
+    <li>
+      <iframe 
+        width="100%" 
+        height="550" 
+        class="share_self" 
+        frameborder="0" 
+        scrolling="no" 
+        src="http://widget.weibo.com/weiboshow/index.php?width=0&height=550&ptype=1&speed=0&skin=&isTitle=0&noborder=1&isWeibo=1&isFans=&uid=1277230715&verifier=56d0f8c9">
+      </iframe>
+    </li>
+  </ul>
+</section>
+
+<section>
+<h1>My Douban</h1>
+<div>
+<script type="text/javascript" src="http://www.douban.com/service/badge/61573619/?show=collection&amp;n=8&amp;columns=2" ></script>
+</div>
+</section>
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - waventropy -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'iphyersblog';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
