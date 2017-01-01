@@ -5,9 +5,9 @@
 url: http://iphyer.github.com
 title: 桑弧蓬矢射四方
 subtitle: 以桑弧蓬矢六，射天地四方。
-author: Aimzest
+author: iphyer
 simple_search: http://google.com/search
-description:
+description: 思考和生活记录
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
@@ -19,7 +19,7 @@ date_format: "ordinal"
 subscribe_rss: /atom.xml
 subscribe_email:
 # RSS feeds can list your email address if you like
-email: sikisis@163.com
+email: iphyer@163.com
 
 # ----------------------- #
 #    Jekyll & Plugins     #
