@@ -1,0 +1,672 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<script data-cfasync="false" type="text/javascript" src="//use.typekit.net/axj3cfp.js"></script>
+	<script data-cfasync="false" type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<meta charset="utf-8">
+	<title>  | 桑弧蓬矢射四方</title>
+
+<meta name="author" content="iphyer"> 
+
+<meta name="description" content=" 前言 这是我对于”The Practice of Computing Using Python”的读书笔记。
+总结了这本书很多有趣的编程题目。初次练手大家轻拍。 Python计算圆的周长和面积 Read on &rarr; Jan 13th, 2013 Python Comments "> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="桑弧蓬矢射四方" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="/stylesheets/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
+
+<script language="Javascript" type="text/javascript">
+$(document).ready(
+  function() {
+    (function($) {
+      $(".fancybox[data-content-id]").each(function() {
+        this.href = $(this).data('content-id');
+      });
+      $(".fancybox").fancybox({
+        beforeLoad: function() {
+          var el, 
+              id = $(this.element).data('title-id');
+
+          if (id) {
+            el = $('#' + id);
+
+            if (el.length) {
+              this.title = el.html();
+            }
+          }
+          if ($(this).data('content')) {
+            this.content = $(this).data('content');
+          }
+        },
+        helpers: {
+          title: {
+            type: 'inside'
+          }
+        }
+      });
+    })(jQuery);
+  }
+);
+</script>
+
+	<!--- MathJax Configuration -->
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML,http://drz.ac/javascripts/MathJaxLocal.js">
+</script>
+
+</head>
+
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">桑弧蓬矢射四方</a></h1>
+<h4></h4>
+<nav id="main-nav"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:iphyer.github.com">
+			</form>
+		</div>
+	</div>
+</nav>
+
+
+</header>
+
+	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/01/13/pythoncirle/">
+		
+			Python编程1——Python计算圆的周长和面积</a>
+	</h2>
+	<div class="entry-content">
+		<h1 id="section">前言</h1>
+
+<p>这是我对于”The Practice of Computing Using Python”的读书笔记。
+总结了这本书很多有趣的编程题目。初次练手大家轻拍。</p>
+
+<h1 id="python">Python计算圆的周长和面积</h1>
+
+		
+		<a href="/blog/2013/01/13/pythoncirle/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-13T10:17:00-06:00" pubdate data-updated="true">Jan 13<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/python/'>Python</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2013/01/13/pythoncirle//blog/page/14/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/01/13/pythongettsburg/">
+		
+			Python编程9——Python分析Gettysburg Address演讲</a>
+	</h2>
+	<div class="entry-content">
+		<h1 id="section">前言</h1>
+
+<p>这是对于葛底斯堡演讲所作的分析。</p>
+
+<p>林肯的这篇演讲是美国历史上的重要演讲，文章最后的“that government of the people, by the people, for the people, shall not perish from the earth.”更是传唱千古的名句。
+这里简单分析了这篇演讲，用词并不是很多。</p>
+
+<p>这里的练习是为了让大家熟练掌握需要的语言分析技巧。其实用过的很多的程序，比如R等，但是说实话，分析文本数据处理其他的东西而言
+还是Python特别顺手。</p>
+
+
+		
+		<a href="/blog/2013/01/13/pythongettsburg/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-13T00:00:00-06:00" pubdate data-updated="true">Jan 13<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/python/'>Python</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2013/01/13/pythongettsburg//blog/page/14/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/01/09/gretiming/">
+		
+			考试倒计时的小程序</a>
+	</h2>
+	<div class="entry-content">
+		<h1 id="section">前言</h1>
+
+<p>这是当年考GRE的时候做的一个倒计时的工具。现在想想其实不应该花掉这么多时间去做这么简单的一个倒计时软件的小程序的。
+但是以我当时的状态而言的话，其实也没有什么的太好的方法，回到当时那个时间点上我还是会一头栽进去。这个的本质原因在于自己。
+在于自己的自律。换句话说，倒计时程序啦，买书啦，和G友一起自习啦，其实都没啥直接作用。
+最最重要的作用在于你自己的努力！或者更加准确的说法是个人的自制力。</p>
+
+
+		
+		<a href="/blog/2013/01/09/gretiming/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-09T03:02:00-06:00" pubdate data-updated="true">Jan 9<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/python/'>Python</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2013/01/09/gretiming//blog/page/14/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/01/09/ibus/">
+		
+			Ibus假死后的重启方法</a>
+	</h2>
+	<div class="entry-content">
+		<h1 id="section">前言</h1>
+
+<p>这里讲一下这个程序的作用。当时是Ubuntu11.12的系统，发现Unity的界面下面ibus经常假死。
+也就是你突然看不到输入框了，但是ibus还是在工作。
+但是现在Ubuntu12.04的系统貌似做的比较好了。
+当然我现在的系统是Lubuntu不知道是不是这个的因素。</p>
+
+
+		
+		<a href="/blog/2013/01/09/ibus/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-09T02:55:00-06:00" pubdate data-updated="true">Jan 9<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/linux/'>Linux</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2013/01/09/ibus//blog/page/14/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/01/05/latexcirclenumber/">
+		
+			Latex中输入20个带圈字符的方法</a>
+	</h2>
+	<div class="entry-content">
+		<h1 id="section">前言</h1>
+
+<p>今天写专利课老师的论文，发现必须要求我们遵循《中国法学》的文献格式要求。
+这里小不爽一下，就是这本杂志要求</p>
+
+<blockquote>
+  <p>（二）文中注释一律采用脚注，全文连续注码，注码样式为：①②③等。</p>
+</blockquote>
+
+<p>本来以为这个在latex里面可以集成了功能结果发现特别痛苦啊，有么有！！</p>
+
+
+		
+		<a href="/blog/2013/01/05/latexcirclenumber/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-05T22:34:00-06:00" pubdate data-updated="true">Jan 5<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/latex/'>Latex</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2013/01/05/latexcirclenumber//blog/page/14/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/01/04/bailuyuan/">
+		
+			白鹿原的影评</a>
+	</h2>
+	<div class="entry-content">
+		<h1 id="section">观看白鹿原的影评</h1>
+
+<h2 id="section-1">总体评价</h2>
+<p>今天接着刚刚送别了同学的空闲。看完了白鹿原。2012年这部电影非常火爆，今天才看到毕竟是看的百度版也就不做强人所难的要求了。
+貌似很多人都看过了。确实发现很多人给的评价很低。这个也不好否定。比如电影的前20分钟，我特意看了时间其实实在作故事的铺垫，但是这部分的逻辑非常跳跃很多的部分没有告诉人们的具体形式。其实我是很欣赏出现一些画外音的，告诉人们具体故事的年代。比如很多人其实看到1912年没有什么具体的概念，这一年虽然亚洲最早的共和国建立。同时对于主人公的交代非常单薄，很多人还是在故事的进行中发现了这个故事的主角的名字叫白嘉轩和鹿子霊的。其实这样的安排让我感觉完全无法理解。</p>
+
+
+		
+		<a href="/blog/2013/01/04/bailuyuan/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-04T21:54:00-06:00" pubdate data-updated="true">Jan 4<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/movie/'>movie</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2013/01/04/bailuyuan//blog/page/14/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/12/20/toefljing-yan-zong-jie/">
+		
+			关于TOEFL的思考</a>
+	</h2>
+	<div class="entry-content">
+		<h2 id="section">前言</h2>
+
+<p>这里总结自己总结的托福需要注意的事项。
+这里的总结很多都来自己的同学和自己的经历的思考。这里综合了一个口语118的美女的经验和自己和几个物理系出国同学的经验。</p>
+
+<h2 id="section-1">总纲</h2>
+
+<p>其实就是两个方案：</p>
+
+<ul>
+  <li>经典方案（黄金80题+托福真经+TPO）</li>
+  <li>流行款     （最近三年的机经）</li>
+</ul>
+
+
+		
+		<a href="/blog/2012/12/20/toefljing-yan-zong-jie/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-20T23:45:00-06:00" pubdate data-updated="true">Dec 20<span>th</span>, 2012</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/toefl/'>TOEFL</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2012/12/20/toefljing-yan-zong-jie//blog/page/14/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/11/05/rchina5/">
+		
+			第五届R语言中国会议(上海)</a>
+	</h2>
+	<div class="entry-content">
+		<h1 id="section">导语</h1>
+<p>这是RChina会议的记录，作为自己的一篇总结。本来不打算写的，后来想想，有始有终，何况这么多大牛的登台演讲给了我这么多的启发。
+确实该写的总结的。</p>
+
+<p>这篇日志就作为自己的记录吧，也博诸位一笑。</p>
+
+
+		
+		<a href="/blog/2012/11/05/rchina5/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-05T10:49:00-06:00" pubdate data-updated="true">Nov 5<span>th</span>, 2012</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/r/'>R</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2012/11/05/rchina5//blog/page/14/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/10/30/bashjishu/">
+		
+			Bash输出数字小程序</a>
+	</h2>
+	<div class="entry-content">
+		<h1 id="section">引子</h1>
+
+<p>今天写作自己的blog文章的时候，遇到了一个问题，需要重复使用34次markdown语法的调用。
+其实就是我需要将34幅照片插入日志（见前一篇）所以需要重复很多次，众所周知的原因，希望可以舒服的
+打印出来，其实很简单的东西。但是坑爹是我选择了bash，这个语法彻底把我崩溃了，bash确实很强大，但是
+相应的也十分容易编写出错。所以写了这篇日志记录一下。</p>
+
+
+		
+		<a href="/blog/2012/10/30/bashjishu/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-30T21:07:00-05:00" pubdate data-updated="true">Oct 30<span>th</span>, 2012</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/bash/'>bash</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2012/10/30/bashjishu//blog/page/14/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/10/30/howtousetime/">
+		
+			如何使用时间</a>
+	</h2>
+	<div class="entry-content">
+		<h1 id="section">阅读总结</h1>
+
+<p>这是一本书的评论，今天看的，非常喜欢。做了些笔记，当时在windows下看的，似乎缺少书的编码，所以没办法作成文本格式的读书笔记，所以就截了图，放在blog里面也挺好的。希望大家可以喜欢。</p>
+
+<p>下面是我在豆瓣上的书评：</p>
+
+
+		
+		<a href="/blog/2012/10/30/howtousetime/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-30T11:31:00-05:00" pubdate data-updated="true">Oct 30<span>th</span>, 2012</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/阅读/'>阅读</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2012/10/30/howtousetime//blog/page/14/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+<nav id="pagenavi">
+    
+        <a href="/blog/page/13/" class="prev">Prev</a>
+    
+    
+        <a href="/blog/page/15/" class="next">Next</a>
+    
+    <div class="center"><a href="/blog/archives">Blog Archives</a></div>
+</nav></div>
+	<footer id="footer" class="inner">Copyright &copy; 2017
+
+    iphyer
+
+<br>
+Powered by Octopress.
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'iphyersblog';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-33194427-1');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+</body>
+</html>

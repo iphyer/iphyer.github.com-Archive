@@ -1,0 +1,258 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<script data-cfasync="false" type="text/javascript" src="//use.typekit.net/axj3cfp.js"></script>
+	<script data-cfasync="false" type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<meta charset="utf-8">
+	<title>分子动力学计算的小细节  | 桑弧蓬矢射四方</title>
+
+<meta name="author" content="iphyer"> 
+
+<meta name="description" content="起源 写这篇博客主要是总结自己的这周和上周的一些经验，这两周被一个小程序折腾了好久。 其实这就是一个很简单的分子动力学(molecular dynamics,MD)的计算，但是程序始终在爆炸，能量等不收敛。 首先必须要说明，在科研中我们大量会使用 Charmm, Lammps, &hellip;"> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="桑弧蓬矢射四方" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="/stylesheets/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
+
+<script language="Javascript" type="text/javascript">
+$(document).ready(
+  function() {
+    (function($) {
+      $(".fancybox[data-content-id]").each(function() {
+        this.href = $(this).data('content-id');
+      });
+      $(".fancybox").fancybox({
+        beforeLoad: function() {
+          var el, 
+              id = $(this.element).data('title-id');
+
+          if (id) {
+            el = $('#' + id);
+
+            if (el.length) {
+              this.title = el.html();
+            }
+          }
+          if ($(this).data('content')) {
+            this.content = $(this).data('content');
+          }
+        },
+        helpers: {
+          title: {
+            type: 'inside'
+          }
+        }
+      });
+    })(jQuery);
+  }
+);
+</script>
+
+	<!--- MathJax Configuration -->
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML,http://drz.ac/javascripts/MathJaxLocal.js">
+</script>
+
+</head>
+
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">桑弧蓬矢射四方</a></h1>
+<h4></h4>
+<nav id="main-nav"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:iphyer.github.com">
+			</form>
+		</div>
+	</div>
+</nav>
+
+
+</header>
+
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">分子动力学计算的小细节</h2>
+	<div class="entry-content"><h1 id="section">起源</h1>
+
+<p>写这篇博客主要是总结自己的这周和上周的一些经验，这两周被一个小程序折腾了好久。</p>
+
+<p>其实这就是一个很简单的分子动力学(molecular dynamics,MD)的计算，但是程序始终在爆炸，能量等不收敛。</p>
+
+<!--more-->
+
+<p>首先必须要说明，在科研中我们大量会使用 Charmm, Lammps,这些程序不需要自己编写程序，而且MD程序需要大量复杂的调优技术，比如如何安排计算减少计算量。</p>
+
+<p>这个博文我假设读者知道全部的 MD 知识，至少上过基本的课程或者文献，这里不讨论那些在大部分课本上能学习到的细节。</p>
+
+<h1 id="section-1">重要细节</h1>
+
+<h2 id="pbc">PBC</h2>
+
+<p>周期性边界是整个 MD 模拟的核心，重要的一点就是用小部分的模拟大的体系，提高计算效率。</p>
+
+<p><img src="/images/md/1.png" alt="tu1" /></p>
+
+<p>其实核心就是这个文献讨论的这幅图。</p>
+
+<p>在两个原子之间距离大于截断距离，一般是体系尺寸的一半，需要进行调节。因为需要把两个原子之间的作用距离调节为原子和另一个原子的镜像原子之间的作用。</p>
+
+<p>这里的一个问题是，如果单单计算能量，其实这个距离的方向没有关系，因为在 LJ 能量计算中都是偶次项，向量的方向没有关系。</p>
+
+<p>简单来说，对于 $R_{ij}$, 因为位移在物理学中是矢量，所以必须非常仔细如何求解。</p>
+
+<p>同时 $R_{ij}$ 到底是 i - j 还是 j - i？</p>
+
+<p>是 i -j ,因为这里还要涉及到矢量在数学中是如何定义的，依照正确的数学矢量定义，必须是 i - j 才能得到正确方向的 $R_{ij}$。</p>
+
+<h3 id="section-2">加速计算</h3>
+
+<p>其实这些都是些小细节，但是细节是魔鬼还是需要好好考虑:</p>
+
+<p>(1)计算能量和力的时候，虽然是一个双重循环，但是如果 i 从 0 到 N-1，那么内层循环 j 就只需要从 i + 1 到 N - 1即可，因为能量是共同分享的，力可以用牛顿第二定律求出来。</p>
+
+<p>(2)计算力的时候不需要带入系数，最好的，比如计算动能的时候，不需要每一个原子动能都乘以 0.5，可以在速度平方加和后直接在总和上乘以 0.5 即可，这样可以省下 N -1 次乘法操作。如果你的体系是溶液中的蛋白质，10万多的原子体系，这样的小细节还是能省下很多计算资源的。</p>
+
+<p>(3)周期性边界条件有两个影响，一个是计算距离需要考虑镜像原子，二是在原子超出体系边界的时候必须把原子拉回体系内。</p>
+
+<h3 id="section-3">约化单位</h3>
+
+<p>约化单位是必须在所有计算中保持的，只有在输入输出提供可以给人参考的数据时才需要考虑约化单位和真实单位的转化，否则都统一采用约化单位。</p>
+
+<p>约化单位其实很简单，核心就是保持一个约化系数，这个约化系数在所有的真实单位中都统一转向约化单位。</p>
+
+<p>在晶体结构的体系还有一个要点需要注意，就是晶体的原子有一个原胞坐标系，比如 FCC 是(0,0,0),(0,0.5,0.5),(0.5,0,0.5),(0.5,0.5,0)。但是这并不是 MD 希望的实验坐标系，所以还需要把原胞坐标系转化到实验坐标系。这儿只需要把原胞边长转化为约化单位即可。</p>
+
+<h1 id="section-4">总结</h1>
+
+<p>MD还是需要好好学习下的，这儿的很多细节是非常值得仔细思考思考。</p>
+
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2017-03-11T08:38:00-06:00" pubdate data-updated="true">Mar 11<span>th</span>, 2017</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/科研/'>科研</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2017/03/11/md/#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	
+<!---	<a class="addthis_counter addthis_pill_style"></a> --->
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2017
+
+    iphyer
+
+<br>
+Powered by Octopress.
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'iphyersblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://iphyer.github.com/blog/2017/03/11/md/';
+        var disqus_url = 'http://iphyer.github.com/blog/2017/03/11/md/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-33194427-1');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+</body>
+</html>

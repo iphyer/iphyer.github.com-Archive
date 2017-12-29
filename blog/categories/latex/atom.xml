@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: latex | 桑弧蓬矢射四方]]></title>
+  <link href="http://iphyer.github.com/blog/categories/latex/atom.xml" rel="self"/>
+  <link href="http://iphyer.github.com/"/>
+  <updated>2017-12-29T00:57:30-06:00</updated>
+  <id>http://iphyer.github.com/</id>
+  <author>
+    <name><![CDATA[iphyer]]></name>
+    <email><![CDATA[iphyer@163.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[基于xelatex的中国科学院博士硕士毕业论文模板]]></title>
+    <link href="http://iphyer.github.com/blog/2014/07/03/xelatexthesis/"/>
+    <updated>2014-07-03T20:09:00-05:00</updated>
+    <id>http://iphyer.github.com/blog/2014/07/03/xelatexthesis</id>
+    <content type="html"><![CDATA[<h1 id="section">说明</h1>
+<p>这是一个用于撰写中国科学院学位论文的 LaTeX 模板，主要的目的是为了排版出自己可用的模板。</p>
+
+<!--more-->
+
+<p>本模板制作过程中参考了中国科学院电工所MGC学长 (mgcgogo@gmail.com)分享的模板，<a href="http://code.google.com/p/cas-lyx-template/">项目地址</a>。</p>
+
+<p>新的中国科学院论文格式要求地址如下：<a href="http://www.gucas.ac.cn/site/82?u=60473">中国科学院大学研究生学位论文撰写规定</a>。这个要求只是限定了封面和封底的格式但是没有要求具体的内容格式，我主要修改了MGC学长2012年以来的封面要求变化。</p>
+
+<p>这个论文是针对使用TeX/LaTeX新的中国科学院论文格式，旧的格式已经不符合要求了。新的<a href="https://github.com/iphyer/UCASThesisTemplete">项目地址</a>,您可以在这里得到项目的全部代码和说明。</p>
+
+<p>测试所用软件环境：</p>
+
+<ul>
+  <li>Windows 7 + CTeX2.9.2.159  </li>
+  <li>Debian sid + TeXLive 2013 </li>
+</ul>
+
+<p>模板理论上平台无关，但Mac系统未做测试。 推荐使用Linux下的 TeXLive平台，个人感觉使用更方便快速。</p>
+
+<h1 id="beamer">演讲Beamer</h1>
+<p>这是一个当时课堂做的演讲PPT，不过没有在老师3年前的Ctex系统上成功，很是没面子啊！Sigh。。。</p>
+
+<p>其实我也是觉得Latex是个坑，但是这个老师感觉是被Knuth洗脑了，非要说latex好，我就没什么好说的了。其实我一直觉得你用什么样的方式写作没有任何关系，关键是你要给出你的观点，你的创新，你的论文独到之处。这个才是重点。</p>
+
+<p>说回Word其实你要是看过侯捷写的《Word排版的艺术》估计你就不会觉得Word简单了。可惜这个老师这么大年纪了，我也没必要和他争辩什么的。作为一个Linux的使用用户我越来越欣赏Markdown而不是Latex。因为你不会总是要使用洲际巡航导弹的！</p>
+
+<p><img src="/images/Latex/thesis/file-0.png" alt="tu0" /></p>
+
+<p><img src="/images/Latex/thesis/file-1.png" alt="tu1" /></p>
+
+<p><img src="/images/Latex/thesis/file-2.png" alt="tu2" /></p>
+
+<p><img src="/images/Latex/thesis/file-3.png" alt="tu3" /></p>
+
+<p><img src="/images/Latex/thesis/file-4.png" alt="tu4" /></p>
+
+<p><img src="/images/Latex/thesis/file-5.png" alt="tu5" /></p>
+
+<p><img src="/images/Latex/thesis/file-6.png" alt="tu6" /></p>
+
+<p><img src="/images/Latex/thesis/file-7.png" alt="tu7" /></p>
+
+<p><img src="/images/Latex/thesis/file-8.png" alt="tu8" /></p>
+
+<p><img src="/images/Latex/thesis/file-9.png" alt="tu9" /></p>
+
+<p><img src="/images/Latex/thesis/file-10.png" alt="tu10" /></p>
+
+<p><img src="/images/Latex/thesis/file-11.png" alt="tu11" /></p>
+
+<p><img src="/images/Latex/thesis/file-12.png" alt="tu12" /></p>
+
+<p><img src="/images/Latex/thesis/file-13.png" alt="tu13" /></p>
+
+<p><img src="/images/Latex/thesis/file-14.png" alt="tu14" /></p>
+
+<p><img src="/images/Latex/thesis/file-15.png" alt="tu15" /></p>
+
+<p><img src="/images/Latex/thesis/file-16.png" alt="tu16" /></p>
+
+<p><img src="/images/Latex/thesis/file-17.png" alt="tu17" /></p>
+
+<p><img src="/images/Latex/thesis/file-18.png" alt="tu18" /></p>
+
+<p><img src="/images/Latex/thesis/file-19.png" alt="tu19" /></p>
+
+<p><img src="/images/Latex/thesis/file-20.png" alt="tu20" /></p>
+
+<p><img src="/images/Latex/thesis/file-21.png" alt="tu21" /></p>
+
+<p><img src="/images/Latex/thesis/file-22.png" alt="tu22" /></p>
+
+<p><img src="/images/Latex/thesis/file-23.png" alt="tu23" /></p>
+
+<p><img src="/images/Latex/thesis/file-24.png" alt="tu24" /></p>
+
+<p><img src="/images/Latex/thesis/file-25.png" alt="tu25" /></p>
+
+<p><img src="/images/Latex/thesis/file-26.png" alt="tu26" /></p>
+
+<p><img src="/images/Latex/thesis/file-27.png" alt="tu27" /></p>
+
+<p><img src="/images/Latex/thesis/file-28.png" alt="tu28" /></p>
+
+<p><img src="/images/Latex/thesis/file-29.png" alt="tu29" /></p>
+
+]]></content>
+  </entry>
+  
+</feed>

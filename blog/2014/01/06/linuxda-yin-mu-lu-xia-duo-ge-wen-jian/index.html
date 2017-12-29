@@ -1,0 +1,246 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<script data-cfasync="false" type="text/javascript" src="//use.typekit.net/axj3cfp.js"></script>
+	<script data-cfasync="false" type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<meta charset="utf-8">
+	<title>Linux打印目录下多个文件  | 桑弧蓬矢射四方</title>
+
+<meta name="author" content="iphyer"> 
+
+<meta name="description" content="今天因为要打印多个文档在Linux下，所以尝试着使用Linux下的lpr命令打印，现在才发现Linux的打印命令确实很多，而且非常智能。这里总结一下。 虚拟打印和物理打印 物理打印对应着一台真实的打印机，这个就不再赘叙了。 虚拟打印顾名思义就是使用打印服务就将内容打印到pdf文档中去， &hellip;"> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="桑弧蓬矢射四方" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="/stylesheets/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
+
+<script language="Javascript" type="text/javascript">
+$(document).ready(
+  function() {
+    (function($) {
+      $(".fancybox[data-content-id]").each(function() {
+        this.href = $(this).data('content-id');
+      });
+      $(".fancybox").fancybox({
+        beforeLoad: function() {
+          var el, 
+              id = $(this.element).data('title-id');
+
+          if (id) {
+            el = $('#' + id);
+
+            if (el.length) {
+              this.title = el.html();
+            }
+          }
+          if ($(this).data('content')) {
+            this.content = $(this).data('content');
+          }
+        },
+        helpers: {
+          title: {
+            type: 'inside'
+          }
+        }
+      });
+    })(jQuery);
+  }
+);
+</script>
+
+	<!--- MathJax Configuration -->
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML,http://drz.ac/javascripts/MathJaxLocal.js">
+</script>
+
+</head>
+
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">桑弧蓬矢射四方</a></h1>
+<h4></h4>
+<nav id="main-nav"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:iphyer.github.com">
+			</form>
+		</div>
+	</div>
+</nav>
+
+
+</header>
+
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Linux打印目录下多个文件</h2>
+	<div class="entry-content"><p>今天因为要打印多个文档在Linux下，所以尝试着使用Linux下的lpr命令打印，现在才发现Linux的打印命令确实很多，而且非常智能。这里总结一下。</p>
+
+<!--more-->
+
+<h2 id="section">虚拟打印和物理打印</h2>
+
+<p>物理打印对应着一台真实的打印机，这个就不再赘叙了。</p>
+
+<p>虚拟打印顾名思义就是使用打印服务就将内容打印到pdf文档中去，而不是在真正的物理打印机上打印。这里首先需要配置下CUPS，比如安装CUPS-pdf包（至少我的Ubuntu12.04是需要的）。 可以用 <code>lpstat -a</code>命令察看，比如在我的机器上结果是：<code>PDF accepting requests since Mon 06 Jan 2014 01:45:23 PM CST</code>。或者是<code>lpstat -s</code>这个命令可以用来察看系统默认的打印机，结果是:
+<code>system default destination: PDF</code></p>
+
+<p><code>device for PDF: cups-pdf:/</code></p>
+
+<p>对于陌生的机器或者自己不确定的系统设置，这个命令非常有效果。具体请参看man的结果。</p>
+
+<h2 id="section-1">普通打印</h2>
+
+<p>CUPS打印组件支持两种打印方法，分别是Berkeley和SysV。Berkeley或LPD（UNIX的Berkeley软件发行版本中使用的）方法，运用的是lpr命令；SysV（来源于UNIX的System V版本）方法，运用的是 lp 命令。</p>
+
+<p>具体的使用非常方便，命令名+文件名，中间也有些参数可以制定信息，请参考man或者这个网页<a href="http://www.tldp.org/HOWTO/Printing-Usage-HOWTO-2.html"> Printing Under Linux</a>。可以选择所有的我们常见的打印命令如纸张，份数，正反打印等等。</p>
+
+<h2 id="section-2">批量打印</h2>
+
+<h3 id="section-3">批量打印成一个文件</h3>
+
+<p>这个比较简单，直接使用正则匹配即可。当然前提是这里我的文件都在一个目录下且都是需要打印的，lpr自动在home目录生成PDF目录并且以打印文件所在目录下第一个文件命名的文件合集。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">lpr *.pdf
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h3 id="section-4">批量打印成多个文件</h3>
+<p>这时用bash的一个循环结束任务。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="k">for </span>myfile in *.pdf; <span class="k">do </span>lpr -p <span class="nv">$myfile</span>; <span class="k">done</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+<p>这样lpr同样会在home目录生成PDF目录并且保留打印文件所在目录的文件结构。</p>
+
+<h2 id="section-5">注意</h2>
+
+<p>我发现lpr命令对于文件的名称要求比较严格，比如文件名中含有空格基本就失效了，这个可能需要在用bash处理下。</p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-06T13:47:00-06:00" pubdate data-updated="true">Jan 6<span>th</span>, 2014</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/linux/'>Linux</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2014/01/06/linuxda-yin-mu-lu-xia-duo-ge-wen-jian/#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	
+<!---	<a class="addthis_counter addthis_pill_style"></a> --->
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2017
+
+    iphyer
+
+<br>
+Powered by Octopress.
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'iphyersblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://iphyer.github.com/blog/2014/01/06/linuxda-yin-mu-lu-xia-duo-ge-wen-jian/';
+        var disqus_url = 'http://iphyer.github.com/blog/2014/01/06/linuxda-yin-mu-lu-xia-duo-ge-wen-jian/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-33194427-1');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+</body>
+</html>

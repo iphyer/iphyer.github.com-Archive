@@ -1,0 +1,722 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<script data-cfasync="false" type="text/javascript" src="//use.typekit.net/axj3cfp.js"></script>
+	<script data-cfasync="false" type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<meta charset="utf-8">
+	<title>  | 桑弧蓬矢射四方</title>
+
+<meta name="author" content="iphyer"> 
+
+<meta name="description" content=" 起因 今天上固体材料课程，老师在讲解Ginzburg-Landau(金兹堡—朗道,GL)方程的时候，这么总结物理，物理是哲学的思维+数学的表达。 这句话不能同意更多！这里我展开一下自己的观点和思考。 Read on &rarr; Sep 30th, 2013 physics Comments "> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="桑弧蓬矢射四方" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="/stylesheets/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
+
+<script language="Javascript" type="text/javascript">
+$(document).ready(
+  function() {
+    (function($) {
+      $(".fancybox[data-content-id]").each(function() {
+        this.href = $(this).data('content-id');
+      });
+      $(".fancybox").fancybox({
+        beforeLoad: function() {
+          var el, 
+              id = $(this.element).data('title-id');
+
+          if (id) {
+            el = $('#' + id);
+
+            if (el.length) {
+              this.title = el.html();
+            }
+          }
+          if ($(this).data('content')) {
+            this.content = $(this).data('content');
+          }
+        },
+        helpers: {
+          title: {
+            type: 'inside'
+          }
+        }
+      });
+    })(jQuery);
+  }
+);
+</script>
+
+	<!--- MathJax Configuration -->
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML,http://drz.ac/javascripts/MathJaxLocal.js">
+</script>
+
+</head>
+
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">桑弧蓬矢射四方</a></h1>
+<h4></h4>
+<nav id="main-nav"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:iphyer.github.com">
+			</form>
+		</div>
+	</div>
+</nav>
+
+
+</header>
+
+	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/09/30/physics/">
+		
+			关于物理思维的思考</a>
+	</h2>
+	<div class="entry-content">
+		<h1 id="section">起因</h1>
+
+<p>今天上固体材料课程，老师在讲解Ginzburg-Landau(金兹堡—朗道,GL)方程的时候，这么总结物理，物理是哲学的思维+数学的表达。</p>
+
+<p>这句话不能同意更多！这里我展开一下自己的观点和思考。</p>
+
+
+		
+		<a href="/blog/2013/09/30/physics/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-30T20:52:00-05:00" pubdate data-updated="true">Sep 30<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/physics/'>physics</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2013/09/30/physics//blog/page/11/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/09/30/linuxtraing/">
+		
+			从Linux培训的一些话题引申开去</a>
+	</h2>
+	<div class="entry-content">
+		<h1 id="section">缘起</h1>
+
+<p>9.28号参加在中科院雁栖湖校区举办的开源软件自由日活动，收获良多。特别是最后关于LPIC的演讲。主讲人(抱歉没记住名字)对于Linux的观点更加亲切和友好，不是常见的开源愤青但是对于Linux的热爱溢于言表。主要的演讲Topic是关于LPIC这个Linux水平认证考试的介绍和一些相关的知识。对于LPIC的理念、历史、现状都做了一个简单的介绍。</p>
+
+<p>最后的提问环节，一个女生提问，我概括一下是：Linux这样一个开源的没有任何限制的系统和软件生态圈，为什么需要LPIC这样一个收费的认证体系？为了补充她的观点，她还提出对于Linux的很多贡献者，他们是不是也需要参加这个认证体系呢？</p>
+
+
+		
+		<a href="/blog/2013/09/30/linuxtraing/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-30T19:24:00-05:00" pubdate data-updated="true">Sep 30<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/linux/'>Linux</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2013/09/30/linuxtraing//blog/page/11/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/09/24/readingabstract/">
+		
+			阶段总结+读书笔记2013-09-24</a>
+	</h2>
+	<div class="entry-content">
+		<h1 id="section">说明</h1>
+
+<p>只是一份网页，前段时间还没有怎么调整好自己，所以看了不少闲书。现在总结总结。算是一个了断。这是自己23岁生日的时候写下的日志，忽然想到了以前在知乎上看到的帖子，“23岁你在干什么？“具体的内容很多都是一些中年的大叔或者年纪较长的大叔回忆当年的日子，一句话概括的话该是“昔日龌龊不足夸”。总之就是坚持理想信念，成功必有所期！</p>
+
+
+		
+		<a href="/blog/2013/09/24/readingabstract/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-24T13:31:00-05:00" pubdate data-updated="true">Sep 24<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/reading/'>Reading</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2013/09/24/readingabstract//blog/page/11/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/09/12/songci/">
+		
+			我喜爱的宋词两首</a>
+	</h2>
+	<div class="entry-content">
+		<h1 id="section">前言</h1>
+<p>今天在图书馆看书，一看就是很久，但是还是最最喜欢这本《宋词三百首全解》不知道是不是我自己的感觉有了最近忽然喜欢上晏殊的词了。</p>
+
+<p>这里的两首，自己摘抄的。很喜欢。</p>
+
+<p>可能越来越不喜欢苏辛那样的豪放词了，还是平平淡淡才是真！</p>
+
+
+		
+		<a href="/blog/2013/09/12/songci/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-12T19:52:00-05:00" pubdate data-updated="true">Sep 12<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/宋词/'>宋词</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2013/09/12/songci//blog/page/11/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/09/10/beijing/">
+		
+			北京进城纪实</a>
+	</h2>
+	<div class="entry-content">
+		<h1 id="section">起因</h1>
+
+<p>终于进了一趟京城。京华烟云犹在目，历历江南草未凋。上上周离开的时候还是夏天的江南，今天就在这初冬寒气微露的北国写着这篇日志。
+总结一趟自己进城的感受。还有兼写下点感受，主要是今天晚上不想看书，想早点睡觉去，所以在这里写写感想啥的。</p>
+
+
+		
+		<a href="/blog/2013/09/10/beijing/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-10T20:42:00-05:00" pubdate data-updated="true">Sep 10<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/北京/'>北京</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2013/09/10/beijing//blog/page/11/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/09/07/xin-sheng-gan-xiang/">
+		
+			新生感想</a>
+	</h2>
+	<div class="entry-content">
+		<h1 id="section">新生感想</h1>
+
+<p>今天是自己到怀柔校区一个星期的日子，一个星期前，我从家一夜火车来到北京，开始自己的研究生生活。
+我们所在的怀柔校区偏离京城，远离繁华。虽然生活上有些单调，但是确实是可以让大家静下心来仔细学习的地方。莫见长安行乐处，空令岁月易蹉跎。京华烟云虽然繁华，毕竟不是大家建功立业的依仗。最为科学院的学生，我们的第一年没有很重的科研任务，我很多出国或者在高校的同学这个时候往往已经进入实验室，进行初步的科研工作。但是我们没有。我们其实应该理解科学院这么安排的目标所在。和很多师长和学长学姐交流的时候，他们往往对于我们可以再雁栖湖用一年的时间好好读书感到十分羡慕。为什么？因为人生静下心来认真学习的时间并不是很长。回到所里，进入课题组，往往就会有更加繁重的科研任务。这个时候往抽出时间仔细阅读经典著作，思考基础的物理就需要更大的毅力。也不是那么容易坚持的。黑发不知勤学早，白首方悔读书迟。
+莫等闲，白了少年头！</p>
+
+<p>科学院的实力不容质疑，但是中国整体的环境在这里，我们面对的竞争绝对不单单是中国人自己的竞争，很多时候我们面对的是国际性的竞争。这样的竞争是没有什么退路的。和北大，清华这样的中国一流高校比中科院在生源上确实输了一筹，就像我们开班会的时候，我们的班主任有一句很深的感叹——科大只来了一个，这是很不应该的。国科大之所以成立很明显的就是中国科大不向科学院输送优秀的毕业生的问题。其实这个问题很明显儿子大了可以不需要老父亲了，同时儿子现在也是家大业大了，人手也不够用啊！</p>
+
+<p>不过说说这个话其实关键还在自己。</p>
+
+<h2 id="section-1">心态调整</h2>
+
+<p>第一是心态调整，只有自己的心态调整到一个合理的心态才是能够出成果的心态。我不是天才，也不是神童，如果有些微值得一提的都是自己一点一点，一滴一滴地积累出来的。所以第一个是转变心态。正如YYJ出国前的明信片所说——但愿这宁静的大海抚平你狂暴的内心。</p>
+
+<p>心态出现问题是可怕的，可怕的经历绝对不再经历第二次！</p>
+
+<h2 id="section-2">天天运动</h2>
+
+<p>最近学校的操场没有修好，已经将近一周没怎么运动了。还好今天终于看到篮球场建起了。今天看到原来物理所所长王恩哥的几句话([http://blog.sina.com.cn/s/blog_bfd9eded0101fypz.html ])</p>
+
+<blockquote>
+  <p>配备两个“保健医生” 
+一个叫运动，一个叫乐观。运动使你生理健康，乐观使你心理健康。我这个人没有什么别的兴趣与爱好，就是几十年来养成了两个习惯：日行万步路，夜读十页书。</p>
+</blockquote>
+
+<h2 id="section-3">多多读书</h2>
+
+<p>最近看书不是很多，感觉有的时候浪费了特别多时间在不重要的事情上。当然开学第一周各种班级事物也是很多，但是很多时候还是需要自己多多付出。一份付出一份收获，这个总是不假的。</p>
+
+<h2 id="section-4">人文修养</h2>
+
+<p>今天参加了国科大博士生合唱团的演出，感觉自己也是收获很大。马士庄老师提出希望大家可以在北京都参加一场演唱会，一场话剧，一场京剧，一场歌剧。的确是，可能很多人和我一样去参加这些艺术演出的时候就是在看热闹，但是看热闹也是一种提高。有一种美是慢慢渗透到你的生活中的。不是说立竿见影的效果，但是有和没有是本质的差别。这个世界上有的鸟儿羽毛太过于闪亮以至于不能被掩盖！这就是音乐，这就是艺术！</p>
+
+<p>本来还想写很多的，结果看到王恩哥老师的话觉得说的太好了，这里全文摘录吧，希望可以不辜负这大好年华：</p>
+
+<blockquote>
+  <p>第一句话，结交“两个朋友” 一个是运动场，一个是图书馆。到运动场锻炼身体，强健体魄；到图书馆博览群书，不断地“充电”、“蓄电”、“放电”。</p>
+</blockquote>
+
+<blockquote>
+  <p>第二句话，培养“两种功夫” 一个是本分，一个是本事。做人靠本分，做事靠本事，靠“两本”起家靠得住。</p>
+</blockquote>
+
+<blockquote>
+  <p>第三句话，乐于吃“两样东西” 一个是吃亏，一个是吃苦。做人不怕吃亏， 做事不怕吃苦。吃亏是福，吃苦是福。</p>
+</blockquote>
+
+<blockquote>
+  <p>第四句话，具备“两种力量” 一种是思想的力量，一种是利剑的力量。思想的力量往往战胜利剑的力量。这是拿破仑的名言。一个人的思想走多远，他就有可能走多远。</p>
+</blockquote>
+
+<blockquote>
+  <p>第五句话，追求“两个一致” 一个是兴趣与事业一致，一个是爱情与婚姻一致。兴趣与事业一致，就能使你的潜力最大限度地得以发挥。恩格斯说，婚姻要以爱情为基础。没有爱情的婚姻是不道德的婚姻，也不会是牢固的婚姻。</p>
+</blockquote>
+
+<blockquote>
+  <p>第六句话，插上“两个翅膀” 一个叫理想，一个叫毅力。如果一个人有了 这“两个翅膀”，他就能飞得高，飞得远。</p>
+</blockquote>
+
+<blockquote>
+  <p>第七句话，构建“两个支柱” 一个是科学，一个是人文。这是大科学家钱学森一再强调的。一个大写的“人”，必须由科学与人文这两个支柱来支撑。</p>
+</blockquote>
+
+<blockquote>
+  <p>第八句话，配备两个“保健医生” 一个叫运动，一个叫乐观。运动使你生理健康，乐观使你心理健康。我这个人没有什么别的兴趣与爱好，就是几十年来养成了两个习惯：日行万步路，夜读十页书。</p>
+</blockquote>
+
+<blockquote>
+  <p>第九句话，记住“两个秘诀” 一个是健康的秘诀在早上，一个是成功的秘诀在晚上。黎明即起，锻炼身体，强健体魄，争取健康地工作50年。必要时晚上还要加班加点，主要用来读书、思考、写作。大科学家爱因斯坦说过：人的差异产生于业余时间。业余时间能成就一个人，也能毁灭一个人。</p>
+</blockquote>
+
+<blockquote>
+  <p>第十句话，追求“两个极致” 一个是把自身的潜力发挥到极致，一个是把自己的寿命健康延长到极致。</p>
+</blockquote>
+
+<p>成功立业在今日，莫待明朝悔今朝。</p>
+
+		
+		
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-07T20:55:00-05:00" pubdate data-updated="true">Sep 7<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/国科大/'>国科大</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2013/09/07/xin-sheng-gan-xiang//blog/page/11/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/08/12/guan-yu-iypt-and-nypt-and-jsyptde-jie-shao/">
+		
+			关于IYPT、NYPT、JSYPT的介绍</a>
+	</h2>
+	<div class="entry-content">
+		<h1 id="section">前言</h1>
+
+<p>这是今年给学弟学妹作关于？YPT的报告的时候总结出来的。参考了两位大CX和ZHY的成果，一并感谢两位大牛，也祝愿他们在美帝心想事成，万事如意！所谓的？YPT其实就IYPT，CUPT，NYPT，JSYPT的一系列YPT比赛的合称。这些比赛都采用和国际IYPT比赛相近的规则和题目。</p>
+
+<p>就我自己个人的体会，YPT比赛对于提高物理的素养和更充分体会物理研究的不易十分有作用。简单地说，越早参与受益越大。当然在作YPT的过程中适当控制时间分配也是十分重要的。不要像有的同学一样，最后怪罪YPT占用时间，其实时间的控制是一个人最最基本的素养。</p>
+
+<p>好了，这里我把自己当时的PPT作成图片放到Blog，欢迎大家讨论。</p>
+
+
+		
+		<a href="/blog/2013/08/12/guan-yu-iypt-and-nypt-and-jsyptde-jie-shao/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-12T11:27:00-05:00" pubdate data-updated="true">Aug 12<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/cupt/'>CUPT</a>, <a class='category' href='/blog/categories/iypt-/'>IYPT,</a>, <a class='category' href='/blog/categories/jsypt-/'>JSYPT,</a>, <a class='category' href='/blog/categories/nypt-/'>NYPT,</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2013/08/12/guan-yu-iypt-and-nypt-and-jsyptde-jie-shao//blog/page/11/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/08/10/train/">
+		
+			新生购买火车票总结</a>
+	</h2>
+	<div class="entry-content">
+		<h1 id="section">说明</h1>
+
+<p>以前没有离家很远，所以火车票感觉一直和自己关系不大的样子，最近考虑去北京读书的现实性问题才突然发现火车票是个大问题。
+这里我总结一下网上和自己查到已经测试到关于新生购买火车票的经验。</p>
+
+
+		
+		<a href="/blog/2013/08/10/train/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-10T11:51:00-05:00" pubdate data-updated="true">Aug 10<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/经验/'>经验</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2013/08/10/train//blog/page/11/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/08/06/acem/">
+		
+			电镜图像模拟:基于Advanced Computing in Electron Microscopy配套软件</a>
+	</h2>
+	<div class="entry-content">
+		<h1 id="section">引子</h1>
+
+<p>今年的毕业论文就是关于电子显微镜的图像计算问题。《Advanced Computing in Electron Microscopy》这本书给了我巨大的帮助，这本书确实是经典，关于电子显微学图像计算的方方面面都有涉及，同时给出了详细的讲解。当然有些遗憾的是作者没有详细的阐述关于球差校正电子显微镜的部分，但是作为电子显微学最新的进展方向之一，不能对于作者的这样处理求全责备，毕竟这只是对于电子显微镜在2008年做多的的一个总结性专著。我们没有任何理由要求包括科研领域最论文需要的新最前沿的内容，这也不是一本专著所要承担的任务，这个任务恰恰是科研论文所需要承担的。</p>
+
+<p>但是这本书也有些其他的问题，在我尝试用这个软件计算很多的内容的时候非常之纠结，说实话一开始搜索到这个软件的时候我一直以为这个软件没办法使用，但是经过尝试最后发现其实这个软件编写的非常好。</p>
+
+<p>这篇博文就是总结自己在使用中的感受和一些总结，包括软件的安装，使用和自动化使用。</p>
+
+<p>这里再次感谢Cornell大学的Earl John Kirkland，《Advanced Computing in Electron Microscopy》真是一本非常好的入门书(简称ACEM吧)。</p>
+
+
+		
+		<a href="/blog/2013/08/06/acem/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-06T13:40:00-05:00" pubdate data-updated="true">Aug 6<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/computing/'>Computing</a>, <a class='category' href='/blog/categories/scientific/'>Scientific</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2013/08/06/acem//blog/page/11/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/07/26/nan-da-tu-shu-guan-jie-shu-ji-lu/">
+		
+			南大图书馆借书记录</a>
+	</h2>
+	<div class="entry-content">
+		<h1 id="section">缘起</h1>
+
+<p>这是我从南大图书馆下载下来的自己的借书记录，四年大学匆匆而过，算是个回忆吧！</p>
+
+
+		
+		<a href="/blog/2013/07/26/nan-da-tu-shu-guan-jie-shu-ji-lu/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-26T10:46:00-05:00" pubdate data-updated="true">Jul 26<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/记录/'>记录</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2013/07/26/nan-da-tu-shu-guan-jie-shu-ji-lu//blog/page/11/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+<nav id="pagenavi">
+    
+        <a href="/blog/page/10/" class="prev">Prev</a>
+    
+    
+        <a href="/blog/page/12/" class="next">Next</a>
+    
+    <div class="center"><a href="/blog/archives">Blog Archives</a></div>
+</nav></div>
+	<footer id="footer" class="inner">Copyright &copy; 2017
+
+    iphyer
+
+<br>
+Powered by Octopress.
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'iphyersblog';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-33194427-1');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+</body>
+</html>

@@ -1,0 +1,246 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<script data-cfasync="false" type="text/javascript" src="//use.typekit.net/axj3cfp.js"></script>
+	<script data-cfasync="false" type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<meta charset="utf-8">
+	<title>从Linux培训的一些话题引申开去  | 桑弧蓬矢射四方</title>
+
+<meta name="author" content="iphyer"> 
+
+<meta name="description" content="缘起 9.28号参加在中科院雁栖湖校区举办的开源软件自由日活动，收获良多。特别是最后关于LPIC的演讲。主讲人(抱歉没记住名字)对于Linux的观点更加亲切和友好，不是常见的开源愤青但是对于Linux的热爱溢于言表。主要的演讲Topic是关于LPIC这个Linux水平认证考试的介绍和一些相关的知识 &hellip;"> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="桑弧蓬矢射四方" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="/stylesheets/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
+
+<script language="Javascript" type="text/javascript">
+$(document).ready(
+  function() {
+    (function($) {
+      $(".fancybox[data-content-id]").each(function() {
+        this.href = $(this).data('content-id');
+      });
+      $(".fancybox").fancybox({
+        beforeLoad: function() {
+          var el, 
+              id = $(this.element).data('title-id');
+
+          if (id) {
+            el = $('#' + id);
+
+            if (el.length) {
+              this.title = el.html();
+            }
+          }
+          if ($(this).data('content')) {
+            this.content = $(this).data('content');
+          }
+        },
+        helpers: {
+          title: {
+            type: 'inside'
+          }
+        }
+      });
+    })(jQuery);
+  }
+);
+</script>
+
+	<!--- MathJax Configuration -->
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML,http://drz.ac/javascripts/MathJaxLocal.js">
+</script>
+
+</head>
+
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">桑弧蓬矢射四方</a></h1>
+<h4></h4>
+<nav id="main-nav"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:iphyer.github.com">
+			</form>
+		</div>
+	</div>
+</nav>
+
+
+</header>
+
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">从Linux培训的一些话题引申开去</h2>
+	<div class="entry-content"><h1 id="section">缘起</h1>
+
+<p>9.28号参加在中科院雁栖湖校区举办的开源软件自由日活动，收获良多。特别是最后关于LPIC的演讲。主讲人(抱歉没记住名字)对于Linux的观点更加亲切和友好，不是常见的开源愤青但是对于Linux的热爱溢于言表。主要的演讲Topic是关于LPIC这个Linux水平认证考试的介绍和一些相关的知识。对于LPIC的理念、历史、现状都做了一个简单的介绍。</p>
+
+<p>最后的提问环节，一个女生提问，我概括一下是：Linux这样一个开源的没有任何限制的系统和软件生态圈，为什么需要LPIC这样一个收费的认证体系？为了补充她的观点，她还提出对于Linux的很多贡献者，他们是不是也需要参加这个认证体系呢？</p>
+
+<!--more-->
+
+<h1 id="section-1">我的观点</h1>
+
+<h2 id="section-2">确实可以自学成才</h2>
+
+<p>这个女生个提问，非常有水平，思考的也很深入。提出的问题也直接指向了Linux这样开源的软件体系的核心。</p>
+
+<p>的确，对于很多的code贡献者，他们并不需要这样的认证体系，他们本身的水平就已经达到了这样的认证体系也很难达到的高度。Linux作为一个开源的生态系统，确实有很多的高手是自学成才的。他们看Manual，审code，调程序，慢慢地他们成为了我们所说的高手。这个是谁都无法否认的。</p>
+
+<h2 id="section-3">自学成才的缺点</h2>
+
+<p>但是我们也无法否认这个过程是艰难的。很多的新手其实就栽在了这个过程的第一步，他们没有继续往下进行下去。他们的很多人其实有很多的能力走向更高的过程。以我自己为例，其实我自己也感觉到我浪费了很多的时间在自己摸索。比如到了大四，我才发现了StackOverflow这个神器，才有了真正的和世界级高手交流的一个平台。</p>
+
+<p>虽然我在StackOverflow上问过不少低级的问题，但是无可否认这些问题如果自己摸索需要花费更多的时间。当然遇到问题的第一个想法还是应该是Google而不是StackOverflow，毕竟StackOverflow上的高手的时间也是有限的宝贵的。大家不应该在已经有人遇到并且解决的问题上花费时间。</p>
+
+<p>自学成才的第二个问题可能就是水平的问题，其实这个也是Linux这样的开放体系在发展中必然遇到的问题。很多的人通过自己的摸索成功地是使用了开源软件系统，但是他们的很多实现往往简单并且粗暴。比如我见到好几个Linuxer不会用apt-get安装程序往往依赖软件中心。这个不是缺点，毕竟自己使用的话这个时间成本是可以接受的。但是在普遍的巨大装机量的情况下几乎就是个死结。</p>
+
+<h2 id="lpic">类LPIC认证项目的意义</h2>
+
+<p>首先声明，我不是特别确定LPIC这样项目的水平，因为我们知道很多的资格认证考试成为了一个简单的过场戏。所以我这里用的是类LPIC的认证体系，这样的概括类表述。</p>
+
+<p>我比较推崇这样的体系，一个认证体系的意义在于保证水平，往往类似Linux这样的开放体系，绝对不是一个限高性标准，很多时候是一个防低类标准。所谓的防低的意思就是确立最低标准，类似一个行业的最低标准。</p>
+
+<p>这样的一个认证体系可以有效的帮助Linux的从业人员保证水平和素质的一致性。这里我说的是从业人员，也就是说如果你不需要用Linux来工作那么其实无所谓参加不参加这样的认证体系。作为一个爱好者，其实你的活动范围非常大。随心所欲不逾矩。</p>
+
+<p>这里我十分赞同这样的体系的作用，因为这是让企业放心使用Linux的一个基本条件。我们的社会最好的挑选人才的方式就是一个个的面试然后考核，但是这并现实，我们的时间有限，资源不足，所以除了几个大型企业，很多的时候一个好的资格认证可以有效节省企业和求职者的时间。</p>
+
+<h2 id="gnulinux">从GNU／Linux的本质说起</h2>
+
+<p>GNU／Linux从开始就秉持这样的自由软件不代表免费。事实上即使RMS这样的严格的开源精神领袖都不反对收费，Emacs最初的版本就是收费的。这也是最初支持GNU项目的资金来源。</p>
+
+<p>RMS替GNU设计的商业图景之一就是服务项目。无疑LPIC这样的认证项目并不是和GNU／Linux的宗旨矛盾。我们的很多时候使用的开源软件都是免费的，但是这绝对不代表它们必须免费。</p>
+
+<p>开源不拒绝商业！</p>
+
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-30T19:24:00-05:00" pubdate data-updated="true">Sep 30<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/linux/'>Linux</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2013/09/30/linuxtraing/#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	
+<!---	<a class="addthis_counter addthis_pill_style"></a> --->
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2017
+
+    iphyer
+
+<br>
+Powered by Octopress.
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'iphyersblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://iphyer.github.com/blog/2013/09/30/linuxtraing/';
+        var disqus_url = 'http://iphyer.github.com/blog/2013/09/30/linuxtraing/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-33194427-1');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+</body>
+</html>

@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 科研 | 桑弧蓬矢射四方]]></title>
+  <link href="http://iphyer.github.com/blog/categories/科研/atom.xml" rel="self"/>
+  <link href="http://iphyer.github.com/"/>
+  <updated>2017-12-29T00:57:30-06:00</updated>
+  <id>http://iphyer.github.com/</id>
+  <author>
+    <name><![CDATA[iphyer]]></name>
+    <email><![CDATA[iphyer@163.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[蒙特卡洛模拟的计算]]></title>
+    <link href="http://iphyer.github.com/blog/2017/04/04/mc2/"/>
+    <updated>2017-04-04T22:39:00-05:00</updated>
+    <id>http://iphyer.github.com/blog/2017/04/04/mc2</id>
+    <content type="html"><![CDATA[<h1 id="section">起因</h1>
+
+<p>今天把蒙特卡洛模拟的作业写完了，所以写这篇博客总结下。</p>
+
+<p>其实蒙特卡洛模拟我在本科的时候做过，但是那个时候主要是集中在 Ising model　相对来说其实还是比较偏基础的，并不是特别的注重和实际实验的结合。但是这个作业还是比较偏重和实验对比的，所以感受比本科的收获更大，理解更加深刻。</p>
+
+<!--more-->
+
+<h1 id="section-1">总结</h1>
+
+<h2 id="section-2">时间</h2>
+
+<p>在传统的蒙特卡洛模拟中是没有时间这个变量的，因为蒙特卡洛从本质上其实是在我们知道了某种探测某个能量后，在细致平衡的条件下对于系统进行某种虚拟的演化，这并不是某种实际的物理过程。所以时间并不是在蒙特卡洛模拟中内涵的属性。</p>
+
+<p>当然这里又要说道聪明的物理学家想到的算法方法，就是　kMC,动力学蒙特卡洛模拟，将时间引入模拟中，这个就是比较高级的话题了。并不是这个帖子的重点。</p>
+
+<h2 id="section-3">计算效率</h2>
+
+<p>在蒙特卡洛模拟中，最重要的就是演化的接受效率问题。过低的接收效率会降低系统抽样的效率，所以人们往往会设计非常好的机理进行系统的演化同时得到更多的系统变化。
+这里就是最近在做的科研的核心问题，设计一个高效的新的抽样方法进行蒙特卡洛模拟，这是最近常常思考的问题。</p>
+
+<p>抽样是这样的一个问题，为了得到更全面的信息，我们希望使用尽可能少的计．如果计算是无限的那么其实没有什么系统的限制会出现，但是因为事实上并没有所以我们并不是没有限制．这就让我们需要高效的算法．</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[分子动力学的统计函数总结]]></title>
+    <link href="http://iphyer.github.com/blog/2017/03/30/msdandacf/"/>
+    <updated>2017-03-30T00:41:00-05:00</updated>
+    <id>http://iphyer.github.com/blog/2017/03/30/msdandacf</id>
+    <content type="html"><![CDATA[<h1 id="section">引入</h1>
+
+<p>这学期的一门课，虽然是材料系老师上的，不过 coding 工作量确实不小，还是比较花时间的。总结这些浪费的时间，很多时候其实不是花在编程上的时间，单单编程还是很快很机械的。</p>
+
+<p>大部分的科学计算，比如计算物理，计算化学，难度不在编程，在于算法和背后的物理。比如今天这篇博文总结的问题就是如何更好的实现对于模拟体系的物理化学性质的统计。</p>
+
+<!--more-->
+
+<p>首先还是规定下讨论的背景，前一篇博文<a href="http://iphyer.github.io/blog/2017/03/11/md/">分子动力学计算的小细节</a> 是尝试构造一个可用的 LJ 液体体系。现在如果我们给系统设定一个很高的温度， 比如 500K， 那么系统就应该从固态进入液态，再过一定的时间当系统在液态稳定之后，我们就可以抽样感兴趣的物理量并且进行统计了。</p>
+
+<p>当然，这里用到的第一个假设是，遍历性假设，也就是我们认为时间平均等于系综平均，在刘维尔空间的抽样是足够的。这条是统计力学的基础假设，但是不是自然界的普遍真理，当然你一般是遇不到这个假设不成立的情况的。就如普通人很难遇到欧几里得几何的平行公设不成立的情况。</p>
+
+<p>第二个假设是液体的性质是足够均匀的。当我这么说的时候，是说从长时间的角度看，各个状态的液体是均一的。如果不满足那就进入了非平衡体系的范围了，耗散力和熵发挥作用。当然在美好的基础物理中这些都不会发生。</p>
+
+<p>那么对于一个液体我们关心哪些性质，主要是三个，这儿一个个地讨论。</p>
+
+<h1 id="gr">g(r)</h1>
+
+<p>第一个是 g(r),  pair correlation function。</p>
+
+<p>这个公式的含义是，平均来看，从当前原子向四周不停的画球面，在球面上可能出现粒子的密度是多少。</p>
+
+<h3 id="section-1">平均来看是什么？</h3>
+
+<p>平均来看其实是说，对于每一个原子都应该嵌套下面的步骤进行一次。所以 g(r) 是对于整体 system 而言的。不是针对某个特定的点而言。</p>
+
+<h3 id="section-2">画球面是什么？</h3>
+
+<p>画球面，其实是通俗的说法，数学上就是不断的对于数密度做球面的微分。这个目的是为了准确反应疏密度的发散变化。</p>
+
+<h3 id="section-3">为什么是密度？</h3>
+
+<p>其实是为了把这个性质在各个系统之间做比较，考虑两个同样设置的系统只是大小不同，那么绝对量虽然不同，但是密度是一样的。</p>
+
+<p>所以在 g(r) 其实是只是当前时刻的性质，换句话说是 snapshot 的性质，不需要累加。</p>
+
+<p>0K 时固体 g(r)</p>
+
+<p><img src="/images/MD2/gr0K.png" alt="gr0K" /></p>
+
+<p>250K 时液体 g(r)</p>
+
+<p><img src="/images/MD2/gr250K.png" alt="gr250K" /></p>
+
+<h1 id="msd">MSD</h1>
+
+<p>但是还有那么一大类性质是和时间相关的，换用术语就是需要从 trajectory 得到，比如 MSD, Mean squared displacement. 得到 MSD 最大的好处就是可以通过爱因斯坦关系，直接得到扩散系数，扩散系数是非常方便测量的物理量，所以可以很方便地和实验结果对比，从而判断模拟的好坏。所以 MSD 是常用的测量物理量。</p>
+
+<script type="math/tex; mode=display">{\rm MSD}\equiv\langle (x-x_0)^2\rangle=\frac{1}{N}\sum_{n=1}^N (x_n(t) - x_n(0))^2</script>
+
+<p>几个注意点:</p>
+
+<p>正好，读 Amber 的程序手册的时候看到一个很好的说明部分。写的非常清晰，关键就是我们知道在计算力和能量的时候周期性边界条件导致了对于距离的一个周期性选取。那么对于坐标需要不需要把运动位移拉回到一个体系原胞内部？</p>
+
+<p>其实是不需要的，特别是在计算 MSD 的时候其实不拉回是比较好的选择。</p>
+
+<p>具体原因就是，如果拉回，那么其实人为引入了一个约束，那就是两个粒子之间距离的最大差值不能大于你的周期性边界条件的作用范围。这是人为引入的一个假象，本质上是我们在计算机不够强大的条件下做的一个折中选择。</p>
+
+<p>具体的说明如下:</p>
+
+<p><img src="/images/MD2/MSDWarp.png" alt="MSDWarp" /></p>
+
+<p>下图是一张典型的 MSD 统计曲线</p>
+
+<p><img src="/images/MD2/MSD.png" alt="MSD" /></p>
+
+<h1 id="vaf">VAF</h1>
+
+<p>VAF就是velocity autocorrelation function (VAF) ，是关于速度的自相关函数。自相关函数是表达体系内在关联性质的重要函数。</p>
+
+<p>所以 VAF 也是非常重要的性质，同时通过 Green-Kubo 关系, VAF 也可以和扩散系数联系在一起。</p>
+
+<p>这里同样注意到 V0　必须取平衡后的时刻速度即可。同时，注意是 VAF 关于时间的积分和扩散系数关联，不是 VAF 本身。</p>
+
+<p>VAF 图像如下:</p>
+
+<p><img src="/images/MD2/ACF.png" alt="VAF" /></p>
+
+<p>总 VAF 图像如下:</p>
+
+<p><img src="/images/MD2/totalACF.png" alt="totalVAF" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[分子动力学计算的小细节]]></title>
+    <link href="http://iphyer.github.com/blog/2017/03/11/md/"/>
+    <updated>2017-03-11T08:38:00-06:00</updated>
+    <id>http://iphyer.github.com/blog/2017/03/11/md</id>
+    <content type="html"><![CDATA[<h1 id="section">起源</h1>
+
+<p>写这篇博客主要是总结自己的这周和上周的一些经验，这两周被一个小程序折腾了好久。</p>
+
+<p>其实这就是一个很简单的分子动力学(molecular dynamics,MD)的计算，但是程序始终在爆炸，能量等不收敛。</p>
+
+<!--more-->
+
+<p>首先必须要说明，在科研中我们大量会使用 Charmm, Lammps,这些程序不需要自己编写程序，而且MD程序需要大量复杂的调优技术，比如如何安排计算减少计算量。</p>
+
+<p>这个博文我假设读者知道全部的 MD 知识，至少上过基本的课程或者文献，这里不讨论那些在大部分课本上能学习到的细节。</p>
+
+<h1 id="section-1">重要细节</h1>
+
+<h2 id="pbc">PBC</h2>
+
+<p>周期性边界是整个 MD 模拟的核心，重要的一点就是用小部分的模拟大的体系，提高计算效率。</p>
+
+<p><img src="/images/md/1.png" alt="tu1" /></p>
+
+<p>其实核心就是这个文献讨论的这幅图。</p>
+
+<p>在两个原子之间距离大于截断距离，一般是体系尺寸的一半，需要进行调节。因为需要把两个原子之间的作用距离调节为原子和另一个原子的镜像原子之间的作用。</p>
+
+<p>这里的一个问题是，如果单单计算能量，其实这个距离的方向没有关系，因为在 LJ 能量计算中都是偶次项，向量的方向没有关系。</p>
+
+<p>简单来说，对于 $R_{ij}$, 因为位移在物理学中是矢量，所以必须非常仔细如何求解。</p>
+
+<p>同时 $R_{ij}$ 到底是 i - j 还是 j - i？</p>
+
+<p>是 i -j ,因为这里还要涉及到矢量在数学中是如何定义的，依照正确的数学矢量定义，必须是 i - j 才能得到正确方向的 $R_{ij}$。</p>
+
+<h3 id="section-2">加速计算</h3>
+
+<p>其实这些都是些小细节，但是细节是魔鬼还是需要好好考虑:</p>
+
+<p>(1)计算能量和力的时候，虽然是一个双重循环，但是如果 i 从 0 到 N-1，那么内层循环 j 就只需要从 i + 1 到 N - 1即可，因为能量是共同分享的，力可以用牛顿第二定律求出来。</p>
+
+<p>(2)计算力的时候不需要带入系数，最好的，比如计算动能的时候，不需要每一个原子动能都乘以 0.5，可以在速度平方加和后直接在总和上乘以 0.5 即可，这样可以省下 N -1 次乘法操作。如果你的体系是溶液中的蛋白质，10万多的原子体系，这样的小细节还是能省下很多计算资源的。</p>
+
+<p>(3)周期性边界条件有两个影响，一个是计算距离需要考虑镜像原子，二是在原子超出体系边界的时候必须把原子拉回体系内。</p>
+
+<h3 id="section-3">约化单位</h3>
+
+<p>约化单位是必须在所有计算中保持的，只有在输入输出提供可以给人参考的数据时才需要考虑约化单位和真实单位的转化，否则都统一采用约化单位。</p>
+
+<p>约化单位其实很简单，核心就是保持一个约化系数，这个约化系数在所有的真实单位中都统一转向约化单位。</p>
+
+<p>在晶体结构的体系还有一个要点需要注意，就是晶体的原子有一个原胞坐标系，比如 FCC 是(0,0,0),(0,0.5,0.5),(0.5,0,0.5),(0.5,0.5,0)。但是这并不是 MD 希望的实验坐标系，所以还需要把原胞坐标系转化到实验坐标系。这儿只需要把原胞边长转化为约化单位即可。</p>
+
+<h1 id="section-4">总结</h1>
+
+<p>MD还是需要好好学习下的，这儿的很多细节是非常值得仔细思考思考。</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[更好的随机数生成总结]]></title>
+    <link href="http://iphyer.github.com/blog/2016/07/09/random/"/>
+    <updated>2016-07-09T22:42:00-05:00</updated>
+    <id>http://iphyer.github.com/blog/2016/07/09/random</id>
+    <content type="html"><![CDATA[<h1 id="section">起因</h1>
+
+<p>最近因为任务需要使用了下北大的计算资源结果很 bug 的发现，北大的作业调度系统居然是全局任务调度的——也就是如果你在计算节点假设20 个CPU 你提交20个 RUN 这个程序不是你提交了就立刻运行，而是你运行完提交脚本后，整体的计算中心提交作业的。这个倒不是特别让人吃惊也算是并行的时候的良方但是对于我这样的单CPU进程然后多计算结果平均的任务就不适合了。</p>
+
+<p>最主要的问题是它居然是同一时间提交作业的！</p>
+
+<p>Are you kiding me ?</p>
+
+<p>众所周知，计算机的随机数产生往往要依赖于提交运行时间( 真是伟大的想法如何在确定性中引入随机性 )。但是北大这个作业系统就会导致我的同一节点 20 个 RUN 居然是一样的～！</p>
+
+<!--more-->
+
+<h1 id="section-1">物理背景</h1>
+
+<p>我这里讲下我希望的计算过程，因为这个过程必须接合物理本质来理解。</p>
+
+<p>我计算的是这样一个模型，以力$F_t$为例，t代表时间。假设力由如下两部分构成</p>
+
+<script type="math/tex; mode=display"> F_t = F_{fix} + F_{random} </script>
+
+<p>我们可以预期的这是一个随机力和有固定趋势的力的接合,对应的物理背景考虑下布朗运动加上定下外场或者驱动力下的运动。</p>
+
+<p>布朗运动导致的随机力在纳米尺度是难以消除的，但是如果对于上述力做多个 RUN 的平均则往往还是可以得到期望的平均值 $F_{fix}$ 的。</p>
+
+<p>这个就是我期望计算的模型。</p>
+
+<p>我希望的计算过程如下，</p>
+
+<script type="math/tex; mode=display"> \sum_{i}  F_{t,i} = \sum_{i}  F_{fix,i} + \sum_i  F_{random,i} </script>
+
+<p>可以预期的是$\sum_i F_{random,i} = 0$， i 足够大的时候。</p>
+
+<p>所以我们通过这个方法可以实现对于微小趋势力的提取。事实上，在纳米尺度如果能够不借助外场等手段实现这样的趋势力是很了不起的。</p>
+
+<h1 id="section-2">解决方法</h1>
+
+<p>当然我们不能因为北大的作业调度是为了并行做的优化就不算了。所以还是需要计算的。</p>
+
+<p>具体的方法是这样，因为是时间种子的问题，所以集中解决的问题就是时间种子。</p>
+
+<p>原来用的时间种子是直接简单利用 <code>time.h</code> 提供的时间函数，这是用的系统当前时间而且是分辨率到秒的时间。事实上，操作系统是提供精确到毫秒量级的时间。</p>
+
+<p>所以即使在秒这个量级没有差异的北大作业系统在毫秒量级还是有差异的，当然这一点是我验证之后才能保证的。</p>
+
+<p>那么怎么才能保证一定是独立的没有可能相同的时间种子呢？</p>
+
+<p>这个问题，抽象而言就是给每一个进程赋予一个各不相同的数字。</p>
+
+<p>这样的话，其实这个问题已经解决了。每个进程在 Linux 系统下是有不同的 PID 号的。如果在时间随机数的基础上再加上 PID 号码那就非常完美了。即使出现那种同一个毫秒提交的情况(我觉得这个可能很小，即使是同时提交在 CPU 中运行也应该是一个个提交的，除非你的提交脚本是并行的。)</p>
+
+<p>当然这个问题已经在 Linux 中完美解决了。</p>
+
+<p>上具体的代码：</p>
+
+<p>```c</p>
+
+<p>/*
+ * test.c
+ *
+ * Copyright 2016 iphyer <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#105;&#112;&#104;&#121;&#101;&#114;&#064;&#049;&#054;&#051;&#046;&#099;&#111;&#109;">&#105;&#112;&#104;&#121;&#101;&#114;&#064;&#049;&#054;&#051;&#046;&#099;&#111;&#109;</a>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301, USA.
+ *
+ *
+ */</p>
+
+<h1 id="include-stdioh">include <stdio.h></stdio.h></h1>
+<p>#include<unistd.h>
+#include<time.h></time.h></unistd.h></p>
+
+<p>int main(int argc, char <em>*argv)
+{
+	/</em> new setup of time*/
+	struct timespec tnow;
+	time_t tt;
+	// clock_gettime(CLOCK_MONOTONIC, &amp;ts); // Works on FreeBSD
+	clock_gettime(CLOCK_REALTIME,&amp;tnow); // Works on Linux</p>
+
+<pre><code>tt = tnow.tv_sec + (time_t)(tnow.tv_nsec); 
+
+int nseed;
+nseed= (unsigned)(tt) + (unsigned)(getpid());//time(NULL);
+
+
+printf("time in ms : %d \n",(unsigned)(tt));
+printf("pid=%d \n",getpid());
+printf("PID + time(ms) = %d \n",nseed);
+return 0; }
+</code></pre>
+
+<p>```</p>
+
+<p><code>#include&lt;unistd.h&gt;</code> 中的 unistd.h 值得仔细说一说。</p>
+
+<blockquote>
+  <p>unistd.h 是 C 和 C++ 程序设计语言中提供对 POSIX 操作系统 API 的访问功能的头文件的名称。是Unix Standard的缩写。该头文件由 POSIX.1 标准（单一UNIX规范的基础）提出，故所有遵循该标准的操作系统和编译器均应提供该头文件（如 Unix 的所有官方版本，包括 Mac OS X、Linux 等）。</p>
+</blockquote>
+
+<blockquote>
+  <p>对于类 Unix 系统，unistd.h 中所定义的接口通常都是大量针对系统调用的封装（英语：wrapper functions），如 fork、pipe 以及各种 I/O 原语（read、write、close 等等）。</p>
+</blockquote>
+
+<blockquote>
+  <p>类似于 Cygwin 和 MinGW 的 Unix 兼容层也提供相应版本的 unistd.h。</p>
+</blockquote>
+
+<blockquote>
+  <p>来自：<a href="https://zh.wikipedia.org/wiki/Unistd.h">维基百科unistd.h</a></p>
+</blockquote>
+
+<p>这是一个非常好的头文件，可以说非常值得仔细研究。</p>
+
+<h1 id="section-3">总结</h1>
+
+<p>这个问题其实不大，归根到底是这样一个问题。在粗略的时间统计无法胜任的时候我们使用更加高分辨率的时间计数。同时引入操作系统级别的操作，增加更多的不同。</p>
+
+<p>当然在使用这个之前，我都是在没有同意调度的服务器使用人工每隔一定的时间提交，这样认为引入时间不确定性。虽然这是可以的，但是还是不如这个方法好。这个方法中使用 PID 保证了在操作系统级别不可能出现相同的时间种子从而导致相同的随机数出现。</p>
+
+<p>当然如何评价随机数生成函数的优劣是一个更加深刻的问题，远远不是一篇博客能够解释清楚的。</p>
+
+<p>随机数产生函数的优劣直接导致了最后很多物理问题求解的优劣，特别是在蒙特卡洛模拟中。所以如果想更深入地了解相关知识，请参考相关的专著。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[论文工具链总结]]></title>
+    <link href="http://iphyer.github.com/blog/2015/11/04/toolchain/"/>
+    <updated>2015-11-04T00:15:00-06:00</updated>
+    <id>http://iphyer.github.com/blog/2015/11/04/toolchain</id>
+    <content type="html"><![CDATA[<h1 id="section">起因</h1>
+
+<p>终于昨天晚上把我的论文初稿写好，拖延症很严重。今天晚上正好把自己拉下来没有总结的东西都总结下，前面几个都是游记这种，这个会回到老本行的科研工具上。</p>
+
+<p>分成两个部分，第一部分如何在服务器上快速的做不同参数的计算；第二个部分如何绘制流场线。</p>
+
+<!--more-->
+
+<h1 id="section-1">快速参数计算</h1>
+
+<p>先说下需求，其实很简单就是如何在模拟计算的使用不同的参数，比如调节下作用势的大小，或者两个粒子的间距这个一般来说你是知道参数多少的。</p>
+
+<p>我使用C语言完成模拟，最重要的是这么一个宏定义:</p>
+
+<p>```c</p>
+
+<h1 id="define-beadsdistance-6-distance-between-beads-1-and-beads-2-the-centre-of-the-ball">define beadsdistance 6// distance between Beads 1 and Beads 2 the centre of the ball</h1>
+
+<p>```</p>
+
+<p>然后一个节点只有16个CPU,所以我的一组参数是计算8个RUN，然后做统计，</p>
+
+<p>上bash脚本:</p>
+
+<p>```bash</p>
+
+<h1 id="binsh">!/bin/sh</h1>
+<p>date=”20151028-1”
+templatesource=”HF-p-d.c”
+prefix=”HF-p-d”
+preprog=”HFpd”</p>
+
+<p>mkdir ../run/${date}</p>
+
+<p>for i in $( seq 0 1 )
+do
+    prog=$preprog${i}
+    source=$prefix${i}”.c”
+    oldline=”#define beadsdistance 6// distance between Beads 1 and Beads 2 the centre of the ball”
+    line=”#define beadsdistance “${i}</p>
+
+<pre><code>cd ~/source/    
+cp ${templatesource} ./${source}
+sed -i "s@$oldline@$line@" ./${source}
+
+gcc -O2 ${source} -o ${prog} -lm
+mkdir ../run/${date}/dist${i}
+cp ${prog} ../run/${date}/dist${i}
+cd ../run/${date}/dist${i}
+for j in $( seq 1 8 )
+do
+    mkdir ~/run/${date}/dist${i}/no${j}
+    cd ~/run/${date}/dist${i}/no${j}
+    cp ~/run/${date}/dist${i}/${prog} . 
+    ./${prog}&gt;record  &amp; 
+    sleep 5
+    echo "Done${j}"
+done echo "Done distance ${i}"
+</code></pre>
+
+<p>done</p>
+
+<p>```</p>
+
+<p>程序的核心就是使用<code>sed</code>来替换改变参数的那句宏定义。</p>
+
+<p>当然你可能需要根据自己的需求修改。</p>
+
+<h1 id="matlabfigure">绘制流场线(如何从MATLAB的figure中得到曲线信息)</h1>
+
+<p>其实目标就是绘制需要的流场线，但是我能够使用原始信息就是一些流场的每个点的流向信息，也就是从一个矢量图得到一组连续的流场线信息。</p>
+
+<p>首先这个问题从数学上是可解的，以为——每一个点的流场方向其实代表了流场线的切线方向，所以如果你能够定下起始点(一般选择系统边界代表了流入系统或者流出系统)，那么其实就是解这样一个方程$ \frac{ds}{dt} $ = $ \vec v(x,y) $,这个公式很容易通过龙格库塔这些方法解出$s(x,y)$。当然这个是原理分析，如果你能够使用MATLAB就会发现MATLAB可以提供<code>streamline</code>这个函数帮助你很容易的画出流场线。</p>
+
+<p>上代码主代码<code>chanel.m</code></p>
+
+<p>```matlab</p>
+
+<p>clear;
+figure
+M = dlmread(‘XXX/Wholevelcoity.txt’, ‘\t’);
+N = dlmread(‘XXX/Provelcoity.txt’, ‘\t’);</p>
+
+<p>x=N(:,2);
+y=N(:,3);
+u=N(:,4);
+v=N(:,5);</p>
+
+<p>quiver(x,y,15<em>u,15</em>v)
+daspect([1 1 1]);</p>
+
+<p>%系统参数
+Lx = 62;
+Ly = 20;</p>
+
+<p>XX = M(:,2);
+XX = changeshape(XX,Lx,Ly);</p>
+
+<p>YY = M(:,3);
+YY = changeshape(YY,Lx,Ly);</p>
+
+<p>UU = M(:,4);
+UU =changeshape(UU,Lx,Ly);</p>
+
+<p>VV = M(:,5);
+VV = changeshape(VV,Lx,Ly);</p>
+
+<p>starty=4 : 2 :20;
+startx = ones(size(starty));
+startx = startx+20 ;</p>
+
+<p>streamline(XX,YY,UU,VV,startx,starty)</p>
+
+<p>ax = get(gcf,’children’); % get all subplots
+XALL=[];YALL=[];
+for iax = 1:length(ax)
+    child = get(ax(iax),’children’); % for each subplot, get all lines
+    for ichild = 1 : length(child)
+        XALL{end+1} = get(child(ichild),’xdata’);
+     YALL{end+1} = get(child(ichild),’ydata’);
+    end
+end</p>
+
+<p>for j = 1: length(XALL)-1
+    X1=transpose(XALL{1,j});
+    Y1=transpose(YALL{1,j});
+    figure
+    plot(X1,Y1);
+    filenm = [‘Line’    num2str(j)  ‘.txt’ ];
+    fid=fopen(filenm,’w+’);
+    fprintf(fid, ‘%f \t %f \n’, [X1 Y1]’);
+    fclose(fid);</p>
+
+<p>end</p>
+
+<p>```</p>
+
+<p>辅助代码<code>changeshape.m</code>,主要对于原始数据格式做转置和重新排列以适合MATLAB对于数据格式的要求。</p>
+
+<p>```matlab</p>
+
+<p>function [out] = changeshape(in,Lx,Ly)</p>
+
+<p>XXnew=reshape(in,Lx,Ly);
+out = transpose(XXnew);</p>
+
+<p>```
+说明</p>
+
+<p>首先是我的输入文件存在一个是不是舍去边界值的区别，所以一个是<code>Wholevelcoity.txt</code>和<code>Provelcoity.txt</code>，当然每一个都是如下的格式：</p>
+
+<p>```
+x   y   vx  vy</p>
+
+<p>```</p>
+
+<p>然后剩下的循环就是从得到的这个流场线中获得自己需要的曲线值，值得强调的是这里非常容易出错，因为你需要不断在MATLAB内部查看数据的存储格式和输出的时候的输出格式，因为MATLAB很有可能使用了错误的存储格式。</p>
+
+<p>然后把导出的结果在gnuplot中画出来。</p>
+
+<p>放一张结果图吧,这个是用Tikz做的组合:</p>
+
+<p><img src="/images/toolchian/m9.png" alt="tu1" /></p>
+
+<p>代码如下:</p>
+
+<p>```latex</p>
+
+<p>\documentclass[tikz]{standalone}
+\usetikzlibrary{positioning}
+\usepackage{lmodern}
+\newcommand{\tikzmark}[2]{\tikz[remember picture, baseline] \node[inner sep=0pt, outer sep=0pt, anchor=base] (#1) {#2};}</p>
+
+<p>\newcommand{\ZuiDa}{\fontsize{100pt}{0.5pt}}</p>
+
+<p>\begin{document}</p>
+
+<p>\begin{tikzpicture}[remember picture]
+\node (A) at(-40,0) {
+{\includegraphics{B2portB.eps}}
+};</p>
+
+<p>\draw (-78.5,25.0) node { \ZuiDa \textbf{(\emph{a})}};</p>
+
+<p>\node[right=of A] (B) at (0,0){
+{\includegraphics{B2vector.eps}}
+};</p>
+
+<p>\draw (-1.5,25) node { \ZuiDa \textbf{(\emph{b})}};</p>
+
+<p>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%B3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\node (C) at(0,-60) {
+{\includegraphics{B3portB.eps}}
+};</p>
+
+<p>\draw (-78.5,-40.0) node { \ZuiDa \textbf{(\emph{c})}};</p>
+
+<p>\node[right=of C] (D) at (-80,-118){
+{\includegraphics{B3vector.eps}}
+};
+\draw (-78.5,-100) node { \ZuiDa \textbf{(\emph{d})}};</p>
+
+<p>%node[right=of B] (C) at (-2.641,-2.15){
+%{\includegraphics[width=.5\textwidth]{system5.pdf}}
+%};
+\end{tikzpicture}
+\end{document}</p>
+
+<p>```</p>
+
+<p>核心要点就是把图放到<code>node</code>结构里面，调节<code>node</code>的位置。</p>
+]]></content>
+  </entry>
+  
+</feed>

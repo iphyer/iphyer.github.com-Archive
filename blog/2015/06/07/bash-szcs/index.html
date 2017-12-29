@@ -1,0 +1,1187 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<script data-cfasync="false" type="text/javascript" src="//use.typekit.net/axj3cfp.js"></script>
+	<script data-cfasync="false" type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<meta charset="utf-8">
+	<title>最好的超算中心提交任务方法  | 桑弧蓬矢射四方</title>
+
+<meta name="author" content="iphyer"> 
+
+<meta name="description" content="前言 其实这里就是把我常用的脚本提交上来。通常来说科学计算的流程是这样的: 本地coding ==&gt; 本地测试 ==&gt; 上超算试跑 ==&gt; 大规模运算求解。主要的目的就是为了节约机时同时便于查找错误。 所以我这里的程序主要包括的是提交和后期处理两部分。 &hellip;"> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="桑弧蓬矢射四方" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="/stylesheets/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
+
+<script language="Javascript" type="text/javascript">
+$(document).ready(
+  function() {
+    (function($) {
+      $(".fancybox[data-content-id]").each(function() {
+        this.href = $(this).data('content-id');
+      });
+      $(".fancybox").fancybox({
+        beforeLoad: function() {
+          var el, 
+              id = $(this.element).data('title-id');
+
+          if (id) {
+            el = $('#' + id);
+
+            if (el.length) {
+              this.title = el.html();
+            }
+          }
+          if ($(this).data('content')) {
+            this.content = $(this).data('content');
+          }
+        },
+        helpers: {
+          title: {
+            type: 'inside'
+          }
+        }
+      });
+    })(jQuery);
+  }
+);
+</script>
+
+	<!--- MathJax Configuration -->
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML,http://drz.ac/javascripts/MathJaxLocal.js">
+</script>
+
+</head>
+
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">桑弧蓬矢射四方</a></h1>
+<h4></h4>
+<nav id="main-nav"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:iphyer.github.com">
+			</form>
+		</div>
+	</div>
+</nav>
+
+
+</header>
+
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">最好的超算中心提交任务方法</h2>
+	<div class="entry-content"><h1 id="section">前言</h1>
+
+<p>其实这里就是把我常用的脚本提交上来。通常来说科学计算的流程是这样的:  本地coding ==&gt; 本地测试 ==&gt; 上超算试跑 ==&gt; 大规模运算求解。主要的目的就是为了节约机时同时便于查找错误。</p>
+
+<p>所以我这里的程序主要包括的是提交和后期处理两部分。</p>
+
+<p>这是我个人最喜欢的使用超算中心的方法，当然就你个人的情况可能需要有针对性的修改。
+<!--more--></p>
+
+<h1 id="section-1">提交任务</h1>
+
+<h2 id="section-2">编译任务</h2>
+
+<p>我使用gcc</p>
+
+<p>主要的文件分成source和run两个目录，run目录按照时间分类同时在实验记录本上记录这样非常方便查找。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="c">#!/bin/sh</span>
+</span><span class="line"><span class="nv">prog</span><span class="o">=</span><span class="s2">&quot;chanel8.2&quot;</span>
+</span><span class="line"><span class="nb">source</span><span class="o">=</span><span class="s2">&quot;chanel8.2.c&quot;</span>
+</span><span class="line"><span class="nv">date</span><span class="o">=</span><span class="s2">&quot;20150601&quot;</span>
+</span><span class="line"><span class="nb">cd</span> ~/YourUserNameXXX/source/
+</span><span class="line">gcc -o <span class="k">${</span><span class="nv">prog</span><span class="k">}</span> <span class="k">${</span><span class="nv">source</span><span class="k">}</span>  -lm
+</span><span class="line">cp <span class="k">${</span><span class="nv">prog</span><span class="k">}</span> ../RUN/<span class="k">${</span><span class="nv">date</span><span class="k">}</span>/
+</span><span class="line"><span class="nb">exit</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="section-3">提交任务</h2>
+
+<p>深圳超算中心本身有一个提交任务的run.sh脚本这个每一个任务都必须有一个以方便超算中心分配资源。</p>
+
+<p>我的run.sh如下：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="c">#!/bin/sh</span>
+</span><span class="line"><span class="nv">APP_NAME</span><span class="o">=</span>intelk_small
+</span><span class="line"><span class="nv">NP</span><span class="o">=</span>1
+</span><span class="line"><span class="nv">RUN</span><span class="o">=</span><span class="s2">&quot;chanel8.2&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>然后提交任务的命令如下</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="c">#!/bin/sh</span>
+</span><span class="line"><span class="nv">Possibility</span><span class="o">=</span><span class="s2">&quot;attractive24-48-p0.55&quot;</span>
+</span><span class="line"><span class="nv">date</span><span class="o">=</span><span class="s2">&quot;20150601&quot;</span>
+</span><span class="line"><span class="nv">prog</span><span class="o">=</span><span class="s2">&quot;chanel8.2&quot;</span>
+</span><span class="line"><span class="nb">source</span><span class="o">=</span><span class="s2">&quot;chanel8.2.c&quot;</span>
+</span><span class="line">
+</span><span class="line">mkdir ~/YourUserNameXX/RUN/<span class="k">${</span><span class="nv">date</span><span class="k">}</span>/<span class="k">${</span><span class="nv">Possibility</span><span class="k">}</span>
+</span><span class="line">
+</span><span class="line"><span class="k">for </span>i in <span class="k">$(</span> seq 1 30  <span class="k">)</span>
+</span><span class="line"><span class="k">do</span>
+</span><span class="line"><span class="k">   </span>mkdir ~/YourUserNameXXX/RUN/<span class="k">${</span><span class="nv">date</span><span class="k">}</span>/<span class="k">${</span><span class="nv">Possibility</span><span class="k">}</span>/no<span class="k">${</span><span class="nv">i</span><span class="k">}</span>
+</span><span class="line">   <span class="nb">cd</span> ~/YourUserNameXXX/RUN/<span class="k">${</span><span class="nv">date</span><span class="k">}</span>/<span class="k">${</span><span class="nv">Possibility</span><span class="k">}</span>/no<span class="k">${</span><span class="nv">i</span><span class="k">}</span>
+</span><span class="line">   cp ~/YourUserNameXXX/RUN/<span class="k">${</span><span class="nv">date</span><span class="k">}</span>/<span class="k">${</span><span class="nv">prog</span><span class="k">}</span> ~/YourUserNameXXX/RUN/<span class="k">${</span><span class="nv">date</span><span class="k">}</span>/run.sh .
+</span><span class="line">   chmod +x run.sh
+</span><span class="line">   bsub run.sh
+</span><span class="line">   sleep 1
+</span><span class="line">   <span class="nb">echo</span> <span class="s2">&quot;Done${i}&quot;</span>
+</span><span class="line"><span class="k">done</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>这个脚本的作用就是提交任务的，分别指定分配的计算目录同时拷贝文件进入，然后提交任务。提交完成后停止1s方便超算中心后台分配任务这样不太容易出错，因为北京和深圳的网络会有延时。所以为了抵消这个影响停止1s。</p>
+
+<h1 id="section-4">数据处理</h1>
+
+<p>有一个主控的bash文件来实现一个命令处理完全部数据的目标。</p>
+
+<ol>
+  <li>验证计算的完整性，通过log文件实现</li>
+  <li>顺便生成所有需要做平均各个指标文件路径文件</li>
+  <li>用R语言来统计结果</li>
+  <li>需要作图的使用gnuplot输出</li>
+</ol>
+
+<h2 id="section-5">主控文件</h2>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+<span class="line-number">54</span>
+<span class="line-number">55</span>
+<span class="line-number">56</span>
+<span class="line-number">57</span>
+<span class="line-number">58</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="c">#! /bin/bash </span>
+</span><span class="line"><span class="c">#测试所有的10个200万运算成功</span>
+</span><span class="line"><span class="c">#标志为log.txt文件最后的记录为360001</span>
+</span><span class="line"><span class="c">#同时在每个子目录循环的时候记录文件路径方便第二步处理数据</span>
+</span><span class="line"><span class="nv">count</span><span class="o">=</span>0
+</span><span class="line"><span class="nv">path</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
+</span><span class="line"><span class="nv">Uflux</span><span class="o">=</span><span class="s2">&quot;/flux.txt&quot;</span>
+</span><span class="line"><span class="nv">Uvelocity</span><span class="o">=</span><span class="s2">&quot;/velocity.txt&quot;</span>
+</span><span class="line"><span class="nv">Udensity</span><span class="o">=</span><span class="s2">&quot;/density.txt&quot;</span>
+</span><span class="line">
+</span><span class="line">find <span class="nv">$path</span> -mindepth 1 -type d | <span class="k">while </span><span class="nb">read </span>dir
+</span><span class="line"><span class="k">do </span>
+</span><span class="line"><span class="k">    </span><span class="nv">var</span><span class="o">=</span><span class="sb">`</span>tail -n 1 <span class="nv">$dir</span>/log.txt<span class="sb">`</span>
+</span><span class="line">    <span class="c">#echo $var</span>
+</span><span class="line">    <span class="k">if</span> <span class="o">[</span> <span class="nv">$var</span> -eq 360001 <span class="o">]</span>
+</span><span class="line">        <span class="k">then</span>
+</span><span class="line">            <span class="c">#echo &quot;right&quot;</span>
+</span><span class="line">            <span class="nb">let </span>count++
+</span><span class="line">        <span class="k">else</span>
+</span><span class="line"><span class="k">            </span><span class="nb">echo</span> <span class="nv">$dir</span>
+</span><span class="line">    <span class="k">fi</span>
+</span><span class="line">
+</span><span class="line"><span class="k">    </span><span class="nb">echo</span> <span class="nv">$count</span>
+</span><span class="line">
+</span><span class="line">    <span class="nv">url</span><span class="o">=</span><span class="s2">&quot;$dir$Uflux&quot;</span>
+</span><span class="line">    <span class="nb">echo</span> <span class="nv">$url</span> &gt;&gt; fluxurl.txt
+</span><span class="line">    <span class="nv">url</span><span class="o">=</span><span class="s2">&quot;$dir$Uvelocity&quot;</span>
+</span><span class="line">    <span class="nb">echo</span> <span class="nv">$url</span> &gt;&gt; velocityurl.txt
+</span><span class="line">    <span class="nv">url</span><span class="o">=</span><span class="s2">&quot;$dir$Udensity&quot;</span>
+</span><span class="line">    <span class="nb">echo</span> <span class="nv">$url</span> &gt;&gt; densityurl.txt
+</span><span class="line">    <span class="nv">Dflux</span><span class="o">=</span><span class="sb">`</span>awk <span class="s1">&#39;{print $12}&#39;</span> <span class="nv">$dir</span>/output*<span class="sb">`</span>
+</span><span class="line">    <span class="nb">echo</span> <span class="nv">$Dflux</span> &gt;&gt; jet.txt
+</span><span class="line"><span class="k">done</span>
+</span><span class="line">
+</span><span class="line"><span class="c">#调用程序合并10次的结果并且统计平均值输出</span>
+</span><span class="line"><span class="c">#去除掉y=0,1,2部分数据，这部分数据受到边界处珠子的影响不准确</span>
+</span><span class="line">Rscript <span class="nv">$path</span>/datapro.R <span class="nv">$path</span>
+</span><span class="line">
+</span><span class="line"><span class="c">#调用gnuplot画图</span>
+</span><span class="line">
+</span><span class="line"><span class="c">#画密度场</span>
+</span><span class="line">gnuplot density.gnu
+</span><span class="line"><span class="c">#画速度场</span>
+</span><span class="line">gnuplot vector.gnu
+</span><span class="line"><span class="c">#计算同样的x位置所有y位置的x方向速度之和，验证连续性条件</span>
+</span><span class="line">gnuplot XFluxOverWholeY.gnu
+</span><span class="line"><span class="c">#A的浓度梯度</span>
+</span><span class="line">gnuplot gradA.gnu
+</span><span class="line"><span class="c">#B的浓度梯度</span>
+</span><span class="line">gnuplot gradB.gnu
+</span><span class="line"><span class="c">#绘制 同一个x下不同y方向的层流大小分布，Y方向是否均一变化</span>
+</span><span class="line">gnuplot YfluxDistrobutionOverDifferentX.gnu
+</span><span class="line"><span class="c">#y方向的层流大小，低Re系数下层流明显</span>
+</span><span class="line">gnuplot YfluxOverWholeX.gnu
+</span><span class="line"><span class="c">#测试缺失的流量去向</span>
+</span><span class="line">gnuplot checkmissingflux.gnu
+</span><span class="line">
+</span><span class="line"><span class="nb">echo</span> <span class="s2">&quot;Done&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+<p>##R文件数据处理</p>
+
+<p>使用R语言做大规模数据处理，主要的理由：</p>
+
+<ol>
+  <li>可以方便的使用各种函数</li>
+  <li>比较方便处理和输出同时可以进行很好的探究性先验研究</li>
+  <li>比较熟悉R事实上Python也是完全可以的</li>
+</ol>
+
+<p>值得注意的是这里的文件路径输入和读取</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+<span class="line-number">54</span>
+<span class="line-number">55</span>
+<span class="line-number">56</span>
+<span class="line-number">57</span>
+<span class="line-number">58</span>
+<span class="line-number">59</span>
+<span class="line-number">60</span>
+<span class="line-number">61</span>
+<span class="line-number">62</span>
+<span class="line-number">63</span>
+<span class="line-number">64</span>
+<span class="line-number">65</span>
+<span class="line-number">66</span>
+<span class="line-number">67</span>
+<span class="line-number">68</span>
+<span class="line-number">69</span>
+<span class="line-number">70</span>
+<span class="line-number">71</span>
+<span class="line-number">72</span>
+<span class="line-number">73</span>
+<span class="line-number">74</span>
+<span class="line-number">75</span>
+<span class="line-number">76</span>
+<span class="line-number">77</span>
+<span class="line-number">78</span>
+<span class="line-number">79</span>
+<span class="line-number">80</span>
+<span class="line-number">81</span>
+<span class="line-number">82</span>
+<span class="line-number">83</span>
+<span class="line-number">84</span>
+<span class="line-number">85</span>
+<span class="line-number">86</span>
+<span class="line-number">87</span>
+<span class="line-number">88</span>
+<span class="line-number">89</span>
+<span class="line-number">90</span>
+<span class="line-number">91</span>
+<span class="line-number">92</span>
+<span class="line-number">93</span>
+<span class="line-number">94</span>
+<span class="line-number">95</span>
+<span class="line-number">96</span>
+<span class="line-number">97</span>
+<span class="line-number">98</span>
+<span class="line-number">99</span>
+<span class="line-number">100</span>
+<span class="line-number">101</span>
+<span class="line-number">102</span>
+<span class="line-number">103</span>
+<span class="line-number">104</span>
+<span class="line-number">105</span>
+<span class="line-number">106</span>
+<span class="line-number">107</span>
+<span class="line-number">108</span>
+<span class="line-number">109</span>
+<span class="line-number">110</span>
+<span class="line-number">111</span>
+<span class="line-number">112</span>
+<span class="line-number">113</span>
+<span class="line-number">114</span>
+<span class="line-number">115</span>
+<span class="line-number">116</span>
+<span class="line-number">117</span>
+<span class="line-number">118</span>
+<span class="line-number">119</span>
+<span class="line-number">120</span>
+<span class="line-number">121</span>
+<span class="line-number">122</span>
+<span class="line-number">123</span>
+<span class="line-number">124</span>
+<span class="line-number">125</span>
+<span class="line-number">126</span>
+<span class="line-number">127</span>
+<span class="line-number">128</span>
+<span class="line-number">129</span>
+<span class="line-number">130</span>
+<span class="line-number">131</span>
+<span class="line-number">132</span>
+<span class="line-number">133</span>
+<span class="line-number">134</span>
+<span class="line-number">135</span>
+<span class="line-number">136</span>
+<span class="line-number">137</span>
+<span class="line-number">138</span>
+<span class="line-number">139</span>
+<span class="line-number">140</span>
+<span class="line-number">141</span>
+<span class="line-number">142</span>
+<span class="line-number">143</span>
+<span class="line-number">144</span>
+<span class="line-number">145</span>
+<span class="line-number">146</span>
+<span class="line-number">147</span>
+<span class="line-number">148</span>
+<span class="line-number">149</span>
+<span class="line-number">150</span>
+<span class="line-number">151</span>
+<span class="line-number">152</span>
+<span class="line-number">153</span>
+<span class="line-number">154</span>
+<span class="line-number">155</span>
+<span class="line-number">156</span>
+<span class="line-number">157</span>
+<span class="line-number">158</span>
+<span class="line-number">159</span>
+<span class="line-number">160</span>
+<span class="line-number">161</span>
+<span class="line-number">162</span>
+<span class="line-number">163</span>
+<span class="line-number">164</span>
+<span class="line-number">165</span>
+<span class="line-number">166</span>
+<span class="line-number">167</span>
+<span class="line-number">168</span>
+<span class="line-number">169</span>
+<span class="line-number">170</span>
+<span class="line-number">171</span>
+<span class="line-number">172</span>
+<span class="line-number">173</span>
+<span class="line-number">174</span>
+<span class="line-number">175</span>
+<span class="line-number">176</span>
+<span class="line-number">177</span>
+<span class="line-number">178</span>
+<span class="line-number">179</span>
+<span class="line-number">180</span>
+<span class="line-number">181</span>
+<span class="line-number">182</span>
+<span class="line-number">183</span>
+<span class="line-number">184</span>
+<span class="line-number">185</span>
+<span class="line-number">186</span>
+<span class="line-number">187</span>
+<span class="line-number">188</span>
+<span class="line-number">189</span>
+<span class="line-number">190</span>
+<span class="line-number">191</span>
+<span class="line-number">192</span>
+<span class="line-number">193</span>
+<span class="line-number">194</span>
+<span class="line-number">195</span>
+<span class="line-number">196</span>
+<span class="line-number">197</span>
+<span class="line-number">198</span>
+<span class="line-number">199</span>
+<span class="line-number">200</span>
+<span class="line-number">201</span>
+<span class="line-number">202</span>
+<span class="line-number">203</span>
+<span class="line-number">204</span>
+<span class="line-number">205</span>
+<span class="line-number">206</span>
+<span class="line-number">207</span>
+<span class="line-number">208</span>
+<span class="line-number">209</span>
+<span class="line-number">210</span>
+<span class="line-number">211</span>
+<span class="line-number">212</span>
+<span class="line-number">213</span>
+<span class="line-number">214</span>
+<span class="line-number">215</span>
+<span class="line-number">216</span>
+<span class="line-number">217</span>
+<span class="line-number">218</span>
+<span class="line-number">219</span>
+<span class="line-number">220</span>
+<span class="line-number">221</span>
+<span class="line-number">222</span>
+<span class="line-number">223</span>
+<span class="line-number">224</span>
+<span class="line-number">225</span>
+<span class="line-number">226</span>
+<span class="line-number">227</span>
+<span class="line-number">228</span>
+<span class="line-number">229</span>
+<span class="line-number">230</span>
+<span class="line-number">231</span>
+<span class="line-number">232</span>
+<span class="line-number">233</span>
+<span class="line-number">234</span>
+<span class="line-number">235</span>
+<span class="line-number">236</span>
+<span class="line-number">237</span>
+<span class="line-number">238</span>
+<span class="line-number">239</span>
+<span class="line-number">240</span>
+<span class="line-number">241</span>
+<span class="line-number">242</span>
+<span class="line-number">243</span>
+<span class="line-number">244</span>
+<span class="line-number">245</span>
+<span class="line-number">246</span>
+<span class="line-number">247</span>
+<span class="line-number">248</span>
+<span class="line-number">249</span>
+<span class="line-number">250</span>
+<span class="line-number">251</span>
+<span class="line-number">252</span>
+<span class="line-number">253</span>
+<span class="line-number">254</span>
+<span class="line-number">255</span>
+<span class="line-number">256</span>
+<span class="line-number">257</span>
+<span class="line-number">258</span>
+<span class="line-number">259</span>
+<span class="line-number">260</span>
+<span class="line-number">261</span>
+<span class="line-number">262</span>
+<span class="line-number">263</span>
+<span class="line-number">264</span>
+<span class="line-number">265</span>
+<span class="line-number">266</span>
+<span class="line-number">267</span>
+<span class="line-number">268</span>
+<span class="line-number">269</span>
+<span class="line-number">270</span>
+<span class="line-number">271</span>
+<span class="line-number">272</span>
+<span class="line-number">273</span>
+<span class="line-number">274</span>
+<span class="line-number">275</span>
+<span class="line-number">276</span>
+<span class="line-number">277</span>
+<span class="line-number">278</span>
+<span class="line-number">279</span>
+<span class="line-number">280</span>
+<span class="line-number">281</span>
+<span class="line-number">282</span>
+<span class="line-number">283</span>
+<span class="line-number">284</span>
+<span class="line-number">285</span>
+<span class="line-number">286</span>
+<span class="line-number">287</span>
+<span class="line-number">288</span>
+<span class="line-number">289</span>
+<span class="line-number">290</span>
+<span class="line-number">291</span>
+<span class="line-number">292</span>
+<span class="line-number">293</span>
+<span class="line-number">294</span>
+<span class="line-number">295</span>
+<span class="line-number">296</span>
+<span class="line-number">297</span>
+<span class="line-number">298</span>
+<span class="line-number">299</span>
+</pre></td><td class="code"><pre><code class="r"><span class="line">Args <span class="o">&lt;-</span> commandArgs<span class="p">()</span>
+</span><span class="line"><span class="c1">#绘制流场</span>
+</span><span class="line">Vecurl<span class="o">&lt;-</span>paste<span class="p">(</span>Args<span class="p">[</span><span class="m">6</span><span class="p">],</span><span class="s">&quot;/velocityurl.txt&quot;</span><span class="p">,</span>sep <span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line"><span class="c1">#Vecurl=&quot;/home/iphyer/Chanel/Data/attractive12-24/p/attractive12-24-p0.65/velocityurl.txt&quot;</span>
+</span><span class="line">con <span class="o">&lt;-</span> file<span class="p">(</span>Vecurl<span class="p">,</span> <span class="s">&quot;r&quot;</span><span class="p">)</span>
+</span><span class="line">line<span class="o">=</span>readLines<span class="p">(</span>con<span class="p">,</span>n<span class="o">=</span><span class="m">1</span><span class="p">)</span>
+</span><span class="line"><span class="c1">#print(line)</span>
+</span><span class="line"><span class="c1">#line=&quot;/home/iphyer/Chanel/p0.85/no5/velocity.txt&quot;</span>
+</span><span class="line">vector1<span class="o">&lt;-</span>read.table<span class="p">(</span>line<span class="p">,</span>fill <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span>col.names<span class="o">=</span>c<span class="p">(</span><span class="s">&quot;i&quot;</span><span class="p">,</span><span class="s">&quot;x&quot;</span><span class="p">,</span><span class="s">&quot;y&quot;</span><span class="p">,</span><span class="s">&quot;vx&quot;</span><span class="p">,</span><span class="s">&quot;vy&quot;</span><span class="p">,</span><span class="s">&quot;n&quot;</span><span class="p">))</span>
+</span><span class="line">line<span class="o">=</span>readLines<span class="p">(</span>con<span class="p">,</span>n<span class="o">=</span><span class="m">1</span><span class="p">)</span>
+</span><span class="line">i<span class="o">=</span><span class="m">1</span>
+</span><span class="line"><span class="kr">while</span><span class="p">(</span> length<span class="p">(</span>line<span class="p">)</span> <span class="o">!=</span> <span class="m">0</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class="line">  <span class="c1">#print(line)</span>
+</span><span class="line">  vector2<span class="o">&lt;-</span>read.table<span class="p">(</span>line<span class="p">,</span>fill <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span>col.names<span class="o">=</span>c<span class="p">(</span><span class="s">&quot;i&quot;</span><span class="p">,</span><span class="s">&quot;x&quot;</span><span class="p">,</span><span class="s">&quot;y&quot;</span><span class="p">,</span><span class="s">&quot;vx&quot;</span><span class="p">,</span><span class="s">&quot;vy&quot;</span><span class="p">,</span><span class="s">&quot;n&quot;</span><span class="p">))</span>
+</span><span class="line">  <span class="c1">#tail(vector2)</span>
+</span><span class="line">  vector1<span class="o">$</span>vx<span class="o">&lt;-</span>vector1<span class="o">$</span>vx<span class="o">+</span>vector2<span class="o">$</span>vx
+</span><span class="line">  vector1<span class="o">$</span>vy<span class="o">&lt;-</span>vector1<span class="o">$</span>vy<span class="o">+</span>vector2<span class="o">$</span>vy
+</span><span class="line">  vector1<span class="o">$</span>n<span class="o">&lt;-</span>vector1<span class="o">$</span>n<span class="o">+</span>vector2<span class="o">$</span>n
+</span><span class="line">  <span class="c1"># print(&#39;Velocity Done&#39;)</span>
+</span><span class="line">  line<span class="o">=</span>readLines<span class="p">(</span>con<span class="p">,</span>n<span class="o">=</span><span class="m">1</span><span class="p">)</span>
+</span><span class="line">  i<span class="o">=</span>i<span class="m">+1</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line">vector1<span class="o">$</span>vx<span class="o">&lt;-</span><span class="m">1</span>.<span class="o">*</span>vector1<span class="o">$</span>vx<span class="o">/</span>i
+</span><span class="line">vector1<span class="o">$</span>vy<span class="o">&lt;-</span><span class="m">1</span>.<span class="o">*</span>vector1<span class="o">$</span>vy<span class="o">/</span>i
+</span><span class="line">vector1<span class="o">$</span>n<span class="o">&lt;-</span><span class="m">1</span>.<span class="o">*</span>vector1<span class="o">$</span>n<span class="o">/</span>i
+</span><span class="line">subvec<span class="o">&lt;-</span>subset<span class="p">(</span>vector1<span class="p">,</span>vector1<span class="o">$</span>y<span class="o">&gt;=</span><span class="m">3</span><span class="p">)</span>
+</span><span class="line">write.table<span class="p">(</span>subvec<span class="p">,</span><span class="s">&quot;velcoity.txt&quot;</span><span class="p">,,</span>sep <span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">,</span>col.names<span class="o">=</span><span class="k-Variable">F</span><span class="p">,</span>row.names<span class="o">=</span><span class="k-Variable">F</span><span class="p">)</span>
+</span><span class="line">close<span class="p">(</span>con<span class="p">)</span>
+</span><span class="line">
+</span><span class="line"><span class="c1">#统计流场1</span>
+</span><span class="line">b<span class="o">&lt;-</span>numeric<span class="p">(</span><span class="m">108</span><span class="p">)</span>
+</span><span class="line">c<span class="o">&lt;-</span>numeric<span class="p">(</span><span class="m">108</span><span class="p">)</span>
+</span><span class="line">flux<span class="o">&lt;-</span>data.frame<span class="p">(</span>vector1<span class="o">$</span>x<span class="p">,</span>vector1<span class="o">$</span>y<span class="p">,</span>vector1<span class="o">$</span>vx<span class="o">*</span>vector1<span class="o">$</span>n<span class="p">)</span>
+</span><span class="line">j<span class="o">=</span><span class="m">1</span>
+</span><span class="line"><span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="m">108</span><span class="p">){</span>
+</span><span class="line">  a<span class="o">&lt;-</span>subset<span class="p">(</span>flux<span class="p">,</span>flux<span class="o">$</span>vector1.x<span class="o">==</span>j<span class="p">)</span>
+</span><span class="line">  b<span class="p">[</span>j<span class="p">]</span><span class="o">&lt;-</span>j
+</span><span class="line">  c<span class="p">[</span>j<span class="p">]</span><span class="o">&lt;-</span>sum<span class="p">(</span>a<span class="o">$</span>vector1.vx...vector1.n<span class="p">)</span>
+</span><span class="line">  j<span class="o">=</span>j<span class="m">+1</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line"><span class="c1">#plot(b,c)</span>
+</span><span class="line">continuity<span class="o">=</span>data.frame<span class="p">(</span>b<span class="p">,</span>c<span class="p">)</span>
+</span><span class="line"><span class="c1">#write.table(continuity,&quot;flux.txt&quot;,sep =&quot;\t&quot;,col.names=F,row.names=F)</span>
+</span><span class="line">AllFlux<span class="o">&lt;-</span>sum<span class="p">(</span>c<span class="p">)</span><span class="o">/</span><span class="m">108</span>
+</span><span class="line">print<span class="p">(</span><span class="s">&#39;Flux1:&#39;</span><span class="p">)</span>
+</span><span class="line">print<span class="p">(</span>AllFlux<span class="p">)</span>
+</span><span class="line">
+</span><span class="line"><span class="c1">#=====================================================================================================================</span>
+</span><span class="line"><span class="c1">#解决Y方向流量不守恒问题</span>
+</span><span class="line"><span class="c1">#=====================================================================================================================</span>
+</span><span class="line">flux3<span class="o">&lt;-</span>subset<span class="p">(</span>vector1<span class="p">,</span>vector1<span class="o">$</span>y<span class="o">==</span><span class="m">3</span><span class="p">)</span>
+</span><span class="line">fluxy3<span class="o">&lt;-</span>data.frame<span class="p">(</span>flux3<span class="o">$</span>x<span class="p">,</span>flux3<span class="o">$</span>vy<span class="o">*</span>flux3<span class="o">$</span>n<span class="p">)</span>
+</span><span class="line"><span class="c1">#plot(fluxy3)</span>
+</span><span class="line">write.table<span class="p">(</span>fluxy3<span class="p">,</span><span class="s">&quot;fluxy3.txt&quot;</span><span class="p">,,</span>sep <span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">,</span>col.names<span class="o">=</span><span class="k-Variable">F</span><span class="p">,</span>row.names<span class="o">=</span><span class="k-Variable">F</span><span class="p">)</span>
+</span><span class="line"><span class="c1">#====================================================================================================================</span>
+</span><span class="line"><span class="c1">#统计流场2</span>
+</span><span class="line">Fluxurl<span class="o">&lt;-</span>paste<span class="p">(</span>Args<span class="p">[</span><span class="m">6</span><span class="p">],</span><span class="s">&quot;/fluxurl.txt&quot;</span><span class="p">,</span>sep <span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+</span><span class="line"><span class="c1">#Fluxurl=&quot;/home/iphyer/Chanel/Data/attractive12-24/p/attractive12-24-p0.65/fluxurl.txt&quot;</span>
+</span><span class="line">con <span class="o">&lt;-</span> file<span class="p">(</span>Fluxurl<span class="p">,</span> <span class="s">&quot;r&quot;</span><span class="p">)</span>
+</span><span class="line">line<span class="o">=</span>readLines<span class="p">(</span>con<span class="p">,</span>n<span class="o">=</span><span class="m">1</span><span class="p">)</span>
+</span><span class="line"><span class="c1">#print(line)</span>
+</span><span class="line">flux1<span class="o">&lt;-</span>read.table<span class="p">(</span>line<span class="p">,</span>col.names<span class="o">=</span>c<span class="p">(</span><span class="s">&quot;i&quot;</span><span class="p">,</span><span class="s">&quot;x&quot;</span><span class="p">,</span><span class="s">&quot;y&quot;</span><span class="p">,</span><span class="s">&quot;flux&quot;</span><span class="p">))</span>
+</span><span class="line">flux1<span class="o">$</span>flux<span class="o">&lt;-</span><span class="m">1.0</span><span class="o">*</span>flux1<span class="o">$</span>flux
+</span><span class="line">line<span class="o">=</span>readLines<span class="p">(</span>con<span class="p">,</span>n<span class="o">=</span><span class="m">1</span><span class="p">)</span>
+</span><span class="line">i<span class="o">=</span><span class="m">1</span>
+</span><span class="line"><span class="kr">while</span><span class="p">(</span> length<span class="p">(</span>line<span class="p">)</span> <span class="o">!=</span> <span class="m">0</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class="line">  <span class="c1">#print(line)</span>
+</span><span class="line">  flux2<span class="o">&lt;-</span>read.table<span class="p">(</span>line<span class="p">,</span>col.names<span class="o">=</span>c<span class="p">(</span><span class="s">&quot;i&quot;</span><span class="p">,</span><span class="s">&quot;x&quot;</span><span class="p">,</span><span class="s">&quot;y&quot;</span><span class="p">,</span><span class="s">&quot;flux&quot;</span><span class="p">))</span>
+</span><span class="line">  flux2<span class="o">$</span>flux<span class="o">&lt;-</span><span class="m">1.0</span><span class="o">*</span>flux2<span class="o">$</span>flux
+</span><span class="line">  flux1<span class="o">$</span>flux<span class="o">&lt;-</span>flux1<span class="o">$</span>flux<span class="o">+</span>flux2<span class="o">$</span>flux
+</span><span class="line">  <span class="c1">#print(&#39;Flux Done&#39;)</span>
+</span><span class="line">  line<span class="o">=</span>readLines<span class="p">(</span>con<span class="p">,</span>n<span class="o">=</span><span class="m">1</span><span class="p">)</span>
+</span><span class="line">  i<span class="o">=</span>i<span class="m">+1</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line"><span class="c1">#print(i)</span>
+</span><span class="line">flux1<span class="o">$</span>flux<span class="o">&lt;-</span><span class="m">1</span>.<span class="o">*</span>flux1<span class="o">$</span>flux<span class="o">/</span>i
+</span><span class="line">
+</span><span class="line">write.table<span class="p">(</span>flux1<span class="p">,</span><span class="s">&quot;flux.txt&quot;</span><span class="p">,</span>sep <span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">,</span>col.names<span class="o">=</span><span class="k-Variable">F</span><span class="p">,</span>row.names<span class="o">=</span><span class="k-Variable">F</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line"><span class="c1">#计算同样的x位置所有y位置的x方向速度之和，验证连续性条件</span>
+</span><span class="line">b<span class="o">&lt;-</span>numeric<span class="p">(</span><span class="m">108</span><span class="p">)</span>
+</span><span class="line">cGT3<span class="o">&lt;-</span>numeric<span class="p">(</span><span class="m">108</span><span class="p">)</span>
+</span><span class="line">cWhole<span class="o">&lt;-</span>numeric<span class="p">(</span><span class="m">108</span><span class="p">)</span>
+</span><span class="line">j<span class="o">=</span><span class="m">1</span>
+</span><span class="line"><span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="m">108</span><span class="p">){</span>
+</span><span class="line">  a<span class="o">&lt;-</span>subset<span class="p">(</span>flux1<span class="p">,</span>flux1<span class="o">$</span>x<span class="o">==</span>j<span class="p">)</span>
+</span><span class="line">  aGT3<span class="o">&lt;-</span>subset<span class="p">(</span>a<span class="p">,</span>a<span class="o">$</span>y<span class="o">&gt;=</span><span class="m">3</span><span class="p">)</span>
+</span><span class="line">  b<span class="p">[</span>j<span class="p">]</span><span class="o">&lt;-</span>j
+</span><span class="line">  cGT3<span class="p">[</span>j<span class="p">]</span><span class="o">&lt;-</span>sum<span class="p">(</span>aGT3<span class="o">$</span>flux<span class="p">)</span>
+</span><span class="line">  cWhole<span class="p">[</span>j<span class="p">]</span><span class="o">&lt;-</span>sum<span class="p">(</span>a<span class="o">$</span>flux<span class="p">)</span>
+</span><span class="line">  j<span class="o">=</span>j<span class="m">+1</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line">continuityGT3<span class="o">&lt;-</span>data.frame<span class="p">(</span>b<span class="p">,</span>cGT3<span class="p">)</span>
+</span><span class="line">write.table<span class="p">(</span>continuityGT3<span class="p">,</span><span class="s">&quot;XfluxOverGT3Y.txt&quot;</span><span class="p">,</span>sep <span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">,</span>col.names<span class="o">=</span><span class="k-Variable">F</span><span class="p">,</span>row.names<span class="o">=</span><span class="k-Variable">F</span><span class="p">)</span>
+</span><span class="line">continuity<span class="o">&lt;-</span>data.frame<span class="p">(</span>b<span class="p">,</span>cWhole<span class="p">)</span>
+</span><span class="line">write.table<span class="p">(</span>continuity<span class="p">,</span><span class="s">&quot;XfluxOverWholeY.txt&quot;</span><span class="p">,</span>sep <span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">,</span>col.names<span class="o">=</span><span class="k-Variable">F</span><span class="p">,</span>row.names<span class="o">=</span><span class="k-Variable">F</span><span class="p">)</span>
+</span><span class="line">AllFlux<span class="o">&lt;-</span>sum<span class="p">(</span>cWhole<span class="p">)</span><span class="o">/</span><span class="m">108</span>
+</span><span class="line">print<span class="p">(</span><span class="s">&#39;Flux2:&#39;</span><span class="p">)</span>
+</span><span class="line">print<span class="p">(</span>AllFlux<span class="p">)</span>
+</span><span class="line">close<span class="p">(</span>con<span class="p">)</span>
+</span><span class="line">
+</span><span class="line"><span class="c1">#============================================================================================</span>
+</span><span class="line"><span class="c1">#y方向的层流大小，低Re系数下层流明显</span>
+</span><span class="line"><span class="c1">#============================================================================================</span>
+</span><span class="line">b<span class="o">&lt;-</span>numeric<span class="p">(</span><span class="m">14</span><span class="p">)</span>
+</span><span class="line">c<span class="o">&lt;-</span>numeric<span class="p">(</span><span class="m">14</span><span class="p">)</span>
+</span><span class="line">j<span class="o">=</span><span class="m">1</span>
+</span><span class="line"><span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="m">14</span><span class="p">){</span>
+</span><span class="line">  a<span class="o">&lt;-</span>subset<span class="p">(</span>flux1<span class="p">,</span>flux1<span class="o">$</span>y<span class="o">==</span>j<span class="m">+2</span><span class="p">)</span>
+</span><span class="line">  a<span class="o">&lt;-</span>subset<span class="p">(</span>a<span class="p">,</span>a<span class="o">$</span>y<span class="o">&gt;=</span><span class="m">3</span><span class="p">)</span>
+</span><span class="line">  b<span class="p">[</span>j<span class="p">]</span><span class="o">&lt;-</span>j<span class="m">+2</span>
+</span><span class="line">  c<span class="p">[</span>j<span class="p">]</span><span class="o">&lt;-</span>sum<span class="p">(</span>a<span class="o">$</span>flux<span class="p">)</span>
+</span><span class="line">  j<span class="o">=</span>j<span class="m">+1</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">continuity<span class="o">=</span>data.frame<span class="p">(</span>b<span class="p">,</span>c<span class="p">)</span>
+</span><span class="line">write.table<span class="p">(</span>continuity<span class="p">,</span><span class="s">&quot;YfluxOverWholeX.txt&quot;</span><span class="p">,</span>sep <span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">,</span>col.names<span class="o">=</span><span class="k-Variable">F</span><span class="p">,</span>row.names<span class="o">=</span><span class="k-Variable">F</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line"><span class="c1">#============================================================================================</span>
+</span><span class="line"><span class="c1">#挑选最大流量的那一层其实就是最低一层代表该设置条件下的流动优势，为了减少误差，同时计入珠子左侧的影响、</span>
+</span><span class="line"><span class="c1">#考虑到平流效应已经被证实，所以使用y=3的这一层代表驱动的动力层</span>
+</span><span class="line"><span class="c1">#============================================================================================</span>
+</span><span class="line">maxflux<span class="o">&lt;-</span>continuity<span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">]</span>
+</span><span class="line">print<span class="p">(</span><span class="s">&quot;Max Bottom layer of Flux:&quot;</span><span class="p">)</span>
+</span><span class="line">print<span class="p">(</span>maxflux<span class="p">)</span>
+</span><span class="line"><span class="c1">#============================================================================================</span>
+</span><span class="line"><span class="c1">#同一个x下不同y方向的层流大小分布，Y方向是否均一变化</span>
+</span><span class="line"><span class="c1">#============================================================================================</span>
+</span><span class="line"><span class="c1">#============================================================</span>
+</span><span class="line"><span class="c1">#统计不同x处的y方向流量分布</span>
+</span><span class="line">
+</span><span class="line">a<span class="o">&lt;-</span>subset<span class="p">(</span>flux1<span class="p">,</span>flux1<span class="o">$</span>x<span class="o">==</span><span class="m">29.0</span><span class="p">)</span>
+</span><span class="line">a<span class="o">&lt;-</span>subset<span class="p">(</span>a<span class="p">,</span>a<span class="o">$</span>y<span class="o">&gt;=</span><span class="m">3</span><span class="p">)</span>
+</span><span class="line">b<span class="o">&lt;-</span>data.frame<span class="p">(</span>a<span class="o">$</span>y<span class="p">,</span>a<span class="o">$</span>flux<span class="p">)</span>
+</span><span class="line">colnames<span class="p">(</span>b<span class="p">)</span><span class="o">&lt;-</span>c<span class="p">(</span><span class="s">&quot;y&quot;</span><span class="p">,</span><span class="s">&quot;29&quot;</span><span class="p">)</span>
+</span><span class="line">xcor<span class="o">&lt;-</span>c<span class="p">(</span><span class="m">32.0</span><span class="p">,</span><span class="m">35.0</span><span class="p">,</span><span class="m">38.0</span><span class="p">,</span><span class="m">41.0</span><span class="p">,</span><span class="m">44.0</span><span class="p">,</span><span class="m">47.0</span><span class="p">,</span><span class="m">50.0</span><span class="p">,</span><span class="m">53.0</span><span class="p">)</span>
+</span><span class="line"><span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> xcor<span class="p">){</span>
+</span><span class="line">  j<span class="o">&lt;-</span>i
+</span><span class="line">  a<span class="o">&lt;-</span>subset<span class="p">(</span>flux1<span class="p">,</span>flux1<span class="o">$</span>x<span class="o">==</span>j<span class="p">)</span>
+</span><span class="line">  a<span class="o">&lt;-</span>subset<span class="p">(</span>a<span class="p">,</span>a<span class="o">$</span>y<span class="o">&gt;=</span><span class="m">3</span><span class="p">)</span>
+</span><span class="line">  b<span class="o">&lt;-</span>cbind<span class="p">(</span>b<span class="p">,</span>a<span class="o">$</span>flux<span class="p">)</span>
+</span><span class="line">  colnames<span class="p">(</span>b<span class="p">)[</span>length<span class="p">(</span>colnames<span class="p">(</span>b<span class="p">))]</span><span class="o">&lt;-</span>i
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line">write.table<span class="p">(</span>b<span class="p">,</span><span class="s">&quot;YfluxDistrobutionOverDifferentX.txt&quot;</span><span class="p">,</span>sep <span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">,</span>col.names<span class="o">=</span><span class="k-Variable">T</span><span class="p">,</span>row.names<span class="o">=</span><span class="k-Variable">F</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line"><span class="c1">#===============================================================================================================</span>
+</span><span class="line"><span class="c1">#处理最严格意义上对于流量的积分</span>
+</span><span class="line"><span class="c1">#===============================================================================================================</span>
+</span><span class="line">jet<span class="o">&lt;-</span>read.table<span class="p">(</span><span class="s">&quot;jet.txt&quot;</span><span class="p">,</span>header<span class="o">=</span><span class="k-Variable">F</span><span class="p">)</span>
+</span><span class="line">meanjet<span class="o">&lt;-</span><span class="m">1.0</span><span class="o">*</span>sum<span class="p">(</span>jet<span class="p">)</span><span class="o">/</span><span class="p">(</span>ncol<span class="p">(</span>jet<span class="p">)</span><span class="o">*</span>nrow<span class="p">(</span>jet<span class="p">))</span>
+</span><span class="line">print<span class="p">(</span>meanjet<span class="p">)</span>
+</span><span class="line">Ntimes<span class="o">&lt;-</span><span class="m">1600000</span><span class="o">*</span><span class="m">0.1</span>
+</span><span class="line">netflux<span class="o">&lt;-</span>meanjet<span class="o">/</span>Ntimes
+</span><span class="line">print<span class="p">(</span><span class="s">&quot;netflux definition:&quot;</span><span class="p">)</span>
+</span><span class="line">print<span class="p">(</span>netflux<span class="p">)</span>
+</span><span class="line">
+</span><span class="line"><span class="c1">#===============================================================================================================</span>
+</span><span class="line"><span class="c1">#统计A和B粒子的密度分布</span>
+</span><span class="line"><span class="c1">#===============================================================================================================</span>
+</span><span class="line">
+</span><span class="line">Densityurl<span class="o">&lt;-</span>paste<span class="p">(</span>Args<span class="p">[</span><span class="m">6</span><span class="p">],</span><span class="s">&quot;/densityurl.txt&quot;</span><span class="p">,</span>sep <span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+</span><span class="line">con <span class="o">&lt;-</span> file<span class="p">(</span>Densityurl<span class="p">,</span> <span class="s">&quot;r&quot;</span><span class="p">)</span>
+</span><span class="line">line<span class="o">=</span>readLines<span class="p">(</span>con<span class="p">,</span>n<span class="o">=</span><span class="m">1</span><span class="p">)</span>
+</span><span class="line"><span class="c1">#print(line)</span>
+</span><span class="line">den1<span class="o">&lt;-</span>read.table<span class="p">(</span>line<span class="p">,</span>col.names<span class="o">=</span>c<span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">,</span><span class="s">&quot;y&quot;</span><span class="p">,</span><span class="s">&quot;denA&quot;</span><span class="p">,</span><span class="s">&quot;denB&quot;</span><span class="p">))</span>
+</span><span class="line">line<span class="o">=</span>readLines<span class="p">(</span>con<span class="p">,</span>n<span class="o">=</span><span class="m">1</span><span class="p">)</span>
+</span><span class="line">i<span class="o">=</span><span class="m">1</span>
+</span><span class="line"><span class="kr">while</span><span class="p">(</span> length<span class="p">(</span>line<span class="p">)</span> <span class="o">!=</span> <span class="m">0</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class="line">  <span class="c1">#print(line)</span>
+</span><span class="line">  den2<span class="o">&lt;-</span>read.table<span class="p">(</span>line<span class="p">,</span>col.names<span class="o">=</span>c<span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">,</span><span class="s">&quot;y&quot;</span><span class="p">,</span><span class="s">&quot;denA&quot;</span><span class="p">,</span><span class="s">&quot;denB&quot;</span><span class="p">))</span>
+</span><span class="line">  den1<span class="o">$</span>denA<span class="o">&lt;-</span>den1<span class="o">$</span>denA<span class="o">+</span>den2<span class="o">$</span>denA
+</span><span class="line">  den1<span class="o">$</span>denB<span class="o">&lt;-</span>den1<span class="o">$</span>denB<span class="o">+</span>den2<span class="o">$</span>denB
+</span><span class="line">  <span class="c1">#print(&#39;Density Done&#39;)</span>
+</span><span class="line">  line<span class="o">=</span>readLines<span class="p">(</span>con<span class="p">,</span>n<span class="o">=</span><span class="m">1</span><span class="p">)</span>
+</span><span class="line">  i<span class="o">=</span>i<span class="m">+1</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">den1<span class="o">$</span>denA<span class="o">&lt;-</span><span class="m">1</span>.<span class="o">*</span>den1<span class="o">$</span>denA<span class="o">/</span>i
+</span><span class="line">den1<span class="o">$</span>denB<span class="o">&lt;-</span><span class="m">1</span>.<span class="o">*</span>den1<span class="o">$</span>denB<span class="o">/</span>i
+</span><span class="line">
+</span><span class="line">subvec<span class="o">&lt;-</span>subset<span class="p">(</span>den1<span class="p">,</span>den1<span class="o">$</span>y<span class="o">&gt;=</span><span class="m">3</span><span class="p">)</span>
+</span><span class="line">write.table<span class="p">(</span>subvec<span class="p">,</span><span class="s">&quot;density.txt&quot;</span><span class="p">,</span>sep <span class="o">=</span><span class="s">&quot;\t&quot;</span><span class="p">,</span>col.names<span class="o">=</span><span class="k-Variable">F</span><span class="p">,</span>row.names<span class="o">=</span><span class="k-Variable">F</span><span class="p">)</span>
+</span><span class="line">close<span class="p">(</span>con<span class="p">)</span>
+</span><span class="line"><span class="c1">#===============================================================================================================</span>
+</span><span class="line"><span class="c1">#处理梯度场问题，使用中心差分算法</span>
+</span><span class="line"><span class="c1">#===============================================================================================================</span>
+</span><span class="line">
+</span><span class="line">denALL<span class="o">&lt;-</span>read.table<span class="p">(</span><span class="s">&quot;density.txt&quot;</span><span class="p">,</span>col.names<span class="o">=</span>c<span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">,</span><span class="s">&quot;y&quot;</span><span class="p">,</span><span class="s">&quot;denA&quot;</span><span class="p">,</span><span class="s">&quot;denB&quot;</span><span class="p">))</span>
+</span><span class="line">
+</span><span class="line">gradBx<span class="o">&lt;-</span>data.frame<span class="p">(</span>gBx<span class="o">=</span>numeric<span class="p">(</span><span class="m">0</span><span class="p">))</span>
+</span><span class="line">
+</span><span class="line"><span class="c1">#舍弃第一层，很难定义和计算</span>
+</span><span class="line"><span class="kr">for</span><span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>length<span class="p">(</span>denALL<span class="o">$</span>x<span class="p">)){</span>
+</span><span class="line">  <span class="kr">if</span><span class="p">(</span>i<span class="o">&gt;=</span><span class="m">217</span><span class="p">){</span>
+</span><span class="line">
+</span><span class="line">    <span class="kr">if</span><span class="p">(</span> i<span class="o">%%</span><span class="m">216</span><span class="o">==</span><span class="m">1</span> <span class="p">){</span>
+</span><span class="line">      temp<span class="o">&lt;-</span>denALL<span class="p">[</span>i<span class="m">+1</span><span class="p">,</span><span class="m">4</span><span class="p">]</span><span class="o">-</span>denALL<span class="p">[</span>i<span class="m">+215</span><span class="p">,</span><span class="m">4</span><span class="p">]</span>
+</span><span class="line">      gradBx<span class="o">&lt;-</span>rbind<span class="p">(</span>gradBx<span class="p">,</span>temp<span class="p">)</span>
+</span><span class="line">    <span class="p">}</span>
+</span><span class="line">    <span class="kr">else</span> <span class="kr">if</span><span class="p">(</span> i<span class="o">%%</span><span class="m">216</span><span class="o">==</span><span class="m">0</span> <span class="p">){</span>
+</span><span class="line">      temp<span class="o">&lt;-</span>denALL<span class="p">[</span>i<span class="m">-215</span><span class="p">,</span><span class="m">4</span><span class="p">]</span><span class="o">-</span>denALL<span class="p">[</span>i<span class="m">-1</span><span class="p">,</span><span class="m">4</span><span class="p">]</span>
+</span><span class="line">      gradBx<span class="o">&lt;-</span>rbind<span class="p">(</span>gradBx<span class="p">,</span>temp<span class="p">)</span>
+</span><span class="line">    <span class="p">}</span>
+</span><span class="line">    <span class="kr">else</span><span class="p">{</span>
+</span><span class="line">      temp<span class="o">&lt;-</span>denALL<span class="p">[</span>i<span class="m">+1</span><span class="p">,</span><span class="m">4</span><span class="p">]</span><span class="o">-</span>denALL<span class="p">[</span>i<span class="m">-1</span><span class="p">,</span><span class="m">4</span><span class="p">]</span>
+</span><span class="line">      gradBx<span class="o">&lt;-</span>rbind<span class="p">(</span>gradBx<span class="p">,</span>temp<span class="p">)</span>
+</span><span class="line">    <span class="p">}</span>
+</span><span class="line">
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line">  <span class="kr">else</span><span class="p">{</span>
+</span><span class="line">    temp<span class="o">&lt;-</span><span class="m">0</span>
+</span><span class="line">    gradBx<span class="o">&lt;-</span>rbind<span class="p">(</span>gradBx<span class="p">,</span>temp<span class="p">)</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line">
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line">gradBy<span class="o">&lt;-</span>data.frame<span class="p">(</span>gBy<span class="o">=</span>numeric<span class="p">(</span><span class="m">0</span><span class="p">))</span>
+</span><span class="line">
+</span><span class="line"><span class="kr">for</span><span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>length<span class="p">(</span>denALL<span class="o">$</span>x<span class="p">)){</span>
+</span><span class="line">  <span class="kr">if</span><span class="p">(</span> i<span class="o">&lt;=</span><span class="m">216</span> <span class="p">){</span>
+</span><span class="line">    temp<span class="o">&lt;-</span><span class="m">0</span><span class="c1">#denALL[i+216,4]/0.5</span>
+</span><span class="line">    gradBy<span class="o">&lt;-</span>rbind<span class="p">(</span>gradBy<span class="p">,</span>temp<span class="p">)</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line">  <span class="kr">else</span> <span class="kr">if</span><span class="p">(</span> i<span class="o">&gt;=</span> <span class="m">5617</span> <span class="p">){</span>
+</span><span class="line">    temp<span class="o">&lt;-</span><span class="m">0</span>
+</span><span class="line">    gradBy<span class="o">&lt;-</span>rbind<span class="p">(</span>gradBy<span class="p">,</span>temp<span class="p">)</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line">  <span class="kr">else</span><span class="p">{</span>
+</span><span class="line">    temp<span class="o">&lt;-</span>denALL<span class="p">[</span>i<span class="m">+261</span><span class="p">,</span><span class="m">4</span><span class="p">]</span><span class="o">-</span>denALL<span class="p">[</span>i<span class="m">-216</span><span class="p">,</span><span class="m">4</span><span class="p">]</span>
+</span><span class="line">    gradBy<span class="o">&lt;-</span>rbind<span class="p">(</span>gradBy<span class="p">,</span>temp<span class="p">)</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line">gradB<span class="o">&lt;-</span>data.frame<span class="p">(</span>denALL<span class="o">$</span>x<span class="p">,</span>denALL<span class="o">$</span>y<span class="p">,</span>gradBx<span class="p">,</span>gradBy<span class="p">)</span>
+</span><span class="line">
+</span><span class="line">write.table<span class="p">(</span>gradB<span class="p">,</span><span class="s">&quot;gradB.txt&quot;</span><span class="p">,</span>col.names<span class="o">=</span><span class="k-Variable">F</span><span class="p">,</span>row.names<span class="o">=</span><span class="k-Variable">F</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line"><span class="c1">#============================================================================================</span>
+</span><span class="line"><span class="c1">#A粒子梯度场图</span>
+</span><span class="line"><span class="c1">#============================================================================================</span>
+</span><span class="line">
+</span><span class="line">denALL<span class="o">&lt;-</span>read.table<span class="p">(</span><span class="s">&quot;density.txt&quot;</span><span class="p">,</span>col.names<span class="o">=</span>c<span class="p">(</span><span class="s">&quot;x&quot;</span><span class="p">,</span><span class="s">&quot;y&quot;</span><span class="p">,</span><span class="s">&quot;denA&quot;</span><span class="p">,</span><span class="s">&quot;denB&quot;</span><span class="p">))</span>
+</span><span class="line">
+</span><span class="line">gradAx<span class="o">&lt;-</span>data.frame<span class="p">(</span>gAx<span class="o">=</span>numeric<span class="p">(</span><span class="m">0</span><span class="p">))</span>
+</span><span class="line">
+</span><span class="line"><span class="c1">#舍弃第一层，很难定义和计算</span>
+</span><span class="line"><span class="kr">for</span><span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>length<span class="p">(</span>denALL<span class="o">$</span>x<span class="p">)){</span>
+</span><span class="line">  <span class="kr">if</span><span class="p">(</span>i<span class="o">&gt;=</span><span class="m">217</span><span class="p">){</span>
+</span><span class="line">
+</span><span class="line">    <span class="kr">if</span><span class="p">(</span> i<span class="o">%%</span><span class="m">216</span><span class="o">==</span><span class="m">1</span> <span class="p">){</span>
+</span><span class="line">      temp<span class="o">&lt;-</span>denALL<span class="p">[</span>i<span class="m">+1</span><span class="p">,</span><span class="m">3</span><span class="p">]</span><span class="o">-</span>denALL<span class="p">[</span>i<span class="m">+215</span><span class="p">,</span><span class="m">3</span><span class="p">]</span>
+</span><span class="line">      gradAx<span class="o">&lt;-</span>rbind<span class="p">(</span>gradAx<span class="p">,</span>temp<span class="p">)</span>
+</span><span class="line">    <span class="p">}</span>
+</span><span class="line">    <span class="kr">else</span> <span class="kr">if</span><span class="p">(</span> i<span class="o">%%</span><span class="m">216</span><span class="o">==</span><span class="m">0</span> <span class="p">){</span>
+</span><span class="line">      temp<span class="o">&lt;-</span>denALL<span class="p">[</span>i<span class="m">-215</span><span class="p">,</span><span class="m">3</span><span class="p">]</span><span class="o">-</span>denALL<span class="p">[</span>i<span class="m">-1</span><span class="p">,</span><span class="m">3</span><span class="p">]</span>
+</span><span class="line">      gradAx<span class="o">&lt;-</span>rbind<span class="p">(</span>gradAx<span class="p">,</span>temp<span class="p">)</span>
+</span><span class="line">    <span class="p">}</span>
+</span><span class="line">    <span class="kr">else</span><span class="p">{</span>
+</span><span class="line">      temp<span class="o">&lt;-</span>denALL<span class="p">[</span>i<span class="m">+1</span><span class="p">,</span><span class="m">3</span><span class="p">]</span><span class="o">-</span>denALL<span class="p">[</span>i<span class="m">-1</span><span class="p">,</span><span class="m">3</span><span class="p">]</span>
+</span><span class="line">      gradAx<span class="o">&lt;-</span>rbind<span class="p">(</span>gradAx<span class="p">,</span>temp<span class="p">)</span>
+</span><span class="line">    <span class="p">}</span>
+</span><span class="line">
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line">  <span class="kr">else</span><span class="p">{</span>
+</span><span class="line">    temp<span class="o">&lt;-</span><span class="m">0</span>
+</span><span class="line">    gradAx<span class="o">&lt;-</span>rbind<span class="p">(</span>gradAx<span class="p">,</span>temp<span class="p">)</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line">
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line">gradAy<span class="o">&lt;-</span>data.frame<span class="p">(</span>gAy<span class="o">=</span>numeric<span class="p">(</span><span class="m">0</span><span class="p">))</span>
+</span><span class="line">
+</span><span class="line"><span class="kr">for</span><span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>length<span class="p">(</span>denALL<span class="o">$</span>x<span class="p">)){</span>
+</span><span class="line">  <span class="kr">if</span><span class="p">(</span> i<span class="o">&lt;=</span><span class="m">216</span> <span class="p">){</span>
+</span><span class="line">    temp<span class="o">&lt;-</span><span class="m">0</span><span class="c1">#denALL[i+216,4]/0.5</span>
+</span><span class="line">    gradAy<span class="o">&lt;-</span>rbind<span class="p">(</span>gradAy<span class="p">,</span>temp<span class="p">)</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line">  <span class="kr">else</span> <span class="kr">if</span><span class="p">(</span> i<span class="o">&gt;=</span> <span class="m">5617</span> <span class="p">){</span>
+</span><span class="line">    temp<span class="o">&lt;-</span><span class="m">0</span>
+</span><span class="line">    gradAy<span class="o">&lt;-</span>rbind<span class="p">(</span>gradAy<span class="p">,</span>temp<span class="p">)</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line">  <span class="kr">else</span><span class="p">{</span>
+</span><span class="line">    temp<span class="o">&lt;-</span>denALL<span class="p">[</span>i<span class="m">+261</span><span class="p">,</span><span class="m">3</span><span class="p">]</span><span class="o">-</span>denALL<span class="p">[</span>i<span class="m">-216</span><span class="p">,</span><span class="m">3</span><span class="p">]</span>
+</span><span class="line">    gradAy<span class="o">&lt;-</span>rbind<span class="p">(</span>gradAy<span class="p">,</span>temp<span class="p">)</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line"><span class="p">}</span>
+</span><span class="line">
+</span><span class="line">gradA<span class="o">&lt;-</span>data.frame<span class="p">(</span>denALL<span class="o">$</span>x<span class="p">,</span>denALL<span class="o">$</span>y<span class="p">,</span>gradAx<span class="p">,</span>gradAy<span class="p">)</span>
+</span><span class="line">
+</span><span class="line">write.table<span class="p">(</span>gradA<span class="p">,</span><span class="s">&quot;gradA.txt&quot;</span><span class="p">,</span>col.names<span class="o">=</span><span class="k-Variable">F</span><span class="p">,</span>row.names<span class="o">=</span><span class="k-Variable">F</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line"><span class="c1">#============================================================================================</span>
+</span><span class="line"><span class="c1">#A与B粒子的浓度比图</span>
+</span><span class="line"><span class="c1">#============================================================================================</span>
+</span><span class="line">ratioBtoA<span class="o">&lt;-</span>data.frame<span class="p">(</span>denALL<span class="o">$</span>x<span class="p">,</span>denALL<span class="o">$</span>y<span class="p">,</span>denALL<span class="o">$</span>denB<span class="o">/</span>denALL<span class="o">$</span>denA<span class="p">)</span>
+</span><span class="line">write.table<span class="p">(</span>ratioBtoA<span class="p">,</span><span class="s">&quot;ratioBtoA.txt&quot;</span><span class="p">,</span>col.names<span class="o">=</span><span class="k-Variable">F</span><span class="p">,</span>row.names<span class="o">=</span><span class="k-Variable">F</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="gnuplot">gnuplot画图</h2>
+
+<p>就来一个画浓度场图的gnu文件吧！</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+<span class="line-number">54</span>
+<span class="line-number">55</span>
+<span class="line-number">56</span>
+<span class="line-number">57</span>
+<span class="line-number">58</span>
+<span class="line-number">59</span>
+<span class="line-number">60</span>
+<span class="line-number">61</span>
+<span class="line-number">62</span>
+<span class="line-number">63</span>
+<span class="line-number">64</span>
+<span class="line-number">65</span>
+</pre></td><td class="code"><pre><code class="r"><span class="line"><span class="c1">#!/usr/bin/gnuplot</span>
+</span><span class="line"><span class="c1">#</span>
+</span><span class="line"><span class="c1"># Interpolating a heat map</span>
+</span><span class="line"><span class="c1">#</span>
+</span><span class="line"><span class="c1"># AUTHOR: Hagen Wierstorf</span>
+</span><span class="line"><span class="c1"># VERSION: gnuplot 4.6 patchlevel 0</span>
+</span><span class="line">
+</span><span class="line">reset
+</span><span class="line">
+</span><span class="line"><span class="c1"># wxt</span>
+</span><span class="line"><span class="c1">#set xterm jpeg size 216,16 #enhanced font &#39;Verdana,10&#39; persist</span>
+</span><span class="line"><span class="c1"># png</span>
+</span><span class="line"><span class="c1">#set terminal pngcairo size 1080,160 enhanced font &#39;Verdana,10&#39;</span>
+</span><span class="line"><span class="c1">#set output &#39;density-B.png&#39;</span>
+</span><span class="line">
+</span><span class="line">set terminal postscript eps size <span class="m">108</span><span class="p">,</span><span class="m">18</span> enhanced font <span class="s">&quot;Arial-Bold,100&quot;</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">set border linewidth <span class="m">0</span>
+</span><span class="line">unset key
+</span><span class="line"><span class="c1">#set colorbox</span>
+</span><span class="line"><span class="c1">#unset tics</span>
+</span><span class="line">set colorbox horiz user origin <span class="m">.1</span><span class="p">,</span><span class="m">.06</span> size <span class="m">.8</span><span class="p">,</span><span class="m">.04</span>
+</span><span class="line">
+</span><span class="line">set cbtics
+</span><span class="line">set grid cbtics
+</span><span class="line">
+</span><span class="line">set format cb <span class="s">&quot;%.1f&quot;</span>
+</span><span class="line">
+</span><span class="line"><span class="c1">#set palette grey</span>
+</span><span class="line"><span class="c1"># palette</span>
+</span><span class="line"><span class="c1"># set path of config snippets</span>
+</span><span class="line"><span class="c1">#set loadpath &#39;/home/iphyer/.config/gnuplot/&#39;</span>
+</span><span class="line"><span class="c1">#load &#39;ylrd.pal&#39;</span>
+</span><span class="line">set palette negative defined <span class="p">(</span> \
+</span><span class="line">    <span class="m">2</span> <span class="s">&#39;#d73027&#39;</span><span class="p">,</span>\
+</span><span class="line">    <span class="m">3</span> <span class="s">&#39;#f46d43&#39;</span><span class="p">,</span>\
+</span><span class="line">    <span class="m">4</span> <span class="s">&#39;#fdae61&#39;</span><span class="p">,</span>\
+</span><span class="line">    <span class="m">5</span> <span class="s">&#39;#fee090&#39;</span><span class="p">,</span>\
+</span><span class="line">    <span class="m">6</span> <span class="s">&#39;#E6F598&#39;</span><span class="p">,</span>\
+</span><span class="line">    <span class="m">7</span> <span class="s">&#39;#ABDDA4&#39;</span><span class="p">,</span>\
+</span><span class="line">    <span class="m">8</span> <span class="s">&#39;#66C2A5&#39;</span><span class="p">,</span>\
+</span><span class="line">    <span class="m">9</span> <span class="s">&#39;#3288BD&#39;</span> <span class="p">)</span>
+</span><span class="line">
+</span><span class="line">set yrange <span class="p">[</span><span class="m">3</span><span class="o">:</span><span class="m">16</span><span class="p">]</span>
+</span><span class="line">set xrange <span class="p">[</span><span class="m">0</span><span class="o">:</span><span class="m">108</span><span class="p">]</span>
+</span><span class="line"><span class="c1">#set pm3d  </span>
+</span><span class="line"><span class="c1">#splot &quot;file&quot;</span>
+</span><span class="line">set dgrid3d
+</span><span class="line">set pm3d map
+</span><span class="line">set size ratio <span class="m">-1</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">set output <span class="s">&#39;densityB.eps&#39;</span>
+</span><span class="line">plot <span class="s">&#39;density.txt&#39;</span> u <span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="o">:</span><span class="m">4</span> with image
+</span><span class="line">set output
+</span><span class="line">
+</span><span class="line">
+</span><span class="line">set output <span class="s">&#39;densityA.eps&#39;</span>
+</span><span class="line">plot <span class="s">&#39;density.txt&#39;</span> u <span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="o">:</span><span class="m">3</span> with image
+</span><span class="line">set output
+</span><span class="line">
+</span><span class="line">set output <span class="s">&#39;ratioBtoA.eps&#39;</span>
+</span><span class="line">plot <span class="s">&#39;ratioBtoA.txt&#39;</span> u <span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="o">:</span><span class="m">3</span> with image
+</span><span class="line">set output
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="section-6">结果</h2>
+
+<p>最后放一个结果图吧，漂亮一点</p>
+
+<p><img src="/images/sci/densityB.png" alt="tu１" /></p>
+
+<p><img src="/images/sci/denA.png" alt="tu2" /></p>
+
+<p>希望这些脚本可以帮助到大家！</p>
+
+<p>欢迎留言讨论。</p>
+
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-06-07T23:13:00-05:00" pubdate data-updated="true">Jun 7<span>th</span>, 2015</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/科研/'>科研</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2015/06/07/bash-szcs/#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	
+<!---	<a class="addthis_counter addthis_pill_style"></a> --->
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2017
+
+    iphyer
+
+<br>
+Powered by Octopress.
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'iphyersblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://iphyer.github.com/blog/2015/06/07/bash-szcs/';
+        var disqus_url = 'http://iphyer.github.com/blog/2015/06/07/bash-szcs/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-33194427-1');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+</body>
+</html>

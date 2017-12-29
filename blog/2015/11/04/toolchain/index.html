@@ -1,0 +1,546 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<script data-cfasync="false" type="text/javascript" src="//use.typekit.net/axj3cfp.js"></script>
+	<script data-cfasync="false" type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<meta charset="utf-8">
+	<title>论文工具链总结  | 桑弧蓬矢射四方</title>
+
+<meta name="author" content="iphyer"> 
+
+<meta name="description" content="起因 终于昨天晚上把我的论文初稿写好，拖延症很严重。今天晚上正好把自己拉下来没有总结的东西都总结下，前面几个都是游记这种，这个会回到老本行的科研工具上。 分成两个部分，第一部分如何在服务器上快速的做不同参数的计算；第二个部分如何绘制流场线。 快速参数计算 先说下需求， &hellip;"> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="桑弧蓬矢射四方" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="/stylesheets/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
+
+<script language="Javascript" type="text/javascript">
+$(document).ready(
+  function() {
+    (function($) {
+      $(".fancybox[data-content-id]").each(function() {
+        this.href = $(this).data('content-id');
+      });
+      $(".fancybox").fancybox({
+        beforeLoad: function() {
+          var el, 
+              id = $(this.element).data('title-id');
+
+          if (id) {
+            el = $('#' + id);
+
+            if (el.length) {
+              this.title = el.html();
+            }
+          }
+          if ($(this).data('content')) {
+            this.content = $(this).data('content');
+          }
+        },
+        helpers: {
+          title: {
+            type: 'inside'
+          }
+        }
+      });
+    })(jQuery);
+  }
+);
+</script>
+
+	<!--- MathJax Configuration -->
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML,http://drz.ac/javascripts/MathJaxLocal.js">
+</script>
+
+</head>
+
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">桑弧蓬矢射四方</a></h1>
+<h4></h4>
+<nav id="main-nav"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:iphyer.github.com">
+			</form>
+		</div>
+	</div>
+</nav>
+
+
+</header>
+
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">论文工具链总结</h2>
+	<div class="entry-content"><h1 id="section">起因</h1>
+
+<p>终于昨天晚上把我的论文初稿写好，拖延症很严重。今天晚上正好把自己拉下来没有总结的东西都总结下，前面几个都是游记这种，这个会回到老本行的科研工具上。</p>
+
+<p>分成两个部分，第一部分如何在服务器上快速的做不同参数的计算；第二个部分如何绘制流场线。</p>
+
+<!--more-->
+
+<h1 id="section-1">快速参数计算</h1>
+
+<p>先说下需求，其实很简单就是如何在模拟计算的使用不同的参数，比如调节下作用势的大小，或者两个粒子的间距这个一般来说你是知道参数多少的。</p>
+
+<p>我使用C语言完成模拟，最重要的是这么一个宏定义:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="c"><span class="line"><span class="cp">#define beadsdistance 6</span><span class="c1">// distance between Beads 1 and Beads 2 the centre of the ball</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>然后一个节点只有16个CPU,所以我的一组参数是计算8个RUN，然后做统计，</p>
+
+<p>上bash脚本:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="c">#!/bin/sh</span>
+</span><span class="line"><span class="nv">date</span><span class="o">=</span><span class="s2">&quot;20151028-1&quot;</span>
+</span><span class="line"><span class="nv">templatesource</span><span class="o">=</span><span class="s2">&quot;HF-p-d.c&quot;</span>
+</span><span class="line"><span class="nv">prefix</span><span class="o">=</span><span class="s2">&quot;HF-p-d&quot;</span>
+</span><span class="line"><span class="nv">preprog</span><span class="o">=</span><span class="s2">&quot;HFpd&quot;</span>
+</span><span class="line">
+</span><span class="line">mkdir ../run/<span class="k">${</span><span class="nv">date</span><span class="k">}</span>
+</span><span class="line">
+</span><span class="line"><span class="k">for </span>i in <span class="k">$(</span> seq 0 1 <span class="k">)</span>
+</span><span class="line"><span class="k">do</span>
+</span><span class="line"><span class="k">    </span><span class="nv">prog</span><span class="o">=</span><span class="nv">$preprog</span><span class="k">${</span><span class="nv">i</span><span class="k">}</span>
+</span><span class="line">    <span class="nb">source</span><span class="o">=</span><span class="nv">$prefix</span><span class="k">${</span><span class="nv">i</span><span class="k">}</span><span class="s2">&quot;.c&quot;</span>
+</span><span class="line">    <span class="nv">oldline</span><span class="o">=</span><span class="s2">&quot;#define beadsdistance 6// distance between Beads 1 and Beads 2 the centre of the ball&quot;</span>
+</span><span class="line">    <span class="nv">line</span><span class="o">=</span><span class="s2">&quot;#define beadsdistance &quot;</span><span class="k">${</span><span class="nv">i</span><span class="k">}</span>
+</span><span class="line">
+</span><span class="line">    <span class="nb">cd</span> ~/source/
+</span><span class="line">    cp <span class="k">${</span><span class="nv">templatesource</span><span class="k">}</span> ./<span class="k">${</span><span class="nv">source</span><span class="k">}</span>
+</span><span class="line">    sed -i <span class="s2">&quot;s@$oldline@$line@&quot;</span> ./<span class="k">${</span><span class="nv">source</span><span class="k">}</span>
+</span><span class="line">
+</span><span class="line">    gcc -O2 <span class="k">${</span><span class="nv">source</span><span class="k">}</span> -o <span class="k">${</span><span class="nv">prog</span><span class="k">}</span> -lm
+</span><span class="line">    mkdir ../run/<span class="k">${</span><span class="nv">date</span><span class="k">}</span>/dist<span class="k">${</span><span class="nv">i</span><span class="k">}</span>
+</span><span class="line">    cp <span class="k">${</span><span class="nv">prog</span><span class="k">}</span> ../run/<span class="k">${</span><span class="nv">date</span><span class="k">}</span>/dist<span class="k">${</span><span class="nv">i</span><span class="k">}</span>
+</span><span class="line">    <span class="nb">cd</span> ../run/<span class="k">${</span><span class="nv">date</span><span class="k">}</span>/dist<span class="k">${</span><span class="nv">i</span><span class="k">}</span>
+</span><span class="line">    <span class="k">for </span>j in <span class="k">$(</span> seq 1 8 <span class="k">)</span>
+</span><span class="line">    <span class="k">do</span>
+</span><span class="line"><span class="k">        </span>mkdir ~/run/<span class="k">${</span><span class="nv">date</span><span class="k">}</span>/dist<span class="k">${</span><span class="nv">i</span><span class="k">}</span>/no<span class="k">${</span><span class="nv">j</span><span class="k">}</span>
+</span><span class="line">        <span class="nb">cd</span> ~/run/<span class="k">${</span><span class="nv">date</span><span class="k">}</span>/dist<span class="k">${</span><span class="nv">i</span><span class="k">}</span>/no<span class="k">${</span><span class="nv">j</span><span class="k">}</span>
+</span><span class="line">        cp ~/run/<span class="k">${</span><span class="nv">date</span><span class="k">}</span>/dist<span class="k">${</span><span class="nv">i</span><span class="k">}</span>/<span class="k">${</span><span class="nv">prog</span><span class="k">}</span> .
+</span><span class="line">        ./<span class="k">${</span><span class="nv">prog</span><span class="k">}</span>&gt;record  &amp;
+</span><span class="line">        sleep 5
+</span><span class="line">        <span class="nb">echo</span> <span class="s2">&quot;Done${j}&quot;</span>
+</span><span class="line">    <span class="k">done</span>
+</span><span class="line"><span class="nb">echo</span> <span class="s2">&quot;Done distance ${i}&quot;</span>
+</span><span class="line">
+</span><span class="line"><span class="k">done</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>程序的核心就是使用<code>sed</code>来替换改变参数的那句宏定义。</p>
+
+<p>当然你可能需要根据自己的需求修改。</p>
+
+<h1 id="matlabfigure">绘制流场线(如何从MATLAB的figure中得到曲线信息)</h1>
+
+<p>其实目标就是绘制需要的流场线，但是我能够使用原始信息就是一些流场的每个点的流向信息，也就是从一个矢量图得到一组连续的流场线信息。</p>
+
+<p>首先这个问题从数学上是可解的，以为——每一个点的流场方向其实代表了流场线的切线方向，所以如果你能够定下起始点(一般选择系统边界代表了流入系统或者流出系统)，那么其实就是解这样一个方程$ \frac{ds}{dt} $ = $ \vec v(x,y) $,这个公式很容易通过龙格库塔这些方法解出$s(x,y)$。当然这个是原理分析，如果你能够使用MATLAB就会发现MATLAB可以提供<code>streamline</code>这个函数帮助你很容易的画出流场线。</p>
+
+<p>上代码主代码<code>chanel.m</code></p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+<span class="line-number">54</span>
+<span class="line-number">55</span>
+<span class="line-number">56</span>
+<span class="line-number">57</span>
+</pre></td><td class="code"><pre><code class="matlab"><span class="line"><span class="n">clear</span><span class="p">;</span>
+</span><span class="line"><span class="n">figure</span>
+</span><span class="line"><span class="n">M</span> <span class="p">=</span> <span class="n">dlmread</span><span class="p">(</span><span class="s">&#39;XXX/Wholevelcoity.txt&#39;</span><span class="p">,</span> <span class="s">&#39;\t&#39;</span><span class="p">);</span>
+</span><span class="line"><span class="n">N</span> <span class="p">=</span> <span class="n">dlmread</span><span class="p">(</span><span class="s">&#39;XXX/Provelcoity.txt&#39;</span><span class="p">,</span> <span class="s">&#39;\t&#39;</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line"><span class="n">x</span><span class="p">=</span><span class="n">N</span><span class="p">(:,</span><span class="mi">2</span><span class="p">);</span>
+</span><span class="line"><span class="n">y</span><span class="p">=</span><span class="n">N</span><span class="p">(:,</span><span class="mi">3</span><span class="p">);</span>
+</span><span class="line"><span class="n">u</span><span class="p">=</span><span class="n">N</span><span class="p">(:,</span><span class="mi">4</span><span class="p">);</span>
+</span><span class="line"><span class="n">v</span><span class="p">=</span><span class="n">N</span><span class="p">(:,</span><span class="mi">5</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line"><span class="n">quiver</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="mi">15</span><span class="o">*</span><span class="n">u</span><span class="p">,</span><span class="mi">15</span><span class="o">*</span><span class="n">v</span><span class="p">)</span>
+</span><span class="line"><span class="n">daspect</span><span class="p">([</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">]);</span>
+</span><span class="line">
+</span><span class="line">
+</span><span class="line"><span class="c">%系统参数</span>
+</span><span class="line"><span class="n">Lx</span> <span class="p">=</span> <span class="mi">62</span><span class="p">;</span>
+</span><span class="line"><span class="n">Ly</span> <span class="p">=</span> <span class="mi">20</span><span class="p">;</span>
+</span><span class="line">
+</span><span class="line"><span class="n">XX</span> <span class="p">=</span> <span class="n">M</span><span class="p">(:,</span><span class="mi">2</span><span class="p">);</span>
+</span><span class="line"><span class="n">XX</span> <span class="p">=</span> <span class="n">changeshape</span><span class="p">(</span><span class="n">XX</span><span class="p">,</span><span class="n">Lx</span><span class="p">,</span><span class="n">Ly</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line"><span class="n">YY</span> <span class="p">=</span> <span class="n">M</span><span class="p">(:,</span><span class="mi">3</span><span class="p">);</span>
+</span><span class="line"><span class="n">YY</span> <span class="p">=</span> <span class="n">changeshape</span><span class="p">(</span><span class="n">YY</span><span class="p">,</span><span class="n">Lx</span><span class="p">,</span><span class="n">Ly</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line"><span class="n">UU</span> <span class="p">=</span> <span class="n">M</span><span class="p">(:,</span><span class="mi">4</span><span class="p">);</span>
+</span><span class="line"><span class="n">UU</span> <span class="p">=</span><span class="n">changeshape</span><span class="p">(</span><span class="n">UU</span><span class="p">,</span><span class="n">Lx</span><span class="p">,</span><span class="n">Ly</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line"><span class="n">VV</span> <span class="p">=</span> <span class="n">M</span><span class="p">(:,</span><span class="mi">5</span><span class="p">);</span>
+</span><span class="line"><span class="n">VV</span> <span class="p">=</span> <span class="n">changeshape</span><span class="p">(</span><span class="n">VV</span><span class="p">,</span><span class="n">Lx</span><span class="p">,</span><span class="n">Ly</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line"><span class="n">starty</span><span class="p">=</span><span class="mi">4</span> <span class="p">:</span> <span class="mi">2</span> <span class="p">:</span><span class="mi">20</span><span class="p">;</span>
+</span><span class="line"><span class="n">startx</span> <span class="p">=</span> <span class="nb">ones</span><span class="p">(</span><span class="nb">size</span><span class="p">(</span><span class="n">starty</span><span class="p">));</span>
+</span><span class="line"><span class="n">startx</span> <span class="p">=</span> <span class="n">startx</span><span class="o">+</span><span class="mi">20</span> <span class="p">;</span>
+</span><span class="line">
+</span><span class="line"><span class="n">streamline</span><span class="p">(</span><span class="n">XX</span><span class="p">,</span><span class="n">YY</span><span class="p">,</span><span class="n">UU</span><span class="p">,</span><span class="n">VV</span><span class="p">,</span><span class="n">startx</span><span class="p">,</span><span class="n">starty</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line"><span class="n">ax</span> <span class="p">=</span> <span class="n">get</span><span class="p">(</span><span class="n">gcf</span><span class="p">,</span><span class="s">&#39;children&#39;</span><span class="p">);</span> <span class="c">% get all subplots</span>
+</span><span class="line"><span class="n">XALL</span><span class="p">=[];</span><span class="n">YALL</span><span class="p">=[];</span>
+</span><span class="line"><span class="k">for</span> <span class="n">iax</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span><span class="nb">length</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+</span><span class="line">    <span class="n">child</span> <span class="p">=</span> <span class="n">get</span><span class="p">(</span><span class="n">ax</span><span class="p">(</span><span class="n">iax</span><span class="p">),</span><span class="s">&#39;children&#39;</span><span class="p">);</span> <span class="c">% for each subplot, get all lines</span>
+</span><span class="line">    <span class="k">for</span> <span class="n">ichild</span> <span class="p">=</span> <span class="mi">1</span> <span class="p">:</span> <span class="nb">length</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+</span><span class="line">        <span class="n">XALL</span><span class="p">{</span><span class="k">end</span><span class="o">+</span><span class="mi">1</span><span class="p">}</span> <span class="p">=</span> <span class="n">get</span><span class="p">(</span><span class="n">child</span><span class="p">(</span><span class="n">ichild</span><span class="p">),</span><span class="s">&#39;xdata&#39;</span><span class="p">);</span>
+</span><span class="line">     <span class="n">YALL</span><span class="p">{</span><span class="k">end</span><span class="o">+</span><span class="mi">1</span><span class="p">}</span> <span class="p">=</span> <span class="n">get</span><span class="p">(</span><span class="n">child</span><span class="p">(</span><span class="n">ichild</span><span class="p">),</span><span class="s">&#39;ydata&#39;</span><span class="p">);</span>
+</span><span class="line">    <span class="k">end</span>
+</span><span class="line"><span class="k">end</span>
+</span><span class="line">
+</span><span class="line"><span class="k">for</span> <span class="nb">j</span> <span class="p">=</span> <span class="mi">1</span><span class="p">:</span> <span class="nb">length</span><span class="p">(</span><span class="n">XALL</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span>
+</span><span class="line">    <span class="n">X1</span><span class="p">=</span><span class="n">transpose</span><span class="p">(</span><span class="n">XALL</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="nb">j</span><span class="p">});</span>
+</span><span class="line">    <span class="n">Y1</span><span class="p">=</span><span class="n">transpose</span><span class="p">(</span><span class="n">YALL</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="nb">j</span><span class="p">});</span>
+</span><span class="line">    <span class="n">figure</span>
+</span><span class="line">    <span class="n">plot</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span><span class="n">Y1</span><span class="p">);</span>
+</span><span class="line">    <span class="n">filenm</span> <span class="p">=</span> <span class="p">[</span><span class="s">&#39;Line&#39;</span>    <span class="n">num2str</span><span class="p">(</span><span class="nb">j</span><span class="p">)</span>  <span class="s">&#39;.txt&#39;</span> <span class="p">];</span>
+</span><span class="line">    <span class="n">fid</span><span class="p">=</span><span class="n">fopen</span><span class="p">(</span><span class="n">filenm</span><span class="p">,</span><span class="s">&#39;w+&#39;</span><span class="p">);</span>
+</span><span class="line">    <span class="n">fprintf</span><span class="p">(</span><span class="n">fid</span><span class="p">,</span> <span class="s">&#39;%f \t %f \n&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">X1</span> <span class="n">Y1</span><span class="p">]</span><span class="o">&#39;</span><span class="p">);</span>
+</span><span class="line">    <span class="n">fclose</span><span class="p">(</span><span class="n">fid</span><span class="p">);</span>
+</span><span class="line">
+</span><span class="line"><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>辅助代码<code>changeshape.m</code>,主要对于原始数据格式做转置和重新排列以适合MATLAB对于数据格式的要求。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="matlab"><span class="line"><span class="k">function</span><span class="w"> </span>[out] <span class="p">=</span><span class="w"> </span><span class="nf">changeshape</span><span class="p">(</span>in,Lx,Ly<span class="p">)</span><span class="w"></span>
+</span><span class="line">
+</span><span class="line"><span class="n">XXnew</span><span class="p">=</span><span class="nb">reshape</span><span class="p">(</span><span class="n">in</span><span class="p">,</span><span class="n">Lx</span><span class="p">,</span><span class="n">Ly</span><span class="p">);</span>
+</span><span class="line"><span class="n">out</span> <span class="p">=</span> <span class="n">transpose</span><span class="p">(</span><span class="n">XXnew</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+<p>说明</p>
+
+<p>首先是我的输入文件存在一个是不是舍去边界值的区别，所以一个是<code>Wholevelcoity.txt</code>和<code>Provelcoity.txt</code>，当然每一个都是如下的格式：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="matlab"><span class="line"><span class="n">x</span>   <span class="n">y</span>   <span class="n">vx</span>  <span class="n">vy</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>然后剩下的循环就是从得到的这个流场线中获得自己需要的曲线值，值得强调的是这里非常容易出错，因为你需要不断在MATLAB内部查看数据的存储格式和输出的时候的输出格式，因为MATLAB很有可能使用了错误的存储格式。</p>
+
+<p>然后把导出的结果在gnuplot中画出来。</p>
+
+<p>放一张结果图吧,这个是用Tikz做的组合:</p>
+
+<p><img src="/images/toolchian/m9.png" alt="tu1" /></p>
+
+<p>代码如下:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+</pre></td><td class="code"><pre><code class="latex"><span class="line"><span class="k">\documentclass</span><span class="na">[tikz]</span><span class="nb">{</span>standalone<span class="nb">}</span>
+</span><span class="line"><span class="k">\usetikzlibrary</span><span class="nb">{</span>positioning<span class="nb">}</span>
+</span><span class="line"><span class="k">\usepackage</span><span class="nb">{</span>lmodern<span class="nb">}</span>
+</span><span class="line"><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\tikzmark</span><span class="nb">}</span>[2]<span class="nb">{</span><span class="k">\tikz</span><span class="na">[remember picture, baseline]</span> <span class="k">\node</span><span class="na">[inner sep=0pt, outer sep=0pt, anchor=base]</span> (#1) <span class="nb">{</span>#2<span class="nb">}</span>;<span class="nb">}</span>
+</span><span class="line">
+</span><span class="line"><span class="k">\newcommand</span><span class="nb">{</span><span class="k">\ZuiDa</span><span class="nb">}{</span><span class="k">\fontsize</span><span class="nb">{</span>100pt<span class="nb">}{</span>0.5pt<span class="nb">}}</span>
+</span><span class="line">
+</span><span class="line"><span class="k">\begin</span><span class="nb">{</span>document<span class="nb">}</span>
+</span><span class="line">
+</span><span class="line"><span class="k">\begin</span><span class="nb">{</span>tikzpicture<span class="nb">}</span>[remember picture]
+</span><span class="line"><span class="k">\node</span> (A) at(-40,0) <span class="nb">{</span>
+</span><span class="line"><span class="nb">{</span><span class="k">\includegraphics</span><span class="nb">{</span>B2portB.eps<span class="nb">}}</span>
+</span><span class="line"><span class="nb">}</span>;
+</span><span class="line">
+</span><span class="line"><span class="k">\draw</span> (-78.5,25.0) node <span class="nb">{</span> <span class="k">\ZuiDa</span> <span class="k">\textbf</span><span class="nb">{</span>(<span class="k">\emph</span><span class="nb">{</span>a<span class="nb">}</span>)<span class="nb">}}</span>;
+</span><span class="line">
+</span><span class="line">
+</span><span class="line"><span class="k">\node</span><span class="na">[right=of A]</span> (B) at (0,0)<span class="nb">{</span>
+</span><span class="line"><span class="nb">{</span><span class="k">\includegraphics</span><span class="nb">{</span>B2vector.eps<span class="nb">}}</span>
+</span><span class="line"><span class="nb">}</span>;
+</span><span class="line">
+</span><span class="line"><span class="k">\draw</span> (-1.5,25) node <span class="nb">{</span> <span class="k">\ZuiDa</span> <span class="k">\textbf</span><span class="nb">{</span>(<span class="k">\emph</span><span class="nb">{</span>b<span class="nb">}</span>)<span class="nb">}}</span>;
+</span><span class="line">
+</span><span class="line"><span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</span><span class="line"><span class="c">%B3</span>
+</span><span class="line"><span class="c">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</span><span class="line"><span class="k">\node</span> (C) at(0,-60) <span class="nb">{</span>
+</span><span class="line"><span class="nb">{</span><span class="k">\includegraphics</span><span class="nb">{</span>B3portB.eps<span class="nb">}}</span>
+</span><span class="line"><span class="nb">}</span>;
+</span><span class="line">
+</span><span class="line"><span class="k">\draw</span> (-78.5,-40.0) node <span class="nb">{</span> <span class="k">\ZuiDa</span> <span class="k">\textbf</span><span class="nb">{</span>(<span class="k">\emph</span><span class="nb">{</span>c<span class="nb">}</span>)<span class="nb">}}</span>;
+</span><span class="line">
+</span><span class="line">
+</span><span class="line"><span class="k">\node</span><span class="na">[right=of C]</span> (D) at (-80,-118)<span class="nb">{</span>
+</span><span class="line"><span class="nb">{</span><span class="k">\includegraphics</span><span class="nb">{</span>B3vector.eps<span class="nb">}}</span>
+</span><span class="line"><span class="nb">}</span>;
+</span><span class="line"><span class="k">\draw</span> (-78.5,-100) node <span class="nb">{</span> <span class="k">\ZuiDa</span> <span class="k">\textbf</span><span class="nb">{</span>(<span class="k">\emph</span><span class="nb">{</span>d<span class="nb">}</span>)<span class="nb">}}</span>;
+</span><span class="line">
+</span><span class="line">
+</span><span class="line"><span class="c">%node[right=of B] (C) at (-2.641,-2.15){</span>
+</span><span class="line"><span class="c">%{\includegraphics[width=.5\textwidth]{system5.pdf}}</span>
+</span><span class="line"><span class="c">%};</span>
+</span><span class="line"><span class="k">\end</span><span class="nb">{</span>tikzpicture<span class="nb">}</span>
+</span><span class="line"><span class="k">\end</span><span class="nb">{</span>document<span class="nb">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>核心要点就是把图放到<code>node</code>结构里面，调节<code>node</code>的位置。</p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-11-04T00:15:00-06:00" pubdate data-updated="true">Nov 4<span>th</span>, 2015</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/科研/'>科研</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2015/11/04/toolchain/#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	
+<!---	<a class="addthis_counter addthis_pill_style"></a> --->
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2017
+
+    iphyer
+
+<br>
+Powered by Octopress.
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'iphyersblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://iphyer.github.com/blog/2015/11/04/toolchain/';
+        var disqus_url = 'http://iphyer.github.com/blog/2015/11/04/toolchain/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-33194427-1');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+</body>
+</html>

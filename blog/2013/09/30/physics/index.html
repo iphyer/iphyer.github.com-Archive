@@ -1,0 +1,236 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<script data-cfasync="false" type="text/javascript" src="//use.typekit.net/axj3cfp.js"></script>
+	<script data-cfasync="false" type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<meta charset="utf-8">
+	<title>关于物理思维的思考  | 桑弧蓬矢射四方</title>
+
+<meta name="author" content="iphyer"> 
+
+<meta name="description" content="起因 今天上固体材料课程，老师在讲解Ginzburg-Landau(金兹堡—朗道,GL)方程的时候，这么总结物理，物理是哲学的思维+数学的表达。 这句话不能同意更多！这里我展开一下自己的观点和思考。 第一流的物理学家都是哲学家 当我们回顾历史的时候，我们无法否认的是——一流的物理学家都是哲学家。 &hellip;"> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="桑弧蓬矢射四方" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="/stylesheets/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
+
+<script language="Javascript" type="text/javascript">
+$(document).ready(
+  function() {
+    (function($) {
+      $(".fancybox[data-content-id]").each(function() {
+        this.href = $(this).data('content-id');
+      });
+      $(".fancybox").fancybox({
+        beforeLoad: function() {
+          var el, 
+              id = $(this.element).data('title-id');
+
+          if (id) {
+            el = $('#' + id);
+
+            if (el.length) {
+              this.title = el.html();
+            }
+          }
+          if ($(this).data('content')) {
+            this.content = $(this).data('content');
+          }
+        },
+        helpers: {
+          title: {
+            type: 'inside'
+          }
+        }
+      });
+    })(jQuery);
+  }
+);
+</script>
+
+	<!--- MathJax Configuration -->
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML,http://drz.ac/javascripts/MathJaxLocal.js">
+</script>
+
+</head>
+
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">桑弧蓬矢射四方</a></h1>
+<h4></h4>
+<nav id="main-nav"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:iphyer.github.com">
+			</form>
+		</div>
+	</div>
+</nav>
+
+
+</header>
+
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">关于物理思维的思考</h2>
+	<div class="entry-content"><h1 id="section">起因</h1>
+
+<p>今天上固体材料课程，老师在讲解Ginzburg-Landau(金兹堡—朗道,GL)方程的时候，这么总结物理，物理是哲学的思维+数学的表达。</p>
+
+<p>这句话不能同意更多！这里我展开一下自己的观点和思考。</p>
+
+<!--more-->
+
+<p>第一流的物理学家都是哲学家</p>
+
+<p>当我们回顾历史的时候，我们无法否认的是——一流的物理学家都是哲学家。从Taylors提出水是万物的构成开启了物理学的大门开始，人类的思考就不断地深入和发展，物理学也迎来了自己的一代代天才。亚理士多德的哲学和物理并重；伽利略对于惯性原理的表达，他的著作叫做《两个世界的对话》；牛顿的著作更加直接《自然哲学的数学原理》；玻尔的量子论，爱因斯坦的相对论等等。</p>
+
+<p>往往它们的背后物理都非常简单。</p>
+
+<p>波尔的量子论，包括三个假设，原子定态，轨道假说，电子迁移等。爱因斯坦的狭义相对论更是只有两个假设：各系均权，光速不变。更绝的是玻尔兹曼建立热力学，只有一个假设：各微观态等概率出现。</p>
+
+<p>老师上课深深热爱的Ginzburg-Landau其实也就是三个假设：序参量表示超导过程且突变处序参量为零；自由能可以写成序参量的幂级数展开；各项系数和温度T有关。这样的简单假设，加上美妙的数学推到就是Ginzburg-Landau方程。直接描写和刻画超导的唯相方程。</p>
+
+<p>在南京大学，上鞠国兴老师的课程，有次提到Landau，鞠国兴这么介绍Landau，数学的天才，物理的大师。强力推荐Landau的书，说法是每个学习物理的同学都该亲手推算一下Landau的书，体会一下Landau的思想和数学。这是一种宝贵的经历。确实是，越深入的学习越是感觉到Landau的伟大。很多时候，我们需要苦思冥想的一些数学，Landau可以一下子有美妙的数学表现出来。</p>
+
+<p>为什么第一流的物理学家都是哲学家？</p>
+
+<p>因为只有哲学家才能直接抵达本质，用本质思考。很多的时候，我们做的工作复杂难解，只是我们离本质太远以至于我们没办法体会出这些简洁的美丽。物理学家往往是直接想出了一个精彩的点子，这个点子就直接抵达了问题的本质，也是我们思考的终极目标。</p>
+
+<p>有了这个伟大的想法还不够，还需要将这个想法用数学表达。物理不是文科。我们是精确的科学，你的想法要用数学表达，得出的结论用数学的形式展示。如果说法拉第的时代，人们还可以需要的数学不多，那么现在这个时代没有数学寸步难行。</p>
+
+<p>所以推荐物理系的学生可以少看点物理，但是一定要打好数学基础！</p>
+
+<p>看看柯郎，希尔伯特写的数学书，大家的作品是关键。朗道的物理书也值得一读。如果是中文版要注意有没有人校定，用鞠国兴老师的说法，他就校定过基本朗道的物理书中文版，不校定基本上是不能阅读。错误百出。</p>
+
+<p>这里也给自己加个油，本科没有读完，希望研一可以结束朗道！</p>
+
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-30T20:52:00-05:00" pubdate data-updated="true">Sep 30<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/physics/'>physics</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2013/09/30/physics/#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	
+<!---	<a class="addthis_counter addthis_pill_style"></a> --->
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2017
+
+    iphyer
+
+<br>
+Powered by Octopress.
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'iphyersblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://iphyer.github.com/blog/2013/09/30/physics/';
+        var disqus_url = 'http://iphyer.github.com/blog/2013/09/30/physics/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-33194427-1');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+</body>
+</html>

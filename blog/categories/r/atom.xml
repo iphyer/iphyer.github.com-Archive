@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: R | 桑弧蓬矢射四方]]></title>
+  <link href="http://iphyer.github.com/blog/categories/r/atom.xml" rel="self"/>
+  <link href="http://iphyer.github.com/"/>
+  <updated>2017-12-29T00:57:30-06:00</updated>
+  <id>http://iphyer.github.com/</id>
+  <author>
+    <name><![CDATA[iphyer]]></name>
+    <email><![CDATA[iphyer@163.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Rstudio修改默认library安装位置]]></title>
+    <link href="http://iphyer.github.com/blog/2015/08/02/rstudio/"/>
+    <updated>2015-08-02T00:38:00-05:00</updated>
+    <id>http://iphyer.github.com/blog/2015/08/02/rstudio</id>
+    <content type="html"><![CDATA[<h1 id="section">目标</h1>
+
+<p>主要是在清理Linux的home目录，之前使用 Rstudio 一直会在home目录下建立一个安装library的文件，功能也很单一。但是一直也没找到什么好的修改方法。</p>
+
+<p>今天晚上查阅了下，修改成功，特此记录。</p>
+
+<!--more-->
+
+<h1 id="section-1">方法</h1>
+
+<p>其实很简单R的<code>libPaths()</code>命令记录了安装library的位置，但是具体这个信息记录在何处呢？</p>
+
+<p>查找下在<code>/usr/lib/R/etc/</code>下的<code>Renviron</code>文件中。找到这一行</p>
+
+<p>```</p>
+
+<p>R_LIBS_SITE=${R_LIBS_SITE-‘/home/XXX/Archive/software/R/x86_64-pc-linux-gnu-library/3.0/:/usr/local/lib/R/site-library:/usr/lib/R/site-library:/usr/lib/R/library’}</p>
+
+<p>```
+当然上面包含XXX的路径修改成你希望的存储目录即可。</p>
+
+<p>修改之后的再次在R中运行<code>libPaths()</code>命令的结果是:</p>
+
+<p>```
+&gt; .libPaths()
+[1] “/home/XXX/Archive/software/R/x86_64-pc-linux-gnu-library/3.0”
+[2] “/usr/local/lib/R/site-library”                                <br />
+[3] “/usr/lib/R/site-library”                                      <br />
+[4] “/usr/lib/R/library”    </p>
+
+<p>```</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[用R做DSC曲线图]]></title>
+    <link href="http://iphyer.github.com/blog/2014/11/24/plotdata/"/>
+    <updated>2014-11-24T22:12:00-06:00</updated>
+    <id>http://iphyer.github.com/blog/2014/11/24/plotdata</id>
+    <content type="html"><![CDATA[<h1 id="section">前言</h1>
+
+<p>前不久做了大量的DSC实验，昨天时间紧迫就使用了R作为编程语言实现了图形的绘制。</p>
+
+<p>我对于这个程序的要求就是简单实际，方便和快速。同时最后的图需要美观一点。这样的需求让我选择了用R实现这个程序，虽然我知道在Origin中也一定能够实现类似的功能，但是相对而言R在Linux环境下表现更好，同时是免费。Origin的C编程没怎么学习也就不去凑热闹了。</p>
+
+<p>做完的感觉,ggplot2真是R的核武器级别绘图软件，太赞了。</p>
+
+<!--more-->
+
+<h1 id="section-1">主要代码部分</h1>
+
+<h2 id="section-2">数据格式</h2>
+<p>不同温度下的热流数据，也就是(T1,HF1),(T2,HF2),(T3,HF3),(T4,HF4)这样的一系列数据</p>
+
+<h2 id="section-3">经验总结:</h2>
+
+<ol>
+  <li>尽量使用变量代替硬编码</li>
+  <li>在R这样的行列数据处理的时候，其实使用行号和列号更加方便和实用而不是硬要去使用数值查找方法，数值查找的缺点除了慢以外就是容易出现多个结果，这样就导致查找失败最终影响程序运行</li>
+  <li>ggplot的默认设置确实是为了电脑端显示设置，很多细节的处理都不是特别好。这需要仔细体会，特别是你在幻灯片上展示自己的数据的时候。其实有明确意义的数据线和数据名称都应该加大，加粗。一般的经验38号字体左右才是在幻灯片上清晰看到横纵坐标轴名称和数据的合适大小。</li>
+</ol>
+
+<h2 id="section-4">代码</h2>
+
+<pre><code>
+#load the needed library and the data file
+library(ggplot2)
+
+#setup of data processing
+# you must be careful here and the end of the programe for the begining set up the parameters for caculation 
+#and the end for ploting
+
+#in windows you can use read.csv("c:\\users\\JoeUser\\Desktop\\JoesData.csv")
+
+dat&lt;-read.csv("/home/famer/temp/DSC/Book1.csv",header=F)
+colnames(dat)&lt;-c('T1','ascast','T2','rejuvenation')
+
+# Transfer Celsius Degrees to Kelvin Degrees plus every temperature data with 273.16
+const&lt;-273.16
+dat[,seq(1,ncol(dat),by = 2)] &lt;- dat[,seq(1,ncol(dat),by = 2)] + const
+
+#Ts ,Te  are choosen to finish the data transfer task
+#below makes heat flow at Te to 0
+#and R is represented the row to make the programe more efficeient to transplant to other DSC curves
+Ts&lt;-160.06+273.16
+Te&lt;-230.14+273.16
+Rs&lt;-472
+Re&lt;-735
+
+
+col&lt;-seq(2,ncol(dat),by = 2) #col:2  4  6  8 10 12 14 16 18 20 22 24
+for(i in col){
+  hf0&lt;-dat[Rs,i]
+  dat[,i]&lt;-dat[,i]-hf0
+}
+
+#dat[,seq(2,ncol(dat),by = 2)] &lt;- dat[,seq(2,ncol(dat),by = 2)] - dat[,seq(2,ncol(dat),by = 2)][dat[,seq(1,ncol(dat),by = 2)]==453.41]
+
+#calculate mean of the 12 heat flow data in Te
+HFmean&lt;-0
+for(i in col){
+  HFmean&lt;-dat[Re,i]+HFmean
+}
+HFmean=HFmean*2.0/ncol(dat)
+
+#the lineal transform formula is like the following (use col("0.5min") as example):
+#col("0.5min")-[([0.05700000-(-0.01710000)]-HFmean)/(Te-Ts)]*(col(T1)-Ts)
+
+for(i in col){
+  k&lt;-(dat[Re,i]-HFmean)/(Te-Ts)
+  dat[,i]&lt;-dat[,i]-k*(dat[,i-1]-Ts)
+}
+
+#Now plot the 12 pairs of data on the same plot with intervals from Ts to Te
+#linesize is the parmeter to set the linesize to make the plot more pronounced
+linesize&lt;-1.5
+ggplot(dat, aes(x=dat[,grep("T",colnames(dataF))], color = variable)) +
+  geom_line(aes(x = T1,y=`ascast`, col = "ascast"),size=linesize) + 
+  geom_line(aes(x = T2, y=`rejuvenation`,col = "rejuvenation"),size=linesize)+
+  #geom_line(aes(x = T3,y=`2min`, col = "2min")) + 
+  #geom_line(aes(x = T4, y=`4min`,col = "4min"))+
+  #geom_line(aes(x = T5,y=`8min`, col = "8min")) + 
+  #geom_line(aes(x = T6, y=`ascast1`,col = "ascast1"))+
+  #geom_line(aes(x = T7,y=`ascast2`, col = "ascast2")) + 
+  #geom_point(aes(x = T8, y=`ascast1`,col = "ascast1"))+
+  #geom_point(aes(x = T9,y=`ascast2`, col = "ascast2")) + 
+  #geom_point(aes(x = T10, y=`ascast3`,col = "ascast3"))+
+  #geom_point(aes(x = T11,y=`ascast4`, col = "ascast4")) + 
+  #geom_point(aes(x = T12, y=`ascast5`,col = "ascast5"))+
+  xlim(300,680)+
+  ylab(expression("Normized Heat Flow W/g"))+
+  xlab(expression(Temperature/k))+
+  theme_gray(base_size = 38, base_family = "TypeLand KhangXi Dict Trial")+
+  theme(legend.text=element_text(size=25,family = "TypeLand KhangXi Dict Trial"),axis.title.x=element_text(face="bold"),axis.title.y=element_text(face="bold"))
+
+
+#To get the local characteristic of the data
+ggplot(dat, aes(x=dat[,grep("T",colnames(dataF))], color = variable)) +
+  geom_line(aes(x = T1,y=`ascast`, col = "ascast"),size=linesize) + 
+  geom_line(aes(x = T2, y=`rejuvenation`,col = "rejuvenation"),size=linesize)+
+  #geom_line(aes(x = T3,y=`2min`, col = "2min")) + 
+  #geom_line(aes(x = T4, y=`4min`,col = "4min"))+
+  #geom_line(aes(x = T5,y=`8min`, col = "8min")) + 
+  #geom_line(aes(x = T6, y=`ascast1`,col = "ascast1"))+
+  #geom_line(aes(x = T7,y=`ascast2`, col = "ascast2")) + 
+  #geom_point(aes(x = T8, y=`ascast1`,col = "ascast1"))+
+  #geom_point(aes(x = T9,y=`ascast2`, col = "ascast2")) + 
+  #geom_point(aes(x = T10, y=`ascast3`,col = "ascast3"))+
+  #geom_point(aes(x = T11,y=`ascast4`, col = "ascast4")) + 
+  #geom_point(aes(x = T12, y=`ascast5`,col = "ascast5"))+
+  xlim(400,500)+
+  ylim(-0.1,0.1)+
+  ylab(expression("Normized Heat Flow W/g"))+
+  xlab(expression(Temperature/k))+
+  theme_gray(base_size = 38, base_family = "TypeLand KhangXi Dict Trial")+
+  theme(legend.text=element_text(size=25,family = "TypeLand KhangXi Dict Trial"),axis.title.x=element_text(face="bold"),axis.title.y=element_text(face="bold"))
+
+
+
+#some testing code, you can ingore
+#but they are useful when you want to encounter something strange or wrong
+#dat[,2][dat[,1]==Te]
+#dat[,4][dat[,1]==Te]
+#dat[,6][dat[,1]==Te]
+#dat[,8][dat[,1]==Ts]
+
+
+
+</code></pre>
+
+<h1 id="section-5">画图结果</h1>
+<p>这是最终确定的下次画图就要使用的ggplot换图程序。</p>
+
+<p><img src="/images/R/Rplot.png" alt="tu１" />
+<img src="/images/R/Rplot01.png" alt="tu１" /></p>
+
+<p>多条曲线，这也是R程序最有效率的时候</p>
+
+<p><img src="/images/R/Rplot02.png" alt="tu１" /></p>
+
+<h1 id="section-6">最终确定的方案</h1>
+
+<p>后来和同学讨论中，同学又一次提到了很多的需要修改的部分，现在终于把这些都实现了，最后的实现总结在下面。甚至给ggplot作者Hadley写信了。</p>
+
+<pre><code>
+#load the needed library and the data file
+library(ggplot2)
+library(grid)
+
+
+#setup of data processing
+# you must be careful here and the end of the programe for the begining set up the parameters for caculation 
+#and the end for ploting
+
+#in windows you can use read.csv("c:\\users\\JoeUser\\Desktop\\JoesData.csv")
+
+dat&lt;-read.csv("/home/famer/HeatCycle/data/DSC/Book1.csv",header=F)
+colnames(dat)&lt;-c('T1','ascast','T2','rejuvenation')
+
+# Transfer Celsius Degrees to Kelvin Degrees plus every temperature data with 273.16
+const&lt;-273.16
+dat[,seq(1,ncol(dat),by = 2)] &lt;- dat[,seq(1,ncol(dat),by = 2)] + const
+
+#Ts ,Te  are choosen to finish the data transfer task
+#below makes heat flow at Te to 0
+#and R is represented the row to make the programe more efficeient to transplant to other DSC curves
+Ts&lt;-160.06+273.16
+Te&lt;-230.14+273.16
+Rs&lt;-472
+Re&lt;-735
+
+
+col&lt;-seq(2,ncol(dat),by = 2) #col:2  4  6  8 10 12 14 16 18 20 22 24
+for(i in col){
+  hf0&lt;-dat[Rs,i]
+  dat[,i]&lt;-dat[,i]-hf0
+}
+
+#dat[,seq(2,ncol(dat),by = 2)] &lt;- dat[,seq(2,ncol(dat),by = 2)] - dat[,seq(2,ncol(dat),by = 2)][dat[,seq(1,ncol(dat),by = 2)]==453.41]
+
+#calculate mean of the 12 heat flow data in Te
+HFmean&lt;-0
+for(i in col){
+  HFmean&lt;-dat[Re,i]+HFmean
+}
+HFmean=HFmean*2.0/ncol(dat)
+
+#the lineal transform formula is like the following (use col("0.5min") as example):
+#col("0.5min")-[([0.05700000-(-0.01710000)]-HFmean)/(Te-Ts)]*(col(T1)-Ts)
+
+for(i in col){
+  k&lt;-(dat[Re,i]-HFmean)/(Te-Ts)
+  dat[,i]&lt;-dat[,i]-k*(dat[,i-1]-Ts)
+}
+
+#Now plot the 12 pairs of data on the same plot with intervals from Ts to Te
+#linesize is the parmeter to set the linesize to make the plot more pronounced
+#please you can choose the font type you want to use but please insure that you have 'TypeLand KhangXi Dict Trial' the font that use as default
+
+linesize&lt;-3
+
+#To get the local characteristic of the data
+ggplot(dat, aes(x=dat[,grep("T",colnames(dataF))], color = variable)) +
+  geom_line(aes(x = T1,y=`ascast`, col = "ascast"),size=linesize) + 
+  geom_line(aes(x = T2, y=`rejuvenation`,col = "rejuvenation"),size=linesize)+
+  #geom_line(aes(x = T3,y=`2min`, col = "2min")) + 
+  #geom_line(aes(x = T4, y=`4min`,col = "4min"))+
+  #geom_line(aes(x = T5,y=`8min`, col = "8min")) + 
+  #geom_line(aes(x = T6, y=`ascast1`,col = "ascast1"))+
+  #geom_line(aes(x = T7,y=`ascast2`, col = "ascast2")) + 
+  #geom_point(aes(x = T8, y=`ascast1`,col = "ascast1"))+
+  #geom_point(aes(x = T9,y=`ascast2`, col = "ascast2")) + 
+  #geom_point(aes(x = T10, y=`ascast3`,col = "ascast3"))+
+  #geom_point(aes(x = T11,y=`ascast4`, col = "ascast4")) + 
+  #geom_point(aes(x = T12, y=`ascast5`,col = "ascast5"))+
+  xlim(400,500)+
+  ylim(-0.01,0.1)+
+  ylab(expression("Normized Heat Flow W/g"))+
+  xlab(expression(Temperature/k))+
+  theme_bw(base_size = 38, base_family = "TypeLand KhangXi Dict Trial")+
+  theme(legend.position=c(0.15,0.8),legend.text = element_text( size = 35, face = "bold"),legend.title=element_blank(),legend.key=element_rect(size=0.01),panel.border=element_rect(size=1.5))+
+  theme(axis.text.x=element_text(size=25, vjust=-0.25, color="black",face="bold"))+
+  theme(axis.text.y=element_text(size=25, hjust=1, color="black",face="bold")) +
+  theme(axis.ticks=element_line(color="black", size=0.5)) +
+  theme(axis.ticks.length=unit(-0.25, "cm"))+
+  theme(axis.ticks.margin=unit(0.5, "cm"))
+
+
+
+#Ugly but sometimes useful commands
+#axis.line = element_line(size = 1)
+#legend.background = element_rect(fill="gray90", size=.4, linetype="dotted")
+#legend.position = c(.85,.7)
+#,panel.grid=element_blank()
+
+#some testing code, you can ingore
+#but they are useful when you want to encounter something strange or wrong
+#dat[,2][dat[,1]==Te]
+#dat[,4][dat[,1]==Te]
+#dat[,6][dat[,1]==Te]
+#dat[,8][dat[,1]==Ts]
+
+</code></pre>
+
+<p>最后的画图结果如下:
+<img src="/images/R/Rplot05.png" alt="tu5" /></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[淘宝数据竞赛总结和程序]]></title>
+    <link href="http://iphyer.github.com/blog/2014/04/25/taobao/"/>
+    <updated>2014-04-25T22:34:00-05:00</updated>
+    <id>http://iphyer.github.com/blog/2014/04/25/taobao</id>
+    <content type="html"><![CDATA[<h2 id="section">起因</h2>
+
+<p>刚刚过去的一个月参加了淘宝的数据挖掘比赛，虽然成绩不是很理想也没进入第二轮但是还是有不少收获的，这里总结一下，做个回顾。</p>
+
+<!--more-->
+
+<h2 id="section-1">比赛简介</h2>
+
+<p>这个大家可以参考淘宝的网页，其实简单来说就是淘宝公开一部分自己的加密后的竞赛数据然后请大家来进行数据挖掘。
+这里简单的回顾下要点：</p>
+
+<blockquote>
+  <p>提供的原始文件有大约4M左右，涉及1千左右天猫用户，几千个天猫品牌，总共10万多条的行为记录。用户4种行为类型(Type)对应代码分别为：
+     点击：0；购买：1；收藏：2；购物车：3 
+每条记录包括：user_id，Time，Brand_id,Type
+本届赛题的任务就是根据用户4个月在天猫的行为日志，建立用户的品牌偏好，并预测他们在将来一个月内对品牌下商品的购买行为。</p>
+</blockquote>
+
+<h2 id="section-2">总结</h2>
+
+<h3 id="section-3">怎么更加好的使用数据挖掘方法</h3>
+<p>当然，客观的评价这个数据集并不是特别合适，你没有什么简单的方法套用已经存在的数据进行训练。各种数据挖掘技术往往以来训练集的质量和可靠程度，但是对于未来一个月做预测，同时我们不太确定什么样的用户是确定购买的，所以这个竞赛的难度，现在看来就在于怎么样定义一个训练集的准确度。</p>
+
+<p>我采用的这个方法比较简单粗暴：所有购买和进入购物车的的用户认为会继续购买，收藏的用户也会有一个概率购买。其实最后的我检验发现该模型的准确率大概是4.5%左右，所以其实我的准确率就这样被限制住了。当然这个问题也是可以克服的，比如有的同学谈到可以用小样本用户慢慢逼近，因为淘宝开放了检测接口，其实你可以合理提高训练集的质量。当然这个问题是我最后思考得到，已经错过了时间。不过能够得到这个体会还是挺高兴地。</p>
+
+<h3 id="r">R语言的思考</h3>
+<p>虽然plyr这个包被很多人说成是速度很慢的不太理想的解决方案，但是我的体会是这个方法才是触摸到R的灵魂——分割，计算，汇总！所以如果可以的话还是尽量使用plyr的方法吧！
+这里推荐一个好的介绍教程：</p>
+
+<p><a href="http://cos.name/videos/r101-plyr/">R语言初级课程（4）- 数据汇总plyr包</a></p>
+
+<h3 id="section-4">对于提问的思考</h3>
+<p>统计之都是个好地方无论是用户活跃程度还是提问回答的积极度，推荐新手经常进去逛逛或者提问。事实上如果你不去和别人交流很难得到提高。这次的第一点思考还是我在最后几天看比赛
+BBS看到的方法，确实是点出了直接套用数据挖掘算法的致命缺点。</p>
+
+<h3 id="section-5">对于作弊的思考</h3>
+<p>我的看法是，其实作弊也是一种能力，只要不被发现其实你作弊什么的也没啥。因为世界上没有不透风的墙最后的结果总归是可以被发现。就像在科学的共同体研究中总是有那么几个造假的，但是不代表我们就不去科研了一样。我们其实也要从中思考某些方法。作弊也是个技术活。基本上所有的坏蛋都是聪明人，你见过智商很低的骗子么？</p>
+
+<h2 id="section-6">程序</h2>
+
+<p>这里是我们最后参赛的程序，大部分都有注释，大家参考。其实成绩不好，大家不要误会了。</p>
+
+<pre><code>
+library(plyr)
+library(randomForest)
+library(e1071) #贝叶斯分类方法
+#使用pylr包分组处理数据统一处理数据
+
+tao&lt;-read.csv("t_data.csv",header=T);
+tao$visit_datetime&lt;-as.Date(tao$visit_datetime,format='%m/%d');
+#user&lt;-unique(tao[,1])
+
+
+#数据整理
+##目标：将时间数据转化成时间间隔
+duration&lt;-function(x){
+  x$visit_datetime&lt;-x$visit_datetime-min(x$visit_datetime);
+    x[,4]&lt;-as.integer(x[,4]);
+    return(x);
+}
+
+dat&lt;-ddply(tao,.(user_id,brand_id),.fun=duration)
+###判断是不是不购买买家，在原来数据基础上增加buyer指示项
+##认为购买用户和购物车用户都是商品喜爱者概率百分之一百
+##收藏用户有80%概率是商品喜爱者
+judge&lt;-function(x){
+  for (i in x){
+    if((i==1)||(i==3)){
+      return(1);
+      break;
+    }
+  }
+  for (j in x){
+    if(j==2){
+      k&lt;-runif(1);
+      if(k&gt;=0.05){
+        return(1);
+        break;
+      }
+      }
+  }
+    return(0);
+}
+
+
+
+
+
+#建立测试数据集group
+#group作为测试数组
+#group&lt;-dat[1:1000,]
+
+
+#使用概率方法统计不同访问的性质
+probk&lt;-function(g,k){
+  y&lt;-0;
+  L&lt;-length(g);
+  for (i in g){
+    if(i==k){y&lt;-y+1;}
+  }
+  py&lt;-y/L;
+  return(py);
+}
+
+numk&lt;-function(g,k){
+  y&lt;-0;
+  for (i in g){
+    if (i==k){y&lt;-y+1;}
+  }
+  return(y);
+}
+
+dayprobk&lt;-function(g,k){
+  y&lt;-0;
+  L&lt;-length(g);
+  for (i in g){
+    if(i&lt;=k &amp; i&gt;=(k-30)){y&lt;-y+1;}
+  }
+  py&lt;-y/L;
+  return(py);
+}
+
+daynumk&lt;-function(g,k){
+  y&lt;-0;
+  for (i in g){
+    if (i&lt;=k &amp; i&gt;=(k-30)){y&lt;-y+1;}
+  }
+  return(y);
+}
+
+
+#groupcal&lt;-ddply(group,.(user_id,brand_id),summarize,buyers=judge(type),px=probk(type,0),py=probk(type,2),pz=probk(type,3),pb=probk(type,1))
+#生成最终使用数据集datcal
+
+#datcal&lt;-ddply(dat,.(user_id,brand_id),summarize,buyers=judge(type),totalvisit=length(type),nx=numk(type,0),px=probk(type,0),ny=numk(type,2),py=probk(type,2),nz=numk(type,3),pz=probk(type,3),nb=numk(type,1),pb=probk(type,1),dp3=dayprobk(visit_datetime,3),dn3=daynumk(visit_datetime,3),dp5=dayprobk(visit_datetime,5),dn5=daynumk(visit_datetime,5),dp10=dayprobk(visit_datetime,10),dn10=daynumk(visit_datetime,10),dp20=dayprobk(visit_datetime,20),dn20=daynumk(visit_datetime,20),dp30=dayprobk(visit_datetime,30),dn30=daynumk(visit_datetime,30),dp60=dayprobk(visit_datetime,60),dn60=daynumk(visit_datetime,60),dp90=dayprobk(visit_datetime,90),dn90=daynumk(visit_datetime,90),dp120=dayprobk(visit_datetime,120),dn120=daynumk(visit_datetime,120),dp150=dayprobk(visit_datetime,150),dn150=daynumk(visit_datetime,150))
+
+#新的一套算法
+datcal&lt;-ddply(dat,.(user_id,brand_id),summarize,buyers=judge(type),totalvisit=length(type),nx=numk(type,0),px=probk(type,0),ny=numk(type,2),py=probk(type,2),nz=numk(type,3),pz=probk(type,3),nb=numk(type,1),pb=probk(type,1),dp3=dayprobk(visit_datetime,3),dn3=daynumk(visit_datetime,3),dp5=dayprobk(visit_datetime,5),dn5=daynumk(visit_datetime,5),dp10=dayprobk(visit_datetime,10),dn10=daynumk(visit_datetime,10),dp20=dayprobk(visit_datetime,20),dn20=daynumk(visit_datetime,20),dp30=dayprobk(visit_datetime,30),dn30=daynumk(visit_datetime,30),dp60=dayprobk(visit_datetime,60),dn60=daynumk(visit_datetime,60),dp90=dayprobk(visit_datetime,90),dn90=daynumk(visit_datetime,90),dp120=dayprobk(visit_datetime,120),dn120=daynumk(visit_datetime,120),dp150=dayprobk(visit_datetime,150),dn150=daynumk(visit_datetime,150))
+
+datcal$buyers&lt;-factor(datcal$buyers)
+
+#逻辑斯蒂回归
+reg1&lt;glm(buyers~nx+px+ny+py+nb+totalvisit+pb+dp30+dn30+dp60+dn60+dp90+dn90+dp120+dn120+dp150+dn150,family=binomial,datcal)
+reg2&lt;-step(reg1)  
+summary(reg2)  
+p&lt;-predict(reg2,datacal) 
+#50: glm.fit:拟合機率算出来是数值零或一
+
+
+
+#
+
+#随机森林分类
+#test = datcal[ c(1:4000, 10000:10400, 17000:17400), ]
+train1 =datcal[c(1:4000, 10000:10400, 17000:17400), ]
+test1 = datcal[c(4050:8000,21000:25000,45000:50000),]
+r = randomForest(buyers~nx+px+ny+py+nb+totalvisit+pb+dp3+dn3+dp5+dn5+dp10+dn10+dp20+dn20+dp30+dn30+dp60+dn60+dp90+dn90+dp120+dn120, data=train1, importance=TRUE, proximity=TRUE)
+
+p = predict(r, test1)
+t = table(observed=test1[,'buyers'], predict=p)
+prop.table(t, 1)
+
+
+
+#另一次检验
+test2 = datcal[c(9000:18000,27000:29000,95000:100000),]
+r = randomForest(buyers~nx+px+ny+py+nb+totalvisit+pb+dp3+dn3+dp5+dn5+dp10+dn10+dp20+dn20+dp30+dn30+dp60+dn60+dp90+dn90+dp120+dn120, data=test2, importance=TRUE, proximity=TRUE)
+
+p2 = predict(r, test2)
+t2 = table(observed=test2[,'buyers'], predict=p2)
+prop.table(t2, 1)
+#Bagging
+p2 &lt;- bagging(buyers ~ ., data = datcal, coob = T)
+
+
+#赋值得到所有的随机森林分类结果并且返回赋值
+p3 = predict(r, datcal)
+datcal$buyers&lt;-p3
+
+#贝叶斯
+m &lt;- naiveBayes(buyers ~ ., datcal)
+predict&lt;-predict(m, datcal[, -3])
+true=datcal[,3]
+table(predict, true)
+#赋值给预测数组
+#改进算法
+datcal$buyers&lt;-predict
+
+
+
+#输出函数
+cat(file="result.txt")
+d_ply(.data=datcal,.(user_id),function(x){
+  cat(x[1,1],"\t",file="result.txt",append="True")
+  recommend&lt;-list();
+  for (i in 1:length(x$buyers)){
+    if (x[i,3] == 1){
+      if(length(recommend)==0){recommend&lt;-paste(recommend,x[i,2]);}
+      else{
+        recommend&lt;-paste(recommend,x[i,2],sep=",");
+      }
+          }
+  }
+  #cat(x,file="result.txt",append="True");
+  #browser();
+  cat(recommend,"\n",file="result.txt",append="True")
+})
+
+##测试算法指标是否准确
+datindex&lt;-ddply(dat,.(user_id,brand_id),summarize,buyers=judge(type))
+
+
+</code></pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[第五届R语言中国会议(上海)]]></title>
+    <link href="http://iphyer.github.com/blog/2012/11/05/rchina5/"/>
+    <updated>2012-11-05T10:49:00-06:00</updated>
+    <id>http://iphyer.github.com/blog/2012/11/05/rchina5</id>
+    <content type="html"><![CDATA[<h1 id="section">导语</h1>
+<p>这是RChina会议的记录，作为自己的一篇总结。本来不打算写的，后来想想，有始有终，何况这么多大牛的登台演讲给了我这么多的启发。
+确实该写的总结的。</p>
+
+<p>这篇日志就作为自己的记录吧，也博诸位一笑。</p>
+
+<!--more-->
+
+<h1 id="section-1">上海</h1>
+<p>上海真实魔都啊，买了一包方便面，坑爹啊，居然达到了￥5.3比南京贵了10% 还真是那句话，真正的幸福可能就是一包方便面的价格吧！</p>
+
+<h1 id="r">R会议</h1>
+
+<p>原谅没怎么认真地去仔细听这些会议的内容，但是还是有很大的收获。</p>
+
+<h2 id="section-2">文本挖掘</h2>
+
+<p>这个感觉算收获最大的一个点了。刘思喆大神讲的文本挖掘，结合xml技术确实是至理良言啊。收获很多。</p>
+
+<h2 id="section-3">一个小细节</h2>
+
+<p>发现在公司工作的演讲者用Powerpoint比较多，但是凡是以个人身份或者学生身份去讲解的人基本都是用latex做的beamer。说实话这是我第一次看到这么多的人用
+beamer作演讲话说以前一直以为用beamer的是少数，不过到了真正的开源社区聚会的时候果然是用开源和latex的人变多。</p>
+
+<h2 id="section-4">随机森林</h2>
+
+<p>话说这个都没有听说过，惭愧，回来要补补课了。</p>
+
+<h2 id="section-5">自动化报告</h2>
+
+<p>魏太云的演讲主要集中在自动化报告上，感觉这个确实很大的收获，平时几乎没有怎么细致的研究这些报告。</p>
+
+<h2 id="section-6">结语</h2>
+
+<p>收获很大，急需提高，去学习啦！</p>
+
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,289 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<script data-cfasync="false" type="text/javascript" src="//use.typekit.net/axj3cfp.js"></script>
+	<script data-cfasync="false" type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<meta charset="utf-8">
+	<title>Python分析Google股价数据  | 桑弧蓬矢射四方</title>
+
+<meta name="author" content="iphyer"> 
+
+<meta name="description" content="前言 这是为了分析Google的股价数据，所作的数据挖掘。
+比较简单，但是数据挖掘的基本分析过程和思想都有所体现。 寻找数据 去 http://finance.yahoo.com/ 上下载我们所需要的信息，也就是Google的股价数据。 我们选择历史数据这一栏： 下载即可。 程序 def &hellip;"> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="桑弧蓬矢射四方" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="/stylesheets/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
+
+<script language="Javascript" type="text/javascript">
+$(document).ready(
+  function() {
+    (function($) {
+      $(".fancybox[data-content-id]").each(function() {
+        this.href = $(this).data('content-id');
+      });
+      $(".fancybox").fancybox({
+        beforeLoad: function() {
+          var el, 
+              id = $(this.element).data('title-id');
+
+          if (id) {
+            el = $('#' + id);
+
+            if (el.length) {
+              this.title = el.html();
+            }
+          }
+          if ($(this).data('content')) {
+            this.content = $(this).data('content');
+          }
+        },
+        helpers: {
+          title: {
+            type: 'inside'
+          }
+        }
+      });
+    })(jQuery);
+  }
+);
+</script>
+
+	<!--- MathJax Configuration -->
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML,http://drz.ac/javascripts/MathJaxLocal.js">
+</script>
+
+</head>
+
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">桑弧蓬矢射四方</a></h1>
+<h4></h4>
+<nav id="main-nav"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:iphyer.github.com">
+			</form>
+		</div>
+	</div>
+</nav>
+
+
+</header>
+
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Python分析Google股价数据</h2>
+	<div class="entry-content"><h1 id="section">前言</h1>
+
+<p>这是为了分析Google的股价数据，所作的数据挖掘。
+比较简单，但是数据挖掘的基本分析过程和思想都有所体现。</p>
+
+<h1 id="section-1">寻找数据</h1>
+
+<p>去</p>
+
+<p>http://finance.yahoo.com/ </p>
+
+<p>上下载我们所需要的信息，也就是Google的股价数据。</p>
+
+<p>我们选择历史数据这一栏：</p>
+
+<p><img src="/images/Python/google/google.png" alt="tu1" /></p>
+
+<p>下载即可。</p>
+
+<!--more-->
+
+<h1 id="section-2">程序</h1>
+
+<pre><code>def creatlist(Gfile):
+	datalist=[]
+	sumall=0
+	
+	for line in Gfile:
+		if line[0:4]=='Date':
+			continue
+		datanew=line.strip().split(',')
+		vol=int(datanew[5])
+		adj=float(datanew[6])
+		yearmonth=datanew[0][0:7]
+		monthsum=vol+adj
+		pricetuple=(yearmonth,monthsum)
+		datalist.append(pricetuple)
+	return datalist
+	
+
+def getthesumofmonth(datalist):
+	monthlyaverageprice=[]
+	temp=[]
+	indexdate=datalist[0][0]
+	sumall=0
+	days=0
+	for pricetuple in datalist:
+		if pricetuple[0]==indexdate:
+			sumall=sumall+pricetuple[1]
+			days=days+1
+		else:
+			monthlyaverageprice.append((sumall/days,indexdate))
+			indexdate=pricetuple[0]
+			sumall=pricetuple[1]
+			days=1
+			#monthlyaverageprice.append((indexdate,sumall/days))
+	return monthlyaverageprice
+
+#find the best and worst 6 month of Google
+def findbest6months(monthlyaverageprice):
+	newlist=sorted(monthlyaverageprice)
+#	lengthlist=len(newlist)
+	return newlist[0:6],newlist[-6:]
+
+def printinfo(newlist):
+	print '-'*20
+	for newtuple in newlist:
+		print newtuple[1],',',newtuple[0],'\n'
+	return 'END'
+	 
+	
+
+Gfile=open("table.csv","r")
+datanewlist=creatlist(Gfile)
+monthlyaveragenewlist=getthesumofmonth(datanewlist)
+maxlist,minlist=findbest6months(monthlyaveragenewlist)
+
+print "The max monthes is :"
+print printinfo(maxlist)
+print "The min monthes is:"
+print printinfo(minlist)
+</code></pre>
+
+<p><img src="/images/Python/google/tu8.png" alt="tu12" /></p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-17T12:57:00-06:00" pubdate data-updated="true">Jan 17<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/python/'>Python</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2013/01/17/pythongoogleprice/#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	
+<!---	<a class="addthis_counter addthis_pill_style"></a> --->
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2017
+
+    iphyer
+
+<br>
+Powered by Octopress.
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'iphyersblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://iphyer.github.com/blog/2013/01/17/pythongoogleprice/';
+        var disqus_url = 'http://iphyer.github.com/blog/2013/01/17/pythongoogleprice/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-33194427-1');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+</body>
+</html>

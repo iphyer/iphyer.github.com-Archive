@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 博客 | 桑弧蓬矢射四方]]></title>
+  <link href="http://iphyer.github.com/blog/categories/博客/atom.xml" rel="self"/>
+  <link href="http://iphyer.github.com/"/>
+  <updated>2017-12-29T00:57:30-06:00</updated>
+  <id>http://iphyer.github.com/</id>
+  <author>
+    <name><![CDATA[iphyer]]></name>
+    <email><![CDATA[iphyer@163.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[缩写博客图片尺寸]]></title>
+    <link href="http://iphyer.github.com/blog/2017/05/13/shrinkingimages/"/>
+    <updated>2017-05-13T10:01:00-05:00</updated>
+    <id>http://iphyer.github.com/blog/2017/05/13/shrinkingimages</id>
+    <content type="html"><![CDATA[<h1 id="section">原因</h1>
+
+<p>之前一直没管博客图片的大小因为感觉其实不太重要，毕竟是 Github　的免费空间，没有那么大的动力优化图片。</p>
+
+<p>但是最近发现有的博客确实图片太多了，所以加载起来很慢，所以才开始了优化。</p>
+
+<p>现在把最后的成品写成这个博客。</p>
+
+<!--more-->
+
+<h1 id="section-1">原理</h1>
+
+<p>原理非常简单，列出当前文件夹全部的图片文件(JPG,PNG)，然后处理所有的大于 1M　的图片。</p>
+
+<p>然后循环运行脚本，知道不在出现大于 1M 的图片即可。</p>
+
+<h1 id="section-2">脚本</h1>
+
+<pre><code>
+#! /bin/bash 
+
+#获取脚本所在文件目录
+#大于1M图片缩小一半
+
+
+
+
+    for file in  `find ./ -name "*.[jJ][pP][gG]"`;
+    do    	
+    	if [ `stat --printf="%s" $file` -gt 1000000 ]
+		then
+    		echo $file
+    		mogrify -resize 50% $file
+		fi
+
+	done
+
+	for file in  `find ./ -name "*.[pP][nN][gG]"`;
+    do 
+    	if [ `stat --printf="%s" $file` -gt 1000000 ]
+		then
+    		echo $file
+    		mogrify -resize 50% $file
+		fi
+	done
+
+
+echo "Done"
+
+
+
+</code></pre>
+
+<h1 id="section-3">效果</h1>
+<p>最后配图文件夹减少了 2/3 的体积还是很不错的。</p>
+]]></content>
+  </entry>
+  
+</feed>

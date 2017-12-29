@@ -1,0 +1,273 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<script data-cfasync="false" type="text/javascript" src="//use.typekit.net/axj3cfp.js"></script>
+	<script data-cfasync="false" type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<meta charset="utf-8">
+	<title>C语言的Argv的使用  | 桑弧蓬矢射四方</title>
+
+<meta name="author" content="iphyer"> 
+
+<meta name="description" content="起因 前段时间看了一本书，The GNU C Programing Tutorial weblink。收获很大，其实你从K&amp;R那里学来的不一定是GNU C的规范，
+最最不错的是这本书不是中国大学C教程那种大路货的教材，这本书教材基本上把整个流程串联起来了。 &hellip;"> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="桑弧蓬矢射四方" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="/stylesheets/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
+
+<script language="Javascript" type="text/javascript">
+$(document).ready(
+  function() {
+    (function($) {
+      $(".fancybox[data-content-id]").each(function() {
+        this.href = $(this).data('content-id');
+      });
+      $(".fancybox").fancybox({
+        beforeLoad: function() {
+          var el, 
+              id = $(this.element).data('title-id');
+
+          if (id) {
+            el = $('#' + id);
+
+            if (el.length) {
+              this.title = el.html();
+            }
+          }
+          if ($(this).data('content')) {
+            this.content = $(this).data('content');
+          }
+        },
+        helpers: {
+          title: {
+            type: 'inside'
+          }
+        }
+      });
+    })(jQuery);
+  }
+);
+</script>
+
+	<!--- MathJax Configuration -->
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML,http://drz.ac/javascripts/MathJaxLocal.js">
+</script>
+
+</head>
+
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">桑弧蓬矢射四方</a></h1>
+<h4></h4>
+<nav id="main-nav"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:iphyer.github.com">
+			</form>
+		</div>
+	</div>
+</nav>
+
+
+</header>
+
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">C语言的Argv的使用</h2>
+	<div class="entry-content"><h2 id="section">起因</h2>
+
+<p>前段时间看了一本书，The GNU C Programing Tutorial <a href="http://crasseux.com/books/ctutorial/">weblink</a>。收获很大，其实你从K&amp;R那里学来的不一定是GNU C的规范，
+最最不错的是这本书不是中国大学C教程那种大路货的教材，这本书教材基本上把整个流程串联起来了。其实如果一本书不讲解makefile基本上不能算是一本成熟的c语言书，除非你一直只是编写
+一些小工的程序。</p>
+
+<p>下面摘抄一段自己的豆瓣书评：</p>
+
+<blockquote>
+  <p>虽然是入门书，但是对比K&amp;R的书来说更加入门，而且融入了GNU的基因，当然这本书只是入门！教程就是教程不是指南，不过看完这本再看K&amp;R你会理解的更深刻！我是在酷壳上看到陈浩大神的推荐才看的，发现果然收获很大，这个不再是单单的讲解语言更加是GNU系统的一个解释，后面也讲到Make和GDB，不过是不是我下载的版本问题GDB部分没有内容？但是综合而言还是所获很多，如果你重度依赖GCC那么还是值得一看的，语言非常Simple,非常适合入门当然收获更大的是你有了C的基础但是一直不太清楚GNU C的约定的时候！</p>
+</blockquote>
+
+<!--more-->
+
+<h2 id="argv">argv的使用</h2>
+
+<pre><code>#include &lt;stdio.h&gt;
+
+int main (int argc,char *argv[])
+{
+	int count;
+	
+	printf ("This program was called with \" %s \".\n",argv[0]);
+	if (argc &gt;1)
+	{
+			for (count = 1 ; count &lt; argc; count++)
+			{
+					printf ("argv[%d]=%s \n",count,argv[count]);
+			}
+	}
+	else
+	{
+		printf("the command had no other arguments. \n");
+	}
+	return 0;
+}
+#include &lt;stdio.h&gt;
+
+int main (int argc,char *argv[])
+{
+	int count;
+	
+	printf ("This program was called with \" %s \".\n",argv[0]);
+	if (argc &gt;1)
+	{
+			for (count = 1 ; count &lt; argc; count++)
+			{
+					printf ("argv[%d]=%s \n",count,argv[count]);
+			}
+	}
+	else
+	{
+		printf("the command had no other arguments. \n");
+	}
+	return 0;
+}
+</code></pre>
+
+<p>输出示例：</p>
+
+<pre><code> ./17argc a v x
+ 
+
+This program was called with " ./17argc ".
+argv[1]=a 
+argv[2]=v 
+argv[3]=x 
+</code></pre>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-01T18:48:00-05:00" pubdate data-updated="true">May 1<span>st</span>, 2014</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/c/'>C</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2014/05/01/c-ex-argv/#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	
+<!---	<a class="addthis_counter addthis_pill_style"></a> --->
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2017
+
+    iphyer
+
+<br>
+Powered by Octopress.
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'iphyersblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://iphyer.github.com/blog/2014/05/01/c-ex-argv/';
+        var disqus_url = 'http://iphyer.github.com/blog/2014/05/01/c-ex-argv/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-33194427-1');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+</body>
+</html>

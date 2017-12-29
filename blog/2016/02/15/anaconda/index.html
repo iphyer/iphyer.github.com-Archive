@@ -1,0 +1,511 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<script data-cfasync="false" type="text/javascript" src="//use.typekit.net/axj3cfp.js"></script>
+	<script data-cfasync="false" type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<meta charset="utf-8">
+	<title>Anaconda使用记录  | 桑弧蓬矢射四方</title>
+
+<meta name="author" content="iphyer"> 
+
+<meta name="description" content="前言 经常使用 Python，以前为了解决依赖经常踩坑，后来有了 pip 生活充满了希望。但是每一次升级系统或者回家更换电脑，比如春节这样的假期就会非常难过。因为重新安装是如此大的系统性工程以至于经常感觉无力。 不过自从出现了整合的发行版，一下子生活简单了很多。 这里推荐自己经常使用的　 &hellip;"> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="桑弧蓬矢射四方" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="/stylesheets/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
+
+<script language="Javascript" type="text/javascript">
+$(document).ready(
+  function() {
+    (function($) {
+      $(".fancybox[data-content-id]").each(function() {
+        this.href = $(this).data('content-id');
+      });
+      $(".fancybox").fancybox({
+        beforeLoad: function() {
+          var el, 
+              id = $(this.element).data('title-id');
+
+          if (id) {
+            el = $('#' + id);
+
+            if (el.length) {
+              this.title = el.html();
+            }
+          }
+          if ($(this).data('content')) {
+            this.content = $(this).data('content');
+          }
+        },
+        helpers: {
+          title: {
+            type: 'inside'
+          }
+        }
+      });
+    })(jQuery);
+  }
+);
+</script>
+
+	<!--- MathJax Configuration -->
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML,http://drz.ac/javascripts/MathJaxLocal.js">
+</script>
+
+</head>
+
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">桑弧蓬矢射四方</a></h1>
+<h4></h4>
+<nav id="main-nav"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:iphyer.github.com">
+			</form>
+		</div>
+	</div>
+</nav>
+
+
+</header>
+
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Anaconda使用记录</h2>
+	<div class="entry-content"><h1 id="section">前言</h1>
+
+<p>经常使用 Python，以前为了解决依赖经常踩坑，后来有了 pip 生活充满了希望。但是每一次升级系统或者回家更换电脑，比如春节这样的假期就会非常难过。因为重新安装是如此大的系统性工程以至于经常感觉无力。</p>
+
+<p>不过自从出现了整合的发行版，一下子生活简单了很多。</p>
+
+<p>这里推荐自己经常使用的　Anaconda　给大家确实是神器，非常方便。</p>
+
+<!--more-->
+
+<h1 id="anaconda-">Anaconda 介绍</h1>
+
+<p>根据官网简介:</p>
+
+<blockquote>
+  <p>Anaconda is an easy-to-install, free package manager, environment manager, Python distribution, and collection of over 150 open source packages with free community support.</p>
+</blockquote>
+
+<p>Anaconda是一个类似 Ubuntu　这样的整合发行版。同事　Anaconda　支持使用比如　pip 命令安装软件包，所以一下子大大简化了安装过程。</p>
+
+<p>具体的可以根据你需要使用的项目去查看　Anaconda 的支持包列表，<a href="http://docs.continuum.io/anaconda/pkg-docs">Anaconda 2.5.0 Package List</a> 基本上你需要使用到的各个 Python 科学计算包都已经包括在内了。</p>
+
+<h1 id="anaconda--1">Anaconda 安装</h1>
+
+<p>安装特别简单，只要网络足够就可以非常容易地安装完成。</p>
+
+<p>安装过程可以参考这个网页<a href="http://docs.continuum.io/anaconda/install">Anaconda install</a>.</p>
+
+<p>Windows 下只要你下载安装包，点击运行就行。 Linux下也很简单，只要下载好安装包，然后 bash 运行下就行。</p>
+
+<p>特别值得一说的就是，删除真的很方便啊，直接　<code>rm -rf ~/anaconda</code> ，　当然后面的地址应该是你的安装地址。</p>
+
+<p>更新也非常方便</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">conda update conda
+</span><span class="line">conda update anaconda
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>就可以快速地更新版本。</p>
+
+<h1 id="anaconda--2">Anaconda 使用</h1>
+
+<p>因为有配套的商业版，所以　Anaconda　的文档支持做得相当得好。比如这里可以得到完整的文档信息，写得非常精炼，基本上讲到了使用 Python　的方方面面。下面我简单介绍下。</p>
+
+<h2 id="python">Python　使用的一般规律</h2>
+
+<p>这里不依赖于　Anaconda 而讲讲 Python 使用的一般规律和经验。</p>
+
+<p>一般而言，首先你需要明确自己是用　Python2 还是　Python3 这连个是不兼容的版本。虽然可以修改通过，但是还是推荐大家不要弄混淆了。通常这个是由你的核心功能包决定的，因为 Python 的发展离不开开源社区的支持，但是开源社区通常和最新的版本支持之间会有一个衔接过程，同时有的开源软件是作者个人使用的计划项目作者很有可能用完了就不再支持了所以大量的情况下会出现很多“孤儿包”也就是只有少部分人使用而没有足够的社群支持。在开源的世界里这个才是常态，大家习惯就好。</p>
+
+<p>所以需要你明确自己的核心项目然后开始使用相应的 Python 版本。</p>
+
+<p>但是更经常出现的情况是，你不会单单只从事一个项目，即使你目前只从事一个项目你将来也可能从事一个截然不同的项目。比如 A 项目的 Python 版本是 2.4 (比较老，但是依然在使用的项目)，但是最新的 B 项目已经是 Python2.7,甚至计划中的 C　项目打算使用　Python3。当然也可能出现这样的情况，你需要导入的 Python　模块有不同的版本，所以你需要能够创建两个不同的虚拟环境，里面安装这个module的不同版本。你需要一套方法来合理分配自己的机器上的各种代码和项目。</p>
+
+<p>所以就出现了管理这样不同场景的需求，而通常的做法是使用 <code>virtualenv</code> 这样的软件来辅助自己管理相应的功能。</p>
+
+<p>具体的内容大家可以参考这个博文<a href="http://www.cnblogs.com/hiddenfox/p/virtualenv-python3.html">用virtualenv管理python3运行环境</a></p>
+
+<p>我简单总结下就是，以　Python3　为例的话，首先我们创建一个python3的虚拟环境，当然系统里得先装好了python3。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">mkvirtualenv -p python3 py3env
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>-p 后面的参数指定了python3（也有可能要换成python3.2/python3.4，具体要看你系统里面/use/bin/里面的文件是什么名字），如果去掉这个参数，就会使用系统默认的python。最后一个参数py3env是创建的这个环境的名字。</p>
+
+<p>执行完了之后，会自动切换到这个新创建的虚拟环境。我们会发现命令行提示符会发生改变，例如在我的机器上：从 <code>XXX@XXX-HP-ProBook-4441s</code>变成了 <code>(py3env) XXX@XXX-HP-ProBook-4441s</code> ，最前面多了这个虚拟环境的名字。</p>
+
+<p>其他一些常用命令：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">deactivate                # 退出当前虚拟环境
+</span><span class="line">workon [虚拟环境名称]       # 使用某个虚拟环境
+</span><span class="line">rmvirtualenv [虚拟环境名称] # 删除某个虚拟环境
+</span><span class="line">lsvirtualenv              # 列出所有虚拟环境
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h2 id="conda-">使用 conda 管理</h2>
+
+<p>当然在 Anaconda 中也是利用这个相似的方法来实现管理的功能，当然需要做一定的修改以配合其他的诸如升级，删除包的功能需求。这就是 conda 。按照官方的说法:</p>
+
+<blockquote>
+  <p>Conda is both a package manager and an environment manager. You know that a package manager helps you find and install packages. But let’s say that you want to use a package that requires a different version of Python than you are currently using. With just a few commands you can set up a totally separate environment to run that different version of Python, and yet continue to run your usual version of Python in your normal environment. That’s the power of having an environment manager like conda.</p>
+</blockquote>
+
+<p>conda既是包管理器也是运行环境管理器。</p>
+
+<p>首先输入 </p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">
+</span><span class="line">conda --version
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>查看本地安装的 conda 是否成功，如果你安装 Anaconda 而这步报错则很有可能你没有设置好 .bashrc 中的环境变量。我的结果是 <code>conda 3.19.1</code> 。</p>
+
+<p>然后可以用</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">conda update conda</span></code></pre></td></tr></table></div></figure></notextile></div>
+<p>来更新所有包， conda 会自动处理是不是需要更新包，这点和 Ubuntu 的软件包管理非常相似就是设立一个分发中心，大家都通过和这个中心进行匹配以便更新。</p>
+
+<h2 id="section-1">管理环境变量</h2>
+
+<p>创建环境变量</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">conda create --name monky flask </span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>这会安装一个名字叫 <code>monky</code> 环境，然后里面已经安装了 flask 包，和 <code>virtualenv</code> 不同，conda 要求指定一个包，如果你还没有想好的包名称的话(虽然这个比较少，多见于测试)，那么你可以指定下 Python 的版本,当然加上包名称也是没有任何问题的。</p>
+
+<p>比如我这个命令</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">conda create --name bunnies python=3</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>就会有如下输出</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">Using Anaconda Cloud api site https://api.anaconda.org
+</span><span class="line">Fetching package metadata: Could not connect to https://repo.continuum.io/pkgs/pro/noarch/
+</span><span class="line">Could not connect to https://repo.continuum.io/pkgs/pro/linux-64/
+</span><span class="line">Could not connect to https://repo.continuum.io/pkgs/free/noarch/
+</span><span class="line">.Could not connect to https://repo.continuum.io/pkgs/free/linux-64/
+</span><span class="line">...
+</span><span class="line">Solving package specifications: ............
+</span><span class="line">Package plan for installation in environment /home/iphyer/.conda/envs/bunnies:
+</span><span class="line">
+</span><span class="line">The following packages will be downloaded:
+</span><span class="line">
+</span><span class="line">    package                    |            build
+</span><span class="line">    ---------------------------|-----------------
+</span><span class="line">    xz-5.0.5                   |                1         572 KB
+</span><span class="line">    wheel-0.29.0               |           py35_0          82 KB
+</span><span class="line">    ------------------------------------------------------------
+</span><span class="line">                                           Total:         654 KB
+</span><span class="line">
+</span><span class="line">The following NEW packages will be INSTALLED:
+</span><span class="line">
+</span><span class="line">    openssl:    1.0.2f-0      (soft-link)
+</span><span class="line">    pip:        8.0.2-py35_0  (soft-link)
+</span><span class="line">    python:     3.5.1-0       (soft-link)
+</span><span class="line">    readline:   6.2-2         (soft-link)
+</span><span class="line">    setuptools: 19.6.2-py35_0 (soft-link)
+</span><span class="line">    sqlite:     3.9.2-0       (soft-link)
+</span><span class="line">    tk:         8.5.18-0      (soft-link)
+</span><span class="line">    wheel:      0.29.0-py35_0
+</span><span class="line">    xz:         5.0.5-1      
+</span><span class="line">    zlib:       1.2.8-0       (soft-link)
+</span><span class="line">
+</span><span class="line">Proceed ([y]/n)? n      </span></code></pre></td></tr></table></div></figure></notextile></div>
+<p>我没有链接到网上但是可以清晰的看到 Anaconda 是怎么处理这里的包问题，如果已经安装了相应的包就直接软链接过去，如果没有就链接到 Anaconda 的官网上下载。当然要查看 Anaconda 默认安装了那些包可以在这个网址查看 <a href="http://docs.continuum.io/anaconda/pkg-docs">Anaconda 2.5.0 Package List</a>。当然如果没有安装， Anaconda 会自动联网安装。</p>
+
+<p>安装成功后，可以用如下命令进入相应的环境中开发。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">Linking packages ...
+</span><span class="line">[      COMPLETE      ]|#######################################################| 100%
+</span><span class="line">#
+</span><span class="line"># To activate this environment, use:
+</span><span class="line"># $ source activate bunnies
+</span><span class="line">#
+</span><span class="line"># To deactivate this environment, use:
+</span><span class="line"># $ source deactivate
+</span><span class="line">#
+</span><span class="line">
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+<p>你可以通过如下命令查看系统中已经有多少环境</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">conda info --envs</span></code></pre></td></tr></table></div></figure></notextile></div>
+<p>输出结果如下:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+</pre></td><td class="code"><pre><code class=""><span class="line"># conda environments:
+</span><span class="line">#
+</span><span class="line">bunnies                  /home/iphyer/.conda/envs/bunnies
+</span><span class="line">cow                      /home/iphyer/.conda/envs/cow
+</span><span class="line">monky                    /home/iphyer/.conda/envs/monky
+</span><span class="line">snakes                   /home/iphyer/.conda/envs/snakes
+</span><span class="line">root                  *  /home/iphyer/anaconda3
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>注意到root环境中的星号 * 那就是当前使用的环境。</p>
+
+<p>当然你也可以比如你基于你之前的工作新开一个工作，比如添加新功能那么可以直接使用:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">conda create --name flowers --clone snakes</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>这将会建立一个叫做<code>flowers</code>的环境，所有内容都来自<code>snakes</code>这个已经设置好的环境。</p>
+
+<p>当然删除一个环境也很方便，比如:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">conda remove --name flowers --all</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>这样就会删除所有的 flowers 环境内容。</p>
+
+<h2 id="python-1">管理 Python</h2>
+
+<p>Conda 把 Python 也当做一个包进行管理。</p>
+
+<p>你可以用 </p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">conda search --full-name python</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>查看到底有多少 Python 的版本，如果不加上 <code>--full-name</code> 那么其实是使用这个命令 <code>conda search python</code> 这个查找的是到底多少包的名字里面含有 python.</p>
+
+<p>所以还记得</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">conda create --name snakes python=3</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>这样就可以安装一个使用 Python3 的名叫 snakes 的环境了。</p>
+
+<h2 id="section-2">管理包</h2>
+
+<p>可以输入 </p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">conda list</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>查看当前环境安装的包。</p>
+
+<p>当然你也可以通过</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">conda search beautifulsoup4</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>来查看相应的包是不是存在，这里也会联网检索，如果找到就代表可以被 Conda 安装。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">conda install --name bunnies beautifulsoup4</span></code></pre></td></tr></table></div></figure></notextile></div>
+<p>这个命令将<code>beautifulsoup4</code>安装到<code>bunnies</code>环境中。</p>
+
+<p>当然你也可以从 Anaconda.org 安装软件包。Anaconda.org 是配套的一个 Python 软件包库，所以可以很方便地从那里安装需要的软件包。你可以先登陆到 <a href="http://anaconda.org">http://anaconda.org.</a>搜索下是不是存在你需要的包。如果存在使用如下命令安装:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">conda install --channel https://conda.anaconda.org/pandas bottleneck</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>当然你也可以用 <code>pip</code> 安装，如果你习惯了 <code>pip</code> 的话。</p>
+
+<p>比如</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">pip install numpy</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h1 id="section-3">后记</h1>
+
+<p>这里其实就是 Anaconda 官网提供的<a href="http://conda.pydata.org/docs/test-drive.html">30分钟快速入门</a>的学习笔记， Anaconda可以做的更多比如打包你的程序方便别人使用，和 IDE 联合使用等等。当然还有一个比较绝的就是和 R 联合使用把 R 作为 Python 的拓展，这个正是非常好用的功能。简单的统计功能完全不需要熟悉 Python 全部交给 R 就行。这些都可以在官网得到更加详细的资料。</p>
+
+<p>欢迎大家斧正。</p>
+
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2016-02-15T13:14:00-06:00" pubdate data-updated="true">Feb 15<span>th</span>, 2016</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/python/'>Python</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2016/02/15/anaconda/#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	
+<!---	<a class="addthis_counter addthis_pill_style"></a> --->
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2017
+
+    iphyer
+
+<br>
+Powered by Octopress.
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'iphyersblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://iphyer.github.com/blog/2016/02/15/anaconda/';
+        var disqus_url = 'http://iphyer.github.com/blog/2016/02/15/anaconda/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-33194427-1');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+</body>
+</html>

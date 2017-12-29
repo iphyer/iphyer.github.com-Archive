@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 电脑 | 桑弧蓬矢射四方]]></title>
+  <link href="http://iphyer.github.com/blog/categories/电脑/atom.xml" rel="self"/>
+  <link href="http://iphyer.github.com/"/>
+  <updated>2017-12-29T00:57:30-06:00</updated>
+  <id>http://iphyer.github.com/</id>
+  <author>
+    <name><![CDATA[iphyer]]></name>
+    <email><![CDATA[iphyer@163.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[将微信语音导出转换成mp3]]></title>
+    <link href="http://iphyer.github.com/blog/2014/12/22/mp3/"/>
+    <updated>2014-12-22T18:02:00-06:00</updated>
+    <id>http://iphyer.github.com/blog/2014/12/22/mp3</id>
+    <content type="html"><![CDATA[<h1 id="section">前言</h1>
+
+<p>爸爸妈妈的聊天语音提取出来专门做成一个mp3文件，天天听，每天睡觉之前听一遍。</p>
+
+<p>顶住这些压力，作为男人这点压力压不垮你！</p>
+
+<p>这是告诉你珍惜时间努力奋斗！</p>
+
+<!--more-->
+
+<h1 id="section-1">合并</h1>
+
+<p>微信的语音文件都是amr格式转换其实乃是挺费力的，但是有了Linux，so easy!</p>
+
+<p>直接使用cat命令即可以合并。</p>
+
+<pre><code>
+cat *.amr &gt; father.amr
+
+</code></pre>
+
+<p>然后是ffmpeg转码</p>
+
+<pre><code>
+ffmpeg -i father.amr -ar 22050 alarm.mp3
+
+</code></pre>
+
+<p>22050是采码率，增加清晰度的。</p>
+
+]]></content>
+  </entry>
+  
+</feed>

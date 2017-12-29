@@ -1,0 +1,380 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<script data-cfasync="false" type="text/javascript" src="//use.typekit.net/axj3cfp.js"></script>
+	<script data-cfasync="false" type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<meta charset="utf-8">
+	<title>C语言的Argp的使用  | 桑弧蓬矢射四方</title>
+
+<meta name="author" content="iphyer"> 
+
+<meta name="description" content="说明 Argp一般是GNU C用来处理程序参数的接口函数。 详情可以参考GNU的说明。 Argp provides features unavailable in the more commonly used getopt interface. These features include &hellip;"> <meta name="keywords" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="桑弧蓬矢射四方" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="/stylesheets/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery.fancybox.pack.js"></script>
+
+<script language="Javascript" type="text/javascript">
+$(document).ready(
+  function() {
+    (function($) {
+      $(".fancybox[data-content-id]").each(function() {
+        this.href = $(this).data('content-id');
+      });
+      $(".fancybox").fancybox({
+        beforeLoad: function() {
+          var el, 
+              id = $(this.element).data('title-id');
+
+          if (id) {
+            el = $('#' + id);
+
+            if (el.length) {
+              this.title = el.html();
+            }
+          }
+          if ($(this).data('content')) {
+            this.content = $(this).data('content');
+          }
+        },
+        helpers: {
+          title: {
+            type: 'inside'
+          }
+        }
+      });
+    })(jQuery);
+  }
+);
+</script>
+
+	<!--- MathJax Configuration -->
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML,http://drz.ac/javascripts/MathJaxLocal.js">
+</script>
+
+</head>
+
+
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">桑弧蓬矢射四方</a></h1>
+<h4></h4>
+<nav id="main-nav"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul>
+	<li><a href="/">Blog</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/portfolio">Portfolio</a></li>
+	<li><a href="/archives">Archive</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:iphyer.github.com">
+			</form>
+		</div>
+	</div>
+</nav>
+
+
+</header>
+
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">C语言的Argp的使用</h2>
+	<div class="entry-content"><h1 id="section">说明</h1>
+
+<p>Argp一般是GNU C用来处理程序参数的接口函数。</p>
+
+<p>详情可以参考GNU的<a href="http://www.gnu.org/software/libc/manual/html_node/Argp.html">说明</a>。</p>
+
+<blockquote>
+  <p>Argp provides features unavailable in the more commonly used getopt interface. These features include automatically producing output in response to the ‘–help’ and ‘–version’ options, as described in the GNU coding standards. Using argp makes it less likely that programmers will neglect to implement these additional options or keep them up to date.</p>
+</blockquote>
+
+<blockquote>
+  <p>Argp also provides the ability to merge several independently defined option parsers into one, mediating conflicts between them and making the result appear seamless. A library can export an argp option parser that user programs might employ in conjunction with their own option parsers, resulting in less work for the user programs. Some programs may use only argument parsers exported by libraries, thereby achieving consistent and efficient option-parsing for abstractions implemented by the libraries.</p>
+</blockquote>
+
+<!--more-->
+
+<h1 id="section-1">实例</h1>
+
+<p>这个程序来自GNU C的例子程序，因为我在命名C程序的时候错误使用了C++的.C命名结果一直没有办法编译通过，最后只好删除了。
+其实不应该，下次即使是程序的中间结果也应该保留，因为毕竟是自己的劳动么，可以注释掉但是不要删除。
+删除是浪费的。</p>
+
+<pre><code>  /* This program uses the same features as example 2, and uses options and
+        arguments.
+     
+        We now use the first four fields in ARGP, so here's a description of them:
+          OPTIONS  -- A pointer to a vector of struct argp_option (see below)
+          PARSER   -- A function to parse a single option, called by argp
+          ARGS_DOC -- A string describing how the non-option arguments should look
+          DOC      -- A descriptive string about this program; if it contains a
+                      vertical tab character (\v), the part after it will be
+                      printed *following* the options
+     
+        The function PARSER takes the following arguments:
+          KEY  -- An integer specifying which option this is (taken
+                  from the KEY field in each struct argp_option), or
+                  a special key specifying something else; the only
+                  special keys we use here are ARGP_KEY_ARG, meaning
+                  a non-option argument, and ARGP_KEY_END, meaning
+                  that all arguments have been parsed
+          ARG  -- For an option KEY, the string value of its
+                  argument, or NULL if it has none
+          STATE-- A pointer to a struct argp_state, containing
+                  various useful information about the parsing state; used here
+                  are the INPUT field, which reflects the INPUT argument to
+                  argp_parse, and the ARG_NUM field, which is the number of the
+                  current non-option argument being parsed
+        It should return either 0, meaning success, ARGP_ERR_UNKNOWN, meaning the
+        given KEY wasn't recognized, or an errno value indicating some other
+        error.
+     
+        Note that in this example, main uses a structure to communicate with the
+        parse_opt function, a pointer to which it passes in the INPUT argument to
+        argp_parse.  Of course, it's also possible to use global variables
+        instead, but this is somewhat more flexible.
+     
+        The OPTIONS field contains a pointer to a vector of struct argp_option's;
+        that structure has the following fields (if you assign your option
+        structures using array initialization like this example, unspecified
+        fields will be defaulted to 0, and need not be specified):
+          NAME   -- The name of this option's long option (may be zero)
+          KEY    -- The KEY to pass to the PARSER function when parsing this option,
+                    *and* the name of this option's short option, if it is a
+                    printable ascii character
+          ARG    -- The name of this option's argument, if any
+          FLAGS  -- Flags describing this option; some of them are:
+                      OPTION_ARG_OPTIONAL -- The argument to this option is optional
+                      OPTION_ALIAS        -- This option is an alias for the
+                                             previous option
+                      OPTION_HIDDEN       -- Don't show this option in --help output
+          DOC    -- A documentation string for this option, shown in --help output
+     
+        An options vector should be terminated by an option with all fields zero. */
+     
+     #include &lt;stdlib.h&gt;
+     #include &lt;argp.h&gt;
+     
+     const char *argp_program_version =
+       "argp-ex3 1.0";
+     const char *argp_program_bug_address =
+       "&lt;bug-gnu-utils@gnu.org&gt;";
+     
+     /* Program documentation. */
+     static char doc[] =
+       "Argp example #3 -- a program with options and arguments using argp";
+     
+     /* A description of the arguments we accept. */
+     static char args_doc[] = "ARG1 ARG2";
+     
+     /* The options we understand. */
+     static struct argp_option options[] = {
+       {"verbose",  'v', 0,      0,  "Produce verbose output" },
+       {"quiet",    'q', 0,      0,  "Don't produce any output" },
+       {"silent",   's', 0,      OPTION_ALIAS },
+       {"output",   'o', "FILE", 0,
+        "Output to FILE instead of standard output" },
+       { 0 }
+     };
+     
+     /* Used by main to communicate with parse_opt. */
+     struct arguments
+     {
+       char *args[2];                /* arg1 &amp; arg2 */
+       int silent, verbose;
+       char *output_file;
+     };
+     
+     /* Parse a single option. */
+     static error_t
+     parse_opt (int key, char *arg, struct argp_state *state)
+     {
+       /* Get the input argument from argp_parse, which we
+          know is a pointer to our arguments structure. */
+       struct arguments *arguments = state-&gt;input;
+     
+       switch (key)
+         {
+         case 'q': case 's':
+           arguments-&gt;silent = 1;
+           break;
+         case 'v':
+           arguments-&gt;verbose = 1;
+           break;
+         case 'o':
+           arguments-&gt;output_file = arg;
+           break;
+     
+         case ARGP_KEY_ARG:
+           if (state-&gt;arg_num &gt;= 2)
+             /* Too many arguments. */
+             argp_usage (state);
+     
+           arguments-&gt;args[state-&gt;arg_num] = arg;
+     
+           break;
+     
+         case ARGP_KEY_END:
+           if (state-&gt;arg_num &lt; 2)
+             /* Not enough arguments. */
+             argp_usage (state);
+           break;
+     
+         default:
+           return ARGP_ERR_UNKNOWN;
+         }
+       return 0;
+     }
+     
+     /* Our argp parser. */
+     static struct argp argp = { options, parse_opt, args_doc, doc };
+     
+     int
+     main (int argc, char **argv)
+     {
+       struct arguments arguments;
+     
+       /* Default values. */
+       arguments.silent = 0;
+       arguments.verbose = 0;
+       arguments.output_file = "-";
+     
+       /* Parse our arguments; every option seen by parse_opt will
+          be reflected in arguments. */
+       argp_parse (&amp;argp, argc, argv, 0, 0, &amp;arguments);
+     
+       printf ("ARG1 = %s\nARG2 = %s\nOUTPUT_FILE = %s\n"
+               "VERBOSE = %s\nSILENT = %s\n",
+               arguments.args[0], arguments.args[1],
+               arguments.output_file,
+               arguments.verbose ? "yes" : "no",
+               arguments.silent ? "yes" : "no");
+     
+       exit (0);
+     }
+</code></pre>
+
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-01T19:03:00-05:00" pubdate data-updated="true">May 1<span>st</span>, 2014</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/c/'>C</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2014/05/01/c-ex-argp/#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	
+<!---	<a class="addthis_counter addthis_pill_style"></a> --->
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2017
+
+    iphyer
+
+<br>
+Powered by Octopress.
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'iphyersblog';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://iphyer.github.com/blog/2014/05/01/c-ex-argp/';
+        var disqus_url = 'http://iphyer.github.com/blog/2014/05/01/c-ex-argp/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-33194427-1');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+</body>
+</html>
