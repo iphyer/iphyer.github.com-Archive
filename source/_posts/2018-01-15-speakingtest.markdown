@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Speaking Test总结"
+title: "麦迪逊TA口语考试总结"
 date: 2018-01-15 22:12
 comments: true
 categories: 学习
@@ -55,7 +55,7 @@ categories: 学习
 
 不过事实上各个学校也就是用用这个考试 Format,他们打分还是主要关注你的口语是不是能够让美国同学不太费力的听懂。这个更多的是一种总体评价而不是细分项目。
 
-![评分标准](/image/speaking/pin1.png)
+![pingjia](/images/speaking/pin.png)
 
 不过不少学校的 ESL 项目倒是给出了不少准备的方法，就是没有给出答案。所以让人非常不爽这个最后的结果。现在我就在想是不是准备一个答案来看下是不是可以。
 
