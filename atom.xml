@@ -4,7 +4,7 @@
   <title><![CDATA[桑弧蓬矢射四方]]></title>
   <link href="http://iphyer.github.com/atom.xml" rel="self"/>
   <link href="http://iphyer.github.com/"/>
-  <updated>2017-12-29T01:39:29-06:00</updated>
+  <updated>2018-02-01T16:37:48-06:00</updated>
   <id>http://iphyer.github.com/</id>
   <author>
     <name><![CDATA[iphyer]]></name>
@@ -12,6 +12,429 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Intermittent fasting 减肥]]></title>
+    <link href="http://iphyer.github.com/blog/2018/01/31/fast/"/>
+    <updated>2018-01-31T21:11:00-06:00</updated>
+    <id>http://iphyer.github.com/blog/2018/01/31/fast</id>
+    <content type="html"><![CDATA[<p>今天在听 NBC Nightly News 的时候，发现了一个很好的减肥方法， Intermittent fasting。我突然觉得可以试试这个方法，然后做了些搜索。其实这个方法是很多方法的总结。</p>
+
+<!--more-->
+
+<p>这个背后的原理就是控制热量的摄入，同时利用睡眠时间来加速消耗自身的脂肪。换句话说就是在你睡觉的时候帮助你减肥。</p>
+
+<p>You are not only what you eat but also when you eat.</p>
+
+<p><a href="https://www.today.com/health/intermittent-fasting-restrictive-eating-right-you-t102998">Intermittent fasting: Is restrictive eating right for you?</a></p>
+
+<p><a href="https://www.nbcnews.com/health/health-news/time-restricted-eating-can-help-weight-loss-researchers-say-n838486">Time-restricted eating can help with weight loss, researchers say</a></p>
+
+<p><a href="https://www.wsj.com/articles/can-different-forms-of-fasting-make-you-healthier-1491962461">Can Different Forms of Fasting Make You Healthier?</a></p>
+
+<p><a href="http://www.wsj.com/video/intermittent-fasting-better-for-the-waistline-and-brain/2259DA4E-0F3B-411A-A02E-71900373F012.html">Intermittent Fasting: Better for the Waistline and Brain</a></p>
+
+<p><a href="https://www.wsj.com/articles/how-to-get-the-benefits-of-fasting-with-less-deprivation-1487368174">How to Get the Benefits of Fasting With Less Deprivation</a></p>
+
+<p>其实具体方法也很简单，我觉得就是晚饭，少吃点，只吃部分水果其他就是多喝水或者黑咖啡，控制热量摄入少于 600 卡。</p>
+
+<p>其实就是在晚上运动之后，少量吃点东西就行。</p>
+
+<p>比如: 两个鸡蛋 (78 calories x 2 ) + 部分水果 (香蕉 105 calories)</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[2018年计划]]></title>
+    <link href="http://iphyer.github.com/blog/2018/01/31/2018/"/>
+    <updated>2018-01-31T21:09:00-06:00</updated>
+    <id>http://iphyer.github.com/blog/2018/01/31/2018</id>
+    <content type="html"><![CDATA[<h1 id="section">起因</h1>
+
+<p>其实这个计划应该很久之前就已经开始做了，但是一直没有确定转入 CS 是不是成功了。所以现在才开始发布，时间飞快都已经到 2018 年 2 月份了。</p>
+
+<p>说起来有没有转入 CS 确实是影响很大。如果能够转入 CS 就不需要担心，如果没有办法转入 CS 说起来不得不继续依靠现在的专业。现在的专业说实话，有点青黄不接，基本找不到很好的老师。</p>
+
+<!--more-->
+
+<h1 id="section-1">何去何从？</h1>
+
+<p>其实我已经问了自己这个问题很久了，到底读还是不读 PhD？ 就个人想法而言，还是希望自己可以读完 PhD 毕竟已经花了这么久的时间，如果能够继续花时间好好读一读，肯定对于自己的出路是很好的提高。但是如果读完 PhD 总结自己的前途，可能真的只有学术这么一条出路了。实在是感觉到内心很纠结。如果是当年那个一无所知小朋友，肯定我就选择 PhD 了，但是两年已经快过去了，内心的冲动现在基本都已经平息了，见多了渣导师，花式坑学生的例子之后已经对于学术的激情不在，可以说现在我觉得学术圈也就是一份工作罢了，说不上好也说不上坏，工作而已。</p>
+
+<h1 id="section-2">具体计划列表</h1>
+
+<p>这个只是初步的计划，无论如何还是需要有一个具体的规划来确保自己的学习计划可以顺利展开。先定一个小目标！</p>
+
+<h2 id="section-3">减肥</h2>
+
+<p>真是是要控制体重了，除了锻炼还有就是适度控制饮食，两者结合，努力把体重控制到 70kg。这个是根据中国标准算出来的具体数值，其实换算到磅数是 154.324 lb,凑个整数就是 50 lb。好吧仙子啊差距有点大。但是确实是需要重视起来了，毕竟身体是自己的。</p>
+
+<h2 id="leetcode">Leetcode</h2>
+
+<p>虽然还是喜欢科研，但是还是觉得不能只是单单做那种死板的科研，还是需要和学术圈结合的科研，如果将来有机会去谷歌，Facebook， Microsoft这样的大公司实习也是很重要的。</p>
+
+<p>目前的计划就是，每天在完成作业的基础上，刷 3 道题。争取这学期把，前面 400 道题目完全刷过去。同时在自己的 Github 上做好记录毕竟还是需要这些题目帮助自己更好的掌握实习，提高编程技巧。</p>
+
+<h2 id="turbine-">Turbine 的论文</h2>
+
+<p>说起来比较郁闷呢，估计去年投的一篇论文沉没了。现在还是要把这篇硕士期间的工作重新捡起来争取发表出来，还是需要更好的科研成果。</p>
+
+<blockquote>
+  <p>没有科研成果，说的再好也无济于事。 Talk is cheap, show me your achivements.</p>
+</blockquote>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Speaking Test总结]]></title>
+    <link href="http://iphyer.github.com/blog/2018/01/15/speakingtest/"/>
+    <updated>2018-01-15T22:12:00-06:00</updated>
+    <id>http://iphyer.github.com/blog/2018/01/15/speakingtest</id>
+    <content type="html"><![CDATA[<h2 id="section">起因</h2>
+
+<p>说起来每个学期都需要过一个口语考试，这个考试如果口语过了 26 的托福可以 waive 掉不然，就必须参加。正好要参加这个考试，这里总结下自己的备考经验。</p>
+
+<!--more-->
+
+<h2 id="sample-test">Sample Test</h2>
+
+<p>考试形式和内容和网上提供的 Sample Test 几乎一模一样，所以必须认真看 Sample Test 做好准备，毕竟打有准备之仗是成功的必要因素。</p>
+
+<p>这里是 Sample Test 的下载链接，</p>
+
+<blockquote>
+  <p>What’s the test like?</p>
+</blockquote>
+
+<blockquote>
+  <p>Download this <a href="https://esl.wiscweb.wisc.edu/wp-content/uploads/sites/180/2017/05/Sample.SPEAK_.Test_.pdf">sample SPEAK test</a> to practice. On the day of the test, you will not need a pencil, paper, or any other materials. You will sit at a computer terminal and wear headphones with a microphone. You will listen to the test questions as you follow along reading a test booklet. You will speak into the microphone and your voice will be recorded. You will not have to write anything. You will not be able to make any notes during the test. The test will take about 20 minutes.</p>
+</blockquote>
+
+<p>当然学校网页经常变动，所以到时候搜索 ESL 然后查看网页即可。</p>
+
+<h2 id="section-1">必需注意的事项</h2>
+
+<p>其实也没有多少，口语还是在于练习和使用，我只强调两个最重要的：</p>
+
+<h3 id="section-2">(1)用简单词汇，简单语法，简单时态。</h3>
+
+<p>这是口语考试，不是作文，不需要你辞藻华丽，简单的东西往往不会错，同时方便理解。</p>
+
+<h3 id="section-3">(2)语速放慢，吐词放清</h3>
+
+<p>这是最重要的，因为你用的都是简单句，所以只要你放慢，放清，基本别人都能理解你的意思。这是最有帮助的。</p>
+
+<h1 id="section-4">考试技巧</h1>
+<p>前面都是主要的考试注意事项，后面这个部分是考试的具体来源和方法。当然就和我在这部分说的，都是奇技淫巧，说起来并不是最好的方法。还是好好练习口语是最好的。</p>
+
+<h2 id="section-5">口语考试试题来源</h2>
+
+<p>其实每次考试的时候我都很奇怪，这个考试是怎么出的题目。</p>
+
+<p>这个考试看起来就特别有 ETS 的风格，前面的知道，两个人评分然后取平均都是 ETS 的风格。同时这个考试的试题特别像我初中的口语考试。当然了初中的考试非常简单，但是这个也差不多。</p>
+
+<p>说起来这个考试的试题来源还真是 ETS, 是 ETS 在多年之前开发的一个项目，<a href="https://en.wikipedia.org/wiki/SPEAK_(test)">Speaking Proficiency English Assessment Kit</a>。</p>
+
+<blockquote>
+  <p>The Speaking Proficiency English Assessment Kit (SPEAK) is an oral test developed by the Educational Testing Service (ETS). The SPEAK test continues to be administered to non-native English speakers, though it is no longer supported by ETS. No new versions of this test exist. The test aims to evaluate the examinee’s proficiency in spoken English; however, most academic institutions recognize that it is limited in that capacity, and have therefore abandoned using it. It is usually taken as a professional certification, <strong><em>especially for graduate teaching assistants in the American college and university system</em></strong>, who are often required to hold office hours and converse in English with students. </p>
+</blockquote>
+
+<p>维基百科还真是挺准确的。</p>
+
+<p>因为 ETS 不再支持了，所以现在在 ETS 的官网上也只能找到一个关于这个考试的<a href="https://www.ets.org/research/policy_research_reports/publications/report/1995/hxqb">报告</a>。但是具体的备考建议和如何准备则只字不提。说实话 ETS 的报告又臭又长，还都是那种文科统计分析 Style，大概重要的部分就是这个关于如何打分的报告表了。</p>
+
+<p>不过事实上各个学校也就是用用这个考试 Format,他们打分还是主要关注你的口语是不是能够让美国同学不太费力的听懂。这个更多的是一种总体评价而不是细分项目。</p>
+
+<p><img src="http://iphyer.github.com/image/speaking/pin1.png" alt="评分标准" /></p>
+
+<p>不过不少学校的 ESL 项目倒是给出了不少准备的方法，就是没有给出答案。所以让人非常不爽这个最后的结果。现在我就在想是不是准备一个答案来看下是不是可以。</p>
+
+<h2 id="section-6">备考建议</h2>
+
+<p>用上面的关键词谷歌下，你就可以找到很多的链接，不过大部分都是一样的内容，主要是是 TA 口语考试流程。大概只有少部分学校给了链接帮助你复习这个考试。所以这儿推荐我比较欣赏的两个比较好的视频。</p>
+
+<p>来自 Iowa 大学的视频</p>
+
+<p><a href="https://www.youtube.com/watch?v=d5iRZapAbsE&amp;feature=youtu.be">ESPA Test Procedures and Guidelines</a></p>
+
+<p>帮助更大的一个视频，来自 Ohio University，虽然有 23 分钟长 ，但是我觉得更好，基本上是一道题目，一道题目的帮助你，</p>
+
+<p><a href="https://youtu.be/DndM7Yfo-wQ">ELIP - SPEAK Test Information Video</a></p>
+
+<p>这个老师的语速和用词也特别好，基本上我觉得如果你能说成这样，这个语速就非常完美了。事实上，我推荐的准备方法就是，按照这个音频的录音稿，自己读一遍，然后用手机录音，自己再听一边。什么时候如果你的口语可以在不刻意控制的情况下和这个视频的长度还有语调差不多了，估计你的口语也过关了。</p>
+
+<p>Ohio 居然有贴心地准备了一个网页给出了很多细心的建议，详细的可以看这里<a href="https://www.ohio.edu/cas/linguistics/elip/graduate/oral-proficiency/speak-prep.cfm">Preparing for the SPEAK Test</a></p>
+
+<p>第二项备考资料</p>
+
+<p><a href="http://iphyer.github.com/upload/files/Speaking.pdf">Toward Speaking Excellence: The Michigan Guide to Maximizing Your Performance on the TSE® Test and SPEAK® Test</a></p>
+
+<p>这本书是我在搜索的时候发现，这里有一篇<a href="http://www.cc.kyoto-su.ac.jp/information/tesl-ej/ej14/r2.html">书评</a>。这本书真的是特别特别贴合这个考试，</p>
+
+<blockquote>
+  <p>The book reviewed here promises to maximize the performance of non-native English speakers on another test produced by ETS, the Test of Spoken English (TSE), or its institutional version, the Speaking Proficiency English Assessment Kit (SPEAK).</p>
+</blockquote>
+
+<p>特别是这本书还给出了参考答案，实在是喜出望外。如果需要请认真复习。</p>
+
+<h1 id="section-7">口语试题解析</h1>
+
+<p>To be continued </p>
+
+<p>说实话估计有时间还需要重新考下口语考试，这学期顺带看下书，做好备考。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[USA印象6:得克萨斯州——奥斯汀 and 休斯顿游记]]></title>
+    <link href="http://iphyer.github.com/blog/2018/01/02/austin/"/>
+    <updated>2018-01-02T23:55:00-06:00</updated>
+    <id>http://iphyer.github.com/blog/2018/01/02/austin</id>
+    <content type="html"><![CDATA[<h1 id="section">前言</h1>
+
+<p>老同学在亚马逊工作一年后终于买房了，说起来还是码农赚钱。现在在北美的老兄弟，除了那几个家底殷实的同学，完全凭借自己一己之力在北美买房的这是第一个。还是很为同学高兴的。所以在这个麦迪逊史上第二冷的冬天就来了奥斯汀，得克萨斯州。</p>
+
+<h1 id="section-1">奥斯汀</h1>
+<p>首先说下，城市名称的起源吧。德州的几大城市的名称都是来自历史上的著名人物，比如 奥斯汀就是德州独立和并入美国的关键人物,<a href="https://en.wikipedia.org/wiki/Stephen_F._Austin">Stephen F. Austin</a>。</p>
+
+<blockquote>
+  <p>Shortly afterward, the name was changed to Austin in honor of Stephen F. Austin, the “Father of Texas” and the republic’s first secretary of state. </p>
+</blockquote>
+
+<blockquote>
+  <p>Stephen Fuller Austin (November 3, 1793 – December 27, 1836) was an American empresario. Known as the “Father of Texas”, and the founder of Texas, he led the second, and ultimately, the successful colonization of the region by bringing 300 families from the United States to the region in 1825.</p>
+</blockquote>
+
+<p>后面要介绍的这次旅游的另一个城市，休斯顿也是德州的历史名人。休斯顿打赢了德州独立的关键战役，圣哈辛托战役（Battle of San Jacinto）。是役，Sam Houston 代理德州民兵突袭了当时的墨西哥总统桑塔·安纳(Santa Anna)，可以说是以弱胜强，斩首行动的典型战役。</p>
+
+<blockquote>
+  <p>Sam Houston (March 2, 1793 – July 26, 1863) was an American soldier and politician. His victory at the Battle of San Jacinto secured the independence of Texas from Mexico in one of the shortest decisive battles in modern history.</p>
+</blockquote>
+
+<h2 id="section-2">城市简介</h2>
+
+<p>说起任何城市都不能不提到这个城市的地理和功能。</p>
+
+<p>首先是德州在美国的位置，德州在美国和墨西哥交界处。</p>
+
+<p><img src="http://iphyer.github.com/image/Texas/map1.jpeg" alt="state capital2" /></p>
+
+<p>还紧邻墨西哥湾，所以有很多天然的良港，比如休斯顿。这就是美国南部的著名港口。</p>
+
+<p>当年南北战争的时候，得克萨斯州就是南方重要的棉花出口和物资进口基地。</p>
+
+<p>德州内部，有三个大的城市群，达拉斯（其实是拉斯与沃斯堡、阿灵顿组成达拉斯-沃斯堡-阿灵顿城市群），圣安东尼奥 和 休斯顿。具体的位置如下。其中这次主要停留的奥斯汀就在三个城市群中间。</p>
+
+<p><img src="http://iphyer.github.com/image/Texas/map.jpeg" alt="state capital2" /></p>
+
+<p>奥斯汀正好是得克萨斯州比较特别的地方，因为它是德州的首府，同时也是德州的经济发展最好的地方。美国很多州的首府往往只承担政治职能，最多再加上本州的教育中心，比如威斯康星的麦迪逊。但是奥斯汀比较特别，它也是著名硅丘(<a href="https://en.wikipedia.org/wiki/Silicon_Hills">Silicon Hills</a>)所在地。这里不仅仅是戴尔电脑的总部，也是一系列公司的总部或者分部所在地，包括 Apple, ARM, Cisco, eBay, Facebook, Google, IBM, Intel,  TI, Oracle, VMWare 和同学所在的亚马逊。说起来，奥斯汀也是亚马逊第二总部的 20 个候选城市。</p>
+
+<p>这么多大公司，再加上德州大学奥斯汀分校，这所德州大学系统的旗舰校，让奥斯汀的气质非常特别。既有典型的德州风格（德州风格说白了就是西部风格，想想牛仔的风格就是德州的风格），也有特别文艺的一面。比如在全德州共和党大胜的情况下，奥斯汀是支持民主党的。。。</p>
+
+<p>比如这里有一幅图，<a href="https://www.nytimes.com/elections/results/texas">Texas Results</a>。</p>
+
+<p><img src="http://iphyer.github.com/image/Texas/2016GE.png" alt="Texs票数" /></p>
+
+<p>这张图其实就是德州最真实的写照，首先，大部分德州是支持川普的，都是传统的大农场区域。但是大部分城市都是支持希拉里，主要是移民和教育成都问题。同时南方完全都是红色的，其实很多都是偷渡后来等到大赦或者链式移民进入美国的。同时比较有意思的是人数，即使是德州这样共和党的铁杆票仓，其实民主党势力也很强大。人数上并不是差别很大。当然这里又要牵涉到美国大选的所谓选举人团制度了，美国大选并不是一人一票，而是选举人团票数决定胜负，大部分州都是赢者通吃，所以有时候会出现胜选的总统不是多数人选择的情况，比如 2016 大选，希拉里的得到的支持者更多但是川普赢了选举人票。</p>
+
+<p>当然现在还是书归正传。讲讲奥斯汀的游记。</p>
+
+<p>奥斯汀以“世界现场音乐之都”（Live Music Capital of the World）闻名。最著名为第六街（Sixth Street），街上各类酒吧和其他夜生活场所，入夜后大多有各类乐团现场驻唱。说实话这次有机会去的，不过我们都对这种老美的酒吧文化没有兴趣，所有都没有去。</p>
+
+<p>奥斯汀的核心城区，和所有的州府所在地一样，以州议会大楼为中心，然后环形放射。州议会大楼以北便是得州大学校园。此大学学生五万余人、教职员两万左右，在奥斯汀人口比例中，占有相当的分量。奥斯汀总人口大概也就是 90 万人（全美第 11 大城市）。</p>
+
+<p>当然，奥斯汀这个城市总体的感觉第一个就是文艺范。特别的文艺，特别的有感觉。放几张街景图。</p>
+
+<p><img src="http://iphyer.github.com/image/Texas/1.jpeg" alt="street1" /></p>
+
+<p><img src="http://iphyer.github.com/image/Texas/aus4.jpeg" alt="street2" /></p>
+
+<p><img src="http://iphyer.github.com/image/Texas/aus5.jpeg" alt="street3" /></p>
+
+<p><img src="http://iphyer.github.com/image/Texas/aus6.jpeg" alt="street4" /></p>
+
+<p><img src="http://iphyer.github.com/image/Texas/aus7.jpeg" alt="street5" /></p>
+
+<p><img src="http://iphyer.github.com/image/Texas/aus11.jpeg" alt="street6" /></p>
+
+<p>UT-Austin 的主校园，话说当年 UT-Austion 默默拒绝了我，真是残念。</p>
+
+<p><img src="http://iphyer.github.com/image/Texas/2.jpeg" alt="street7" /></p>
+
+<p>当然还去了，奥斯汀郊区的一个天然湖，风景确实是漂亮。据说湖这边是饭店，可以参观，对面全部是私人别墅。</p>
+
+<p><img src="http://iphyer.github.com/image/Texas/aus1.jpeg" alt="street8" /></p>
+
+<p><img src="http://iphyer.github.com/image/Texas/aus2.jpeg" alt="street9" /></p>
+
+<p><img src="http://iphyer.github.com/image/Texas/aus3.jpeg" alt="street10" /></p>
+
+<p>另一个让人感受深刻的，就是奥斯汀的环保。</p>
+
+<p>这个城市是不允许使用塑料袋的。注意是不允许，不是花钱买塑料袋。就是明令禁止。所有的超市都是布袋或者纸箱。没有任何塑料袋。即使德州本身是石油和石油制品的生产大洲。</p>
+
+<h2 id="state-capital">State Capital</h2>
+
+<p>当然和麦迪逊相似，作为州府，这个城市的核心建筑无庸置疑，必须是州府。所以我们也去参观了州府。说实话，其实州府没啥好参观的，美国各州的州府都和国会山不是一个风格，当然具体大小、高度有区别，不过外面看都差不多。</p>
+
+<p>当然，参观州府的精华不在建筑，在于里面的讲解，往往会解说各个州的历史沿革，著名人物和这座州府的特点。比如威斯康星的州府就会强调，州府用到了这个世界上所有的大理石，里面的两块大理石甚至是从地中海挖出来的。</p>
+
+<p>放几张州府的照片，</p>
+
+<p><img src="http://iphyer.github.com/image/Texas/cap1.jpeg" alt="state capital1" /></p>
+
+<p><img src="http://iphyer.github.com/image/Texas/cap2.jpeg" alt="state capital2" /></p>
+
+<p><img src="http://iphyer.github.com/image/Texas/cap3.jpeg" alt="state capital3" /></p>
+
+<h2 id="bullock-texas-state-history-museum">Bullock Texas State History Museum</h2>
+
+<p>这个博物馆就是德州历史的介绍，非常值得一去。在这里详细介绍了德州的历史沿革。</p>
+
+<p>门口的孤星是德州的标志，德州也被称为孤星州，因为这是当年德克萨斯共和国的标志。</p>
+
+<p><img src="http://iphyer.github.com/image/Texas/museum1.jpeg" alt="state capital2" /></p>
+
+<p>在美国 50 个州，德克萨斯州的特殊在于，它是作为一个国家加入，这点在该博物馆有非常详细的介绍。</p>
+
+<p><img src="http://iphyer.github.com/image/Texas/mu0.jpeg" alt="state capital2" /></p>
+
+<p>事实上，当时围绕德州的归属，有三方力量角力，墨西哥，德州本土势力，美国国内势力。每一方其实又有不同意见，比如德州本土势力，其实就分成三派，亲墨西哥势力，亲美国势力，德州独立势力。所以说这段历史，其实仔细看是波诡云谲，让人一言难尽。</p>
+
+<p><img src="http://iphyer.github.com/image/Texas/mu2.jpeg" alt="state capital2" /></p>
+
+<p><img src="http://iphyer.github.com/image/Texas/mu3.jpeg" alt="state capital2" /></p>
+
+<p><img src="http://iphyer.github.com/image/Texas/mu4.jpeg" alt="state capital2" /></p>
+
+<p>当然这个时候，就看风流人物了。很多时候，一个伟大的人物在关键的历史节点的伟大闪光，可以彻底地改变历史的进程。想知道更多例子，只要看茨威格的名著《人类群星闪耀时》就可以了，这本书更贴切的名字其实是人类群星开挂时。在得克萨斯州的前途灰暗不明的时候，休斯顿，奥斯汀，达拉斯这些伟大的德州人坚定地选择了独立，选择了美国。甚至在美国本土不愿意接纳德州的情况下，选择独立也要和墨西哥割裂开来，甚至不惜独立建国，独立打赢德墨战争。比如阿拉莫之战，英雄的德州儿女冒着墨西哥敌人的罪恶弹雨枪林，坚持战斗，绝不放弃，直至弹尽粮绝也没有投降。</p>
+
+<p>摘抄一段维基百科的介绍</p>
+
+<blockquote>
+  <p>阿拉莫城中当时的指挥是27岁的威廉·塔拉维斯中校、40岁的冒险家詹姆斯·鲍文和50岁的战争英雄及政治家大卫·克拉克，经过13天伤亡惨重的阿拉莫战役，墨西哥军队终于占领了阿拉莫，所有男性抵抗者均被处死，妇女和儿童得到赦免。</p>
+</blockquote>
+
+<blockquote>
+  <p>三周后，以“记住阿拉莫”（Remember the Alamo!)为战斗口号的德克萨斯军队在山姆·休斯敦的指挥下在圣哈辛托战役取得了决定性的胜利，桑塔·安那也被俘。德克萨斯也因此在之后的几年中保持了独立并在1845年加入美利坚合众国。直到今天，阿拉莫之战依然被视作美国陆军历史上的神话，被美国人认为是自由意志下勇气和牺牲精神的象征，而阿拉莫博物馆每年有多达250万名的参观者。</p>
+</blockquote>
+
+<p>“Remember the Alamo!”被认为是美国人的精神战斗，就像中国军队强调，平型关战斗，飞夺泸定桥一样都被两国人民作为自己的精神象征。</p>
+
+<p>当然不得不说的是，作为一个外国人，这是美国人官方史书的说法。在这个激动人心的爱国主义历史教育背景下，美国人从不主动提起的是，对于德州独立的原因。因为事实上是，从现在的历史观点看，墨西哥采取了更加文明的废奴主义，而德州是落后的蓄奴主义。所以德州不得不从墨西哥独立，不然就必须废奴，这是广大德州农场主所不允许的。</p>
+
+<p>当然，不得不承认，美国人提”Remember the Alamo!”也是有原因的，因为正是墨西哥独裁者安东尼奥·洛佩斯·德·桑塔·安纳在阿拉莫的烧杀抢掠激怒了德州人，这也是休斯顿三周后可以集中力量打赢圣哈辛托战役的原因，也就不奇怪为什么美国人歌颂阿拉莫了。因为这在他们看来是和当年的独立战争一样的逻辑，当然你要是用南北内战的逻辑看是看不通的。</p>
+
+<p>不过，作为历史教育来说，引述下别人的成熟观点 <a href="https://movie.douban.com/review/4955430/">美国精神的象征：阿拉莫之战</a></p>
+
+<blockquote>
+  <p>另外，当时统治墨西哥的是位残酷的独裁者，在美国人看来对暴政的反抗是正义的行为，他们是在为自由而战，与当年的美国独立战争反抗英国殖民者没有什么本质的区别。因此，阿拉莫之战对他们来说是不仅是保护自己的利益不受侵犯，也是对勤劳苦干、获取自由、不惧艰险精神的一种肯定。只要他们有能力，他们就不会止步于任何所谓的边界，也自然会为了保护自己应得的利益而不惜代价。这种热爱自由、敢于冒险、勇于进取、为自己的利益而奋斗的精神是美国国民性的重要组成部分，而阿拉莫之战就是这种价值观的典型代表。因此，它一再地被美国人民浓墨重彩地讴歌也就不足为奇了。</p>
+</blockquote>
+
+<p>当然博物馆也还原了，当年从墨西哥湾打捞出来的最早的北美殖民者从欧洲移民美国的船只，这是模型：</p>
+
+<p><img src="http://iphyer.github.com/image/Texas/mu6.jpeg" alt="state capital2" /></p>
+
+<p>当然也有德州的骄傲，航天工业，毕竟 休斯顿 是人类在月球说的第一个单词！</p>
+
+<p><img src="http://iphyer.github.com/image/Texas/mu5.jpeg" alt="state capital2" /></p>
+
+<h2 id="duck-boat-adventure">Duck Boat Adventure</h2>
+
+<p>这个鸭子船也挺好玩的，就是水陆两用汽车，在奥斯汀市区绕来绕去。其实，现在觉得到了一个陌生的城市，如果有类似这样的观光巴士就选择做，往往观光巴士的路线都是本地人总结出来的，精雕细琢的路线，也往往会把重要的景点都一一覆盖。先坐着巴士走马观花一番，再自己决定挑哪些景点细细观察是更好的选择。</p>
+
+<p><img src="http://iphyer.github.com/image/Texas/aus12.jpeg" alt="state capital2" /></p>
+
+<p>当然，奥斯汀的湖景也很美</p>
+
+<p><img src="http://iphyer.github.com/image/Texas/river1.jpeg" alt="state capital2" /></p>
+
+<p><img src="http://iphyer.github.com/image/Texas/river2.jpeg" alt="state capital2" /></p>
+
+<h2 id="lbj-presidential-library">LBJ Presidential Library</h2>
+
+<p>奥斯汀的另一大景点就是 LBJ Presidential Library。 </p>
+
+<p>Presidential Library 往往是总统退休之后修建的公共图书馆，也往往作为这个总统的历史文献研究和保管之处。修建之处往往也在总统的家乡或者对于总统有特别纪念意义的地方。LBJ就是 林登·贝恩斯·约翰逊总统（ Lyndon Baines Johnson ），的缩写，他在1963年至1969年担任第36任美国总统，其中，1961年至1963年于约翰·肯尼迪任下为第37任美国副总统。</p>
+
+<p>说到约翰逊就不能不说 JFK，1963.11.22 是所有美国人难以忘记的一天，现在问上了年纪的美国人，那天他们在干什么往往都能清楚地说出来。特别是他是什么时候听到肯尼迪遇刺的消息的。肯尼迪遇刺后，约翰逊接任总统，并且成功推动了伟大社会的建设，给予黑人投票权都是约翰逊实现的。当然不得不说，他扩大越战时一个黑点，最终也赔上了自己的政治生涯。</p>
+
+<p>上点照片吧。</p>
+
+<p><img src="http://iphyer.github.com/image/Texas/LBJ1.jpeg" alt="LBJ" /></p>
+
+<p><img src="http://iphyer.github.com/image/Texas/LBJ2.jpeg" alt="LBJ" /></p>
+
+<p><img src="http://iphyer.github.com/image/Texas/LBJ3.jpeg" alt="LBJ" /></p>
+
+<h2 id="section-3">公交系统</h2>
+
+<p>奥斯汀的公交还算发达，地铁，公交都有。虽然地铁只有一条线，但是毕竟有地铁不是。不过虽然说是地铁，但是其实是轻轨，全程地上，还是那种不用高架的地上，毕竟德州地广人稀。</p>
+
+<p>但是这个公交系统特别先进，它有自己的 App，所以不找零钱。一次我在公交上投了 2 美元，车票是 1.75 美元，这多出来的 0.25 美元就被吞掉了， 吞掉了， 吞掉了。。。</p>
+
+<p>地铁也是，不给找零，只是把多余的钱充到一张充值电磁卡里面。你可以下次继续用里面的余额。但是是有时间限制的，只有一周。也就是说如果你一周没消费，这个钱也就归公交系统了。。。</p>
+
+<p>我第一次去的时候，因为在美国都是信用卡习惯了，没带多少零钱，带的都是 20 刀，10 刀的零钱，只有两张 1 块钱（ 就是公交那次 ）。要是我投了 20 刀岂不是亏大发了。</p>
+
+<p>当然，奥斯汀的逻辑也是清楚的，这样的情况下，大家都会用电子票。事实也是，大部分车上的乘客都用 App 支付。</p>
+
+<p>给大家看下这个傲娇的车票，</p>
+
+<p><img src="http://iphyer.github.com/image/Texas/ticket.jpg" alt="PhotoTicket" /></p>
+
+<p>不过这也提醒了，出去玩一定要准备零钱。</p>
+
+<p>说实话，如果是住宾馆什么的，退房的时候，老美往往也会在床上放几张 1 刀零钱的。说起来出门在外，带着一部分零钱是最好的。也不用太多， 50 刀左右，有零有整是最好的。</p>
+
+<h2 id="section-4">美食</h2>
+
+<p>德州的饮食，其实就是墨西哥菜和炸鸡，牛排。毕竟这里时牛仔之乡，当然时最完美的美国菜式。</p>
+
+<p><img src="http://iphyer.github.com/image/Texas/food1.jpeg" alt="food" /></p>
+
+<p><img src="http://iphyer.github.com/image/Texas/food2.jpeg" alt="food" /></p>
+
+<p><img src="http://iphyer.github.com/image/Texas/food3.jpeg" alt="food" /></p>
+
+<h1 id="section-5">休斯顿</h1>
+
+<p>说实话，中国人特别熟悉这个城市。主要是 2002 年 “中国向美国最大的单个出口“商品” 姚明一直生活在这个城市并且和这个城市融为一体。在宇航中心参观的时候，就看到人身穿 火箭队(中文) 的球衣。</p>
+
+<p>当然休斯顿本身作为全美第四大城市，外来移民也是很多的。当然，中国人在这里的存在感也是特别强烈这么多，比如休斯顿的中国城就是我去过的最好的中国城。</p>
+
+<p>放几张照片，看看这满目的中国字和纯正的上海菜。</p>
+
+<p><img src="http://iphyer.github.com/image/Texas/hou2.jpeg" alt="Houston" /></p>
+
+<p><img src="http://iphyer.github.com/image/Texas/hou3.jpeg" alt="Houston" /></p>
+
+<p><img src="http://iphyer.github.com/image/Texas/hou4.jpeg" alt="Houston" /></p>
+
+<p><img src="http://iphyer.github.com/image/Texas/hou5.jpeg" alt="Houston" /></p>
+
+<p><img src="http://iphyer.github.com/image/Texas/hou6.jpeg" alt="Houston" /> </p>
+
+<p>当然休斯顿更著名的就是，航天中心，放几张照片作为总结</p>
+
+<p><img src="http://iphyer.github.com/image/Texas/hou7.jpeg" alt="Houston" /></p>
+
+<p><img src="http://iphyer.github.com/image/Texas/hou8.jpeg" alt="Houston" /></p>
+
+<p><img src="http://iphyer.github.com/image/Texas/hou9.jpeg" alt="Houston" /></p>
+
+<p><img src="http://iphyer.github.com/image/Texas/hou11.jpeg" alt="Houston" /></p>
+
+<p><img src="http://iphyer.github.com/image/Texas/hou12.jpeg" alt="Houston" /></p>
+
+<h1 id="section-6">总结</h1>
+
+<p>很感慨，一起南大物理系的老兄弟，哥们儿已经走的这么远了，还是需要努力啊！</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[TA 总结]]></title>
@@ -28,9 +451,9 @@
 
 <h1 id="ta-">TA 的工作概括</h1>
 
-<p>毫无疑问，助教无疑是比较忙的。特别是入门课程的助教。这就是为什么我这学期总是满身疲惫的在各个人物之间周旋的原因。</p>
+<p>毫无疑问，助教无疑是比较忙的。特别是入门课程的助教。这就是为什么我这学期总是满身疲惫的在各个任务之间周旋的原因。</p>
 
-<p>这里放一种我的工作总结图，这里基本上就是这学期付工资的依据，可以说美国人基本上就是依据这个表格给助教发工资的。</p>
+<p>这里放一张我的工作总结图，这里基本上就是这学期付工资的依据，可以说美国人基本上就是依据这个表格给助教发工资的。</p>
 
 <p><img src="http://iphyer.github.com/images/TA/hour.png" alt="ori" /></p>
 
@@ -44,17 +467,17 @@
 
 <p>首先我想讲解下这个课程的特点。</p>
 
-<p>Chem 103 ，中文叫做 普通化学 103 时最最基本的化学课。一个课有 4 个学分，基本一周五天，小本 3 天 Lecture， 2 天需要上助教的习题课。然后还有各种课后作业。现在为了节约成本，都是网上布置习题，小本需要自己完成。到时间，网上的作业自动截止。我曾今问过小本，基本上这门课能够站占用到他们 30% 到 40% 的时间。换言之，如果你选择了这门课，那么你需要面对的压力和挑战也会大很多。</p>
+<p>Chem 103 ，中文叫做 普通化学 103 是最最基本的化学课。一个课有 4 个学分，基本一周五天，小本 3 天 Lecture， 2 天需要上助教的习题课。然后还有各种课后作业。现在为了节约成本，都是网上布置习题，小本需要自己完成。到时间，网上的作业自动截止。我曾经问过小本，得到他们的每周需要花费多少时间的数据，基本上这门课能够站占用到他们 30% 到 40% 的时间。换言之，如果你选择了这门课，那么你需要面对的压力和挑战也会大很多。</p>
 
 <p>但是为什么课业负担这么重？</p>
 
 <p>其实是因为这门课对应着国内从初二开始的化学一直到国内大一的初步。</p>
 
-<p>美国高中没有自己的标准，也没有统一的全国考试。他们有对应的 AP 课程。但是，这些都是自愿的，所以没有上过 AP 的同学怎么办？那就是这门课对应的。为了能够压缩在两个学期教授完相应的课程，这么课不得不任务特别重。</p>
+<p>美国高中没有自己的标准，也没有统一的全国考试。他们有对应的 AP 课程。但是，这些都是自愿的，所以没有上过 AP 的同学怎么办？那就是这门课对应的。为了能够压缩在两个学期教授完相应的课程，这门课不得不任务特别重。</p>
 
 <p>其次，因为时间短，所以很多地方教授都是只提重点，不提来龙去脉或者很少给学生示范解题。这就是为什么需要大量的助教。简单来说，时间紧，任务重，必需拆分开上课与做题。这样同时推进，方便学习。</p>
 
-<p>当然，单单就难度而言，美国人并没有降低要求，但是其实并没有国内的中考，高考难度大。因为，很多地方确实体现了美国人，给出知识点，如果你能够熟练掌握说明你的水平足够就要给高分的思路。国内的很多考试题目往往存在着刁难的意味。因为大家都花了大量的时间学习，所以你出了一个没有区分度的题目，怎么帮助高校选拔人才？</p>
+<p>当然，单单就难度而言，美国人并没有降低要求，但是其实并没有国内的中考，高考难度大。因为，很多地方确实体现了美国人考试的特点，这是考核性考试不是选拔性考试。给出知识点，如果你能够熟练掌握说明你的水平足够，就要给高分。国内的很多考试题目往往存在着刁难的意味。因为大家都花了大量的时间学习，所以你出了一个没有区分度的题目，怎么帮助高校选拔人才？</p>
 
 <p>两种制度各有利弊，相应地我觉得美国的更好。</p>
 
@@ -62,11 +485,11 @@
 
 <p>同时最最重要的是，以我现在的观点看，很多初中，高中化学都是几百年前的老知识。不说从现代科学的角度，他们不完善，至少是没必要在过时的知识上花太多时间和精力。</p>
 
-<p>最后就是，其实就是这么认真的学习。对于绝大多数中国人，他们还是会遗忘的，如果不是相关专业的，往往最后也就是知道个名词，知道点人物，仅此而已。那些来自牛顿，法拉第，麦克斯韦等等大人物的思想往往会刻骨铭心，但是把这些思想和洞见出成的套路话习题则往往随风而去。换句话说，中国教育为了选拔出人，实在是买椟还珠。毕竟那么多习题练习没必要啊。其实这个时间更适合给学生介绍那些定理的思想来源，历史背景等等。</p>
+<p>最后一点，其实就是这么认真的学习。对于绝大多数中国人，他们还是会遗忘的，如果不是相关专业的，往往最后也就是知道个名词，知道点人物，仅此而已。那些来自牛顿，法拉第，麦克斯韦等等大人物的思想往往会刻骨铭心，但是把这些思想和洞见出成习题并且投入大量时间、精力练习得到的经验则往往随风而去。换句话说，中国教育为了选拔出人，实在是买椟还珠。毕竟那么多习题练习没必要啊。这个时间更适合给学生介绍那些定理的思想来源，历史背景等等。</p>
 
-<p>当然了，考虑到国内的现实，其实高考这样的制度是现条件最好的那个选择。</p>
+<p>当然了，考虑到国内的现实，其实高考这样的制度是现条件约束下最好的那个选择。</p>
 
-<p>最后说说这么课，为什么成为全校最大的基础课程。</p>
+<p>最后说说这门课，为什么成为全校最大的基础课程。</p>
 
 <p>这里展示下具体数据，</p>
 
@@ -74,11 +497,11 @@
 
 <p>其实离不开医学院的大力支持。</p>
 
-<p>我曾今在第一节课问过大家为什么上这么课，很多都回答因为他们想读医学院。美国没有医学院的本科，那么如果你想读医学院，那么你就必须满足医学院的学分要求。而这么课和下学期的姊妹课连在一起一共是 8 个学分，非常之多。</p>
+<p>我曾在第一节课问过大家为什么上这么课，很多都回答因为他们想读医学院。美国没有医学院的本科，那么如果你想读医学院，那么你就必须满足医学院的学分要求。而这门课和下学期的姊妹课连在一起一共是 8 个学分，非常之多。而且也是医学比较看重的科目。</p>
 
-<p>而在美国，医学院无疑是竞争最激烈的研究生院。如果你不能得到 A，那么你基本就告别医学院了。虽然从来没有一个医学院会明确说出这一点，但是这基本就是事实。</p>
+<p>在美国，医学院无疑是竞争最激烈的研究生院。如果你不能得到全 A，那么你基本就告别医学院了。虽然从来没有一个医学院会明确说出这一点，但是这基本就是事实。</p>
 
-<p>同时，化学作为医学院的非常紧密结合的学科，也确实非常重要。同时因为这么课有很多人一起竞争，事实上变成和国内高考差不多的情况。大家在同样的赛道里面互相拼杀，最后也方便医学院找出他们喜欢的人才。</p>
+<p>同时，化学作为医学非常紧密结合的学科，也确实非常重要。同时因为这门课有很多人一起竞争，事实上变成和国内高考差不多的情况。大家在同样的赛道里面互相拼杀，最后也方便医学院找出他们喜欢的人才。</p>
 
 <h1 id="section-2">教学体会</h1>
 
@@ -1648,443 +2071,6 @@ And that has made all the difference.
 这里就是最近在做的科研的核心问题，设计一个高效的新的抽样方法进行蒙特卡洛模拟，这是最近常常思考的问题。</p>
 
 <p>抽样是这样的一个问题，为了得到更全面的信息，我们希望使用尽可能少的计．如果计算是无限的那么其实没有什么系统的限制会出现，但是因为事实上并没有所以我们并不是没有限制．这就让我们需要高效的算法．</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[分子动力学的统计函数总结]]></title>
-    <link href="http://iphyer.github.com/blog/2017/03/30/msdandacf/"/>
-    <updated>2017-03-30T00:41:00-05:00</updated>
-    <id>http://iphyer.github.com/blog/2017/03/30/msdandacf</id>
-    <content type="html"><![CDATA[<h1 id="section">引入</h1>
-
-<p>这学期的一门课，虽然是材料系老师上的，不过 coding 工作量确实不小，还是比较花时间的。总结这些浪费的时间，很多时候其实不是花在编程上的时间，单单编程还是很快很机械的。</p>
-
-<p>大部分的科学计算，比如计算物理，计算化学，难度不在编程，在于算法和背后的物理。比如今天这篇博文总结的问题就是如何更好的实现对于模拟体系的物理化学性质的统计。</p>
-
-<!--more-->
-
-<p>首先还是规定下讨论的背景，前一篇博文<a href="http://iphyer.github.io/blog/2017/03/11/md/">分子动力学计算的小细节</a> 是尝试构造一个可用的 LJ 液体体系。现在如果我们给系统设定一个很高的温度， 比如 500K， 那么系统就应该从固态进入液态，再过一定的时间当系统在液态稳定之后，我们就可以抽样感兴趣的物理量并且进行统计了。</p>
-
-<p>当然，这里用到的第一个假设是，遍历性假设，也就是我们认为时间平均等于系综平均，在刘维尔空间的抽样是足够的。这条是统计力学的基础假设，但是不是自然界的普遍真理，当然你一般是遇不到这个假设不成立的情况的。就如普通人很难遇到欧几里得几何的平行公设不成立的情况。</p>
-
-<p>第二个假设是液体的性质是足够均匀的。当我这么说的时候，是说从长时间的角度看，各个状态的液体是均一的。如果不满足那就进入了非平衡体系的范围了，耗散力和熵发挥作用。当然在美好的基础物理中这些都不会发生。</p>
-
-<p>那么对于一个液体我们关心哪些性质，主要是三个，这儿一个个地讨论。</p>
-
-<h1 id="gr">g(r)</h1>
-
-<p>第一个是 g(r),  pair correlation function。</p>
-
-<p>这个公式的含义是，平均来看，从当前原子向四周不停的画球面，在球面上可能出现粒子的密度是多少。</p>
-
-<h3 id="section-1">平均来看是什么？</h3>
-
-<p>平均来看其实是说，对于每一个原子都应该嵌套下面的步骤进行一次。所以 g(r) 是对于整体 system 而言的。不是针对某个特定的点而言。</p>
-
-<h3 id="section-2">画球面是什么？</h3>
-
-<p>画球面，其实是通俗的说法，数学上就是不断的对于数密度做球面的微分。这个目的是为了准确反应疏密度的发散变化。</p>
-
-<h3 id="section-3">为什么是密度？</h3>
-
-<p>其实是为了把这个性质在各个系统之间做比较，考虑两个同样设置的系统只是大小不同，那么绝对量虽然不同，但是密度是一样的。</p>
-
-<p>所以在 g(r) 其实是只是当前时刻的性质，换句话说是 snapshot 的性质，不需要累加。</p>
-
-<p>0K 时固体 g(r)</p>
-
-<p><img src="http://iphyer.github.com/images/MD2/gr0K.png" alt="gr0K" /></p>
-
-<p>250K 时液体 g(r)</p>
-
-<p><img src="http://iphyer.github.com/images/MD2/gr250K.png" alt="gr250K" /></p>
-
-<h1 id="msd">MSD</h1>
-
-<p>但是还有那么一大类性质是和时间相关的，换用术语就是需要从 trajectory 得到，比如 MSD, Mean squared displacement. 得到 MSD 最大的好处就是可以通过爱因斯坦关系，直接得到扩散系数，扩散系数是非常方便测量的物理量，所以可以很方便地和实验结果对比，从而判断模拟的好坏。所以 MSD 是常用的测量物理量。</p>
-
-<script type="math/tex; mode=display">{\rm MSD}\equiv\langle (x-x_0)^2\rangle=\frac{1}{N}\sum_{n=1}^N (x_n(t) - x_n(0))^2</script>
-
-<p>几个注意点:</p>
-
-<p>正好，读 Amber 的程序手册的时候看到一个很好的说明部分。写的非常清晰，关键就是我们知道在计算力和能量的时候周期性边界条件导致了对于距离的一个周期性选取。那么对于坐标需要不需要把运动位移拉回到一个体系原胞内部？</p>
-
-<p>其实是不需要的，特别是在计算 MSD 的时候其实不拉回是比较好的选择。</p>
-
-<p>具体原因就是，如果拉回，那么其实人为引入了一个约束，那就是两个粒子之间距离的最大差值不能大于你的周期性边界条件的作用范围。这是人为引入的一个假象，本质上是我们在计算机不够强大的条件下做的一个折中选择。</p>
-
-<p>具体的说明如下:</p>
-
-<p><img src="http://iphyer.github.com/images/MD2/MSDWarp.png" alt="MSDWarp" /></p>
-
-<p>下图是一张典型的 MSD 统计曲线</p>
-
-<p><img src="http://iphyer.github.com/images/MD2/MSD.png" alt="MSD" /></p>
-
-<h1 id="vaf">VAF</h1>
-
-<p>VAF就是velocity autocorrelation function (VAF) ，是关于速度的自相关函数。自相关函数是表达体系内在关联性质的重要函数。</p>
-
-<p>所以 VAF 也是非常重要的性质，同时通过 Green-Kubo 关系, VAF 也可以和扩散系数联系在一起。</p>
-
-<p>这里同样注意到 V0　必须取平衡后的时刻速度即可。同时，注意是 VAF 关于时间的积分和扩散系数关联，不是 VAF 本身。</p>
-
-<p>VAF 图像如下:</p>
-
-<p><img src="http://iphyer.github.com/images/MD2/ACF.png" alt="VAF" /></p>
-
-<p>总 VAF 图像如下:</p>
-
-<p><img src="http://iphyer.github.com/images/MD2/totalACF.png" alt="totalVAF" /></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[doctest使用记录]]></title>
-    <link href="http://iphyer.github.com/blog/2017/03/22/doctest/"/>
-    <updated>2017-03-22T23:56:00-05:00</updated>
-    <id>http://iphyer.github.com/blog/2017/03/22/doctest</id>
-    <content type="html"><![CDATA[<h2 id="section">起源</h2>
-
-<p>最近刚刚刷完了 Coursea 一门公开课，感觉收货很大，推荐下这门课，Learn to Program: Crafting Quality Code。</p>
-
-<p><img src="http://iphyer.github.com/images/doctest/learn.png" alt="Learn to Program: Crafting Quality Code" /></p>
-
-<p>这门课从名字就能看出来并不是为 Python 基础入门而准备的，相反这门课是为大家进一步提高自己的编程能力而开设的。在5周的课程中，重点在于如何写出清晰，可用，健壮的程序。</p>
-
-<p>这篇博客不细细介绍这门课程，推荐大家自行学习，这里总结下我觉得收货最大的一个地方，认识了 doctest这个非常好用的 Python 测试架构。</p>
-
-<p>所有的 code 基于 Python3。</p>
-
-<!--more-->
-
-<h2 id="doctest-">使用 doctest 的背景</h2>
-
-<p>这里我简单介绍下 doctest 的使用背景。如果脱离了使用场景和程序的背景，独立地评价某个程序的优劣是非常偏颇的。</p>
-
-<p>正常我们编写程序，都会先总结出某个需求，然后设计数据结构并构思算法，甚至可能画出 UML 图，流程图来总结自己的想法。</p>
-
-<p>在这个过程中，最重要的就是抽象出每一个功能模块的输入和输出，不考虑具体的模块内部设计，输入输出是你在整体把握程序时最重要的参考。</p>
-
-<p>doctest 正是利用这个过程进行代码测试的工作。所以要体会到 doctest 的先进性，首先，必须明确你的代码设计过程是符合上述流程的。当然上述流程是绝大多数程序员喜欢的过程，也是绝大多数场景下推荐的(肯定存在特例，比如你的主要工作是接手别人的代码，ORZ)。既然我们在设计每个程序模块的时候都会规定好输入和输出，何不用这些规定来做程序测试？甚至进一步，这些测试能不能用来展示程序的用法呢？</p>
-
-<h1 id="doctest">doctest</h1>
-
-<p>根据官方文档的介绍 doctest 的目的是:</p>
-
-<blockquote>
-  <p>The doctest module searches for pieces of text that look like interactive Python sessions, and then executes those sessions to verify that they work exactly as shown. There are several common ways to use doctest:</p>
-</blockquote>
-
-<blockquote>
-  <ul>
-    <li>To check that a module’s docstrings are up-to-date by verifying that all interactive examples still work as documented.</li>
-    <li>To perform regression testing by verifying that interactive examples from a test file or a test object work as expected.</li>
-    <li>To write tutorial documentation for a package, liberally illustrated with input-output examples. Depending on whether the examples or the expository text are emphasized, this has the flavor of “literate testing” or “executable documentation”.</li>
-  </ul>
-</blockquote>
-
-<h2 id="section-1">示例</h2>
-
-<p>Talk is Cheap, show me the code.</p>
-
-<p>这里直接举 doctest 官方文档中的例子，方便大家理解。</p>
-
-<pre style="color:#55cc66;background:#001800;"><span style="color:#b96969; ">"""</span>
-<span style="color:#b96969; ">This is the "example" module.</span>
-<span style="color:#b96969; "></span>
-<span style="color:#b96969; ">The example module supplies one function, factorial().  For example,</span>
-<span style="color:#b96969; "></span>
-<span style="color:#b96969; ">&gt;&gt;&gt; factorial(5)</span>
-<span style="color:#b96969; ">120</span>
-<span style="color:#b96969; ">"""</span>
-
-<span style="color:#508050; font-weight:bold; ">def</span> factorial<span style="color:#808030; ">(</span>n<span style="color:#808030; ">)</span><span style="color:#808030; ">:</span>
-    <span style="color:#b96969; ">"""Return the factorial of n, an exact integer &gt;= 0.</span>
-<span style="color:#b96969; "></span>
-<span style="color:#b96969; ">&#xa0;&#xa0;&#xa0;&#xa0;&gt;&gt;&gt; [factorial(n) for n in range(6)]</span>
-<span style="color:#b96969; ">&#xa0;&#xa0;&#xa0;&#xa0;[1, 1, 2, 6, 24, 120]</span>
-<span style="color:#b96969; ">&#xa0;&#xa0;&#xa0;&#xa0;&gt;&gt;&gt; factorial(30)</span>
-<span style="color:#b96969; ">&#xa0;&#xa0;&#xa0;&#xa0;265252859812191058636308480000000</span>
-<span style="color:#b96969; ">&#xa0;&#xa0;&#xa0;&#xa0;&gt;&gt;&gt; factorial(-1)</span>
-<span style="color:#b96969; ">&#xa0;&#xa0;&#xa0;&#xa0;Traceback (most recent call last):</span>
-<span style="color:#b96969; ">&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;...</span>
-<span style="color:#b96969; ">&#xa0;&#xa0;&#xa0;&#xa0;ValueError: n must be &gt;= 0</span>
-<span style="color:#b96969; "></span>
-<span style="color:#b96969; ">&#xa0;&#xa0;&#xa0;&#xa0;Factorials of floats are OK, but the float must be an exact integer:</span>
-<span style="color:#b96969; ">&#xa0;&#xa0;&#xa0;&#xa0;&gt;&gt;&gt; factorial(30.1)</span>
-<span style="color:#b96969; ">&#xa0;&#xa0;&#xa0;&#xa0;Traceback (most recent call last):</span>
-<span style="color:#b96969; ">&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;...</span>
-<span style="color:#b96969; ">&#xa0;&#xa0;&#xa0;&#xa0;ValueError: n must be exact integer</span>
-<span style="color:#b96969; ">&#xa0;&#xa0;&#xa0;&#xa0;&gt;&gt;&gt; factorial(30.0)</span>
-<span style="color:#b96969; ">&#xa0;&#xa0;&#xa0;&#xa0;265252859812191058636308480000000</span>
-<span style="color:#b96969; "></span>
-<span style="color:#b96969; ">&#xa0;&#xa0;&#xa0;&#xa0;It must also not be ridiculously large:</span>
-<span style="color:#b96969; ">&#xa0;&#xa0;&#xa0;&#xa0;&gt;&gt;&gt; factorial(1e100)</span>
-<span style="color:#b96969; ">&#xa0;&#xa0;&#xa0;&#xa0;Traceback (most recent call last):</span>
-<span style="color:#b96969; ">&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;...</span>
-<span style="color:#b96969; ">&#xa0;&#xa0;&#xa0;&#xa0;OverflowError: n too large</span>
-<span style="color:#b96969; ">&#xa0;&#xa0;&#xa0;&#xa0;"""</span>
-
-    <span style="color:#508050; font-weight:bold; ">import</span> math
-    <span style="color:#508050; font-weight:bold; ">if</span> <span style="color:#508050; font-weight:bold; ">not</span> n <span style="color:#44aadd; ">&gt;=</span> <span style="color:#778c77; ">0</span><span style="color:#808030; ">:</span>
-        <span style="color:#508050; font-weight:bold; ">raise</span> <span style="color:#477766; ">ValueError</span><span style="color:#808030; ">(</span><span style="color:#cc5555; ">"n must be &gt;= 0"</span><span style="color:#808030; ">)</span>
-    <span style="color:#508050; font-weight:bold; ">if</span> math<span style="color:#808030; ">.</span>floor<span style="color:#808030; ">(</span>n<span style="color:#808030; ">)</span> <span style="color:#44aadd; ">!=</span> n<span style="color:#808030; ">:</span>
-        <span style="color:#508050; font-weight:bold; ">raise</span> <span style="color:#477766; ">ValueError</span><span style="color:#808030; ">(</span><span style="color:#cc5555; ">"n must be exact integer"</span><span style="color:#808030; ">)</span>
-    <span style="color:#508050; font-weight:bold; ">if</span> n<span style="color:#44aadd; ">+</span><span style="color:#778c77; ">1</span> <span style="color:#44aadd; ">==</span> n<span style="color:#808030; ">:</span>  <span style="color:#b96969; "># catch a value like 1e300</span>
-        <span style="color:#508050; font-weight:bold; ">raise</span> <span style="color:#477766; ">OverflowError</span><span style="color:#808030; ">(</span><span style="color:#cc5555; ">"n too large"</span><span style="color:#808030; ">)</span>
-    result <span style="color:#808030; ">=</span> <span style="color:#778c77; ">1</span>
-    factor <span style="color:#808030; ">=</span> <span style="color:#778c77; ">2</span>
-    <span style="color:#508050; font-weight:bold; ">while</span> factor <span style="color:#44aadd; ">&lt;=</span> n<span style="color:#808030; ">:</span>
-        result <span style="color:#44aadd; ">*</span><span style="color:#808030; ">=</span> factor
-        factor <span style="color:#44aadd; ">+</span><span style="color:#808030; ">=</span> <span style="color:#778c77; ">1</span>
-    <span style="color:#508050; font-weight:bold; ">return</span> result
-
-
-<span style="color:#508050; font-weight:bold; ">if</span> <span style="color:#477766; ">__name__</span> <span style="color:#44aadd; ">==</span> <span style="color:#cc5555; ">"__main__"</span><span style="color:#808030; ">:</span>
-    <span style="color:#508050; font-weight:bold; ">import</span> doctest
-    doctest<span style="color:#808030; ">.</span>testmod<span style="color:#808030; ">(</span><span style="color:#808030; ">)</span>
-</pre>
-
-<p>上面的 code 就是 Python 代码，设代码存在<code>example.py</code>文件中。</p>
-
-<p>代码的功能就是返回所有正整数的阶乘。</p>
-
-<p>现在就可以在 terminal 使用如下方法调用该文件:</p>
-
-<pre style="color:#55cc66;background:#001800;">python example<span style="color:#808030; ">.</span>py
-</pre>
-
-<p>会发现没有任何异常输出，这表示代码在注释中所有的测试都通过，所以不显示输出。</p>
-
-<p>如果觉得不直观，可以添加如下的参数，再运行:</p>
-
-<pre style="color:#55cc66;background:#001800;"><span style="color:#44aadd; ">&gt;&gt;</span><span style="color:#44aadd; ">&gt;</span>python example<span style="color:#808030; ">.</span>py <span style="color:#44aadd; ">-</span>v
-Trying<span style="color:#808030; ">:</span>
-    factorial<span style="color:#808030; ">(</span><span style="color:#778c77; ">5</span><span style="color:#808030; ">)</span>
-Expecting<span style="color:#808030; ">:</span>
-    <span style="color:#778c77; ">120</span>
-ok
-Trying<span style="color:#808030; ">:</span>
-    <span style="color:#808030; ">[</span>factorial<span style="color:#808030; ">(</span>n<span style="color:#808030; ">)</span> <span style="color:#508050; font-weight:bold; ">for</span> n <span style="color:#508050; font-weight:bold; ">in</span> <span style="color:#400000; ">range</span><span style="color:#808030; ">(</span><span style="color:#778c77; ">6</span><span style="color:#808030; ">)</span><span style="color:#808030; ">]</span>
-Expecting<span style="color:#808030; ">:</span>
-    <span style="color:#808030; ">[</span><span style="color:#778c77; ">1</span><span style="color:#808030; ">,</span> <span style="color:#778c77; ">1</span><span style="color:#808030; ">,</span> <span style="color:#778c77; ">2</span><span style="color:#808030; ">,</span> <span style="color:#778c77; ">6</span><span style="color:#808030; ">,</span> <span style="color:#778c77; ">24</span><span style="color:#808030; ">,</span> <span style="color:#778c77; ">120</span><span style="color:#808030; ">]</span>
-ok
-Trying<span style="color:#808030; ">:</span>
-    factorial<span style="color:#808030; ">(</span><span style="color:#778c77; ">30</span><span style="color:#808030; ">)</span>
-Expecting<span style="color:#808030; ">:</span>
-    <span style="color:#778c77; ">265252859812191058636308480000000</span>
-ok
-Trying<span style="color:#808030; ">:</span>
-    factorial<span style="color:#808030; ">(</span><span style="color:#44aadd; ">-</span><span style="color:#778c77; ">1</span><span style="color:#808030; ">)</span>
-Expecting<span style="color:#808030; ">:</span>
-    Traceback <span style="color:#808030; ">(</span>most recent call last<span style="color:#808030; ">)</span><span style="color:#808030; ">:</span>
-        <span style="color:#808030; ">.</span><span style="color:#808030; ">.</span><span style="color:#808030; ">.</span>
-    <span style="color:#477766; ">ValueError</span><span style="color:#808030; ">:</span> n must be <span style="color:#44aadd; ">&gt;=</span> <span style="color:#778c77; ">0</span>
-ok
-Trying<span style="color:#808030; ">:</span>
-    factorial<span style="color:#808030; ">(</span><span style="color:#778c77; ">30.1</span><span style="color:#808030; ">)</span>
-Expecting<span style="color:#808030; ">:</span>
-    Traceback <span style="color:#808030; ">(</span>most recent call last<span style="color:#808030; ">)</span><span style="color:#808030; ">:</span>
-        <span style="color:#808030; ">.</span><span style="color:#808030; ">.</span><span style="color:#808030; ">.</span>
-    <span style="color:#477766; ">ValueError</span><span style="color:#808030; ">:</span> n must be exact integer
-ok
-Trying<span style="color:#808030; ">:</span>
-    factorial<span style="color:#808030; ">(</span><span style="color:#778c77; ">30.0</span><span style="color:#808030; ">)</span>
-Expecting<span style="color:#808030; ">:</span>
-    <span style="color:#778c77; ">265252859812191058636308480000000</span>
-ok
-Trying<span style="color:#808030; ">:</span>
-    factorial<span style="color:#808030; ">(</span><span style="color:#778c77; ">1</span><span style="color:#ffffff; background:#dd0000; font-weight:bold; font-style:italic; ">e100</span><span style="color:#808030; ">)</span>
-Expecting<span style="color:#808030; ">:</span>
-    Traceback <span style="color:#808030; ">(</span>most recent call last<span style="color:#808030; ">)</span><span style="color:#808030; ">:</span>
-        <span style="color:#808030; ">.</span><span style="color:#808030; ">.</span><span style="color:#808030; ">.</span>
-    <span style="color:#477766; ">OverflowError</span><span style="color:#808030; ">:</span> n too large
-ok
-<span style="color:#778c77; ">2</span> items passed <span style="color:#400000; ">all</span> tests<span style="color:#808030; ">:</span>
-   <span style="color:#778c77; ">1</span> tests <span style="color:#508050; font-weight:bold; ">in</span> __main__
-   <span style="color:#778c77; ">6</span> tests <span style="color:#508050; font-weight:bold; ">in</span> __main__<span style="color:#808030; ">.</span>factorial
-<span style="color:#778c77; ">7</span> tests <span style="color:#508050; font-weight:bold; ">in</span> <span style="color:#778c77; ">2</span> items<span style="color:#808030; ">.</span>
-<span style="color:#778c77; ">7</span> passed <span style="color:#508050; font-weight:bold; ">and</span> <span style="color:#778c77; ">0</span> failed<span style="color:#808030; ">.</span>
-Test passed<span style="color:#808030; ">.</span>
-</pre>
-
-<p><code>-v</code>表示显示详细信息。最后的总与信息也是非常有用的，可以帮助具体判断。</p>
-
-<p>当然，在这个例子中，更加值得探讨的是哪些例子是比较好的测试用例，针对这些测试用例有什么比较好的方法来检测。不过这是另外一个话题就不在这儿讨论了。当然你也可以看 doctest 自己的检测方法，如何 eat you own shit 的方法实现测试。具体网址 <a href="https://svn.python.org/projects/python/trunk/Lib/test/test_doctest.py">Test script for doctest.</a></p>
-
-<h2 id="section-2">讨论</h2>
-
-<h3 id="section-3">测试文件</h3>
-
-<p>虽然，我很喜欢把测试文件写在源程序中，这样往往让程序比较臃肿，所以 doctest 还可以把测试语句写在文件中，比如这样:</p>
-
-<pre style="color:#55cc66;background:#001800;">The <span style="color:#808030; ">`</span><span style="color:#808030; ">`</span>example<span style="color:#808030; ">`</span><span style="color:#808030; ">`</span> module
-<span style="color:#44aadd; ">==</span><span style="color:#44aadd; ">==</span><span style="color:#44aadd; ">==</span><span style="color:#44aadd; ">==</span><span style="color:#44aadd; ">==</span><span style="color:#44aadd; ">==</span><span style="color:#44aadd; ">==</span><span style="color:#44aadd; ">==</span><span style="color:#44aadd; ">==</span><span style="color:#44aadd; ">==</span><span style="color:#44aadd; ">==</span>
-
-Using <span style="color:#808030; ">`</span><span style="color:#808030; ">`</span>factorial<span style="color:#808030; ">`</span><span style="color:#808030; ">`</span>
-<span style="color:#44aadd; ">-</span><span style="color:#44aadd; ">-</span><span style="color:#44aadd; ">-</span><span style="color:#44aadd; ">-</span><span style="color:#44aadd; ">-</span><span style="color:#44aadd; ">-</span><span style="color:#44aadd; ">-</span><span style="color:#44aadd; ">-</span><span style="color:#44aadd; ">-</span><span style="color:#44aadd; ">-</span><span style="color:#44aadd; ">-</span><span style="color:#44aadd; ">-</span><span style="color:#44aadd; ">-</span><span style="color:#44aadd; ">-</span><span style="color:#44aadd; ">-</span><span style="color:#44aadd; ">-</span><span style="color:#44aadd; ">-</span><span style="color:#44aadd; ">-</span><span style="color:#44aadd; ">-</span>
-
-This <span style="color:#508050; font-weight:bold; ">is</span> an example text <span style="color:#400000; ">file</span> <span style="color:#508050; font-weight:bold; ">in</span> reStructuredText format<span style="color:#808030; ">.</span>  First <span style="color:#508050; font-weight:bold; ">import</span>
-<span style="color:#808030; ">`</span><span style="color:#808030; ">`</span>factorial<span style="color:#808030; ">`</span><span style="color:#808030; ">`</span> <span style="color:#508050; font-weight:bold; ">from</span> the <span style="color:#808030; ">`</span><span style="color:#808030; ">`</span>example<span style="color:#808030; ">`</span><span style="color:#808030; ">`</span> module<span style="color:#808030; ">:</span>
-
-    <span style="color:#44aadd; ">&gt;&gt;</span><span style="color:#44aadd; ">&gt;</span> <span style="color:#508050; font-weight:bold; ">from</span> example <span style="color:#508050; font-weight:bold; ">import</span> factorial
-
-Now use it<span style="color:#808030; ">:</span>
-
-    <span style="color:#44aadd; ">&gt;&gt;</span><span style="color:#44aadd; ">&gt;</span> factorial<span style="color:#808030; ">(</span><span style="color:#778c77; ">6</span><span style="color:#808030; ">)</span>
-    <span style="color:#778c77; ">120</span>
-</pre>
-
-<p>设文件存为 <code>example.txt</code>， 那么在 <code>main</code> 中的调用就是</p>
-
-<pre style="color:#55cc66;background:#001800;"><span style="color:#508050; font-weight:bold; ">import</span> doctest
-doctest<span style="color:#808030; ">.</span>testfile<span style="color:#808030; ">(</span><span style="color:#cc5555; ">"example.txt"</span><span style="color:#808030; ">)</span>
-</pre>
-
-<p><code>testfile()</code>方法可以实现从文件中测试的目的。</p>
-
-<h1 id="section-4">总结</h1>
-
-<p>这是一篇简短的介绍，本身 doctest 包就非短小精悍，具体的细节可以参考官方文档. <a href="https://docs.python.org/3.3/library/doctest.html"> doctest — Test interactive Python examples</a> </p>
-
-<p>当然对于大型的项目，可能更加适合的使用的是 <code>unittest</code> 这样的测试框架而不是 doctest。这也是为什么在 MOOC 中又介绍 <code>unittest</code> 的原因。</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[报税总结]]></title>
-    <link href="http://iphyer.github.com/blog/2017/03/17/tax/"/>
-    <updated>2017-03-17T00:07:00-05:00</updated>
-    <id>http://iphyer.github.com/blog/2017/03/17/tax</id>
-    <content type="html"><![CDATA[<h1 id="section">前言</h1>
-
-<p>花了不少时间，终于今天下午把税报完了。</p>
-
-<p>写篇日记总结下，这个过程确实是和国内有很大的区别，在国内基本没有经历过报税，结果来了美国发现报税是一个基本的的过程。</p>
-
-<!--more-->
-
-<h1 id="section-1">必要性</h1>
-<p>首先只要你在美国你就少不了必须纳税，其次，纳税是你在美国政府那儿的正式记录文件。看看川普选举就知道了，除了川普大部分的候选人都是要全部公开自己的纳税记录和收入数据的。IRS,Internal Revenue Service 也是美国最强大的政府机构之一。</p>
-
-<p>其次，说说纳税这件事。第一个想到的就是当年北美十三州团结起来的抗税事件，“无代表，不交税！”（No Taxation without Representation），这是美国立国的口号。当然背后还是复杂的政治，经济博弈，特别是殖民地和母国之间的博弈，不过纳税确实是美国的基础之一，所以税务之复杂，超乎意料。</p>
-
-<p>学校这次也有专门的workshop帮助你纳税，去参加这些活动还是挺有帮助的，至少知道了整个报税的流程。</p>
-
-<h1 id="section-2">框架</h1>
-<p>这里说说框架，首先是明确自己的身份，对于 resident 身份的美国居民，报税那是复杂极了，而且有各种拐弯抹角的优惠或者免税政策。比如，你们家有几个孩子，有几个人工作会极大影响你的税率，当然你的收入也会直接影响税率。孩子多，家庭收入低，政府收的税也会低很多。</p>
-
-<p>再比如，美国政府鼓励大家捐助受到认证的慈善机构。你把自己的旧衣服，旧家具送给这些机构，他们会折价给你一个证明。拿着这个证明，你就可以申请免税了。虽然慈善机构往往会折价比较低，但是毕竟是你不用的东西再循环利用，所以还是划算的。当然这个不论是不是居民都能使用。</p>
-
-<p>再其次，作为非居民的alien，所有的F/J身份都是享受最高税率，报税也是单独的表格和美国居民的表格不同。谁让你是外星人呢？</p>
-
-<p>然后，一个大的要点就是税收要分类。</p>
-
-<p>第一个大类是联邦税，Federal Taxes，这个是联邦政府收的税，要去 IRS，联邦国税局报税。联邦收税一般都比较简单，作为合众国的特点，联邦的收税其实就那么几个类别，被限制了很多。同时，中国政府和美国政府有税收协议，Tax Treaties，涉及到大陆学生的主要是，1984年里根总统和中国政府签订的协议，对于学生主要是每年收入的前5000刀免税。具体的在IRS都能查到，<a href="https://www.irs.gov/pub/irs-trty/china.pdf">China - Tax Treaty Documents</a>。</p>
-
-<blockquote>
-  <p>The Government of the United States of America and the Government of the People’s Republic of China,
- Desiring to conclude an Agreement for the avoidance of double taxation and the prevention of tax evasion with
-respect to taxes on income</p>
-</blockquote>
-
-<p>第二个大类是州税，State Taxes，这个就各个州都有不同，五花八门，各个州有不同州政策。类似国内的地税，一般要去当地的税务部分报税和说明。Wisconsin州就是DOR， <a href="https://www.revenue.wi.gov/Pages/home.aspx">Wisconsin Department of Revenue</a>，填写1NPR,Wisconsin Income Tax for Nonresidents and Part-Year Residents。</p>
-
-<h1 id="section-3">报税记录</h1>
-
-<h2 id="section-4">联邦税</h2>
-
-<p>联邦税很简单，因为学校基本给每一个外国学生配置了相应的报税软件，主要是确定自己的身份和所在国家与美国的税收协议就行了，大陆学生就是 5000刀免税。</p>
-
-<p>比如我们学校提供的GTP,就是报税软件之一，基本上一路点下去确定信息正确即可。</p>
-
-<p><img src="http://iphyer.github.com/images/tax/US.png" alt="UStax" /></p>
-
-<p>然后把生成的表格，打印，签字寄回去，比如我这个表格就提示需要寄到德克萨斯州奥斯汀市。</p>
-
-<h2 id="section-5">州税</h2>
-
-<p>州税就复杂多了，也讲究多了，我就参加了学校的讲座然后，还是需要请教下同学才报完。比如，展示下有多少可以抵扣税的选项：</p>
-
-<p><img src="http://iphyer.github.com/images/tax/state.PNG" alt="StateTax" /></p>
-
-<p>这儿除了收入还有各种收入记录，比如股票收益，农场收入，赡养老人支出(alimony),做生意收入等等。合计大约有四十多项，后面各种慈善组织的抵扣款也是。</p>
-
-<p>当然作为外星人(non-resident alien),大部分看看就好，和你没什么关系。。。</p>
-
-<p>你只需要按照 1 的系数算各项扣税就可，因为你不是居民。</p>
-
-<p>可以参考这个帖子<a href="http://leeaccountant.blogspot.com/2015/03/wisconsin-state-tax-1npr.html#more">Tax, i Think</a>。 blogspot的博客，估计国内会404。</p>
-
-<p>然后报完税，直接把联邦税收部分附件到1NPR里面即可，这也是为什么必须要用 Adobe Reader的原因。然后可以直接电子提交比联邦政府的税收都要高效。</p>
-
-<h1 id="section-6">总结</h1>
-<p>这次报税终于结束了。因为收入只有半年，太低，所以在联邦和州税都是低保水平。。。政府给退税，一般两周会退回你填的卡号。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[分子动力学计算的小细节]]></title>
-    <link href="http://iphyer.github.com/blog/2017/03/11/md/"/>
-    <updated>2017-03-11T08:38:00-06:00</updated>
-    <id>http://iphyer.github.com/blog/2017/03/11/md</id>
-    <content type="html"><![CDATA[<h1 id="section">起源</h1>
-
-<p>写这篇博客主要是总结自己的这周和上周的一些经验，这两周被一个小程序折腾了好久。</p>
-
-<p>其实这就是一个很简单的分子动力学(molecular dynamics,MD)的计算，但是程序始终在爆炸，能量等不收敛。</p>
-
-<!--more-->
-
-<p>首先必须要说明，在科研中我们大量会使用 Charmm, Lammps,这些程序不需要自己编写程序，而且MD程序需要大量复杂的调优技术，比如如何安排计算减少计算量。</p>
-
-<p>这个博文我假设读者知道全部的 MD 知识，至少上过基本的课程或者文献，这里不讨论那些在大部分课本上能学习到的细节。</p>
-
-<h1 id="section-1">重要细节</h1>
-
-<h2 id="pbc">PBC</h2>
-
-<p>周期性边界是整个 MD 模拟的核心，重要的一点就是用小部分的模拟大的体系，提高计算效率。</p>
-
-<p><img src="http://iphyer.github.com/images/md/1.png" alt="tu1" /></p>
-
-<p>其实核心就是这个文献讨论的这幅图。</p>
-
-<p>在两个原子之间距离大于截断距离，一般是体系尺寸的一半，需要进行调节。因为需要把两个原子之间的作用距离调节为原子和另一个原子的镜像原子之间的作用。</p>
-
-<p>这里的一个问题是，如果单单计算能量，其实这个距离的方向没有关系，因为在 LJ 能量计算中都是偶次项，向量的方向没有关系。</p>
-
-<p>简单来说，对于 $R_{ij}$, 因为位移在物理学中是矢量，所以必须非常仔细如何求解。</p>
-
-<p>同时 $R_{ij}$ 到底是 i - j 还是 j - i？</p>
-
-<p>是 i -j ,因为这里还要涉及到矢量在数学中是如何定义的，依照正确的数学矢量定义，必须是 i - j 才能得到正确方向的 $R_{ij}$。</p>
-
-<h3 id="section-2">加速计算</h3>
-
-<p>其实这些都是些小细节，但是细节是魔鬼还是需要好好考虑:</p>
-
-<p>(1)计算能量和力的时候，虽然是一个双重循环，但是如果 i 从 0 到 N-1，那么内层循环 j 就只需要从 i + 1 到 N - 1即可，因为能量是共同分享的，力可以用牛顿第二定律求出来。</p>
-
-<p>(2)计算力的时候不需要带入系数，最好的，比如计算动能的时候，不需要每一个原子动能都乘以 0.5，可以在速度平方加和后直接在总和上乘以 0.5 即可，这样可以省下 N -1 次乘法操作。如果你的体系是溶液中的蛋白质，10万多的原子体系，这样的小细节还是能省下很多计算资源的。</p>
-
-<p>(3)周期性边界条件有两个影响，一个是计算距离需要考虑镜像原子，二是在原子超出体系边界的时候必须把原子拉回体系内。</p>
-
-<h3 id="section-3">约化单位</h3>
-
-<p>约化单位是必须在所有计算中保持的，只有在输入输出提供可以给人参考的数据时才需要考虑约化单位和真实单位的转化，否则都统一采用约化单位。</p>
-
-<p>约化单位其实很简单，核心就是保持一个约化系数，这个约化系数在所有的真实单位中都统一转向约化单位。</p>
-
-<p>在晶体结构的体系还有一个要点需要注意，就是晶体的原子有一个原胞坐标系，比如 FCC 是(0,0,0),(0,0.5,0.5),(0.5,0,0.5),(0.5,0.5,0)。但是这并不是 MD 希望的实验坐标系，所以还需要把原胞坐标系转化到实验坐标系。这儿只需要把原胞边长转化为约化单位即可。</p>
-
-<h1 id="section-4">总结</h1>
-
-<p>MD还是需要好好学习下的，这儿的很多细节是非常值得仔细思考思考。</p>
-
 ]]></content>
   </entry>
   
