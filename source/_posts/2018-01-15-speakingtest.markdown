@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "麦迪逊TA口语考试总结"
+title: "UW-Madison TA Speaking Test 总结"
 date: 2018-01-15 22:12
 comments: true
 categories: 学习
