@@ -9,9 +9,8 @@
 
 <meta name="author" content="iphyer"> 
 
-<meta name="description" content=" 前言 这个是需要更多修改的部分。Python实现Collatz序列。
-本来以为比较简单，但是看了看维基百科的说明，这个居然可以出现分形，顿时冋了。
-这个还需要修改啊。 Read on &rarr; Jan 13th, 2013 Python Comments "> <meta name="keywords" content="">
+<meta name="description" content="前言 这里继续接着前面的工作做下去。 这里主要不单单是统计出葛底斯堡演讲的单词分别打印出来，还希望可以作进一步的分析。比如，这篇演讲使用频率最多的词汇是哪些。
+这里主要的特点是使用了Python的字典数据结构，生成字典来计算词频。 主要的算法是三步： 打开文件，每次只处理文件中的一行数据 &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -103,6 +102,213 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 </header>
 
 	<div id="content" class="inner">
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/01/13/pythongettsburg-wordcount/">
+		
+			Python编程10——Python做葛底斯堡演讲的词频统计</a>
+	</h2>
+	<div class="entry-content">
+		<h1 id="section">前言</h1>
+
+<p>这里继续接着前面的工作做下去。</p>
+
+<p>这里主要不单单是统计出葛底斯堡演讲的单词分别打印出来，还希望可以作进一步的分析。比如，这篇演讲使用频率最多的词汇是哪些。
+这里主要的特点是使用了Python的字典数据结构，生成字典来计算词频。</p>
+
+<p>主要的算法是三步：</p>
+
+<ul>
+  <li>打开文件，每次只处理文件中的一行数据</li>
+  <li>查找字典的键值。对于每一个新的词语添加到字典中记为一个新的key，val设为1；否则对于已有的key，val+=1</li>
+  <li>对于字典输出，按照键值的从大到小排列</li>
+</ul>
+
+
+		
+		<a href="/blog/2013/01/13/pythongettsburg-wordcount/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-13T14:27:00-06:00" pubdate data-updated="true">Jan 13<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/python/'>Python</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2013/01/13/pythongettsburg-wordcount//blog/page/14/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/01/13/pythonfindpartsinword/">
+		
+			Python编程8——Python寻找单词中符合顺序的元音字母</a>
+	</h2>
+	<div class="entry-content">
+		<h1 id="section">前言</h1>
+
+<p>程序的目的就是标题。</p>
+
+<h1 id="section-1">程序</h1>
+
+<pre><code>
+#to find a word that contians the specific parts in it
+#in this case it is "aeiou" , all the Vowel letters
+
+datafile=open("dictionary.txt","r")
+
+def cleanWord(word):
+	"""Return word in lower case without whitespace"""
+	return word.strip().lower()
+	
+def getVowelsInword(word):
+	vowelsStr="aeiou"
+	vowelsInword=""
+	for char in word:
+		if char in vowelsStr:
+			vowelsInword+=char
+	return vowelsInword
+
+#main program
+print "Find words containing vowels 'aeiou' in that order: \n"
+for word in datafile:
+	word = cleanWord(word)
+	if len(word)&lt;=6:
+		continue
+	vowelStr=getVowelsInword(word)
+	if vowelStr=="aeiou":
+		print word
+
+</code></pre>
+
+
+		
+		<a href="/blog/2013/01/13/pythonfindpartsinword/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-13T13:22:00-06:00" pubdate data-updated="true">Jan 13<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/python/'>Python</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2013/01/13/pythonfindpartsinword//blog/page/14/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/01/13/pythonanagrams/">
+		
+			Python编程7——Python比较相同字母组成的单词</a>
+	</h2>
+	<div class="entry-content">
+		<h1 id="section">前言</h1>
+
+<p>这个程序比较简单就是比较两个单词是不是可以用相同的字母不同的排序组合出来的。</p>
+
+<h1 id="section-1">程序</h1>
+<pre><code>#the programe compares that some word letters can 
+#be reput as a new word
+
+def areAnagrames(word1, word2):
+	"Return the result of the comparison"
+	#resorted the two words in the aplhabeta order
+	word1_sorted=sorted(word1)
+	word2_sorted=sorted(word2)
+	return word1_sorted==word2_sorted
+	
+print "Anagram Test"
+twowords=raw_input("Enter two words separing with whitespace: \n")
+twowordsList=twowords.split()
+word1=twowordsList[0]
+word2=twowordsList[1]
+
+if areAnagrames(word1,word2):
+	print "The two words are anagrams."
+else:
+	print "The two words are not anagrams."
+</code></pre>
+
+
+		
+		<a href="/blog/2013/01/13/pythonanagrams/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-13T13:02:00-06:00" pubdate data-updated="true">Jan 13<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/python/'>Python</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2013/01/13/pythonanagrams//blog/page/14/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
 
 
     <article class="post">
@@ -467,160 +673,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 
 	
 		<span class="comments"><a href="/blog/2013/01/13/pythongettsburg//blog/page/14/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/01/09/gretiming/">
-		
-			考试倒计时的小程序</a>
-	</h2>
-	<div class="entry-content">
-		<h1 id="section">前言</h1>
-
-<p>这是当年考GRE的时候做的一个倒计时的工具。现在想想其实不应该花掉这么多时间去做这么简单的一个倒计时软件的小程序的。
-但是以我当时的状态而言的话，其实也没有什么的太好的方法，回到当时那个时间点上我还是会一头栽进去。这个的本质原因在于自己。
-在于自己的自律。换句话说，倒计时程序啦，买书啦，和G友一起自习啦，其实都没啥直接作用。
-最最重要的作用在于你自己的努力！或者更加准确的说法是个人的自制力。</p>
-
-
-		
-		<a href="/blog/2013/01/09/gretiming/" class="more-link">Read on &rarr;</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-09T03:02:00-06:00" pubdate data-updated="true">Jan 9<span>th</span>, 2013</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/python/'>Python</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/blog/2013/01/09/gretiming//blog/page/14/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/01/09/ibus/">
-		
-			Ibus假死后的重启方法</a>
-	</h2>
-	<div class="entry-content">
-		<h1 id="section">前言</h1>
-
-<p>这里讲一下这个程序的作用。当时是Ubuntu11.12的系统，发现Unity的界面下面ibus经常假死。
-也就是你突然看不到输入框了，但是ibus还是在工作。
-但是现在Ubuntu12.04的系统貌似做的比较好了。
-当然我现在的系统是Lubuntu不知道是不是这个的因素。</p>
-
-
-		
-		<a href="/blog/2013/01/09/ibus/" class="more-link">Read on &rarr;</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-09T02:55:00-06:00" pubdate data-updated="true">Jan 9<span>th</span>, 2013</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/linux/'>Linux</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/blog/2013/01/09/ibus//blog/page/14/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/01/05/latexcirclenumber/">
-		
-			Latex中输入20个带圈字符的方法</a>
-	</h2>
-	<div class="entry-content">
-		<h1 id="section">前言</h1>
-
-<p>今天写专利课老师的论文，发现必须要求我们遵循《中国法学》的文献格式要求。
-这里小不爽一下，就是这本杂志要求</p>
-
-<blockquote>
-  <p>（二）文中注释一律采用脚注，全文连续注码，注码样式为：①②③等。</p>
-</blockquote>
-
-<p>本来以为这个在latex里面可以集成了功能结果发现特别痛苦啊，有么有！！</p>
-
-
-		
-		<a href="/blog/2013/01/05/latexcirclenumber/" class="more-link">Read on &rarr;</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-05T22:34:00-06:00" pubdate data-updated="true">Jan 5<span>th</span>, 2013</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/latex/'>Latex</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/blog/2013/01/05/latexcirclenumber//blog/page/14/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 

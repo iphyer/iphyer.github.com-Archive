@@ -4,7 +4,7 @@
   <title><![CDATA[桑弧蓬矢射四方]]></title>
   <link href="http://iphyer.github.com/atom.xml" rel="self"/>
   <link href="http://iphyer.github.com/"/>
-  <updated>2018-02-09T21:03:06-06:00</updated>
+  <updated>2018-02-09T21:55:17-06:00</updated>
   <id>http://iphyer.github.com/</id>
   <author>
     <name><![CDATA[iphyer]]></name>
@@ -12,6 +12,385 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[运用R做数据分析]]></title>
+    <link href="http://iphyer.github.com/blog/2018/02/09/r/"/>
+    <updated>2018-02-09T21:23:00-06:00</updated>
+    <id>http://iphyer.github.com/blog/2018/02/09/r</id>
+    <content type="html"><![CDATA[<h2 id="section">前言</h2>
+
+<p>现在看来我还是很早就看到了大数据的潜力，居然 2012 年我就开始了 R 语言的学习。。。</p>
+
+<!--more-->
+
+<h2 id="r">1.什么是R？</h2>
+
+<p>在R的官方教程里是这么给R下注解的:一个数据分析和图形显示的程序设计环境(A system for data analysis and visualization which is built based on S language.)。当然这个解释还是比较难解。笼统的讲，R是一个可以和SPSS，SAS这些商用软件对抗的统计软件。我第一次接触到R就是在2011年暑假，南京大学和Hopkins大学联合举办生物统计的暑期课程。在第一节课上，助教就展示了关于R的用法和思路。虽然那是一个暑假课程但Hopkins大学的老师一样很深入的讲了R的使用。印象最深刻的是关于用R来做基因组序列分析的实验部分。从那以后我对R就很喜欢，甚至很多的实验都是借助R来完成的。</p>
+
+<p>R 其实是Rick Becker,John Chambers 和Allan Wilks 开发的 S 语言的一种实现，这三个人都在贝尔实验室工作，他们合作开发了S语言来进行统计的运算，并且开发了商用的SPLUS。关于R的历史，大家可以google。</p>
+
+<p>简而言之，R是一个开放、开源、共享的软件系统，借助它你可以实现几乎所有的统计和计算工作，甚至有人用R来做模拟和分析。R有着开源软件共有的特点，拓展包多，借助各种拓展包，你可以实现从生物上的基因序列分析到商业上网站访问的聚类分析。同时任何人都可以自由的使用、分享R而不需要担心版权的问题，这大大促进了R的发展。正如Hopkins的老师说的：“Not all people can afford the cost of using SPSS or SAS even though they are easy to start with.” 当然在中国这点并不是特别重要，但是可怕的是如果你和外国同学交流或者你有机会出国的时候却发现没法和大家交流因为你使用的是盗版软件而别人很多在使用开源的软件，你却都没有听说过。更可怕的是当我们环顾图书馆的藏书时候发现好多都是在讲怎么用SPSS和SAS的，老师上课也是这么教同学的，这样的循环是可怕的。因为大家永远也接触不到开源软件的魅力与开源的精神。</p>
+
+<p>同时，或许在医学，商业领域SPSS们可以和R相匹敌，但是在生物统计或者大规模数据分析上R可以说是一骑绝尘，鲜有敌手。因为这些需要高度专门性的领域，R这样可以编程，自由修改的软件系统绝对是适用的。</p>
+
+<h2 id="r-1">2.安装R</h2>
+
+<h3 id="windows">2.1windows环境</h3>
+
+<p>在Google直接输入R，第一个搜索结果就是<a href="http://cran.r-project.org/mirrors.html">R project的官网</a>,选择一个镜像地址访问,下载Precompiled Binary Distributions 中的软件。如果是Windows 用户,可以点击Windows (95 and later),进入base,选择rwxxxx.exe下载，很快就可以下载好，然后安装一般的windows下的安装程序安装，除了语言一般选择默认的配置就可以使用R了。</p>
+
+<p>然后可以下载RStudio这个软件，它可以把R的界面改装成和Matlab类似的界面，工作空间，内存空间，结果和软件包展示区,相当的方便。</p>
+
+<h3 id="linux">2.2Linux环境</h3>
+<p>在ubuntu的环境下主要是使用RKWard这样的类似编辑环境，当然在Linux下也是可以用Rstudio的只是要去官网上下载deb的包。也可以直接显示数据同时进行操作，当然也可以使用命令行的模式运行R。</p>
+
+<h2 id="r-2">3.R的语法</h2>
+
+<h3 id="section-1">3.1数据结构</h3>
+
+<p>首先注意，R是大小写敏感的。其次在R中基本的数据结构由</p>
+
+<ul>
+  <li>数值型(numeric): 1,1.2,3.1415926</li>
+  <li>复数型(complex): 1+2i</li>
+  <li>字符型(character): ‘A’/”hello world!”</li>
+  <li>逻辑型(logical): TRUE/FALSE</li>
+</ul>
+
+<p>R中基本的数据对象为下列五类：</p>
+
+<ol>
+  <li>向量(vector)</li>
+  <li>矩阵(matrix)</li>
+  <li>列表(list)</li>
+  <li>数据框(data frame)</li>
+  <li>函数(function)</li>
+</ol>
+
+<h3 id="section-2">3.2基本类型的操作</h3>
+
+<p>赋值操作为：对于任何一个变量名X1使用下列命令</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">X1&lt;-c(......)</span></code></pre></td></tr></table></div></figure></notextile></div>
+<p>其中c(……)代表一个数据列。比如:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">X1&lt;-c(1,2,3,4)</span></code></pre></td></tr></table></div></figure></notextile></div>
+<p>就是将数组(1,2,3,4)f赋值给X1.</p>
+
+<p>当然，如果我们从R的数据类型上入手的话，此时我们是生成一个向量。下面演示一个矩阵的生成方法，这个时候很死板的方法是把矩阵一行一行的输入，中间用“,”隔开即可。当然也可以使用比较高级的方法，比如：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">y1&lt;-matrix(c(1,2,3,4,5,6,7,8,9),nrow=3,ncol=3,byrow=FALSE)
+</span><span class="line">
+</span><span class="line">y2&lt;-matrix(1:9,nrow=3,ncol=3,byrow=FALSE)</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>可以看到两种方法产生的结果<code>y1</code> 和 <code>y2</code> 完全一样。</p>
+
+<p>下面介绍列表。列表最大的特点就是可以实现不同类型的数据可以用同一个变量表示，从而构成不同数据类型的一个变量集合。</p>
+
+<p>比如：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">x&lt;-list(gender=c('F','M'),grade=c(98,100,90),undergrad=TRUE)</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>上面的命令是建立一个list的列表，可以看到各个对象的属性并不相同，而且长度也不强行要求一致。</p>
+
+<p>你还可以用下列三个命令输入对于gender进行操作，如：<code>x$gender和x[[1]]</code></p>
+
+<p>最后的一个是要求R告诉x这个变量名有多少变量，如： <code>names(x)</code></p>
+
+<p>下面介绍数据框，数据框是和列表相同的一类数据结构，都可以处理不同类型的数据，但是数据框严格要求各个组成部分的长度相同。比如：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">y&lt;-data.frame(gender=c('F','M'),grade=c(98,100),undergrad=c(FALSE,TRUE))</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>上面的操作，我特意选择了和list相同的内容R直接报错，而在R的内存中可以看到正确的y的数据分布。</p>
+
+<p>希望大家可以知道各种不同的数据结构在内存中具体的逻辑表示，因为不同的数据结构直接决定你在设计不同的数据处理时候的方法。</p>
+
+<h3 id="section-3">3.3数据文件的读写操作</h3>
+
+<p>既然是对于统计数据进行操作，所以肯定离不开具体的对于数据文件的操作。一般而言最最方便的数据读写形式就是文本文件，当然很多的时候我们使用的excel的格式，这个时候建议大家把excel文件存成cvs的格式，这样也可以方便进行操作。当然如果你下载了读取excel文件的专门包的话，也是可以操作的。</p>
+
+<p>主要的读写操作命令是下面两个：read.table() 适合 读写ASCII 文件，read.csv()适合读写Excel/CSV文件。要注意的是read.table()并不适合读写太多太大的矩阵结构，这个时候可以用scan()命令代替。</p>
+
+<p>比如我有一个已经存储好的txt数据文件，名字叫做lorenz.txt，下面就有这个文件做一个数据读写的展示。</p>
+
+<p>则命令是：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">x&lt;-read.table("lorenz.txt",header=FALSE)</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>注意：</p>
+
+<p>这里我省略了设置你的工作目录的工作，这是因为，我把这个文件放在我的 <code>home</code> 文件夹下，如果不是的话，运行下列命令：<code>getwd()</code>得到你的工作目录，一般在 Linux 中这个是默认设置在 <code>home</code> 文件夹下的，当然如果你在 Windows 下可以用如下命令：<code>setwd("C:/Users/XXXX")</code> 里面填上你喜欢的路径即可。</p>
+
+<p>这个文件是关于洛沦兹方程的，所以我加了一个 <code>plot()</code> 命令展示它的结果：</p>
+
+<p><img src="http://iphyer.github.com/images/R/Lorenz.jpg" alt="Lorenz" /></p>
+
+<p>当然如果是excel的格式使用下面的命令：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">y&lt;-read.csv('lorenz.csv', header=TRUE)</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>当然，另外一个命令的方向就是从R向文件中写数据可以使用如下命令：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">write.table(x,'lorenz.txt',col.names=FALSE, sep='\t')</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<h3 id="r-3">3.4一个使用R的例子</h3>
+
+<p>下面结合一个实际实验中例子给大家展示一下用R可以做的物理实验数据处理。曾近在一次实验中我们需要拟合一条直线，这是在单摆的振动中，我们测量它的不同振幅从而希望可以得到单摆的衰减系数。这个实验设计中包含如何从视频文件中读出数据，然后进行数据处理，这里面包含像素坐标和实际坐标的转换，我们假设全部得到这些数据了。我下一步需要关注数据的拟合操作。</p>
+
+<p>首先我们输入数据文件，命令如下:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">c1&lt;-data.frame(X=c(197,224,251,278,306,335,364,396,424,453),Y=c(424,381,358,338,327,315,309,300,296,291)</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>这里使用数据框从而保证下一步不需要担心数据输入的时候有缺失或者不全。</p>
+
+<p>下面让我们简单估计一下数据的分布与图像，从而得到下一步的行动方法。加上一个 <code>plot()</code> 命令即可, <code>plot(c1)</code>。</p>
+
+<p>图像如下：</p>
+
+<p><img src="http://iphyer.github.com/images/R/plot1.jpg" alt="RawData Plot" /></p>
+
+<p>下面的任务就是对于这个图像的拟合。</p>
+
+<p>从原理上分析我们已经知道了这个图像的衰减规律符合如下的函数形式：Y=a+b<em>exp(-c</em>X)，所以所有的工作就是求解这个拟合的系数。我们使用如下的命令：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">nls.sol&lt;-nls(Y~a+b*exp(-c*X),data=c1,start=list(b=215.8,a=40.18,c=0.01478))
+</span><span class="line">
+</span><span class="line">nls.sum&lt;-summary(nls.sol);nls.sum</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>R给出如下的输出结果：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">Formula: Y ~ a + b * exp(-c * X)
+</span><span class="line">
+</span><span class="line">Parameters:
+</span><span class="line">
+</span><span class="line">Estimate Std. Error t value Pr(&gt;|t|)
+</span><span class="line">
+</span><span class="line">b 1.347e+03 1.829e+02 7.366 0.000154 ***
+</span><span class="line">
+</span><span class="line">a 2.870e+02 2.734e+00 104.965 1.88e-12 ***
+</span><span class="line">
+</span><span class="line">c 1.170e-02 7.230e-04 16.182 8.37e-07 ***
+</span><span class="line">
+</span><span class="line">---
+</span><span class="line">
+</span><span class="line">Signif. codes: 0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+</span><span class="line">
+</span><span class="line">Residual standard error: 2.62 on 7 degrees of freedom
+</span><span class="line">
+</span><span class="line">Number of iterations to convergence: 8
+</span><span class="line">
+</span><span class="line">Achieved convergence tolerance: 1.686e-06</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>如果你还是没有办法从上面的残差分析中看出拟合的好坏的话，我们使用如下命令拟合所有的曲线，得到具体的拟合的图像结果。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">xfit&lt;-seq(180,480,len=2000)
+</span><span class="line">
+</span><span class="line">yfit&lt;-predict(nls.sol,data.frame(X=xfit))
+</span><span class="line">
+</span><span class="line">plot(c1$X,c1$Y);lines(xfit,yfit)</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>结果如下：</p>
+
+<p><img src="http://iphyer.github.com/images/R/plot2.jpg" alt="Final Plot" /></p>
+
+<p>可以看到拟合的结果相当好，最后的结果是：Y=287.0+1347exp(-0.0117X) 。</p>
+
+<h3 id="section-4">3.5进一步深入提高</h3>
+
+<p>上面的内容充其量只能算是一个导引，大家如果愿意深入的学习R的操作有很多的材料可以学习。第一个就是An Introduction to R by Venables and Smith，这个也是R的官方简介，也是全世界学习R的入手手册。几乎可以说初级中级使用者所有的东西这本书都具备。当然，它的缺点就是例子太过简单，同时因为简单所以很多例子缺少实战效果。推荐薛毅的《统计建模与R软件 》这个是相当不错的书。前面复习了一下统计的基本知识后面几乎都是结合例子进行的讲解。当然如果你是为了快速查找某些命令可以看看《R语言使用笔记》 这是从薛毅的《统计建模与R软件 》中精简出来的命令集合。当然网上也有很多的材料，最著名的就是<a href="http://cos.name/cn/">人大统计之都 COS论坛</a> 确实是很有效果的。当然如果英文够好，推荐直接去<a href="http://cran.r-project.org/">CRAN</a>，CRAN是R的官方所有资料的归档的地方，全称是The Comprehensive R Archive Network，也是相当权威的地方。</p>
+
+<h2 id="section-5">4.总结</h2>
+
+<p>这篇文章主要是关于R，这个著名而有效的统计和数据处理系统。其实R最有效的地方是有很多专门化的软件包，相信所有做过是生物统计的人都不会忘记在Bioconductor这个软件包的陪伴下度过的日日夜夜。希望你也可以欣赏到R的伟大魅力</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[游记——南京博物馆梵高画展]]></title>
+    <link href="http://iphyer.github.com/blog/2018/02/09/nanbo/"/>
+    <updated>2018-02-09T21:09:00-06:00</updated>
+    <id>http://iphyer.github.com/blog/2018/02/09/nanbo</id>
+    <content type="html"><![CDATA[<h2 id="section">前言</h2>
+
+<p>2018-02-09</p>
+
+<p>好方的游记啊。。。</p>
+
+<p>下面是原来游记的内容，那首联句不错，我把图都去掉了。</p>
+
+<!--more-->
+
+<p>2012-05-11 18:04:55</p>
+
+<p>感谢同学一起去看画展，有时候看看别人的画展对于心里的未尝不是一种放松。同学在豆瓣上看来的活动，鉴于我没有豆瓣这么文艺的东东就写这篇游记作为纪念了。</p>
+
+<h2 id="section-1">一、路程</h2>
+
+<p>坐地铁二号线到上海路站下，然后沿着莫愁路一路向南就可以到朝天宫。也就是南京博物馆所在地。门票不贵，有学生证打折是10元钱。可看的东西不少。</p>
+
+<p>朝天宫牌坊和文物官员至此下马。</p>
+
+<p>然后一路走，转过宫墙。</p>
+
+<p>朝天宫相传吴王夫差在这里设冶铸作坊制造兵器，因此而称作冶山，又叫冶城。历史上记载南京最早的名称就是“冶城”。 东晋初，这里是丞相王导的西园。</p>
+
+<p>至今在朝天宫门口还可以看到纪念卞壶的遗迹。</p>
+
+<p>从明朝开始，明太祖朱元璋在初洪武年间（1384年）重建后原来北宋的文庙并改名为朝天宫，在明代，朝天宫一直是朝廷举行盛典前练习礼仪的场所，以及官僚子弟袭封前学习朝见天子礼仪的地方。</p>
+
+<p>买票，然后进入景区。</p>
+
+<p>石碑旁有介绍，清代曾国藩任两江总督时重修这里并作为祭祀孔子的文庙。</p>
+
+<h2 id="section-2">二、画展</h2>
+
+<p>进入之后，直奔重点而去。也就是梵高的画展。</p>
+
+<p>这次展出的是梵高1885年创作的《正在挖地的农妇》，这也是梵高原作首次来南京展出。</p>
+
+<p>一起展出的还有30余件与梵高“同龄”的老物件，比如水壶、镰刀、锄头、土豆筐、围巾等。还有，一批围绕梵高画作开发的文化衍生产品。设计者提炼出梵高名作中的标志性元素，再用抽象形式进行表现，设计出沙发、挂毯、时装、高跟鞋等各种产品，这些创意设计届时也将成为 展厅内的一道时尚风景。</p>
+
+<p>同时也展出了梵高同时期中国艺术的发展，比较了两国当时的文化发展和艺术上的突出对比。</p>
+
+<p>还是值得一看的。</p>
+
+<p>随后出来，可以看看南京城市展，钟山虎据，六朝金粉，纸醉金迷，明清繁华，民国风流。别与气度。</p>
+
+<h2 id="section-3">感想</h2>
+
+<p>梵高的画，给人的感觉是一种田园乡村的感觉，没有什么激动，没有什么波澜，没有天崩地裂，也没有海枯石烂。有的只是淡淡地劳动。锄地，耕田，简简单单的动作，含着家的感觉，离家的游子你远去何方，孤单的人，你又在何处安息。</p>
+
+<p>有的时候，不要太累，不要太苦的追求着问题，说不定就是自己的问题。梵高的经历我不想细说，大家都过了写高考作文的年龄，此心安处是吾乡。就算“常羡人间琢玉郎”又如何，就算“天教分付点酥娘”又能怎样。 万里归来年愈少，微笑，笑时犹带岭梅香。We are strong, because we know what it’s like to be weak. We always keep our guard on , because we know what it’s like to cry ourselves to sleep.</p>
+
+<p>我们是坚强的，因为我们了解脆弱会变成怎样；我们充满戒备， 因为我们尝过哭着睡着的滋味。</p>
+
+<p>但是人生重要一步一步走下去。</p>
+
+<p>后面的南京城市展也很不错。</p>
+
+<p>赞，声光效果和文化气息。中国的城市，最最具有对比色彩的就是南京和北京，连名字都起得带有宿命搬的味道。</p>
+
+<p>南京展集中展示了南京千年的历史与文脉。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">夫差筑城，江东父老，钟山胡据，石头龙蟠。
+</span><span class="line">
+</span><span class="line">直到千寻铁锁沉江底，一片降幡出石头。
+</span><span class="line">
+</span><span class="line">衣冠南渡，白云苍狗，多少世家几多大族，总被雨打风吹去，只剩下乌衣巷口夕阳斜，白云默默对晴川。
+</span><span class="line">
+</span><span class="line">门外韩擒虎，楼头张丽华。万户千门成野草，只缘一曲后庭花。
+</span><span class="line">
+</span><span class="line">吴宫花草埋幽径，晋代衣冠成古丘。 三山半落青天外，二水中分白鹭洲。
+</span><span class="line">
+</span><span class="line">度过了盛唐，走过了两宋，一首桃花扇又在唱着兴亡更替的咏叹调。
+</span><span class="line">
+</span><span class="line">秦淮无语话斜阳， 家家临水应红妆。 　
+</span><span class="line">
+</span><span class="line">春风不知玉颜改， 依旧欢歌绕画舫。 　
+</span><span class="line">　
+</span><span class="line">青楼名花恨偏长， 感时忧国欲断肠。 　　
+</span><span class="line">
+</span><span class="line">点点碧血洒白扇， 芳心一片徒悲壮。 　　
+</span><span class="line">
+</span><span class="line">江南佳丽地，金陵帝王州。
+</span><span class="line">
+</span><span class="line">谁来叹兴亡！ 　</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>从南京跳跃开始就是一个新的时代的篇章，一如这展馆中的阶梯，一层一层。</p>
+
+<p>都是战败的合约，走的一如近代史般艰难。</p>
+
+<p>出来之后，看到满目的芳草别有滋味在心头。 </p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">草合离宫转夕晖，孤云飘泊复何依？ 
+</span><span class="line">无情最是台城柳，依旧烟笼十里堤。</span></code></pre></td></tr></table></div></figure></notextile></div>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[思考然后出发]]></title>
+    <link href="http://iphyer.github.com/blog/2018/02/09/bookthinking/"/>
+    <updated>2018-02-09T21:05:00-06:00</updated>
+    <id>http://iphyer.github.com/blog/2018/02/09/bookthinking</id>
+    <content type="html"><![CDATA[<p>人总要有所相信，并为之努力，才能离开浮躁，离开庸俗，离开那些浅薄的感动。</p>
+
+<p><!--more--></p>
+
+<p>不喜欢看电影，当然电影也有很多经典，但是电影融入的导演意识太多，影片的时间也太短。往往忽略掉许多的细节。看书才会知道更多的细节，才会知道草蛇灰线，伏线千里之外是怎样的伟大。如果懂了福贵所经历的种种才会知道活着是多么的艰难，也会在生活的困顿中生出某些感悟而不是悲伤的哭泣，你也才会欣赏老牛夕阳暮耕图是生命怎样的不灭的呐喊；如果懂了孙少安和孙少平的不屈和奋斗，才会知道什么是奋斗，什么是世事沧桑，也才会更深刻地理解什么是人海茫茫，但是总有真情，你才有可能读懂路遥在后记中所写的“希望将自己的心灵与人世间无数的心灵沟通。”；如果看懂了白嘉轩的一生，你才有资格说什么是历史，什么是黄土高原汉子的脊梁，关中的土地孕育了我们人口最多的民族，直到今天在这里发生的故事还是直抵我们民族的肺腑；如果懂了傻子二少爷的死前的微笑，你才会知道历史的另外一种写法，以一个人的目光或者一个傻子的目光去看看这个红尘万丈的世界吧，如此美好而多娇，无奈而深沉；如果懂了芙蓉镇里胡玉音的人生悲歌，你才会知道那个疯狂的年代到底对人们有多大的伤害，你才不会在看到那个疯狂年代的记录时，发出事不关己的嘲讽和自以为高明的笑声，这是对人性的折磨。</p>
+
+<p>总体而言历史告诉人们事实，但是没有感情。自司马迁以降，微言大义，不虚美， 不隐恶一直是历代 史家的追求，但是真的可以客观么？千年来，史书上写的是王侯将相，戏台上唱的演的也是王侯将相或者才子佳人。但是你在哪里，那些悲歌的灵魂何在，那些过往又何处解释？正如一句话说的好：“不喊痛，不一定没感觉。不要求，不一定没期待。不落泪，不一定没伤痕。不说话，不一定没心声 —— 沉默，不代表自己没话说。离开，不代表自己很潇洒。快乐，不代表自己没伤心。 幸福，不代表自己没痛过。”不代表什么，也不意味着什么。但是什么可能就是什么也可能什么也不是，表面的永远太简单，真实往往太复杂。如果看过《斐多》篇，你才会知道灵魂到底是什么，苏格拉底的临死前的抉择告诉你，什么是灵魂，怎么面对那个必然来临的时刻。上帝的公平在于会给每个人一个注定的结局，但是你怎么办？史铁生的思考震撼了很多国人。回顾中国历史，孔子更多的是做人的哲学，出世的智慧；西哲才有了关于个人灵魂的思考，灵魂是否不朽问题是关乎着我们何以自守，何以存世的问题。看看苏格拉底的抉择吧！</p>
+
+<p>多读些深刻的书吧。 人总要有所相信，并为之努力，才能离开浮躁，离开庸俗，离开那些浅薄的感动。沉下心去，向着未来前进！ </p>
+
+<p>一篇短文，一个观点，可以不同意或者反对，不过争论没有意义，更有所爱吧。这个偏好永远是难解的世界难题。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[关于LATEX的思考——我们需要学到了什么]]></title>
@@ -1810,438 +2189,6 @@ sudo shred -v -n1 -z /dev/sdX
 <p>进入信息:</p>
 
 <p><img src="http://iphyer.github.com/images/shred/shred.png" alt="tu1" /></p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[威斯康星州路考指南]]></title>
-    <link href="http://iphyer.github.com/blog/2017/05/02/rodetestguide/"/>
-    <updated>2017-05-02T21:11:00-05:00</updated>
-    <id>http://iphyer.github.com/blog/2017/05/02/rodetestguide</id>
-    <content type="html"><![CDATA[<h2 id="section">起源</h2>
-
-<p>这个日志的原因是5.2要开始路考了，这篇日志总结下自己做的总结。</p>
-
-<p>考完 permit 之后会给你一张粉红色的 Class D Skillks Test Guide，还是要好好学习下，这里就直接自己翻译出来并且手打下加深记忆。</p>
-
-<p>当然最重要的是，记住 路考试一种技能的展示，<strong>it is a show of your driving skills, not you real life driving.</strong> 所有有些规定可能夸张，也尽量遵守。</p>
-
-<p>英文原版在这儿，我是为了自己加深印象，推荐记住英文还是挺快的。<a href="http://wisconsindot.gov/Pages/dmv/license-drvs/how-to-apply/drivingskillstest.aspx">Class D road test study guide</a></p>
-
-<!--more-->
-
-<h2 id="tips-keep-in-mind">Tips keep in mind</h2>
-
-<ol>
-  <li>转弯，变道:一回头看，二打灯，三减速，四变道</li>
-  <li>Y Turn 控制车速，特别是倒车的时候，一回头， 二慢速控制车速</li>
-  <li>停车方向盘，坡道</li>
-  <li>随时看三个镜子，这是考试的平常状态，车速控制在 20 ~ 25 迈，但是注意学校需要减速慢行</li>
-  <li>掉头变道都检查后方，打灯</li>
-</ol>
-
-<h2 id="turns">转弯(TURNS)</h2>
-
-<h3 id="approaching-a-turn">接近转弯(Approaching a turn)</h3>
-
-<ol>
-  <li>检查交通(Traffic Check) : 转弯道拐角前，提前检查路况，看前、左、右、后的路况</li>
-  <li>最少提前 100 feet (30米) 打转向信号灯，但是不能太早。</li>
-  <li>减速，避免急刹车</li>
-  <li>通过，除非不能通过或者另有指示，不能有非必要的犹豫和停车</li>
-</ol>
-
-<h3 id="stopping-before-you-turn">需要停车的转弯(​​​Stopping before you turn)</h3>
-
-<ol>
-  <li>车距(Gap):和前车保持好车距，可以看到前车的保险杠（rear bumper）</li>
-  <li>停止线(Stop Line): 有线，停在线前(不压线)；没线，停在人行横道前，注意行人，避让行人(pedestrians have the right-of-way)</li>
-  <li>停车时，方向盘保持直行，直到你开始转弯。避免开动后装上来车。</li>
-</ol>
-
-<h3 id="completing-the-turn">完成转弯(Completing the turn)</h3>
-
-<ol>
-  <li>检查交通，前，后，左，右</li>
-  <li>在转弯中加速或者控制到安全的速度通过</li>
-  <li>转弯后提速至安全车速</li>
-  <li>转弯的路线选择，就近原则，选择正确的行车道，不要转弯太大或者过小(技巧就是使用合适车速)</li>
-</ol>
-
-<h2 id="intersections">十字路口(Intersections)</h2>
-
-<h3 id="stop-">需要 stop 的十字路口</h3>
-
-<ol>
-  <li>接近路口之前，检查两侧，后方车流</li>
-  <li>减速，流畅刹车，确保与前车有合适的距离。 选择正确的车道进入停止。(左转到左转道，右转到右转道)</li>
-  <li>有停止线(Stop Line)，停在线前(不压线)；没线，停在人行横道前，注意行人，避让行人(pedestrians have the right-of-way)</li>
-</ol>
-
-<h3 id="stop--1">无需 stop 的十字路口</h3>
-
-<ol>
-  <li>保持自己的车道</li>
-  <li>到达路口前检查其他方向车流，右侧来车先行(Yield to traffic on your right.)</li>
-  <li>减速，必要时停车如果其他车辆不让通过(be ready to stop if traffic does not yield to you.)</li>
-  <li>除非必要(Unless you are required to stop because of other vehicles)，否则尽快通过</li>
-</ol>
-
-<p><strong>如果在无人，无标志牌控制的十字路口不减速且不观察通过，立刻考试失败(It is An Immediate Disqualification)</strong></p>
-
-<h2 id="driving-in-a-business-or-residential-area">在商业区／居民区开车(Driving in a business or residential area)</h2>
-
-<ol>
-  <li>每隔 6 到 8 秒观察后视镜(Check the rear-view mirror about every 6 to 8 seconds. )掌握车后的全局信息</li>
-  <li>保持合适车速，车速要和 <strong>当前路况</strong>，<strong>天气</strong>，<strong>车流密集度</strong>，<strong>限速标志</strong>匹配</li>
-  <li>保持安全车距</li>
-</ol>
-
-<h2 id="changing-lanes">变道(Changing lanes)</h2>
-
-<ol>
-  <li><strong>不要在十字路口变道</strong> </li>
-  <li>变道前，检查左，右，前，后车流，特别是侧头查看盲点(Check the “blind spot” by looking over your shoulder in the direction you want to move.)</li>
-  <li>打灯</li>
-  <li>控制车速</li>
-  <li>保持安全车距</li>
-</ol>
-
-<h2 id="y---turn">Y - Turn</h2>
-
-<h3 id="y-turn-">Y-Turn 前</h3>
-
-<ol>
-  <li>检查尾部，扭头看盲点，检查车流 (As you pull over to the curb, glance to the rear and check over your right shoulder for other traffic.)</li>
-  <li>靠边停车</li>
-  <li>打右灯</li>
-</ol>
-
-<h3 id="yturn-">Y－Turn 中</h3>
-
-<ol>
-  <li>离开路边前，看左侧盲点</li>
-  <li>打左转灯通知别人你开始离开路边</li>
-  <li>穿过路后，停下，换倒档</li>
-  <li>倒车前，检查左右两侧来车</li>
-  <li>慢速倒车 (Back no more than once. Back no faster than a slow walk.)</li>
-</ol>
-
-<h3 id="y---turn-">Y - Turn 后</h3>
-
-<ol>
-  <li>检查左右前后车流</li>
-  <li>加速到合理车速，进入合理车道</li>
-</ol>
-
-<h2 id="roadside-stop-and-start-hill-park">靠边停车和重启动(Roadside stop and start (hill park))</h2>
-
-<h3 id="approach-the-roadside-stop-and-start">靠边停车和重启动前(Approach the roadside stop and start)</h3>
-
-<ol>
-  <li>检查路况 (前后左右，扭头看盲点)</li>
-  <li>打灯</li>
-  <li>减速靠边</li>
-  <li>平行于路牙停车，距离路牙 1 foot (30cm)之内</li>
-</ol>
-
-<h3 id="perform-the-roadside-stop-and-start">完成靠边停车和重启动(Perform the roadside stop and start)</h3>
-
-<ol>
-  <li>拉手刹(Set the emergency brake.)</li>
-  <li>坡道停车时，转动前车轮至合适位置(proper direction to turn the wheel when parking on a hill)</li>
-</ol>
-
-<h3 id="resume-driving">重启动(Resume driving)</h3>
-
-<ol>
-  <li>启动前，扭头看左侧</li>
-  <li>打左转向灯</li>
-  <li>加速到合理车速，进入合理车道</li>
-</ol>
-
-<h2 id="parking-skills">停车(Parking Skills)</h2>
-
-<p><strong>停车必考,可能在开始，不再开始即在结束</strong>
-(Note: If a parked vehicle is available, a <strong>parallel parking maneuver</strong>(并不完全是国内的侧方停车，很多时候就是简单的开入开出，只有极少情况下，比如 DMV 车比较多需要侧方停车技巧) will be conducted on the street during the road test. If no parked vehicle is available, the parallel parking maneuver will be performed upon your return to the DMV customer service center.)</p>
-
-<h3 id="approaching-a-right-side-parking-site">靠近右侧停车位置(Approaching a right side parking site)</h3>
-
-<p><strong>注意需要避让消防栓，垃圾箱，公交车站等，开过可以去再停车</strong>
-1. 检查路况，扭头看右侧有无车辆
-2. 打右转向灯</p>
-
-<h3 id="performing-the-parking-maneuver">实施停车(Performing the parking maneuver)</h3>
-
-<ol>
-  <li>检查路边状况，扭头看右侧 (When backing, scan the sidewalk area and behind the vehicle. Look over your right shoulder toward the back of the vehicle.)</li>
-  <li>合适的停车位置，距离路边 1 foot, 前后车距 2 foot (A legally parked vehicle should be no more than one foot from the curb, or two feet from the vehicle in front and/or back of it.)</li>
-</ol>
-
-<h3 id="resume-driving-1">重启动(Resume driving)</h3>
-
-<ol>
-  <li>检查路况(前后左右，扭头看盲点)</li>
-  <li>打转向灯</li>
-  <li>加速到合理车速，进入合理车道</li>
-</ol>
-
-<h2 id="backing">倒车(Backing)</h2>
-
-<h3 id="section-1">倒车前</h3>
-
-<ol>
-  <li>检查路况(前后左右，扭头看右侧盲点)</li>
-  <li>打右灯</li>
-</ol>
-
-<h3 id="section-2">倒车中</h3>
-
-<ol>
-  <li>直线倒车</li>
-  <li>不超过步行速度</li>
-  <li><strong>扭头看后侧</strong></li>
-</ol>
-
-<h3 id="section-3">倒车后</h3>
-
-<ol>
-  <li>检查路况(前后左右，扭头看盲点)</li>
-  <li>打转向灯</li>
-  <li>加速到合理车速，进入合理车道</li>
-</ol>
-
-<h2 id="parking-lot">停车场(Parking lot)</h2>
-
-<ol>
-  <li>离开 ／ 进入 停车场前，检查路况</li>
-  <li>控制车速</li>
-  <li>避让行人</li>
-</ol>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[托福考试备考总结]]></title>
-    <link href="http://iphyer.github.com/blog/2017/04/20/toefl2/"/>
-    <updated>2017-04-20T01:15:00-05:00</updated>
-    <id>http://iphyer.github.com/blog/2017/04/20/toefl2</id>
-    <content type="html"><![CDATA[<h2 id="section">核心思想</h2>
-
-<p>算算我也我也写了两篇关于托福备考的博客了，分别是<a href="http://iphyer.github.io/blog/2012/12/20/toefljing-yan-zong-jie/">关于TOEFL的思考</a> 和<a href="http://iphyer.github.io/blog/2014/09/03/toeflpreparesummary/">托福复习准备</a> 。有博客的一个有意思的部分是你可以回顾自己以前的想法，并且看出自己的进步。</p>
-
-<p>这里是自己来美国之后写得关于托福备考的总结，应该算是终极版本了。</p>
-
-<p>首先这里强调下这个帖子的备考思想，不认同的同学请出门左转，走好不送。</p>
-
-<!--more-->
-
-<h3 id="section-1">1.托福归根到底还是考试。</h3>
-<p>这是必须强调的，所以你可能靠看美剧，花了半年，考出一个不错的成绩。但是你的时间效率呢？所以既然是备考，一定要有一个时间限制。同样的，备考虽然也能提高你的实际运用能力，但是可能并不是真正提高，你也不是能够完美运用口语在美国生活下来。即使你托福高分，去美国的星巴克点杯咖啡，看看你有多少单词不知道，多少食物的说法不清楚，多少读音不明白。托福只是保证你在美国的大学环境中生存下来并且通过教授考核的一个考试。而不是让你去美国社会正常生活的考试，想在美国社会完美生活需要更多的训练。</p>
-
-<p>所以让托福的归托福，语言素养的归语言素养，就事论事。</p>
-
-<p>虽然我必须得说，托福好成绩是对于你的语言素养有很大提高的。当然，既然是考试就是有一定的应试方法的。你需要做的只是按照一定的方法不断重复练习即可。</p>
-
-<h3 id="section-2">2.各有不同，自行裁剪</h3>
-<p>既然是一篇讲备考策略的文章，这里就不得不说说基础问题。任何备考方案都是为了一定基础的人准备的。比如你说你四级都要挂，一上来就练习托福怎么样，不怎么样，你还是能练习提高的，不过比较慢罢了。正确的姿势是，如果这个听力听不懂就集中精力解决掉，看自己到底是哪里听不懂。听不懂一般分两个原因:</p>
-
-<blockquote>
-  <p>单词听不懂</p>
-</blockquote>
-
-<blockquote>
-  <p>单词听得懂，句子组合起来我就不懂了</p>
-</blockquote>
-
-<p>对于第一个原因，那就需要找一本单词书，一个个认真读下去，一般分两个情况，第一是单词读音本来你就不知道，这个单词是纯粹的生词，你听不懂事完全正常的；另外一个就是，单词你认识，但是你的读音是错的。长久以来，你因为各种原因操着普通话乃至地方方言的味道说着某种混合读音的英语，结果别人用正确的读音读出来，你反而不懂了。</p>
-
-<p>句子组合起来听不懂相对来说，就是一个存储和处理信息的问题。用计算机比喻，如果你的内存小，那么信息太多你就存储不下了，内存溢出；或者，你的内存够，但是处理器慢，以至于待处理的信息堆积了。所以解决办法，就是加快信息处理的速度，提取关键信息，听力的一些细节信息其实是不需要记忆的，或者记忆其他的可以回忆起来的，或者笔记记下来，把信息从内存转到外存。这个本质上是记忆什么，怎么提取记忆的问题。</p>
-
-<p>所以基础还是比较重要的，在我的计划中，TPO1到TPO10就是给大家查找问题的，目的不是多么高的分数而是查漏补缺，后面才是努力提高自己的应试技巧，全力模考。</p>
-
-<h3 id="tpo-">3. TPO 是唯一正确的选择</h3>
-<p>如果你用托福作为关键字谷歌或者百度，你可以得到铺天盖地的结果，但是这些其实都不重要，或者至少是没有TPO重要。不知道TPO( TOEFL Practice Online)的同学请自行搜索。TPO说白了就是你在高考时候做的<em>三年模拟，五年高考</em>中的<strong>五年高考</strong> 。 你只要对比下就能知道他们的重要性。</p>
-
-<p>在我开始备考托福的时候，TPO只有27套，再除掉前面10套左右的新TOEFL的老题，OG样题，所以当时的问题是大概只有17套TPO，做一套少一套，非常珍贵。现在刚刚搜索了下，都已经到 51 套了(<strong>“昔年种柳，依依汉南。今看摇落，凄怆江潭。树犹如此，人何以堪。”</strong> T_T)。</p>
-
-<h3 id="section-3">4.其他资料</h3>
-<p>并不是一定需要其他资料，这里列几个我觉得不错的资料。这些资料都是针对某个弱点做定点突破，所以选择搭配。</p>
-
-<h4 id="section-4">4.1 《词以类记》</h4>
-<p>张红岩的《词以类记》是非常好的书，好在他提供了完整的读音而且还是按照题材分类的。所以非常有助于托福的单词练习。托福中最重要的是听力，听力可以说是重中之重。所以《词以类记》的使用方法是跟着录音mp3，一路读下来，仔细分析自己的读音和正确的读法有什么差别。按照正确的读法多重复。</p>
-
-<p>我用过这个方法，至今记得这本书的录音大概是600分钟，我通常是在洗脸刷牙，吃早饭的时候听。最开始的一边，是专门每天抽时间读，大声跟读。大概3遍后就只是听着，自己反应中文是啥，不懂得听完了，再自己读一遍，做个标记。这样大概过了10遍，其实很快，因为重点不是这个单词怎么写而是怎么读，怎么分辨出来。</p>
-
-<h4 id="essay">4.2《10天突破新托福Essay》</h4>
-<p>这本书，最大的好处，就是这本书提出的10大黄金理由。</p>
-
-<p>从批判性思维的角度，你有千百个理由否定10大黄金理由，从应试的角度，我们必须肯定10大黄金理由。这真是写作的良方，解决托福写作的不二法门。</p>
-
-<p>任何写作都离不开内容(情节，思想，论点)和形式(段落结构，写作方法开门见山还是欲扬先抑，语言风格)，好的写作时这两点的完美结合，比如《哀江南赋》，《滕王阁序》，朱自清的《背影》等等。你只要从内心回顾下，就会体会到文字是有魔力的，作为南方人而且在六朝金粉地，至今忘不了第一次读</p>
-
-<blockquote>
-  <p>“孙策以天下为三分，众才一旅；项籍用江东之子弟，人惟八千；遂乃分裂山河，宰割天下。岂有百万义师，一朝卷甲；芟夷斩伐，如草木焉！江淮无涯岸之阻，亭壁无籓篱之固。头会箕敛者合从缔交；锄耰棘矜者因利乘便。将非江表王气，终于三百年乎？</p>
-
-  <p>是知并吞六合，不免轵道之灾；混一车书，无救平阳之祸。呜呼！山岳崩颓，既履危亡之运；春秋迭代，必有去故之悲。天意人事，可以凄怆伤心者矣。况复舟楫路穷，星汉非乘槎可上；风飙道阻，蓬莱无可到之期。”</p>
-</blockquote>
-
-<p>的震撼感。当然这里叉出去这么多，其实托福考试你是根本做不到的。那么我为啥要插入这么一段，其实是告诉大家，我们就不是奔着莎士比亚去的，那个难度太高。</p>
-
-<p>我们的目标是，在短时间内(30min)尽量写出一篇文章，这篇文章告诉ETS的阅卷老师，我能写作文，快给我高分。That’s it!  其他的超出这个范围就很难说段时间提高的，要写出”钓台移柳，非玉关之可望；华亭鹤唳，岂河桥之可闻？”至少也要平生最萧瑟才行。</p>
-
-<p>说回这本书，10大黄金理由，至今我还记得那个 making friends，说白了，任何事情都和making friends 扯上关系。为什么要住在大城市，making friends；为什么要做公交车，making friends；为什么要读古典书籍，making friends；为什么要上大学，making friends；为什么电视影响人们的生活，因为making friends更不容易了。基本上各种事情，各个题目都扯到making friends吧。这个往简单说，叫做事物是普遍联系的，深刻地说就是人类哲学思考的问题了。剩下的几个黄金理由还有，环保，经济等等。</p>
-
-<p>10大理由的最大作用是把作文最困难的部分肢解了。直接无脑套用，任何题目，用3个理由，然后按照开头，3个理由+例子，结尾，一个600字的作文到手了。关键是按照ETS的评分标准这个还是最好的，ETS最希望的。ETS甚至明确告诉你，他们知道时间有限，你可能想得不特别全面，没关系，我们会辩证的分析。</p>
-
-<p>所以10大理由，其实是一个很好的方法，它从近似哲学的高度，抽象出人们做各种决定的考量因素。说个小知识，按照维基百科的分析，在2008年95%左右的页面，都会收敛到哲学这个页面，比如下面这个网页就可以帮助你看多少的链接之后你会看到哲学这个词条，非常有意思。<a href="https://xefer.com/wikipedia">All Roads Lead to “Philosophy”</a>, 还有这篇文章<a href="http://matpalm.com/blog/2011/08/13/wikipedia-philosophy/">do all first links on wikipedia lead to philosophy?</a></p>
-
-<p>用C.R.Rao在《统计与真理》的扉页上写下话结束这段吧:</p>
-
-<blockquote>
-  <p>在终极的分析中，一切知识都是历史；(All knowledge is, in final analysis, history.)</p>
-</blockquote>
-
-<blockquote>
-  <p>在抽象的意义下，一切科学都是数学；(All sciences are, in the abstact, mathematics.)</p>
-</blockquote>
-
-<blockquote>
-  <p>在理性的世界里，所有的判断都是统计学。(All judgements are, in their rationale, statistics.)</p>
-</blockquote>
-
-<p>或许还可以加上一句，在托福作文理由的意义下，一切理由都可以用10大理由结尾。</p>
-
-<h4 id="section-5">4.3《新托福口语真经》</h4>
-<p>这本书是针对口语的，我个人感觉，这本书最大的好处是有给出完整的机经笔记和答案，非常方便大家搜集提高自己的方法，而且这本书还不断更新最新版本，还是非常跟托福节奏的。</p>
-
-<p>看完这本书，最重要的是自己分析自己的答案和老师给的答案的不同，主要是书上是怎么想的，为什么你不这么想，找到原因好方便提高。</p>
-
-<h4 id="app">4.4 亦鸥口语App</h4>
-<p>推荐下这个App因为我自己使用过，还是非常好的。最大的好处是发那个方便的使用手机的功能，比如你在等公交那就完全可以练习几个口语第一题，第二题。然后录音，自己听听自己的声音。然后不断练习，选出最满意的记录，回头还可以自己复习。非常适合练习。当然最后还要回到 TPO ，但是那个时候TPO的功能就是为了熟悉考试界面而做的模考了。同时也是为了熟悉题型，加快答案的记忆。</p>
-
-<h4 id="section-6">4.5 托福阅读</h4>
-<p>这个我觉得直接用 TPO 就可以了，如果遇到不懂的可以去网上找到别人的分析，标准就是所有的错误和不懂都要解决。</p>
-
-<h3 id="section-7">计划模板</h3>
-
-<p>这儿我用1个月到1个半月为模板，假设你是一个标准的通过了四六级的在校大学生。</p>
-
-<h4 id="days">前期(10 ~ 15 days)</h4>
-
-<p>这个阶段任务是这么几项</p>
-
-<ol>
-  <li>TPO 1 ~ 10的阅读</li>
-  <li>TPO 1 ~ 10的听力</li>
-  <li>词以类记10遍</li>
-  <li>《10天突破新托福Essay》3遍，总结自己的 5 大理由并写出例子(10大黄金理由进一步浓缩个人版本)</li>
-  <li>《新托福口语真经》1 遍，每次都到自己的满意答案的一遍</li>
-</ol>
-
-<h4 id="days-1">中期( 15 ~ 20 days)</h4>
-
-<p>一句话概括，一天 1 ~ 2 篇 TPO并订正，平均一天 1.5 篇。所以可以有 0.5 是指，你可以今天做该TPO的阅读听力，明天做该TPO的口语和作文正好0.5篇TPO。所以以20天计算，结束的时候，你应该已经到了 TPO 32.5 ~ 40。这儿我简化下计算，取决于你能给冲刺期的时间，尽量控制在 35篇左右。</p>
-
-<h4 id="days-2">冲刺 (10 ~ 15 days)</h4>
-
-<ol>
-  <li>每天一篇 TPO 保持手感，听力感觉，口语节奏，作文套路</li>
-  <li>查漏补缺</li>
-  <li>推荐开始口语疯狂冲刺模式，这是最适合提高的部分，毕竟时间短，还只是说话罢了，多说多准备提高快</li>
-  <li>一定要读新托福经典加试,这个就是考场帮助你节省时间，平复心情的良药，因为ETS的经典加试，真的是不变。加试分为阅读和听力，都要看，背熟。考场看到霸王花你就可以休息下了。不过也不能乱选，事实是有可能乱选会被降分。所以还是尽量选对，顺便练习下掌握了底牌的考试。</li>
-</ol>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[周末长跑]]></title>
-    <link href="http://iphyer.github.com/blog/2017/04/10/walking/"/>
-    <updated>2017-04-10T23:13:00-05:00</updated>
-    <id>http://iphyer.github.com/blog/2017/04/10/walking</id>
-    <content type="html"><![CDATA[<h1 id="section">题记</h1>
-
-<p>上个周末的下午，麦迪逊终于迎来了初夏的温暖，所以就决定出去跑步，跑着跑着觉得还是绕着 Lake Monona 跑一圈吧．当时在地图上觉得没多远的距离，结果花了整整4.5个小时才跑完．</p>
-
-<!--more-->
-
-<h1 id="section-1">总结</h1>
-
-<p>其实这就是自己把自己逼了一次．因为我一般习惯不带自己的有电话卡的手机出门跑步，喜欢用国内带过来安卓机跑步，毕竟
-下载的音乐都在上面．然后本来中午大概11点出门的，打算是小跑一跑就回去准备下周的考试．但是跑着跑着，越来越觉得干脆挑战下自己，就沿着 Lake Monona　跑了起来。</p>
-
-<p>开始阶段还是在跑，后面直接都是走的，总共花了5个小时多，当然我不是一直在跑步，还在风景漂亮的地方停下来拍照的。</p>
-
-<p>今天总结了下，发现自己居然跑了至少22公里，主要是虽然隔着湖看对岸感觉不是特别远，但是真的跑步的时候才会发现很多地方实际是走的弯道和曲线。</p>
-
-<p><img src="http://iphyer.github.com/images/LakeMonona/map.png" alt="map" /></p>
-
-<p>谷歌地图显示是二十公里，其实连上弯角等大概走了22公里的路还是挺值得纪念一下的。</p>
-
-<p>最值得纪念的就是——逼一下说不定就行了。</p>
-
-<p>事实上，在中途我好几次都想放弃，结果没带有信号的手机，没带公交卡，更没带钱。。。所以就只好一路走下去了，结果发现居然走完了。</p>
-
-<p>很多时候不是做不到，而是选择太多以至于给了自己太多理由没有坚持走下去。</p>
-
-<p>第二个就是跑步的时候想到的，可能不是太贴切。我之前读过一本书，书名是 　The Road Less Traveled。
-其实书的内容都已经忘记了，但是这个书名在我跑步的时候久久在脑中徘徊。环 Lake Monona 跑步，其实我在刚刚到麦迪逊的时候就已经尝试，也和朋友相约一起跑了大概两次，每次都是到了中途各种理由，大家就打道回府了。</p>
-
-<p>不少人都会说要走的远就找伙伴一起走，这个可能有道理，但是很多时候人是一个很奇怪的动物，说不定自己不给自己理由往往都能做成。如果做的人一多，往往就会各种意见出来。回想前几次，就是因为大家的耐力不同，所以很可能对于你还刚刚是开胃菜，对方就已经是酒足饭饱了。所以如果一起走走得远，估计大抵是双方实力差不多才可以吧。</p>
-
-<p>毕竟西游记也是要神仙才行，按照原著所说，从长安和唐僧一起出发的两个随从大概还没出大唐国境就风流云散了。甚至连唐僧骑的马也一定要是白龙马才行。红军长征也是如此，事实上真正能坚持下来的人十不存一。The Road Less Traveled 往往可能一个人走得更远，只要你有坚定的信念，譬如正史中的玄奘大师。说到这儿想到一首诗,美国诗人罗伯特 - 弗罗斯特 (1874 - 1963) 的名篇, <a href="http://bbs.wenxuecity.com/zhongyiingfanyi/47015.html">The Road Not Taken</a></p>
-
-<pre><code>I shall be telling this with a sigh
-Somewhere ages and ages hence:
-Two roads diverged in a wood, and I—
-I took the one less traveled by,
-And that has made all the difference.
-
-也许多少年后在某个地方，
-我将轻声叹息将往事回顾： 
-一片树林里分出两条路 ── 
-而我选择了人迹更少的一条， 
-从此决定了我一生的道路。
-</code></pre>
-
-<p>突然想起来，这个说法其实中国人也有，比如王荆公的《游褒禅山记》</p>
-
-<blockquote>
-  <p>夫夷以近，则游者众；险以远，则至者少。而世之奇伟、瑰怪，非常之观，常在于险远，而人之所罕至焉，故非有志者不能至也。有志矣，不随以止也，然力不足者，亦不能至也。有志与力，而又不随以怠，至于幽暗昏惑而无物以相之，亦不能至也。然力足以至焉，于人为可讥，而在己为有悔；尽吾志也而不能至者，可以无悔矣，其孰能讥之乎？此余之所得也！</p>
-</blockquote>
-
-<p>仔细一想，或许这也是在说科研吧。</p>
-
-<blockquote>
-  <p>然力足以至焉，于人为可讥，而在己为有悔；尽吾志也而不能至者，可以无悔矣，其孰能讥之乎？此余之所得也！</p>
-</blockquote>
-
-<blockquote>
-  <p>此所以学者不可以不深思而慎取之也。</p>
-</blockquote>
-
-<p>所以太祖说——无限风光在险峰！</p>
-
-<p>最后来个计步器，我在中途才打开，所以缺了某一部分数据。</p>
-
-<p><img src="http://iphyer.github.com/images/LakeMonona/walks.jpg" alt="walks" /></p>
-
-<h1 id="section-2">湖景</h1>
-
-<p>随手拍了点照片，贴上来纪念。</p>
-
-<p><img src="http://iphyer.github.com/images/LakeMonona/walks-1.jpg" alt="1" /></p>
-
-<p><img src="http://iphyer.github.com/images/LakeMonona/walks-2.jpg" alt="2" /></p>
-
-<p><img src="http://iphyer.github.com/images/LakeMonona/walks-3.jpg" alt="3" /></p>
-
-<p><img src="http://iphyer.github.com/images/LakeMonona/walks-4.jpg" alt="4" /></p>
-
-<p><img src="http://iphyer.github.com/images/LakeMonona/walks-5.jpg" alt="5" /></p>
-
-<p><img src="http://iphyer.github.com/images/LakeMonona/walks-0.jpg" alt="7" /></p>
 
 ]]></content>
   </entry>
