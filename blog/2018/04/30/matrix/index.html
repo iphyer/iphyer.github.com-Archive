@@ -606,9 +606,9 @@ $ N \times 2 $ 矩阵和 $ M \times 2 $ 矩阵。</p>
   <p>$ N \times 2 $ 的预测矩阵和 $ M \times 2 $ 真实值矩阵的差是不是在允许的范围内。</p>
 </blockquote>
 
-<p>所以在扩展一个维度后，变成$ N \items 1 \times 2 $ 的扩展预测矩阵和 $ M \times 2 $ 真实值矩阵做差。然后对于每一个预测 Bounding Box 的中心，一共是 N 个，在新扩展的维度上和 $ M \times 2 $ 真实值矩阵做差。所以每一个预测 Bounding Box 的中心 ( $ 1 \times 2 $ ) 先扩展成 $ M \times 2 $,就是把单一行复制为 M 行, 再和和 $ M \times 2 $ 真实值矩阵做差。</p>
+<p>所以在扩展一个维度后，变成$ N \times 1 \times 2 $ 的扩展预测矩阵和 $ M \times 2 $ 真实值矩阵做差。然后对于每一个预测 Bounding Box 的中心，一共是 N 个，在新扩展的维度上和 $ M \times 2 $ 真实值矩阵做差。所以每一个预测 Bounding Box 的中心 ( $ 1 \times 2 $ ) 先扩展成 $ M \times 2 $,就是把单一行复制为 M 行, 再和和 $ M \times 2 $ 真实值矩阵做差。</p>
 
-<p>所以我们到的布尔矩阵是 $ N \items M \times 2 $ 的矩阵，其中第三个轴的第一个布尔元素代表 X 方向是不是在误差内，第二个布尔元素代表 Y 方向是不是在误差范围内，然后在沿着第三个轴做<code>all</code>操作，所以我们得到 $ N \items M $ 的矩阵,其中每一行都是代表一个预测 Bounding Box 的中心 是不是和 M 个真实Bounding Box 的中心重合。</p>
+<p>所以我们到的布尔矩阵是 $ N \times M \times 2 $ 的矩阵，其中第三个轴的第一个布尔元素代表 X 方向是不是在误差内，第二个布尔元素代表 Y 方向是不是在误差范围内，然后在沿着第三个轴做<code>all</code>操作，所以我们得到 $ N \times M $ 的矩阵,其中每一行都是代表一个预测 Bounding Box 的中心 是不是和 M 个真实Bounding Box 的中心重合。</p>
 
 <p>所以 <code>x1</code> 得到<code>N</code>中的<code>True</code>数目而<code>x2</code>得到<code>M</code>中的<code>True</code>数目。所以结合上面 precision(准确率) and recall(召回率) 的定义，我们知道 <code>x1</code> 就是 precision(准确率) 而 <code>x2</code>就是 recall(召回率)。</p>
 
