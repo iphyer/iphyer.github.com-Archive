@@ -106,6 +106,8 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 
 <p>今天和同学一切讨论我们在做的项目，其中他特别指出了一段 Python 代码的精妙之处。我当时没能立刻理解，回来仔细思考了多次，终于想明白了这个问题，不由拍案叫绝。所以特地总结下这个问题给出自己的思考。</p>
 
+<!--more-->
+
 <h2 id="section-1">背景</h2>
 
 <h3 id="section-2">像素坐标系</h3>
@@ -302,7 +304,141 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 <p>所以我们可以用上面的例子来帮助思考，首先求中心的坐标，这样，原来的 $ N \times 4 $ 矩阵和 $ M \times 4 $ 矩阵就变成了
 $ N \times 2 $ 矩阵和 $ M \times 2 $ 矩阵。</p>
 
-<h4 id="numpy--numpynewaxis">Numpy 的 <code>numpy.newaxis</code></h4>
+<h4 id="numpy--numpynewaxis"><code>numpy</code> 的 <code>numpy.newaxis</code></h4>
+
+<p>这儿不得不说下，一个不太提及的小技巧。</p>
+
+<p>在 <code>numpy</code> 中 <code>None</code> 也可以作为矩阵一个新的维度的占位符。用官方文档的说法，</p>
+
+<blockquote>
+  <p>numpy.newaxis</p>
+</blockquote>
+
+<blockquote>
+  <p>The newaxis object can be used in all slicing operations to create an axis of length one. :const: newaxis is an alias for ‘None’, and ‘None’ can be used in place of this with the same result.</p>
+</blockquote>
+
+<p>也就是如果你希望你的举证拓展一个新的维度，比如从一个长度为 3 的 vector 到 3 x 1 或者 1 x 3 你就可以这么写</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="n">A</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+</span><span class="line">
+</span><span class="line"><span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</span><span class="line"><span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line"><span class="k">print</span><span class="p">(</span><span class="s">&quot;====1====&quot;</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line"><span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="p">[:,</span><span class="bp">None</span><span class="p">])</span>
+</span><span class="line"><span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="p">[:,</span><span class="bp">None</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line"><span class="k">print</span><span class="p">(</span><span class="s">&quot;====2====&quot;</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line"><span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="bp">None</span><span class="p">,:])</span>
+</span><span class="line"><span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="bp">None</span><span class="p">,:]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>输出是</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="o">[</span>1 3 5<span class="o">]</span>
+</span><span class="line"><span class="o">(</span>3,<span class="o">)</span>
+</span><span class="line"><span class="o">====</span><span class="nv">1</span><span class="o">====</span>
+</span><span class="line"><span class="o">[[</span>1<span class="o">]</span>
+</span><span class="line"> <span class="o">[</span>3<span class="o">]</span>
+</span><span class="line"> <span class="o">[</span>5<span class="o">]]</span>
+</span><span class="line"><span class="o">(</span>3, 1<span class="o">)</span>
+</span><span class="line"><span class="o">====</span><span class="nv">2</span><span class="o">====</span>
+</span><span class="line"><span class="o">[[</span>1 3 5<span class="o">]]</span>
+</span><span class="line"><span class="o">(</span>1, 3<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>那么二维呢，新增加一个维度，用上面的 1 的写法(因为1总是可以展示出明显的改变)我们可以看到结果是：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="n">A</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span>
+</span><span class="line">            <span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]])</span>
+</span><span class="line">
+</span><span class="line"><span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</span><span class="line"><span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line"><span class="k">print</span><span class="p">(</span><span class="s">&quot;====1====&quot;</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line"><span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="p">[:,</span><span class="bp">None</span><span class="p">])</span>
+</span><span class="line"><span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="p">[:,</span><span class="bp">None</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line"><span class="k">print</span><span class="p">(</span><span class="s">&quot;====2====&quot;</span><span class="p">)</span>
+</span><span class="line">
+</span><span class="line"><span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="bp">None</span><span class="p">,:])</span>
+</span><span class="line"><span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="bp">None</span><span class="p">,:]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>输出是</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="o">[[</span>1 3 5<span class="o">]</span>
+</span><span class="line"> <span class="o">[</span>7 8 9<span class="o">]]</span>
+</span><span class="line"><span class="o">(</span>2, 3<span class="o">)</span>
+</span><span class="line"><span class="o">====</span><span class="nv">1</span><span class="o">====</span>
+</span><span class="line"><span class="o">[[[</span>1 3 5<span class="o">]]</span>
+</span><span class="line">
+</span><span class="line"> <span class="o">[[</span>7 8 9<span class="o">]]]</span>
+</span><span class="line"><span class="o">(</span>2, 1, 3<span class="o">)</span>
+</span><span class="line"><span class="o">====</span><span class="nv">2</span><span class="o">====</span>
+</span><span class="line"><span class="o">[[[</span>1 3 5<span class="o">]</span>
+</span><span class="line">  <span class="o">[</span>7 8 9<span class="o">]]]</span>
+</span><span class="line"><span class="o">(</span>1, 2, 3<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>这样在 <code>numpy</code> 的操作中，如果需要增加一个额外的维度，比如存储两个矩阵做差的结果，就可以很方便的实现。</p>
+
+<p>也可以参考这个stackoverflow<a href="https://stackoverflow.com/questions/37867354/in-numpy-what-does-selection-by-none-do/37867542">In numpy, what does selection by [:,None] do?</a></p>
 
 <h3 id="section-7">问题的解决代码</h3>
 
@@ -317,6 +453,8 @@ $ N \times 2 $ 矩阵和 $ M \times 2 $ 矩阵。</p>
 <span class="line-number">7</span>
 <span class="line-number">8</span>
 <span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
 </pre></td><td class="code"><pre><code class="python"><span class="line"><span class="sd">&#39;&#39;&#39;</span>
 </span><span class="line"><span class="sd">Calculating P and R function</span>
 </span><span class="line"><span class="sd">&#39;&#39;&#39;</span>
@@ -325,8 +463,161 @@ $ N \times 2 $ 矩阵和 $ M \times 2 $ 矩阵。</p>
 </span><span class="line">    <span class="n">gt_c</span> <span class="o">=</span> <span class="n">bbox2centroid</span><span class="p">(</span><span class="n">gt_bbox</span><span class="p">)</span>
 </span><span class="line">    <span class="n">diffs</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">pred_c</span><span class="p">[:,</span> <span class="bp">None</span><span class="p">]</span> <span class="o">-</span> <span class="n">gt_c</span><span class="p">)</span>
 </span><span class="line">    <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">((</span><span class="n">diffs</span> <span class="o">&lt;</span> <span class="n">tolerence</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
-</span><span class="line">    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">x2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
+</span><span class="line">    <span class="n">precision</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">pred_bbox</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span class="line">    <span class="n">recall</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">x2</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">gt_bbox</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span class="line">    <span class="k">return</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>下面一步步解释下这个函数</p>
+
+<p>(1) <code>pred_c = bbox2centroid(pred_bbox)</code> 和 <code>gt_c = bbox2centroid(gt_bbox)</code> 就是求 Bounding Box 的中心，在我们的例子中，做完这步操作， <code>pred_c</code> 是 $ 3 \times 2 $ 矩阵 而 <code>gt_c</code> 是 $ 2 \times 2 $ 矩阵。</p>
+
+<p>其中 <code>pred_c</code>是</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="o">[[</span>1.5  1.5 <span class="o">]</span>
+</span><span class="line"> <span class="o">[</span>3.25 1.75<span class="o">]</span>
+</span><span class="line"> <span class="o">[</span>7.   5.  <span class="o">]]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p><code>gt_c</code>是</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="o">[[</span>2.  3.5<span class="o">]</span>
+</span><span class="line"> <span class="o">[</span>6.5 1.5<span class="o">]]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>(2) <code>pred_c[:, None]</code> 将 $ 3 \times 2 $ 矩阵 扩展为 $ 3 \times 1 \times 2 $ 矩阵</p>
+
+<p>(3) <code>pred_c[:, None] - gt_c</code> 是  $ 3 \times 1 \times 2 $ 矩阵 减去 $ 2 \times 2 $ 矩阵， 在数学上这是没有定义的，因为数学要求矩阵减法操作必须维度相同，但是在 <code>numpy</code> 中，其实是把 $ 3 \times 1 \times 2 $ 矩阵作为 3 个 $ 1 \times 2 $ 矩阵分别先扩充为 $ 2 \times 2 $ 矩阵 再和求差的 $ 2 \times 2 $ 矩阵做减法。</p>
+
+<p>也就是<code>numpy</code> 尽力将不能做的减法操作以第一个维度（你也可以指定其他维度）做减法操作。</p>
+
+<p>所以这步结束我们得到一个  $ 3 \times 2 \times 2 $ 矩阵，沿着第一个维度，其中每一个小的 $ 2 \times 2 $ 矩阵都是预测的 Bounding Box 和真实的 Bounding Box 的中心差值。</p>
+
+<p>具体的结果如下：</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="p">[[[</span><span class="mf">0.5</span>  <span class="mf">2.</span>  <span class="p">]</span>
+</span><span class="line">  <span class="p">[</span><span class="mf">5.</span>   <span class="mf">0.</span>  <span class="p">]]</span>
+</span><span class="line">
+</span><span class="line"> <span class="p">[[</span><span class="mf">1.25</span> <span class="mf">1.75</span><span class="p">]</span>
+</span><span class="line">  <span class="p">[</span><span class="mf">3.25</span> <span class="mf">0.25</span><span class="p">]]</span>
+</span><span class="line">
+</span><span class="line"> <span class="p">[[</span><span class="mf">5.</span>   <span class="mf">1.5</span> <span class="p">]</span>
+</span><span class="line">  <span class="p">[</span><span class="mf">0.5</span>  <span class="mf">3.5</span> <span class="p">]]]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>如果还是有一些疑问的话，请一行行调试如下的代码，我简单加了输出信息，</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="sd">&#39;&#39;&#39;</span>
+</span><span class="line"><span class="sd">Calculating P and R function</span>
+</span><span class="line"><span class="sd">&#39;&#39;&#39;</span>
+</span><span class="line"><span class="k">def</span> <span class="nf">compute_score_detail_by_centroid</span><span class="p">(</span><span class="n">pred_bbox</span><span class="p">,</span> <span class="n">gt_bbox</span><span class="p">,</span> <span class="n">tolerence</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)):</span>
+</span><span class="line">    <span class="n">pred_c</span> <span class="o">=</span> <span class="n">bbox2centroid</span><span class="p">(</span><span class="n">pred_bbox</span><span class="p">)</span>
+</span><span class="line">    <span class="k">print</span><span class="p">(</span><span class="n">pred_c</span><span class="p">)</span>
+</span><span class="line">    <span class="n">gt_c</span> <span class="o">=</span> <span class="n">bbox2centroid</span><span class="p">(</span><span class="n">gt_bbox</span><span class="p">)</span>
+</span><span class="line">    <span class="k">print</span><span class="p">(</span><span class="n">gt_c</span><span class="p">)</span>
+</span><span class="line">    <span class="n">diffs</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">pred_c</span><span class="p">[:,</span> <span class="bp">None</span><span class="p">]</span> <span class="o">-</span> <span class="n">gt_c</span><span class="p">)</span>
+</span><span class="line">    <span class="k">print</span><span class="p">(</span><span class="n">diffs</span><span class="p">)</span>
+</span><span class="line">    <span class="k">print</span><span class="p">(</span><span class="n">diffs</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span><span class="line">    <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">((</span><span class="n">diffs</span> <span class="o">&lt;</span> <span class="n">tolerence</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</span><span class="line">    <span class="k">print</span><span class="p">((</span><span class="n">diffs</span> <span class="o">&lt;</span> <span class="n">tolerence</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</span><span class="line">    <span class="k">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">((</span><span class="n">diffs</span> <span class="o">&lt;</span> <span class="n">tolerence</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="mi">2</span><span class="p">)))</span>
+</span><span class="line">    <span class="n">precision</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">pred_bbox</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span class="line">    <span class="n">recall</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">x2</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">gt_bbox</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span class="line">    <span class="k">return</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>(4) <code>(diffs &lt; tolerence).all(2)</code> 这步就是把上面求出来的 $ 3 \times 2 \times 2 $ 矩阵 和 我们允许的误差矩阵做比较，如果小于误差及作<code>True</code>，否则计作 <code>False</code>。但是这样结束之后我们得到一个$ 3 \times 2 \times 2 $ 的布尔(Boolean)矩阵。</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="o">[[[</span> True False<span class="o">]</span>
+</span><span class="line">  <span class="o">[</span>False  True<span class="o">]]</span>
+</span><span class="line">
+</span><span class="line"> <span class="o">[[</span> True  True<span class="o">]</span>
+</span><span class="line">  <span class="o">[</span>False  True<span class="o">]]</span>
+</span><span class="line">
+</span><span class="line"> <span class="o">[[</span>False  True<span class="o">]</span>
+</span><span class="line">  <span class="o">[</span> True False<span class="o">]]]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+<p>分别表示对于每一个预测的  Bounding Box ，它的 x 中心和 y 中心是不是在允许的误差范围内。我们知道如果都在范围内，那么就是预测对了，反之只要一个不对，那就是预测不对。</p>
+
+<p>所以<code>.all(2)</code> 其实就是沿着第三个轴（Python从0计数）对于每一个元素是不是都是<code>True</code>，<code>Test whether all array elements along a given axis evaluate to True.</code></p>
+
+<p>那么第三个轴是哪个轴？</p>
+
+<p>其实在我们说 差值布尔矩阵是 $ 3 \times 2 \times 2 $ 矩阵 就说明了第三个元素是第二个 2 ，也就是对于布尔矩阵沿着每个小列做操作。正好就是对于每个x轴中心误差和y轴中心误差做逻辑<code>AND</code>操作。通过这个操作之后，我们发现现在布尔矩阵变成，</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="o">[[</span>False False<span class="o">]</span>
+</span><span class="line"> <span class="o">[</span> True False<span class="o">]</span>
+</span><span class="line"> <span class="o">[</span>False False<span class="o">]]</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+<p>现在是 $ 3 \times 2 $ 的矩阵了，相当于沿着 第三个轴塌缩了。</p>
+
+<p>现在的结果就是，对于我们的每一个预测(一共 3 个预测)我们分别和真实值做对比，得到一个判断结果分别是真还是不是真，我们可以看到第二个预测和第一个真实值是吻合的。结合我们的图，会发现正好是右下角重合的两个矩形。</p>
+
+<p><img src="/images/ComputerVision/rect.png" alt="Bounding Box Layout" /></p>
+
+<p>(4) <code>x1, x2 = np.nonzero((diffs &lt; tolerence).all(2))</code> 主要需要理解<code>np.nonzero()</code>,其实就是返回每一个维度的非零元素，在我们这个布尔矩阵中就是返回每个维度的<code>True</code>数目。<code>Return the indices of the elements that are non-zero.Returns a tuple of arrays, one for each dimension of a, containing the indices of the non-zero elements in that dimension.</code></p>
+
+<p>但是在这儿<code>x1</code>和<code>x2</code>的含义不太明确。所以下面我进行一次形式化的论证。</p>
+
+<p>可以看到在得到中心坐标后，我们的问题是</p>
+
+<blockquote>
+  <p>$ N \times 2 $ 的预测矩阵和 $ M \times 2 $ 真实值矩阵的差是不是在允许的范围内。</p>
+</blockquote>
+
+<p>所以在扩展一个维度后，变成$ N \items 1 \times 2 $ 的扩展预测矩阵和 $ M \times 2 $ 真实值矩阵做差。然后对于每一个预测 Bounding Box 的中心，一共是 N 个，在新扩展的维度上和 $ M \times 2 $ 真实值矩阵做差。所以每一个预测 Bounding Box 的中心 ( $ 1 \times 2 $ ) 先扩展成 $ M \times 2 $,就是把单一行复制为 M 行, 再和和 $ M \times 2 $ 真实值矩阵做差。</p>
+
+<p>所以我们到的布尔矩阵是 $ N \items M \times 2 $ 的矩阵，其中第三个轴的第一个布尔元素代表 X 方向是不是在误差内，第二个布尔元素代表 Y 方向是不是在误差范围内，然后在沿着第三个轴做<code>all</code>操作，所以我们得到 $ N \items M $ 的矩阵,其中每一行都是代表一个预测 Bounding Box 的中心 是不是和 M 个真实Bounding Box 的中心重合。</p>
+
+<p>所以 <code>x1</code> 得到<code>N</code>中的<code>True</code>数目而<code>x2</code>得到<code>M</code>中的<code>True</code>数目。所以结合上面 precision(准确率) and recall(召回率) 的定义，我们知道 <code>x1</code> 就是 precision(准确率) 而 <code>x2</code>就是 recall(召回率)。</p>
+
+<p>当然为了得到具体的数值，还需要做进一步求解，不过已经非常简单了, 也就是最后的几步。</p>
+
+<h2 id="section-8">总结</h2>
+
+<p>可以看到这个对于这样一个简单的问题，通过充分利用 <code>numpy</code> 内置函数的特性和矩阵操作的便利，特别是增加一个维度实现对于另一个矩阵的遍历是特别值得学习的操作。</p>
+
 </div>
 
 
