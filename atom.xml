@@ -4,7 +4,7 @@
   <title><![CDATA[桑弧蓬矢射四方]]></title>
   <link href="http://iphyer.github.com/atom.xml" rel="self"/>
   <link href="http://iphyer.github.com/"/>
-  <updated>2018-05-01T06:30:27-05:00</updated>
+  <updated>2018-05-18T16:08:18-05:00</updated>
   <id>http://iphyer.github.com/</id>
   <author>
     <name><![CDATA[iphyer]]></name>
@@ -626,11 +626,56 @@ $ N \times 2 $ 矩阵和 $ M \times 2 $ 矩阵。</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[ESL]]></title>
+    <title type="html"><![CDATA[修复 AttributeError: module 'pip' has no attribute 'main' in PyCharm]]></title>
     <link href="http://iphyer.github.com/blog/2018/04/20/esl/"/>
     <updated>2018-04-20T23:32:00-05:00</updated>
     <id>http://iphyer.github.com/blog/2018/04/20/esl</id>
-    <content type="html"><![CDATA[
+    <content type="html"><![CDATA[<h2 id="section">起因</h2>
+
+<p>PyCharm 是我很喜欢的 IDE，最近遇到一个很奇怪的问题 <code>AttributeError: module 'pip' has no attribute 'main'</code>，这里记录下修复过程。</p>
+
+<!--more-->
+
+<h2 id="section-1">原因</h2>
+
+<p>具体的错误情况如下图所示,</p>
+
+<p><img src="http://iphyer.github.com/images/pipDowngrade/problem.jpg" alt="Problems" /></p>
+
+<p>这里的原因其实报错信息都给出了，</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+</pre></td><td class="code"><pre><code class="python"><span class="line"><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+</span><span class="line">  <span class="n">File</span> <span class="s">&quot;/Applications/PyCharm CE.app/Contents/helpers/packaging_tool.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">192</span><span class="p">,</span> <span class="ow">in</span> <span class="n">main</span>
+</span><span class="line">    <span class="n">retcode</span> <span class="o">=</span> <span class="n">do_install</span><span class="p">(</span><span class="n">pkgs</span><span class="p">)</span>
+</span><span class="line">  <span class="n">File</span> <span class="s">&quot;/Applications/PyCharm CE.app/Contents/helpers/packaging_tool.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">109</span><span class="p">,</span> <span class="ow">in</span> <span class="n">do_install</span>
+</span><span class="line">    <span class="k">return</span> <span class="n">pip</span><span class="o">.</span><span class="n">main</span><span class="p">([</span><span class="s">&#39;install&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">pkgs</span><span class="p">)</span>
+</span><span class="line"><span class="ne">AttributeError</span><span class="p">:</span> <span class="n">module</span> <span class="s">&#39;pip&#39;</span> <span class="n">has</span> <span class="n">no</span> <span class="n">attribute</span> <span class="s">&#39;main&#39;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>主要原因就是 <code>pip</code> 找不到 <code>main</code> 属性，谷歌下找到原因，<a href="https://stackoverflow.com/questions/49839610/attributeerror-module-pip-has-no-attribute-main">AttributeError: Module Pip has no attribute ‘main’</a>，原因很简单， <code>pip</code> 版本 10 不支持低版本的属性。相对来说降级 <code>pip</code>  版本。</p>
+
+<h2 id="section-2">解决方案</h2>
+
+<p>解决方案也很简单，只要降级就行了。合适的版本是 <code>pip==9.0.3</code>。</p>
+
+<p>首先找到自己的虚拟环境名称，我用的是 <code>microBlog</code> 所以运行如下命令即可，</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">conda install -n microBlog <span class="nv">pip</span><span class="o">=</span>9.0.3
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>当然我这里用的是 <code>conda</code> 作为包管理器。</p>
+
+<p>结果图</p>
+
+<p><img src="http://iphyer.github.com/images/pipDowngrade/sol.jpg" alt="Solved" /></p>
+
 ]]></content>
   </entry>
   
