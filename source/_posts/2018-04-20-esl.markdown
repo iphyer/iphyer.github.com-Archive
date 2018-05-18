@@ -16,7 +16,7 @@ PyCharm 是我很喜欢的 IDE，最近遇到一个很奇怪的问题 `Attribute
 
 具体的错误情况如下图所示,
 
-![Problems](/images/pipDowngrade/problem.jpg)
+![Problems](/images/Python/pipDowngrade/problem.jpg)
 
 这里的原因其实报错信息都给出了，
 
@@ -47,6 +47,6 @@ conda install -n microBlog pip=9.0.3
 
 结果图
 
-![Solved](/images/pipDowngrade/sol.jpg)
+![Solved](/images/Python/pipDowngrade/sol.jpg)
 
 
