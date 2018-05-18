@@ -4,7 +4,7 @@
   <title><![CDATA[桑弧蓬矢射四方]]></title>
   <link href="http://iphyer.github.com/atom.xml" rel="self"/>
   <link href="http://iphyer.github.com/"/>
-  <updated>2018-05-18T16:08:18-05:00</updated>
+  <updated>2018-05-18T16:12:54-05:00</updated>
   <id>http://iphyer.github.com/</id>
   <author>
     <name><![CDATA[iphyer]]></name>
@@ -640,7 +640,7 @@ $ N \times 2 $ 矩阵和 $ M \times 2 $ 矩阵。</p>
 
 <p>具体的错误情况如下图所示,</p>
 
-<p><img src="http://iphyer.github.com/images/pipDowngrade/problem.jpg" alt="Problems" /></p>
+<p><img src="http://iphyer.github.com/images/Python/pipDowngrade/problem.jpg" alt="Problems" /></p>
 
 <p>这里的原因其实报错信息都给出了，</p>
 
@@ -674,7 +674,7 @@ $ N \times 2 $ 矩阵和 $ M \times 2 $ 矩阵。</p>
 
 <p>结果图</p>
 
-<p><img src="http://iphyer.github.com/images/pipDowngrade/sol.jpg" alt="Solved" /></p>
+<p><img src="http://iphyer.github.com/images/Python/pipDowngrade/sol.jpg" alt="Solved" /></p>
 
 ]]></content>
   </entry>
