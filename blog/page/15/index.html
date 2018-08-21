@@ -9,7 +9,8 @@
 
 <meta name="author" content="iphyer"> 
 
-<meta name="description" content=" 前言 这里是实现0～100之内数字输出全部的完美数，所谓完美数也就是这个数的所有因子的和等于这个数。 比如： 6=1+2+3 28=1+2+4+7+14 Read on &rarr; Jan 13th, 2013 Python Comments "> <meta name="keywords" content="">
+<meta name="description" content="前言 程序的目的就是标题。 程序 #to find a word that contians the specific parts in it
+#in this case it is "aeiou" , all the Vowel letters datafile=open(" &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -106,6 +107,313 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
     <article class="post">
 	<h2 class="title">
 		
+		<a href="/blog/2013/01/13/pythonfindpartsinword/">
+		
+			Python编程8——Python寻找单词中符合顺序的元音字母</a>
+	</h2>
+	<div class="entry-content">
+		<h1 id="section">前言</h1>
+
+<p>程序的目的就是标题。</p>
+
+<h1 id="section-1">程序</h1>
+
+<pre><code>
+#to find a word that contians the specific parts in it
+#in this case it is "aeiou" , all the Vowel letters
+
+datafile=open("dictionary.txt","r")
+
+def cleanWord(word):
+	"""Return word in lower case without whitespace"""
+	return word.strip().lower()
+	
+def getVowelsInword(word):
+	vowelsStr="aeiou"
+	vowelsInword=""
+	for char in word:
+		if char in vowelsStr:
+			vowelsInword+=char
+	return vowelsInword
+
+#main program
+print "Find words containing vowels 'aeiou' in that order: \n"
+for word in datafile:
+	word = cleanWord(word)
+	if len(word)&lt;=6:
+		continue
+	vowelStr=getVowelsInword(word)
+	if vowelStr=="aeiou":
+		print word
+
+</code></pre>
+
+
+		
+		<a href="/blog/2013/01/13/pythonfindpartsinword/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-13T13:22:00+08:00" pubdate data-updated="true">Jan 13<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/python/'>Python</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2013/01/13/pythonfindpartsinword//blog/page/15/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/01/13/pythonanagrams/">
+		
+			Python编程7——Python比较相同字母组成的单词</a>
+	</h2>
+	<div class="entry-content">
+		<h1 id="section">前言</h1>
+
+<p>这个程序比较简单就是比较两个单词是不是可以用相同的字母不同的排序组合出来的。</p>
+
+<h1 id="section-1">程序</h1>
+<pre><code>#the programe compares that some word letters can 
+#be reput as a new word
+
+def areAnagrames(word1, word2):
+	"Return the result of the comparison"
+	#resorted the two words in the aplhabeta order
+	word1_sorted=sorted(word1)
+	word2_sorted=sorted(word2)
+	return word1_sorted==word2_sorted
+	
+print "Anagram Test"
+twowords=raw_input("Enter two words separing with whitespace: \n")
+twowordsList=twowords.split()
+word1=twowordsList[0]
+word2=twowordsList[1]
+
+if areAnagrames(word1,word2):
+	print "The two words are anagrams."
+else:
+	print "The two words are not anagrams."
+</code></pre>
+
+
+		
+		<a href="/blog/2013/01/13/pythonanagrams/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-13T13:02:00+08:00" pubdate data-updated="true">Jan 13<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/python/'>Python</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2013/01/13/pythonanagrams//blog/page/15/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/01/13/pythoncollatz/">
+		
+			Python编程6——Python实现Collatz</a>
+	</h2>
+	<div class="entry-content">
+		<h1 id="section">前言</h1>
+
+<p>这个是需要更多修改的部分。Python实现Collatz序列。
+本来以为比较简单，但是看了看维基百科的说明，这个居然可以出现分形，顿时冋了。
+这个还需要修改啊。</p>
+
+<p><img src="/images/Python/Collatz/CollatzFractal.png" alt="tu1" /> </p>
+
+
+		
+		<a href="/blog/2013/01/13/pythoncollatz/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-13T10:48:00+08:00" pubdate data-updated="true">Jan 13<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/python/'>Python</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2013/01/13/pythoncollatz//blog/page/15/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/01/13/pythoninputcheck/">
+		
+			Python编程5——Python实现对与输入的检查</a>
+	</h2>
+	<div class="entry-content">
+		<h1 id="section">前言</h1>
+
+<p>这里实现的是Python对于输入的检查。</p>
+
+<p>只有经过检验的输入才是可以接受的——这句话是书中普遍强调的。</p>
+
+<p>对于输入的检验有两种思路：</p>
+
+<ul>
+  <li>第一个就是对于用户的输入进行修改，比如用户可能会yes，Yes，YES等等，都让其通过</li>
+  <li>第二个就是强制只有一种输出可以，但是换个方式，在程序的输出语句中进行提示，比如yes or no？</li>
+</ul>
+
+<p>这里作者推荐第二种，这也是符合Python哲学的方式，做一件事情只有一种方法。</p>
+
+
+		
+		<a href="/blog/2013/01/13/pythoninputcheck/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-13T10:42:00+08:00" pubdate data-updated="true">Jan 13<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/python/'>Python</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2013/01/13/pythoninputcheck//blog/page/15/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2013/01/13/pythonguessthenumber/">
+		
+			Python编程4——Python实现猜数字的程序</a>
+	</h2>
+	<div class="entry-content">
+		<h1 id="section">前言</h1>
+
+<p>这个也不多说了，python大家经常见到的猜数字游戏。</p>
+
+<p>这里我print了原来生成的随机数，只是为了验证方便，正式的实现的时候需要删去。</p>
+
+
+		
+		<a href="/blog/2013/01/13/pythonguessthenumber/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-13T10:36:00+08:00" pubdate data-updated="true">Jan 13<span>th</span>, 2013</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/python/'>Python</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2013/01/13/pythonguessthenumber//blog/page/15/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
 		<a href="/blog/2013/01/13/pythonperfectnumber/">
 		
 			Python编程3——Python计算是否是perfect Number</a>
@@ -140,7 +448,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
   
 
 
-<time datetime="2013-01-13T10:32:00-06:00" pubdate data-updated="true">Jan 13<span>th</span>, 2013</time></div>
+<time datetime="2013-01-13T10:32:00+08:00" pubdate data-updated="true">Jan 13<span>th</span>, 2013</time></div>
 	
 
 <div class="tags">
@@ -193,7 +501,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
   
 
 
-<time datetime="2013-01-13T10:26:00-06:00" pubdate data-updated="true">Jan 13<span>th</span>, 2013</time></div>
+<time datetime="2013-01-13T10:26:00+08:00" pubdate data-updated="true">Jan 13<span>th</span>, 2013</time></div>
 	
 
 <div class="tags">
@@ -242,7 +550,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
   
 
 
-<time datetime="2013-01-13T10:17:00-06:00" pubdate data-updated="true">Jan 13<span>th</span>, 2013</time></div>
+<time datetime="2013-01-13T10:17:00+08:00" pubdate data-updated="true">Jan 13<span>th</span>, 2013</time></div>
 	
 
 <div class="tags">
@@ -295,7 +603,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
   
 
 
-<time datetime="2013-01-13T00:00:00-06:00" pubdate data-updated="true">Jan 13<span>th</span>, 2013</time></div>
+<time datetime="2013-01-13T00:00:00+08:00" pubdate data-updated="true">Jan 13<span>th</span>, 2013</time></div>
 	
 
 <div class="tags">
@@ -345,7 +653,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
   
 
 
-<time datetime="2013-01-09T03:02:00-06:00" pubdate data-updated="true">Jan 9<span>th</span>, 2013</time></div>
+<time datetime="2013-01-09T03:02:00+08:00" pubdate data-updated="true">Jan 9<span>th</span>, 2013</time></div>
 	
 
 <div class="tags">
@@ -357,265 +665,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 
 	
 		<span class="comments"><a href="/blog/2013/01/09/gretiming//blog/page/15/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/01/09/ibus/">
-		
-			Ibus假死后的重启方法</a>
-	</h2>
-	<div class="entry-content">
-		<h1 id="section">前言</h1>
-
-<p>这里讲一下这个程序的作用。当时是Ubuntu11.12的系统，发现Unity的界面下面ibus经常假死。
-也就是你突然看不到输入框了，但是ibus还是在工作。
-但是现在Ubuntu12.04的系统貌似做的比较好了。
-当然我现在的系统是Lubuntu不知道是不是这个的因素。</p>
-
-
-		
-		<a href="/blog/2013/01/09/ibus/" class="more-link">Read on &rarr;</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-09T02:55:00-06:00" pubdate data-updated="true">Jan 9<span>th</span>, 2013</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/linux/'>Linux</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/blog/2013/01/09/ibus//blog/page/15/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/01/05/latexcirclenumber/">
-		
-			Latex中输入20个带圈字符的方法</a>
-	</h2>
-	<div class="entry-content">
-		<h1 id="section">前言</h1>
-
-<p>今天写专利课老师的论文，发现必须要求我们遵循《中国法学》的文献格式要求。
-这里小不爽一下，就是这本杂志要求</p>
-
-<blockquote>
-  <p>（二）文中注释一律采用脚注，全文连续注码，注码样式为：①②③等。</p>
-</blockquote>
-
-<p>本来以为这个在latex里面可以集成了功能结果发现特别痛苦啊，有么有！！</p>
-
-
-		
-		<a href="/blog/2013/01/05/latexcirclenumber/" class="more-link">Read on &rarr;</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-05T22:34:00-06:00" pubdate data-updated="true">Jan 5<span>th</span>, 2013</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/latex/'>Latex</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/blog/2013/01/05/latexcirclenumber//blog/page/15/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2013/01/04/bailuyuan/">
-		
-			白鹿原的影评</a>
-	</h2>
-	<div class="entry-content">
-		<h1 id="section">观看白鹿原的影评</h1>
-
-<h2 id="section-1">总体评价</h2>
-<p>今天接着刚刚送别了同学的空闲。看完了白鹿原。2012年这部电影非常火爆，今天才看到毕竟是看的百度版也就不做强人所难的要求了。
-貌似很多人都看过了。确实发现很多人给的评价很低。这个也不好否定。比如电影的前20分钟，我特意看了时间其实实在作故事的铺垫，但是这部分的逻辑非常跳跃很多的部分没有告诉人们的具体形式。其实我是很欣赏出现一些画外音的，告诉人们具体故事的年代。比如很多人其实看到1912年没有什么具体的概念，这一年虽然亚洲最早的共和国建立。同时对于主人公的交代非常单薄，很多人还是在故事的进行中发现了这个故事的主角的名字叫白嘉轩和鹿子霊的。其实这样的安排让我感觉完全无法理解。</p>
-
-
-		
-		<a href="/blog/2013/01/04/bailuyuan/" class="more-link">Read on &rarr;</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-04T21:54:00-06:00" pubdate data-updated="true">Jan 4<span>th</span>, 2013</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/movie/'>movie</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/blog/2013/01/04/bailuyuan//blog/page/15/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/12/20/toefljing-yan-zong-jie/">
-		
-			关于TOEFL的思考</a>
-	</h2>
-	<div class="entry-content">
-		<h2 id="section">前言</h2>
-
-<p>这里总结自己总结的托福需要注意的事项。
-这里的总结很多都来自己的同学和自己的经历的思考。这里综合了一个口语118的美女的经验和自己和几个物理系出国同学的经验。</p>
-
-<h2 id="section-1">总纲</h2>
-
-<p>其实就是两个方案：</p>
-
-<ul>
-  <li>经典方案（黄金80题+托福真经+TPO）</li>
-  <li>流行款     （最近三年的机经）</li>
-</ul>
-
-
-		
-		<a href="/blog/2012/12/20/toefljing-yan-zong-jie/" class="more-link">Read on &rarr;</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-20T23:45:00-06:00" pubdate data-updated="true">Dec 20<span>th</span>, 2012</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/toefl/'>TOEFL</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/blog/2012/12/20/toefljing-yan-zong-jie//blog/page/15/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/11/05/rchina5/">
-		
-			第五届R语言中国会议(上海)</a>
-	</h2>
-	<div class="entry-content">
-		<h1 id="section">导语</h1>
-<p>这是RChina会议的记录，作为自己的一篇总结。本来不打算写的，后来想想，有始有终，何况这么多大牛的登台演讲给了我这么多的启发。
-确实该写的总结的。</p>
-
-<p>这篇日志就作为自己的记录吧，也博诸位一笑。</p>
-
-
-		
-		<a href="/blog/2012/11/05/rchina5/" class="more-link">Read on &rarr;</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-11-05T10:49:00-06:00" pubdate data-updated="true">Nov 5<span>th</span>, 2012</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/r/'>R</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/blog/2012/11/05/rchina5//blog/page/15/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | 桑弧蓬矢射四方]]></title>
   <link href="http://iphyer.github.com/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://iphyer.github.com/"/>
-  <updated>2018-05-18T16:12:54-05:00</updated>
+  <updated>2018-08-21T18:27:16+08:00</updated>
   <id>http://iphyer.github.com/</id>
   <author>
     <name><![CDATA[iphyer]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[修复 AttributeError: module 'pip' has no attribute 'main' in PyCharm]]></title>
     <link href="http://iphyer.github.com/blog/2018/04/20/esl/"/>
-    <updated>2018-04-20T23:32:00-05:00</updated>
+    <updated>2018-04-20T23:32:00+08:00</updated>
     <id>http://iphyer.github.com/blog/2018/04/20/esl</id>
     <content type="html"><![CDATA[<h2 id="section">起因</h2>
 
@@ -67,7 +67,7 @@ conda install -n microBlog pip=9.0.3
   <entry>
     <title type="html"><![CDATA[doctest使用记录]]></title>
     <link href="http://iphyer.github.com/blog/2017/03/22/doctest/"/>
-    <updated>2017-03-22T23:56:00-05:00</updated>
+    <updated>2017-03-22T23:56:00+08:00</updated>
     <id>http://iphyer.github.com/blog/2017/03/22/doctest</id>
     <content type="html"><![CDATA[<h2 id="section">起源</h2>
 
@@ -281,7 +281,7 @@ doctest<span style="color:#808030; ">.</span>testfile<span style="color:#808030;
   <entry>
     <title type="html"><![CDATA[Anaconda使用记录]]></title>
     <link href="http://iphyer.github.com/blog/2016/02/15/anaconda/"/>
-    <updated>2016-02-15T13:14:00-06:00</updated>
+    <updated>2016-02-15T13:14:00+08:00</updated>
     <id>http://iphyer.github.com/blog/2016/02/15/anaconda</id>
     <content type="html"><![CDATA[<h1 id="section">前言</h1>
 
@@ -566,7 +566,7 @@ pip install numpy
   <entry>
     <title type="html"><![CDATA[公务员考试资料——人民时评的下载和音频制作]]></title>
     <link href="http://iphyer.github.com/blog/2014/10/30/guokao/"/>
-    <updated>2014-10-30T22:50:00-05:00</updated>
+    <updated>2014-10-30T22:50:00+08:00</updated>
     <id>http://iphyer.github.com/blog/2014/10/30/guokao</id>
     <content type="html"><![CDATA[<h1 id="section">任务概述</h1>
 
@@ -684,7 +684,7 @@ unoconv -f doc *.txt^C
   <entry>
     <title type="html"><![CDATA[心理现象]]></title>
     <link href="http://iphyer.github.com/blog/2014/04/19/new/"/>
-    <updated>2014-04-19T01:56:00-05:00</updated>
+    <updated>2014-04-19T01:56:00+08:00</updated>
     <id>http://iphyer.github.com/blog/2014/04/19/new</id>
     <content type="html"><![CDATA[<h1 id="python">关于单词出现频率的Python统计——一个心理现象的验证</h1>
 

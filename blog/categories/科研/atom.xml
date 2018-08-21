@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 科研 | 桑弧蓬矢射四方]]></title>
   <link href="http://iphyer.github.com/blog/categories/科研/atom.xml" rel="self"/>
   <link href="http://iphyer.github.com/"/>
-  <updated>2018-05-18T16:12:54-05:00</updated>
+  <updated>2018-08-21T18:27:16+08:00</updated>
   <id>http://iphyer.github.com/</id>
   <author>
     <name><![CDATA[iphyer]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[蒙特卡洛模拟的计算]]></title>
     <link href="http://iphyer.github.com/blog/2017/04/04/mc2/"/>
-    <updated>2017-04-04T22:39:00-05:00</updated>
+    <updated>2017-04-04T22:39:00+08:00</updated>
     <id>http://iphyer.github.com/blog/2017/04/04/mc2</id>
     <content type="html"><![CDATA[<h1 id="section">起因</h1>
 
@@ -46,7 +46,7 @@
   <entry>
     <title type="html"><![CDATA[分子动力学的统计函数总结]]></title>
     <link href="http://iphyer.github.com/blog/2017/03/30/msdandacf/"/>
-    <updated>2017-03-30T00:41:00-05:00</updated>
+    <updated>2017-03-30T00:41:00+08:00</updated>
     <id>http://iphyer.github.com/blog/2017/03/30/msdandacf</id>
     <content type="html"><![CDATA[<h1 id="section">引入</h1>
 
@@ -135,7 +135,7 @@
   <entry>
     <title type="html"><![CDATA[分子动力学计算的小细节]]></title>
     <link href="http://iphyer.github.com/blog/2017/03/11/md/"/>
-    <updated>2017-03-11T08:38:00-06:00</updated>
+    <updated>2017-03-11T08:38:00+08:00</updated>
     <id>http://iphyer.github.com/blog/2017/03/11/md</id>
     <content type="html"><![CDATA[<h1 id="section">起源</h1>
 
@@ -197,7 +197,7 @@
   <entry>
     <title type="html"><![CDATA[更好的随机数生成总结]]></title>
     <link href="http://iphyer.github.com/blog/2016/07/09/random/"/>
-    <updated>2016-07-09T22:42:00-05:00</updated>
+    <updated>2016-07-09T22:42:00+08:00</updated>
     <id>http://iphyer.github.com/blog/2016/07/09/random</id>
     <content type="html"><![CDATA[<h1 id="section">起因</h1>
 
@@ -339,7 +339,7 @@ return 0; }
   <entry>
     <title type="html"><![CDATA[论文工具链总结]]></title>
     <link href="http://iphyer.github.com/blog/2015/11/04/toolchain/"/>
-    <updated>2015-11-04T00:15:00-06:00</updated>
+    <updated>2015-11-04T00:15:00+08:00</updated>
     <id>http://iphyer.github.com/blog/2015/11/04/toolchain</id>
     <content type="html"><![CDATA[<h1 id="section">起因</h1>
 

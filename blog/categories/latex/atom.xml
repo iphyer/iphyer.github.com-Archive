@@ -4,7 +4,7 @@
   <title><![CDATA[Category: latex | 桑弧蓬矢射四方]]></title>
   <link href="http://iphyer.github.com/blog/categories/latex/atom.xml" rel="self"/>
   <link href="http://iphyer.github.com/"/>
-  <updated>2018-05-18T16:12:54-05:00</updated>
+  <updated>2018-08-21T18:27:16+08:00</updated>
   <id>http://iphyer.github.com/</id>
   <author>
     <name><![CDATA[iphyer]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[基于xelatex的中国科学院博士硕士毕业论文模板]]></title>
     <link href="http://iphyer.github.com/blog/2014/07/03/xelatexthesis/"/>
-    <updated>2014-07-03T20:09:00-05:00</updated>
+    <updated>2014-07-03T20:09:00+08:00</updated>
     <id>http://iphyer.github.com/blog/2014/07/03/xelatexthesis</id>
     <content type="html"><![CDATA[<h1 id="section">说明</h1>
 <p>这是一个用于撰写中国科学院学位论文的 LaTeX 模板，主要的目的是为了排版出自己可用的模板。</p>

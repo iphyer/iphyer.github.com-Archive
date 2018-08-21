@@ -9,8 +9,7 @@
 
 <meta name="author" content="iphyer"> 
 
-<meta name="description" content="起源
-参加了陈琦老师的330club，最大的收获就是一大帮给我巨大帮助的同学。包括很多的帮助，比如YYY在我内外交困的时候给我安慰和鼓励，+0给我宝贵的阿里内推机会，虽然被我搞砸了，但是还是还是感谢。还有大家一起组织的一个微信讨论作文的群互相交流。还有就是那个充满这欢乐和逗比的大的微信群。 &hellip;"> <meta name="keywords" content="">
+<meta name="description" content="前言 今天在疯狂地提交计算任务，提交了550多个任务，但是在提交的过程之中,难免会出现一些失误，提交了错误的参数或者设置了错误的程序运行条件。同时因为在深圳的机器是和另一个组的同学同时使用机器，所以经常出现的情况是——当她运行程序的时候，我需要停下来先让师姐运行起来我再接着提交任务。原因就是， &hellip;"> <meta name="keywords" content="">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -107,6 +106,253 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
     <article class="post">
 	<h2 class="title">
 		
+		<a href="/blog/2015/06/22/kill/">
+		
+			Linux下批量Kill多个进程的方法</a>
+	</h2>
+	<div class="entry-content">
+		<h2 id="section">前言</h2>
+
+<p>今天在疯狂地提交计算任务，提交了550多个任务，但是在提交的过程之中,难免会出现一些失误，提交了错误的参数或者设置了错误的程序运行条件。同时因为在深圳的机器是和另一个组的同学同时使用机器，所以经常出现的情况是——当她运行程序的时候，我需要停下来先让师姐运行起来我再接着提交任务。原因就是，我的程序都是单核任务为主，而师姐的程序则是计算蛋白质的并行程序。</p>
+
+<p>所以很自然的，最高效的计算资源利用方法就是我等师姐的程序提交成功之后提交，这样的话单核任务可以多样地被分配到各个节点上而不用等节点空闲来运行并行程序。我们可以最充分地利用组里在深圳租用的资源。</p>
+
+<p>所以一个使用中的痛点就是，你不得不因为各种各样的原因停止自己的程序。 </p>
+
+<p>那么问题来——如何在Linux环境中高效地停止某个任务？</p>
+
+
+		
+		<a href="/blog/2015/06/22/kill/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-06-22T20:12:00+08:00" pubdate data-updated="true">Jun 22<span>nd</span>, 2015</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/linux/'>Linux</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2015/06/22/kill//blog/page/7/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2015/06/16/pipe/">
+		
+			Bash脚本的批量作业</a>
+	</h2>
+	<div class="entry-content">
+		<h2 id="section">前言</h2>
+
+<p>其实这个博文很短，就是记录下今天下午写的bash代码。所有完成的工作的目的就是实现对于研究做服务器集群的使用。</p>
+
+
+		
+		<a href="/blog/2015/06/16/pipe/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-06-16T17:09:00+08:00" pubdate data-updated="true">Jun 16<span>th</span>, 2015</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/linux/'>Linux</a>, <a class='category' href='/blog/categories/科研/'>科研</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2015/06/16/pipe//blog/page/7/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2015/06/07/bash-szcs/">
+		
+			最好的超算中心提交任务方法</a>
+	</h2>
+	<div class="entry-content">
+		<h1 id="section">前言</h1>
+
+<p>其实这里就是把我常用的脚本提交上来。通常来说科学计算的流程是这样的:  本地coding ==&gt; 本地测试 ==&gt; 上超算试跑 ==&gt; 大规模运算求解。主要的目的就是为了节约机时同时便于查找错误。</p>
+
+<p>所以我这里的程序主要包括的是提交和后期处理两部分。</p>
+
+<p>这是我个人最喜欢的使用超算中心的方法，当然就你个人的情况可能需要有针对性的修改。
+
+		
+		<a href="/blog/2015/06/07/bash-szcs/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-06-07T23:13:00+08:00" pubdate data-updated="true">Jun 7<span>th</span>, 2015</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/科研/'>科研</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2015/06/07/bash-szcs//blog/page/7/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2015/06/07/scipro/">
+		
+			科学计算的体会和深圳超算中心</a>
+	</h2>
+	<div class="entry-content">
+		<h1 id="section">前言</h1>
+
+<p>一直没写这个系列因为觉得水平不够，其实现在也没够，不过快要结束这3个月的论文苦战了。
+现在进入收官阶段的论文写作阶段所以就不揣冒昧的写出来了。</p>
+
+
+		
+		<a href="/blog/2015/06/07/scipro/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-06-07T20:14:00+08:00" pubdate data-updated="true">Jun 7<span>th</span>, 2015</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/科研/'>科研</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2015/06/07/scipro//blog/page/7/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2015/05/18/suzhou/">
+		
+			苏州游记</a>
+	</h2>
+	<div class="entry-content">
+		<h1 id="section">起源</h1>
+
+<p>导师让我去苏州开会，当时很诧异问导师这么弱爆了的段位选手去参加会议不是分分钟被打爆的节奏么？导师面带微笑地说——开会么，心情轻松最重要，去听听就有收获，不要太看重。重要的是，散散心，看看风景么。</p>
+
+<p>所以注册报名，又有了一次公费旅游的机会。开开心心去苏州浪去了。</p>
+
+
+		
+		<a href="/blog/2015/05/18/suzhou/" class="more-link">Read on &rarr;</a>
+	</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2015-05-18T20:15:00+08:00" pubdate data-updated="true">May 18<span>th</span>, 2015</time></div>
+	
+
+<div class="tags">
+
+	<a class='category' href='/blog/categories/生活/'>生活</a>
+
+</div>
+
+
+	
+		<span class="comments"><a href="/blog/2015/05/18/suzhou//blog/page/7/index.html#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
 		<a href="/blog/2015/04/26/crack3k/">
 		
 			再要你命3k默写程序:crack3kgrewords</a>
@@ -136,7 +382,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
   
 
 
-<time datetime="2015-04-26T21:11:00-05:00" pubdate data-updated="true">Apr 26<span>th</span>, 2015</time></div>
+<time datetime="2015-04-26T21:11:00+08:00" pubdate data-updated="true">Apr 26<span>th</span>, 2015</time></div>
 	
 
 <div class="tags">
@@ -183,7 +429,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
   
 
 
-<time datetime="2015-04-26T20:17:00-05:00" pubdate data-updated="true">Apr 26<span>th</span>, 2015</time></div>
+<time datetime="2015-04-26T20:17:00+08:00" pubdate data-updated="true">Apr 26<span>th</span>, 2015</time></div>
 	
 
 <div class="tags">
@@ -234,7 +480,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
   
 
 
-<time datetime="2015-02-16T21:22:00-06:00" pubdate data-updated="true">Feb 16<span>th</span>, 2015</time></div>
+<time datetime="2015-02-16T21:22:00+08:00" pubdate data-updated="true">Feb 16<span>th</span>, 2015</time></div>
 	
 
 <div class="tags">
@@ -293,7 +539,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
   
 
 
-<time datetime="2015-01-26T04:17:00-06:00" pubdate data-updated="true">Jan 26<span>th</span>, 2015</time></div>
+<time datetime="2015-01-26T04:17:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2015</time></div>
 	
 
 <div class="tags">
@@ -348,7 +594,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
   
 
 
-<time datetime="2015-01-26T04:08:00-06:00" pubdate data-updated="true">Jan 26<span>th</span>, 2015</time></div>
+<time datetime="2015-01-26T04:08:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2015</time></div>
 	
 
 <div class="tags">
@@ -360,268 +606,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 
 	
 		<span class="comments"><a href="/blog/2015/01/26/rss//blog/page/7/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2015/01/18/app/">
-		
-			英语学习APP推荐</a>
-	</h2>
-	<div class="entry-content">
-		<h1 id="section">前言</h1>
-
-<p>其实我没觉得我到了可以写这些的推荐啊什么的时候，因为这些都是大牛们才可以指点江山，激扬文字的东东．但是这几天用到的几个软件都特别好，所以推荐下．</p>
-
-
-		
-		<a href="/blog/2015/01/18/app/" class="more-link">Read on &rarr;</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2015-01-18T19:09:00-06:00" pubdate data-updated="true">Jan 18<span>th</span>, 2015</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/gre/'>GRE</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/blog/2015/01/18/app//blog/page/7/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2015/01/11/lecture201501/">
-		
-			晶界内耗的读书报告</a>
-	</h2>
-	<div class="entry-content">
-		<h2 id="section">前言</h2>
-
-<p>新的一年开始了，刚刚把年度工作报告写好了．还有两个星期，GRE最后的决战就要来了．上个星期去了琦叔GRE的400题和100题冲刺班可以说给自己吃了一次大补药，1.24再战GRE.</p>
-
-<p>其实我想写写什么的，就是没有什么感觉，一种内疚和恶劣的情绪一直纠缠着自己，去死吧！真是太糟糕的感觉，干脆把2014年group meeting报告贴上来同时作为自己的最新博文吧.</p>
-
-<p>今天看到的一条微博,在找到了原文<a href="http://news.qq.com/a/20150111/013503.htm">于敏院士：出国留学不要等到老了才落叶归根</a>:</p>
-
-<blockquote>
-  <p>于敏那时却不曾踏出国门一步，他对此有些许遗憾。“如果生在现在，重新上大学，我当然会留学。”他说，“土专家”不足为法，科学需要开放交流和广阔视野，但留学后须“回国再给国家做点事儿”，而且“不要到老了才回来，落叶归根只能起点肥料作用，应该开花结果的时候回来”。</p>
-</blockquote>
-
-<p>同时深切哀悼李小文院士，世间再无扫地僧，真本事真性情．</p>
-
-<p>还是好好复习GRE吧！</p>
-
-<h2 id="section-1">写好博客的作用</h2>
-
-<p>今天发现自己在ChaseDream上发表的帖子被尚友论坛的版主转载了<a href="http://www.sharewithu.com/thread-738732-1-1.html">背单词的两个方法总结</a>，其实我发在尚友了，但是尚友不允许使用hide标签结果没有人顶贴帖子沉了，结果现在又让版主转载回来，真是Ｏ＿＿Ｏ＂…．</p>
-
-<p>不过能够帮助到别人就是好的.</p>
-
-
-		
-		<a href="/blog/2015/01/11/lecture201501/" class="more-link">Read on &rarr;</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2015-01-11T16:17:00-06:00" pubdate data-updated="true">Jan 11<span>th</span>, 2015</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/物理/'>物理</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/blog/2015/01/11/lecture201501//blog/page/7/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2014/12/31/2014/">
-		
-			2014最后一篇博客文章&#8211;回顾2014,展望2015,明天会更好!</a>
-	</h2>
-	<div class="entry-content">
-		<h2 id="section">回顾2014</h2>
-
-<p>2014是一事无成的一年,这一年不是没有进步但是从成果的角度看,确实是没有任何收获,除了付出将近
-620小时复习GRE其他部分真的是一事无成.</p>
-
-<p>不过倒是总结了很多,实验室环境特别有毒,快走,别犹豫!</p>
-
-<p>GRE还是要正视现实,陈琦老师所谓的155冲分班是建立在数学满分的基础上的,你数学这么差算什么!必须提高数学,不然语文再多的努力都是白瞎!</p>
-
-
-		
-		<a href="/blog/2014/12/31/2014/" class="more-link">Read on &rarr;</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-12-31T22:43:00-06:00" pubdate data-updated="true">Dec 31<span>st</span>, 2014</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/生活/'>生活</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/blog/2014/12/31/2014//blog/page/7/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2014/12/22/mp3/">
-		
-			将微信语音导出转换成mp3</a>
-	</h2>
-	<div class="entry-content">
-		<h1 id="section">前言</h1>
-
-<p>爸爸妈妈的聊天语音提取出来专门做成一个mp3文件，天天听，每天睡觉之前听一遍。</p>
-
-<p>顶住这些压力，作为男人这点压力压不垮你！</p>
-
-<p>这是告诉你珍惜时间努力奋斗！</p>
-
-
-		
-		<a href="/blog/2014/12/22/mp3/" class="more-link">Read on &rarr;</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-12-22T18:02:00-06:00" pubdate data-updated="true">Dec 22<span>nd</span>, 2014</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/电脑/'>电脑</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/blog/2014/12/22/mp3//blog/page/7/index.html#disqus_thread">Comments</a></span>
-	
-</div></article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2014/12/20/2014/">
-		
-			2014年终总结兼GRE检讨</a>
-	</h2>
-	<div class="entry-content">
-		<h1 id="section">前言</h1>
-
-<p>又到了一年的结束，屈指算来在北京生活的时间也已经超过一年半了，虽然我来还是不习惯北京的寒冷，上上周还感了一次冒，主要的原因并不是我身体变差了认真算来我觉得只能说是这个实验室的座位实在是一种折磨。这个位置的上方就是通气口，结果呼呼的北风一下子都吹了进来导致身体一直处在寒冷状态，偏偏我还是夏天的思维不知道添加衣物保持暖和，结果就是一次非常严重的感冒。结果也一下子毁了GRE的复习状态，一句话概括就是连着三周我都没有进入考试复习的那种沉下来、静下去的状态。很多的任务也没有完成。这个后面细说。先说说2014总结。</p>
-
-
-		
-		<a href="/blog/2014/12/20/2014/" class="more-link">Read on &rarr;</a>
-	</div>
-
-
-<div class="meta">
-	<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-12-20T23:40:00-06:00" pubdate data-updated="true">Dec 20<span>th</span>, 2014</time></div>
-	
-
-<div class="tags">
-
-	<a class='category' href='/blog/categories/生活/'>生活</a>
-
-</div>
-
-
-	
-		<span class="comments"><a href="/blog/2014/12/20/2014//blog/page/7/index.html#disqus_thread">Comments</a></span>
 	
 </div></article>
 

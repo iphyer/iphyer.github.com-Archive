@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | 桑弧蓬矢射四方]]></title>
   <link href="http://iphyer.github.com/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://iphyer.github.com/"/>
-  <updated>2018-05-18T16:12:54-05:00</updated>
+  <updated>2018-08-21T18:27:16+08:00</updated>
   <id>http://iphyer.github.com/</id>
   <author>
     <name><![CDATA[iphyer]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[如何确保文件完全删除]]></title>
     <link href="http://iphyer.github.com/blog/2017/05/13/shred/"/>
-    <updated>2017-05-13T09:42:00-05:00</updated>
+    <updated>2017-05-13T09:42:00+08:00</updated>
     <id>http://iphyer.github.com/blog/2017/05/13/shred</id>
     <content type="html"><![CDATA[<h2 id="section">原因</h2>
 
@@ -67,7 +67,7 @@ sudo shred -v -n1 -z /dev/sdX
   <entry>
     <title type="html"><![CDATA[PDF裁边总结]]></title>
     <link href="http://iphyer.github.com/blog/2016/04/03/pdfcaibian/"/>
-    <updated>2016-04-03T08:39:00-05:00</updated>
+    <updated>2016-04-03T08:39:00+08:00</updated>
     <id>http://iphyer.github.com/blog/2016/04/03/pdfcaibian</id>
     <content type="html"><![CDATA[<p>今天打印文献，以前都是在Windows下用Briss打印因为打印机只支持Windows下的双面打印，虽然HP官网说是支持Linux但是谁用谁知道啊，特别坑。</p>
 
@@ -115,7 +115,7 @@ done</p>
   <entry>
     <title type="html"><![CDATA[ssh服务器修复和免密码登录]]></title>
     <link href="http://iphyer.github.com/blog/2016/03/21/ssh/"/>
-    <updated>2016-03-21T22:47:00-05:00</updated>
+    <updated>2016-03-21T22:47:00+08:00</updated>
     <id>http://iphyer.github.com/blog/2016/03/21/ssh</id>
     <content type="html"><![CDATA[<h1 id="section">起因</h1>
 
@@ -171,7 +171,7 @@ ssh user@host 'mkdir -p .ssh &amp;&amp; cat &gt;&gt; .ssh/authorized_keys' &lt; 
   <entry>
     <title type="html"><![CDATA[Linux下批量Kill多个进程的方法]]></title>
     <link href="http://iphyer.github.com/blog/2015/06/22/kill/"/>
-    <updated>2015-06-22T20:12:00-05:00</updated>
+    <updated>2015-06-22T20:12:00+08:00</updated>
     <id>http://iphyer.github.com/blog/2015/06/22/kill</id>
     <content type="html"><![CDATA[<h2 id="section">前言</h2>
 
@@ -213,7 +213,7 @@ ps x | grep $psname | grep -v grep | cut -c 1-5 | xargs kill</p>
   <entry>
     <title type="html"><![CDATA[Bash脚本的批量作业]]></title>
     <link href="http://iphyer.github.com/blog/2015/06/16/pipe/"/>
-    <updated>2015-06-16T17:09:00-05:00</updated>
+    <updated>2015-06-16T17:09:00+08:00</updated>
     <id>http://iphyer.github.com/blog/2015/06/16/pipe</id>
     <content type="html"><![CDATA[<h2 id="section">前言</h2>
 

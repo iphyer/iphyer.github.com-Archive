@@ -4,7 +4,7 @@
   <title><![CDATA[Category: R | 桑弧蓬矢射四方]]></title>
   <link href="http://iphyer.github.com/blog/categories/r/atom.xml" rel="self"/>
   <link href="http://iphyer.github.com/"/>
-  <updated>2018-05-18T16:12:54-05:00</updated>
+  <updated>2018-08-21T18:27:16+08:00</updated>
   <id>http://iphyer.github.com/</id>
   <author>
     <name><![CDATA[iphyer]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Rstudio修改默认library安装位置]]></title>
     <link href="http://iphyer.github.com/blog/2015/08/02/rstudio/"/>
-    <updated>2015-08-02T00:38:00-05:00</updated>
+    <updated>2015-08-02T00:38:00+08:00</updated>
     <id>http://iphyer.github.com/blog/2015/08/02/rstudio</id>
     <content type="html"><![CDATA[<h1 id="section">目标</h1>
 
@@ -56,7 +56,7 @@
   <entry>
     <title type="html"><![CDATA[用R做DSC曲线图]]></title>
     <link href="http://iphyer.github.com/blog/2014/11/24/plotdata/"/>
-    <updated>2014-11-24T22:12:00-06:00</updated>
+    <updated>2014-11-24T22:12:00+08:00</updated>
     <id>http://iphyer.github.com/blog/2014/11/24/plotdata</id>
     <content type="html"><![CDATA[<h1 id="section">前言</h1>
 
@@ -312,7 +312,7 @@ ggplot(dat, aes(x=dat[,grep("T",colnames(dataF))], color = variable)) +
   <entry>
     <title type="html"><![CDATA[淘宝数据竞赛总结和程序]]></title>
     <link href="http://iphyer.github.com/blog/2014/04/25/taobao/"/>
-    <updated>2014-04-25T22:34:00-05:00</updated>
+    <updated>2014-04-25T22:34:00+08:00</updated>
     <id>http://iphyer.github.com/blog/2014/04/25/taobao</id>
     <content type="html"><![CDATA[<h2 id="section">起因</h2>
 
@@ -534,7 +534,7 @@ datindex&lt;-ddply(dat,.(user_id,brand_id),summarize,buyers=judge(type))
   <entry>
     <title type="html"><![CDATA[第五届R语言中国会议(上海)]]></title>
     <link href="http://iphyer.github.com/blog/2012/11/05/rchina5/"/>
-    <updated>2012-11-05T10:49:00-06:00</updated>
+    <updated>2012-11-05T10:49:00+08:00</updated>
     <id>http://iphyer.github.com/blog/2012/11/05/rchina5</id>
     <content type="html"><![CDATA[<h1 id="section">导语</h1>
 <p>这是RChina会议的记录，作为自己的一篇总结。本来不打算写的，后来想想，有始有终，何况这么多大牛的登台演讲给了我这么多的启发。

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 学习 | 桑弧蓬矢射四方]]></title>
   <link href="http://iphyer.github.com/blog/categories/学习/atom.xml" rel="self"/>
   <link href="http://iphyer.github.com/"/>
-  <updated>2018-05-18T16:12:54-05:00</updated>
+  <updated>2018-08-21T18:27:16+08:00</updated>
   <id>http://iphyer.github.com/</id>
   <author>
     <name><![CDATA[iphyer]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[运用R做数据分析]]></title>
     <link href="http://iphyer.github.com/blog/2018/02/09/r/"/>
-    <updated>2018-02-09T21:23:00-06:00</updated>
+    <updated>2018-02-09T21:23:00+08:00</updated>
     <id>http://iphyer.github.com/blog/2018/02/09/r</id>
     <content type="html"><![CDATA[<h2 id="section">前言</h2>
 
@@ -241,7 +241,7 @@ xfit&lt;-seq(180,480,len=2000)</p>
   <entry>
     <title type="html"><![CDATA[关于LATEX的思考——我们需要学到了什么]]></title>
     <link href="http://iphyer.github.com/blog/2018/02/09/latexthinking/"/>
-    <updated>2018-02-09T20:49:00-06:00</updated>
+    <updated>2018-02-09T20:49:00+08:00</updated>
     <id>http://iphyer.github.com/blog/2018/02/09/latexthinking</id>
     <content type="html"><![CDATA[<h1 id="section">起因</h1>
 
@@ -422,7 +422,7 @@ http://www.yangzhiping.com/tech/r-markdown-knitr.html</p>
   <entry>
     <title type="html"><![CDATA[UW-Madison TA Speaking Test 总结]]></title>
     <link href="http://iphyer.github.com/blog/2018/01/15/speakingtest/"/>
-    <updated>2018-01-15T22:12:00-06:00</updated>
+    <updated>2018-01-15T22:12:00+08:00</updated>
     <id>http://iphyer.github.com/blog/2018/01/15/speakingtest</id>
     <content type="html"><![CDATA[<h2 id="section">起因</h2>
 
@@ -522,7 +522,7 @@ http://www.yangzhiping.com/tech/r-markdown-knitr.html</p>
   <entry>
     <title type="html"><![CDATA[助教感受]]></title>
     <link href="http://iphyer.github.com/blog/2017/09/10/week1ta/"/>
-    <updated>2017-09-10T23:19:00-05:00</updated>
+    <updated>2017-09-10T23:19:00+08:00</updated>
     <id>http://iphyer.github.com/blog/2017/09/10/week1ta</id>
     <content type="html"><![CDATA[<h1 id="section">起因</h1>
 
@@ -579,7 +579,7 @@ http://www.yangzhiping.com/tech/r-markdown-knitr.html</p>
   <entry>
     <title type="html"><![CDATA[关于PhD的思考]]></title>
     <link href="http://iphyer.github.com/blog/2017/06/21/phd/"/>
-    <updated>2017-06-21T22:34:00-05:00</updated>
+    <updated>2017-06-21T22:34:00+08:00</updated>
     <id>http://iphyer.github.com/blog/2017/06/21/phd</id>
     <content type="html"><![CDATA[<h1 id="section">起因</h1>
 
